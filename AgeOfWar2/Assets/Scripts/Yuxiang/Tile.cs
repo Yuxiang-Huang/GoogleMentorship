@@ -8,6 +8,8 @@ public class Tile : MonoBehaviour
 
     public List<Tile> neighbors;
 
+    public GameObject unit;
+
     [SerializeField] GameObject highlightTile;
 
     public void highlight(bool status)

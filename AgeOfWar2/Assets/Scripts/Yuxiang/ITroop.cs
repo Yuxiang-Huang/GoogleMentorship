@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface ITroop
 {
+    Tile tile { get; set; }
+
     public void findPath(Tile target);
 
     public void move();

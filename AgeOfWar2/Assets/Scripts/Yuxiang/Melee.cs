@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour, ITroop
 {
-    Tile tile;
+    public Tile tile
+    {
+        get;
+        set;
+    }
 
     Tile lastTarget;
 
@@ -16,7 +20,7 @@ public class Melee : MonoBehaviour, ITroop
 
     private void Start()
     {
-        tile = TileManager.instance.getTile(transform.position);
+        tile = TileManager.instance.getTile();
     }
 
     public void findPath(Tile target)
@@ -91,8 +95,10 @@ public class Melee : MonoBehaviour, ITroop
         {
             //move to next tile on list
             tile = path[0];
-            Vector2Int tilePos = path[0].pos;
+            path[0].unit = this.gameObject;
             path.RemoveAt(0);
+
+            Vector2Int tilePos = path[0].pos;
             transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
 
             //display arrow

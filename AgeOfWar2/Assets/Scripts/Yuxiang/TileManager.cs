@@ -15,19 +15,11 @@ public class TileManager : MonoBehaviour
     [SerializeField] GameObject landTilePrefab;
     [SerializeField] GameObject waterTilePrefab;
 
-    [SerializeField] GameObject clubMan;
-
-    Tile highlighted;
-
-    ITroop player;
-
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         makeGrid(10, 10);
-        GameObject playerObject = Instantiate(clubMan, new Vector3(0, 0, 0), Quaternion.identity);
-        player = playerObject.GetComponent<Melee>();
     }
 
     //create the map
@@ -89,40 +81,11 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    //get the tile the cursor is on
+    public Tile getTile()
     {
-        Vector3 mousePos = getMousePos();
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Tile newHilighted = getTile(mousePos);
-
-        if (highlighted != newHilighted)
-        {
-            if (highlighted != null)
-                highlighted.highlight(false);
-
-            highlighted = newHilighted;
-
-            if (newHilighted != null)
-                highlighted.highlight(true);
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (highlighted != null)
-            {
-                player.findPath(highlighted.GetComponent<Tile>());
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            player.move();
-        }
-    }
-
-    public Tile getTile(Vector3 pos)
-    {
         int x = (int)((pos.x + cellSize / 2.0) / cellSize);
         int y = (int)((pos.y + cellSize / 2.0) / cellSize);
 
@@ -131,10 +94,5 @@ public class TileManager : MonoBehaviour
             return tiles[x, y].GetComponent<Tile>();
         }
         return null;
-    }
-
-    Vector3 getMousePos()
-    {
-        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }
