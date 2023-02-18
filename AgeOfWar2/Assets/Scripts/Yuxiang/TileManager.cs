@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    GameObject[,] tiles;
+    static TileManager instance;
 
     const int cellSize = 1;
+
+    public GameObject[,] tiles;
 
     [SerializeField] GameObject landTilePrefab;
     [SerializeField] GameObject waterTilePrefab;
@@ -21,6 +24,7 @@ public class TileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         makeGrid(10, 10);
         player = Instantiate(clubMan, new Vector3(0, 0, 0), Quaternion.identity);
     }
@@ -36,6 +40,7 @@ public class TileManager : MonoBehaviour
         {
             for (int j = 0; j < cols; j++)
             {
+                //instantiate
                 if ((i + j) % 2 == 1)
                 {
                     tiles[i, j] = Instantiate(waterTilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
@@ -49,6 +54,37 @@ public class TileManager : MonoBehaviour
                 }
 
                 tiles[i, j].transform.SetParent(parent.transform);
+
+                //set tile stats
+                tiles[i, j].GetComponent<Tile>().row = i;
+                tiles[i, j].GetComponent<Tile>().col = j;
+            }
+        }
+
+        //set neighbors
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+            {
+                List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
+
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        int curRow = row + i;
+                        int curCol = col + j;
+
+                        if (curRow != 0 || curCol != 0)
+                        {
+                            if (curRow >= 0 && curRow < tiles.GetLength(0) && 
+                                curCol - 1 >= 0 && curCol + 1 < tiles.GetLength(1))
+                            {
+                                neighbors.Add(tiles[curRow, curCol].GetComponent<Tile>());
+                            }
+                        }
+                    }
+                } 
             }
         }
     }

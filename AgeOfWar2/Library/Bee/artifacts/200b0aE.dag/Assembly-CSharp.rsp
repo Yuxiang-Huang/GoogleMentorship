@@ -345,6 +345,8 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/Yuxiang/ITroop.cs"
+"Assets/Scripts/Yuxiang/Melee.cs"
 "Assets/Scripts/Yuxiang/Tile.cs"
 "Assets/Scripts/Yuxiang/TileManager.cs"
 -langversion:9.0
