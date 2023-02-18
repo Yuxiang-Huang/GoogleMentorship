@@ -96,10 +96,9 @@ public class Melee : MonoBehaviour, ITroop
             //move to next tile on list
             tile = path[0];
             path[0].unit = this.gameObject;
-            path.RemoveAt(0);
-
             Vector2Int tilePos = path[0].pos;
             transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
+            path.RemoveAt(0);
 
             //display arrow
             if (path.Count != 0)
