@@ -78,7 +78,7 @@ public class TileManager : MonoBehaviour
                         if (curRow != 0 || curCol != 0)
                         {
                             if (curRow >= 0 && curRow < tiles.GetLength(0) && 
-                                curCol - 1 >= 0 && curCol + 1 < tiles.GetLength(1))
+                                curCol >= 0 && curCol < tiles.GetLength(1))
                             {
                                 neighbors.Add(tiles[curRow, curCol].GetComponent<Tile>());
                             }
@@ -119,7 +119,7 @@ public class TileManager : MonoBehaviour
 
     IEnumerator moveTest()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
 
         player.move();
     }

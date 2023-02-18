@@ -14,4 +14,9 @@ public class Tile : MonoBehaviour
     {
         highlightTile.SetActive(status);
     }
+
+    public override string ToString()
+    {
+        return pos.ToString();
+    }
 }
