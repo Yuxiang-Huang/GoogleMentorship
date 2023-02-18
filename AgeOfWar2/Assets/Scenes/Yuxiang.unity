@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landTilePrefab: {fileID: 224828791676552201, guid: f50b7b13635eb4925b259ebe29031913, type: 3}
   waterTilePrefab: {fileID: 224828791676552201, guid: 0ef032cce133a4f8e9b223f552adc3a7, type: 3}
+  clubMan: {fileID: 6514224017186162067, guid: b63047aabf50f448283d8221273a5698, type: 3}
 --- !u!4 &1927268906
 Transform:
   m_ObjectHideFlags: 0

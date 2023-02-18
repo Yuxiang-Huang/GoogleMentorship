@@ -12,12 +12,17 @@ public class TileManager : MonoBehaviour
     [SerializeField] GameObject landTilePrefab;
     [SerializeField] GameObject waterTilePrefab;
 
+    [SerializeField] GameObject clubMan;
+
     GameObject highlighted;
+
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         makeGrid(10, 10);
+        player = Instantiate(clubMan, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     //create the map
@@ -65,6 +70,14 @@ public class TileManager : MonoBehaviour
             if (newHilighted != null) 
                 highlighted.GetComponent<Tile>().highlight(true);
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (highlighted != null)
+            {
+                player.transform.position = highlighted.transform.position;
+            }
+        }
     }
 
     GameObject getTile(Vector3 pos)
@@ -83,5 +96,4 @@ public class TileManager : MonoBehaviour
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-
 }
