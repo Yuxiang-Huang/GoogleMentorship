@@ -8,7 +8,7 @@ public class Melee : MonoBehaviour, ITroop
 
     Tile lastTarget;
 
-    public Queue<Tile> path;
+    public List<Tile> path;
 
     private void Start()
     {
@@ -21,10 +21,10 @@ public class Melee : MonoBehaviour, ITroop
 
         lastTarget = target;
 
-        Queue<Queue<Tile>> allPath = new Queue<Queue<Tile>>();
+        Queue<List<Tile>> allPath = new Queue<List<Tile>>();
 
-        Queue<Tile> root = new Queue<Tile>();
-        root.Enqueue(tile);
+        List<Tile> root = new List<Tile>();
+        root.Add(tile);
 
         allPath.Enqueue(root);
 
@@ -37,15 +37,8 @@ public class Melee : MonoBehaviour, ITroop
         int len = 0;
         while (allPath.Count != 0 && !reach)
         {
-            Debug.Log("Len: " + len);
-
-            Queue<Tile> cur = allPath.Dequeue();
-            Tile lastTile = cur.Peek();
-
-            if (len > 0)
-            {
-                Debug.Log(len + ": " + lastTile.ToString());
-            }
+            List<Tile> cur = allPath.Dequeue();
+            Tile lastTile = cur[cur.Count - 1];
 
             foreach (Tile curTile in lastTile.neighbors)
             {
@@ -53,18 +46,15 @@ public class Melee : MonoBehaviour, ITroop
                 {
                     visited[curTile.pos.x, curTile.pos.y] = true;
 
-                    Queue<Tile> dup = new Queue<Tile>(cur);
-                    dup.Enqueue(curTile);
+                    List<Tile> dup = new List<Tile>(cur);
+                    dup.Add(curTile);
 
                     if (curTile == target)
                     {
                         reach = true;
+                        dup.RemoveAt(0);
                         path = dup;
-                        Debug.Log(path.ToString());
                     }
-
-                    Debug.Log("curTile: " + curTile);
-                    Debug.Log(dup.Dequeue().ToString());
 
                     allPath.Enqueue(dup);
                 }
@@ -76,18 +66,15 @@ public class Melee : MonoBehaviour, ITroop
             {
                 break;
             }
-
-            Debug.Log(allPath.Count);
         }
-
-
     }
 
     public void move()
     {
         if (path.Count != 0)
         {
-            Vector2Int tilePos = path.Dequeue().pos;
+            Vector2Int tilePos = path[0].pos;
+            path.RemoveAt(0);
             transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
         }
     }

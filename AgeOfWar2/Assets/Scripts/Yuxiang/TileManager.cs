@@ -122,6 +122,8 @@ public class TileManager : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         player.move();
+
+        StartCoroutine(nameof(moveTest));
     }
 
 
