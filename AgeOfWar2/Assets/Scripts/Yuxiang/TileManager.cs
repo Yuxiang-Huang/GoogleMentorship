@@ -72,11 +72,11 @@ public class TileManager : MonoBehaviour
                 {
                     for (int j = -1; j <= 1; j++)
                     {
-                        int curRow = row + i;
-                        int curCol = col + j;
-
-                        if (curRow != 0 || curCol != 0)
+                        if (i != 0 || j != 0)
                         {
+                            int curRow = row + i;
+                            int curCol = col + j;
+
                             if (curRow >= 0 && curRow < tiles.GetLength(0) && 
                                 curCol >= 0 && curCol < tiles.GetLength(1))
                             {
@@ -103,7 +103,7 @@ public class TileManager : MonoBehaviour
 
             highlighted = newHilighted;
 
-            if (newHilighted != null) 
+            if (newHilighted != null)
                 highlighted.highlight(true);
         }
 
@@ -112,20 +112,14 @@ public class TileManager : MonoBehaviour
             if (highlighted != null)
             {
                 player.findPath(highlighted.GetComponent<Tile>());
-                StartCoroutine(nameof(moveTest));
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.move();
+        }
     }
-
-    IEnumerator moveTest()
-    {
-        yield return new WaitForSeconds(0.3f);
-
-        player.move();
-
-        StartCoroutine(nameof(moveTest));
-    }
-
 
     public Tile getTile(Vector3 pos)
     {

@@ -34,9 +34,10 @@ public class Melee : MonoBehaviour, ITroop
 
         bool reach = false;
 
-        int len = 0;
         while (allPath.Count != 0 && !reach)
         {
+            Debug.Log(allPath.Count);
+
             List<Tile> cur = allPath.Dequeue();
             Tile lastTile = cur[cur.Count - 1];
 
@@ -59,13 +60,6 @@ public class Melee : MonoBehaviour, ITroop
                     allPath.Enqueue(dup);
                 }
             }
-
-            len++;
-
-            if (len > 100)
-            {
-                break;
-            }
         }
     }
 
@@ -73,6 +67,7 @@ public class Melee : MonoBehaviour, ITroop
     {
         if (path.Count != 0)
         {
+            tile = path[0];
             Vector2Int tilePos = path[0].pos;
             path.RemoveAt(0);
             transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
