@@ -8,7 +8,7 @@ public class TileManager : MonoBehaviour
 {
     public static TileManager instance;
 
-    const int cellSize = 1;
+    public const float cellSize = 1;
 
     public GameObject[,] tiles;
 
@@ -123,8 +123,8 @@ public class TileManager : MonoBehaviour
 
     public Tile getTile(Vector3 pos)
     {
-        int x = (int)(pos.x + cellSize / 2.0) / cellSize;
-        int y = (int)(pos.y + cellSize / 2.0) / cellSize;
+        int x = (int)((pos.x + cellSize / 2.0) / cellSize);
+        int y = (int)((pos.y + cellSize / 2.0) / cellSize);
 
         if (x >= 0 && x < tiles.GetLength(0) && y >= 0 && y < tiles.GetLength(1))
         {

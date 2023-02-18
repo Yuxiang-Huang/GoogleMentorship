@@ -10,6 +10,10 @@ public class Melee : MonoBehaviour, ITroop
 
     public List<Tile> path;
 
+    GameObject arrow;
+
+    [SerializeField] GameObject arrowPrefab;
+
     private void Start()
     {
         tile = TileManager.instance.getTile(transform.position);
@@ -36,8 +40,6 @@ public class Melee : MonoBehaviour, ITroop
 
         while (allPath.Count != 0 && !reach)
         {
-            Debug.Log(allPath.Count);
-
             List<Tile> cur = allPath.Dequeue();
             Tile lastTile = cur[cur.Count - 1];
 
@@ -61,16 +63,47 @@ public class Melee : MonoBehaviour, ITroop
                 }
             }
         }
+
+        //display arrow
+        if (path.Count != 0)
+        {
+            if (arrow != null)
+            {
+                Destroy(arrow);
+            }
+
+            arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+
+            float angle = Mathf.Atan2(path[0].pos.y - tile.pos.y, path[0].pos.x - tile.pos.x);
+
+            arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
+        }
     }
 
     public void move()
     {
+        if (arrow != null)
+        {
+            Destroy(arrow);
+        }
+
         if (path.Count != 0)
         {
+            //move to next tile on list
             tile = path[0];
             Vector2Int tilePos = path[0].pos;
             path.RemoveAt(0);
             transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
+
+            //display arrow
+            if (path.Count != 0)
+            {
+                arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+
+                float angle = Mathf.Atan2(path[0].pos.y - tile.pos.y, path[0].pos.x - tile.pos.x);
+
+                arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
+            }
         }
     }
 }
