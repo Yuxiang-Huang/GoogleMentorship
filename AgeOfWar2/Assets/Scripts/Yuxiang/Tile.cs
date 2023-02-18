@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public int row, col;
+    public Vector2Int pos;
 
     public List<Tile> neighbors;
 

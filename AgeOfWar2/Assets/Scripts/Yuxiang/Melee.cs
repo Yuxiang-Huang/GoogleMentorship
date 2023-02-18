@@ -4,20 +4,36 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour, ITroop
 {
-    // Start is called before the first frame update
-    void Start()
+    Tile tile;
+
+    Tile lastTarget;
+
+    public Queue<Tile> path;
+
+    private void Start()
     {
-        
+        tile = TileManager.instance.getTile(transform.position);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void findPath(Tile target)
     {
-        
+        if (lastTarget == target) return; //same path
+
+        lastTarget = target;
+
+        path = new Queue<Tile>();
+
+        path.Enqueue(target);
     }
 
-    public void move(Vector3 target)
+    public void move()
     {
+        Debug.Log(path);
 
+        if (path.Count != 0)
+        {
+            Vector2Int tilePos = path.Dequeue().pos;
+            transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
+        }
     }
 }

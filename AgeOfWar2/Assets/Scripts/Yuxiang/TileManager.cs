@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    static TileManager instance;
+    public static TileManager instance;
 
     const int cellSize = 1;
 
@@ -17,16 +17,17 @@ public class TileManager : MonoBehaviour
 
     [SerializeField] GameObject clubMan;
 
-    GameObject highlighted;
+    Tile highlighted;
 
-    GameObject player;
+    ITroop player;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         makeGrid(10, 10);
-        player = Instantiate(clubMan, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject playerObject = Instantiate(clubMan, new Vector3(0, 0, 0), Quaternion.identity);
+        player = playerObject.GetComponent<Melee>();
     }
 
     //create the map
@@ -56,8 +57,7 @@ public class TileManager : MonoBehaviour
                 tiles[i, j].transform.SetParent(parent.transform);
 
                 //set tile stats
-                tiles[i, j].GetComponent<Tile>().row = i;
-                tiles[i, j].GetComponent<Tile>().col = j;
+                tiles[i, j].GetComponent<Tile>().pos = new Vector2Int(i, j);
             }
         }
 
@@ -94,36 +94,45 @@ public class TileManager : MonoBehaviour
     {
         Vector3 mousePos = getMousePos();
 
-        GameObject newHilighted = getTile(mousePos);
+        Tile newHilighted = getTile(mousePos);
 
         if (highlighted != newHilighted)
         {
             if (highlighted != null)
-                highlighted.GetComponent<Tile>().highlight(false);
+                highlighted.highlight(false);
 
             highlighted = newHilighted;
 
             if (newHilighted != null) 
-                highlighted.GetComponent<Tile>().highlight(true);
+                highlighted.highlight(true);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             if (highlighted != null)
             {
-                player.transform.position = highlighted.transform.position;
+                player.findPath(highlighted.GetComponent<Tile>());
+                StartCoroutine(nameof(moveTest));
             }
         }
     }
 
-    GameObject getTile(Vector3 pos)
+    IEnumerator moveTest()
+    {
+        yield return new WaitForSeconds(1);
+
+        player.move();
+    }
+
+
+    public Tile getTile(Vector3 pos)
     {
         int x = (int)(pos.x + cellSize / 2.0) / cellSize;
         int y = (int)(pos.y + cellSize / 2.0) / cellSize;
 
         if (x >= 0 && x < tiles.GetLength(0) && y >= 0 && y < tiles.GetLength(1))
         {
-            return tiles[x, y];
+            return tiles[x, y].GetComponent<Tile>();
         }
         return null;
     }

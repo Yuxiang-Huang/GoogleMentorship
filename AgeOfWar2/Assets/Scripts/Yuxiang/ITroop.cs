@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface ITroop
 {
-    public void move(Vector3 target);
+    public void findPath(Tile target);
+
+    public void move();
 }
