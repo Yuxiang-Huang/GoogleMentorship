@@ -8,7 +8,8 @@ public class TileManager : MonoBehaviour
 
     const int cellSize = 1;
 
-    [SerializeField] GameObject tilePrefab;
+    [SerializeField] GameObject landTilePrefab;
+    [SerializeField] GameObject waterTilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,25 @@ public class TileManager : MonoBehaviour
     {
         tiles = new GameObject[rows, cols];
 
+        GameObject parent = new GameObject("Map");
+
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                tiles[i, j] = Instantiate(tilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
-                    Quaternion.identity);
+                if ((i + j) % 2 == 1)
+                {
+                    tiles[i, j] = Instantiate(waterTilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
+    Quaternion.identity);
+                }
+
+                else
+                {
+                    tiles[i, j] = Instantiate(landTilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
+    Quaternion.identity);
+                }
+
+                tiles[i, j].transform.SetParent(parent.transform);
             }
         }
     }
