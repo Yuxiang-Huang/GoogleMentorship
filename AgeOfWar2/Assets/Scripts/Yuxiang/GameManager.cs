@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
                     if (highlighted != null && highlighted.GetComponent<Tile>().unit != null)
                     {
                         playerSelected = highlighted.GetComponent<Tile>().unit.GetComponent<ITroop>();
+                        playerSelected.highlight(true);
                     }
                 }
                 //findPath
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
                     if (highlighted != null)
                     {
                         playerSelected.findPath(highlighted.GetComponent<Tile>());
+                        playerSelected.highlight(false);
                         playerSelected = null;
                     }
                 }

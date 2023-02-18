@@ -9,4 +9,6 @@ public interface ITroop
     public void findPath(Tile target);
 
     public void move();
+
+    public void highlight(bool status);
 }

@@ -14,18 +14,25 @@ public class Melee : MonoBehaviour, ITroop
 
     public List<Tile> path;
 
-    GameObject arrow;
+    [SerializeField] GameObject arrow;
 
     [SerializeField] GameObject arrowPrefab;
+
+    [SerializeField] GameObject highlightTile;
 
     private void Start()
     {
         tile = TileManager.instance.getTile();
     }
 
+    public void highlight(bool status)
+    {
+        highlightTile.SetActive(status);
+    }
+
     public void findPath(Tile target)
     {
-        if (lastTarget == target) return; //same path
+        if (lastTarget == target || target == tile) return; //same path or same tile
 
         lastTarget = target;
 

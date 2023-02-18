@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf9268a434e24d8dbb9d665d570b07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0}
+  neighbors: []
+  unit: {fileID: 0}
   highlightTile: {fileID: 8168695078935648401}
 --- !u!1 &8168695078935648401
 GameObject:
