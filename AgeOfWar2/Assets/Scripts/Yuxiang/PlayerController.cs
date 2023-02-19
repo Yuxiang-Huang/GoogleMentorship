@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public int goldNeedToSpawn;
 
     [Header("Gold")]
-    [SerializeField]  int gold;
+    [SerializeField] int gold;
     [SerializeField] TextMeshProUGUI goldText;
 
     private void Start()
@@ -152,6 +152,16 @@ public class PlayerController : MonoBehaviour
 
                 mode = "move";
             }
+        }
+    }
+
+    public void nextTurn()
+    {
+        gold += territory.Count;
+
+        foreach (Troop troop in allTroops)
+        {
+            troop.move();
         }
     }
 }
