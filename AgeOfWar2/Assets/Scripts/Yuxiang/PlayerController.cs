@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class PlayerController : MonoBehaviour
 
     public string mode;
 
-    public GameObject toSpawn;
-
     List<Troop> allTroops = new List<Troop>();
+
+    [Header("Spawn")]
+    public GameObject toSpawn;
+    public int goldNeedToSpawn;
+
+    [Header("Gold")]
+    [SerializeField] int gold;
+    [SerializeField] TextMeshProUGUI goldText;
 
     private void Start()
     {
@@ -23,6 +30,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //update gold
+        goldText.text = "Gold: " + gold;
+
         //highlight
         Tile newHilighted = TileManager.instance.getTile();
 
@@ -73,23 +83,22 @@ public class PlayerController : MonoBehaviour
         }
         else if (mode == "spawn")
         {
-            if (highlighted != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.GetMouseButtonDown(0))
+                if (highlighted != null && highlighted.unit == null)
                 {
-                    if (highlighted.unit == null)
-                    {
-                        GameObject newUnit = Instantiate(toSpawn,
-                        highlighted.gameObject.transform.position, Quaternion.identity);
+                    GameObject newUnit = Instantiate(toSpawn,
+                    highlighted.gameObject.transform.position, Quaternion.identity);
 
-                        highlighted.GetComponent<Tile>().unit = newUnit;
-                        newUnit.GetComponent<Troop>().tile = highlighted;
+                    highlighted.GetComponent<Tile>().unit = newUnit;
+                    newUnit.GetComponent<Troop>().tile = highlighted;
 
-                        allTroops.Add(newUnit.GetComponent<Troop>());
+                    allTroops.Add(newUnit.GetComponent<Troop>());
 
-                        mode = "move";
-                    }
+                    gold -= goldNeedToSpawn;
                 }
+
+                mode = "move";
             }
         }
     }

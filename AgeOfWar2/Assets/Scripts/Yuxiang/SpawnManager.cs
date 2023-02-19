@@ -25,6 +25,7 @@ public class SpawnManager : MonoBehaviour
         {
             player.mode = "spawn";
             player.toSpawn = clubMan;
+            player.goldNeedToSpawn = 2;
         }
     }
 }
