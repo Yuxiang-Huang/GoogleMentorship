@@ -22,14 +22,11 @@ public class Tile : MonoBehaviour
 
     private void Awake()
     {
-        //start with dark highlight
+        //all highlight off
         foreach (GameObject highlight in ownerHighlight)
         {
             highlight.SetActive(false);
         }
-
-        lastHighlight = ownerHighlight[0];
-        lastHighlight.SetActive(true);
     }
 
     public void highlight(bool status)
@@ -44,7 +41,10 @@ public class Tile : MonoBehaviour
 
     public void updateHighlight()
     {
-        lastHighlight.SetActive(false);
+        if (lastHighlight != null)
+        {
+            lastHighlight.SetActive(false);
+        }
 
         lastHighlight = ownerHighlight[owner];
 

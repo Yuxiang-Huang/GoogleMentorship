@@ -117,10 +117,14 @@ public class Troop : MonoBehaviour
             //move to next tile on list if no unit is there
             if (path[0].unit == null)
             {
+                //update tile status
                 tile.unit = null;
                 tile = path[0];
                 tile.unit = this.gameObject;
                 tile.owner = owner;
+                tile.updateHighlight();
+
+                //position
                 Vector2Int tilePos = path[0].pos;
                 transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
                 path.RemoveAt(0);

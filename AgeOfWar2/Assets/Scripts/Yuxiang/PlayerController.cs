@@ -89,13 +89,17 @@ public class PlayerController : MonoBehaviour
             {
                 if (highlighted != null && highlighted.unit == null)
                 {
+                    //spawn unit and relation tile and unit
                     GameObject newUnit = Instantiate(toSpawn,
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     highlighted.GetComponent<Tile>().unit = newUnit;
                     newUnit.GetComponent<Troop>().tile = highlighted;
 
-                    newUnit.GetComponent<Troop>().owner = id;
+                    //owner
+                    highlighted.owner = id;
+                    highlighted.updateHighlight();
+                    newUnit.GetComponent<Troop>().owner = id;   
 
                     allTroops.Add(newUnit.GetComponent<Troop>());
 
