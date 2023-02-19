@@ -22,6 +22,20 @@ public class TileManager : MonoBehaviour
         instance = this;
     }
 
+    public void updateGrid()
+    {
+        for (int i = 0; i < tiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
+                if (tiles[i, j].owner == PlayerController.instance.id)
+                {
+                    PlayerController.instance.gold++;
+                }
+            }
+        }
+    }
+
     //create the map
     public void makeGrid(int rows, int cols)
     {

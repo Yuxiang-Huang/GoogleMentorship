@@ -8,8 +8,6 @@ public class SpawnManager : MonoBehaviour
 
     public static SpawnManager instance;
 
-    public PlayerController player;
-
     public void Awake()
     {
         instance = this;
@@ -17,15 +15,15 @@ public class SpawnManager : MonoBehaviour
 
     public void spawn()
     {
-        if (player.mode == "spawn")
+        if (PlayerController.instance.mode == "spawn")
         {
-            player.mode = "move";
+            PlayerController.instance.mode = "move";
         }
         else
         {
-            player.mode = "spawn";
-            player.toSpawn = clubMan;
-            player.goldNeedToSpawn = 2;
+            PlayerController.instance.mode = "spawn";
+            PlayerController.instance.toSpawn = clubMan;
+            PlayerController.instance.goldNeedToSpawn = 2;
         }
     }
 }

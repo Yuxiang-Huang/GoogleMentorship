@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
-    int id = 1;
+    public static PlayerController instance;
+
+    public int id = 1;
 
     Tile highlighted;
 
@@ -21,12 +24,12 @@ public class PlayerController : MonoBehaviour
     public int goldNeedToSpawn;
 
     [Header("Gold")]
-    [SerializeField] int gold;
+    public int gold;
     [SerializeField] TextMeshProUGUI goldText;
 
     private void Start()
     {
-        SpawnManager.instance.player = this;
+        instance = this;
     }
 
     // Update is called once per frame
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
                 {
                     troop.move();
                 }
+
+                TileManager.instance.updateGrid();
             }
         }
         else if (mode == "spawn")
