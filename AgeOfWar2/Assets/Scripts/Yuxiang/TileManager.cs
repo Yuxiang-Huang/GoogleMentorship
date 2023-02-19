@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] GameObject castle;
     [SerializeField] GameObject landTilePrefab;
     [SerializeField] GameObject waterTilePrefab;
 
@@ -20,20 +19,6 @@ public class TileManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-    }
-
-    public void updateGrid()
-    {
-        for (int i = 0; i < tiles.GetLength(0); i++)
-        {
-            for (int j = 0; j < tiles.GetLength(1); j++)
-            {
-                if (tiles[i, j].owner == PlayerController.instance.id)
-                {
-                    PlayerController.instance.gold++;
-                }
-            }
-        }
     }
 
     //create the map
@@ -69,6 +54,13 @@ public class TileManager : MonoBehaviour
             }
         }
 
+        //make sure corner is land
+        Destroy(tiles[0, 0].gameObject);
+        tiles[0, 0] = Instantiate(landTilePrefab, new Vector3(0 * cellSize, 0 * cellSize, 0),
+    Quaternion.identity).GetComponent<Tile>();
+        tiles[0, 0].terrain = "land";
+        tiles[0, 0].transform.SetParent(parent.transform);
+
         //set neighbors
         for (int row = 0; row < rows; row++)
         {
@@ -95,10 +87,6 @@ public class TileManager : MonoBehaviour
                 } 
             }
         }
-
-        GameObject myCastle = Instantiate(castle, new Vector3(0, 0, 0), Quaternion.identity);
-
-        tiles[0, 0].GetComponent<Tile>().unit = myCastle;
     }
 
     //get the tile the cursor is on

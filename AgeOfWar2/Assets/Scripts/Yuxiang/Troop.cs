@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Troop : MonoBehaviour
 {
-    public int owner;
+    public PlayerController owner;
 
     public Tile tile;
     Tile lastTarget;
@@ -91,17 +91,20 @@ public class Troop : MonoBehaviour
             //remove first tile
             path.RemoveAt(0);
 
-            //display arrow
-            if (arrow != null)
+            if (path.Count != 0)
             {
-                Destroy(arrow);
+                //display arrow
+                if (arrow != null)
+                {
+                    Destroy(arrow);
+                }
+
+                arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+
+                float angle = Mathf.Atan2(path[0].pos.y - tile.pos.y, path[0].pos.x - tile.pos.x);
+
+                arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
             }
-
-            arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
-
-            float angle = Mathf.Atan2(path[0].pos.y - tile.pos.y, path[0].pos.x - tile.pos.x);
-
-            arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
         }
     }
 
@@ -122,6 +125,8 @@ public class Troop : MonoBehaviour
                 tile = path[0];
                 tile.unit = this.gameObject;
                 tile.owner = owner;
+                owner.territory.Add(tile);
+
                 tile.updateHighlight();
 
                 //position

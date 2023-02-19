@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clubMan: {fileID: 6514224017186162067, guid: b63047aabf50f448283d8221273a5698, type: 3}
-  player: {fileID: 0}
 --- !u!1 &421099526
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +993,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1ca0dd41f0a4a028f7bcc5a86eb4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
   mode: 
+  territory: []
+  castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
+  myCastle: {fileID: 0}
   toSpawn: {fileID: 0}
   goldNeedToSpawn: 0
   gold: 0
@@ -1043,7 +1046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf8927c0895845f0a2c7cb8847203c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
   landTilePrefab: {fileID: 224828791676552201, guid: f50b7b13635eb4925b259ebe29031913, type: 3}
   waterTilePrefab: {fileID: 224828791676552201, guid: 0ef032cce133a4f8e9b223f552adc3a7, type: 3}
 --- !u!4 &1927268906

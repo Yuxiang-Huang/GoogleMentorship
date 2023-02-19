@@ -19,17 +19,37 @@ public class PlayerController : MonoBehaviour
 
     List<Troop> allTroops = new List<Troop>();
 
+    public bool[,] canSee;
+
+    public List<Tile> territory = new List<Tile>();
+
+    [SerializeField] GameObject castle;
+
+    public GameObject myCastle;
+
     [Header("Spawn")]
     public GameObject toSpawn;
     public int goldNeedToSpawn;
 
     [Header("Gold")]
-    public int gold;
+    [SerializeField]  int gold;
     [SerializeField] TextMeshProUGUI goldText;
 
     private void Start()
     {
         instance = this;
+
+        TileManager.instance.makeGrid(10, 10);
+
+        //canSee = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+
+        myCastle = Instantiate(castle, new Vector3(0, 0, 0), Quaternion.identity);
+
+        TileManager.instance.tiles[0, 0].GetComponent<Tile>().unit = myCastle;
+
+        territory.Add(TileManager.instance.tiles[0, 0]);
+        TileManager.instance.tiles[0, 0].owner = this;
+        TileManager.instance.tiles[0, 0].updateHighlight();
     }
 
     // Update is called once per frame
@@ -80,12 +100,12 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                gold += territory.Count;
+
                 foreach (Troop troop in allTroops)
                 {
                     troop.move();
                 }
-
-                TileManager.instance.updateGrid();
             }
         }
         else if (mode == "spawn")
@@ -102,9 +122,10 @@ public class PlayerController : MonoBehaviour
                     newUnit.GetComponent<Troop>().tile = highlighted;
 
                     //owner
-                    highlighted.owner = id;
+                    highlighted.owner = this;
+                    territory.Add(highlighted);
                     highlighted.updateHighlight();
-                    newUnit.GetComponent<Troop>().owner = id;   
+                    newUnit.GetComponent<Troop>().owner = this;   
 
                     allTroops.Add(newUnit.GetComponent<Troop>());
 

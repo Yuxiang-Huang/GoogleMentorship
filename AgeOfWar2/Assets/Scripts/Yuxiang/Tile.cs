@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour
 
     public string terrain;
 
-    public int owner;
+    public PlayerController owner;
 
     [SerializeField] GameObject highlightTile;
 
@@ -27,6 +27,8 @@ public class Tile : MonoBehaviour
         {
             highlight.SetActive(false);
         }
+
+        ownerHighlight[0].SetActive(true);
     }
 
     public void highlight(bool status)
@@ -41,13 +43,20 @@ public class Tile : MonoBehaviour
 
     public void updateHighlight()
     {
-        if (lastHighlight != null)
-        {
-            lastHighlight.SetActive(false);
-        }
+        ownerHighlight[0].SetActive(false);
 
-        lastHighlight = ownerHighlight[owner];
+        lastHighlight = ownerHighlight[owner.id];
 
         lastHighlight.SetActive(true);
+
+        foreach (Tile tile in neighbors)
+        {
+            tile.removeDark();
+        }
+    }
+
+    public void removeDark()
+    {
+        ownerHighlight[0].SetActive(false);
     }
 }
