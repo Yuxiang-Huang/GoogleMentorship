@@ -14,7 +14,7 @@ public class TileManager : MonoBehaviour
 
     public const float cellSize = 1;
 
-    public GameObject[,] tiles;
+    public Tile [,] tiles;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,7 +25,7 @@ public class TileManager : MonoBehaviour
     //create the map
     public void makeGrid(int rows, int cols)
     {
-        tiles = new GameObject[rows, cols];
+        tiles = new Tile[rows, cols];
 
         GameObject parent = new GameObject("Map");
 
@@ -34,16 +34,18 @@ public class TileManager : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 //instantiate
-                if ((i + j) % 2 == 1)
+                if (Random.Range(0, 2) == 0)
                 {
                     tiles[i, j] = Instantiate(waterTilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
-    Quaternion.identity);
+    Quaternion.identity).GetComponent<Tile>();
+                    tiles[i, j].terrain = "water";
                 }
 
                 else
                 {
                     tiles[i, j] = Instantiate(landTilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
-    Quaternion.identity);
+    Quaternion.identity).GetComponent<Tile>();
+                    tiles[i, j].terrain = "land";
                 }
 
                 tiles[i, j].transform.SetParent(parent.transform);
@@ -98,5 +100,10 @@ public class TileManager : MonoBehaviour
             return tiles[x, y].GetComponent<Tile>();
         }
         return null;
+    }
+
+    public Vector2 getWorldPosition(Tile tile)
+    {
+        return new Vector2(tile.pos.x * cellSize + cellSize / 2, tile.pos.y * cellSize + cellSize / 2);
     }
 }

@@ -34,6 +34,8 @@ public class Troop : MonoBehaviour
 
         lastTarget = target;
 
+        float minDist = dist(target, tile);
+
         //initiated a queue
         Queue<List<Tile>> allPath = new Queue<List<Tile>>();
 
@@ -56,17 +58,24 @@ public class Troop : MonoBehaviour
 
             foreach (Tile curTile in lastTile.neighbors)
             {
-                if (!visited[curTile.pos.x, curTile.pos.y])
+                //not visited and land tile
+                if (!visited[curTile.pos.x, curTile.pos.y] && curTile.terrain == "land")
                 {
                     visited[curTile.pos.x, curTile.pos.y] = true;
 
                     List<Tile> dup = new List<Tile>(cur);
                     dup.Add(curTile);
 
-                    if (curTile == target)
+                    float curDist = dist(target, curTile);
+
+                    if (curDist < 0.01)
                     {
                         reach = true;
-                        dup.RemoveAt(0);
+                        path = dup;
+                    }
+                    else if (curDist < minDist)
+                    {
+                        minDist = curDist;
                         path = dup;
                     }
 
@@ -75,9 +84,12 @@ public class Troop : MonoBehaviour
             }
         }
 
-        //display arrow
         if (path.Count != 0)
         {
+            //remove first tile
+            path.RemoveAt(0);
+
+            //display arrow
             if (arrow != null)
             {
                 Destroy(arrow);
@@ -121,5 +133,12 @@ public class Troop : MonoBehaviour
                 arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
             }
         }
+    }
+
+    float dist(Tile t1, Tile t2)
+    {
+        Vector2 p1 = TileManager.instance.getWorldPosition(t1);
+        Vector2 p2 = TileManager.instance.getWorldPosition(t2);
+        return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     }
 }

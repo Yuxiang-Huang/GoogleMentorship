@@ -10,6 +10,8 @@ public class Tile : MonoBehaviour
 
     public GameObject unit;
 
+    public string terrain;
+
     [SerializeField] GameObject highlightTile;
 
     public void highlight(bool status)
