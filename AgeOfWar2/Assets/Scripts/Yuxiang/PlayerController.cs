@@ -6,6 +6,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    int id = 1;
+
     Tile highlighted;
 
     Troop playerSelected;
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
 
                     highlighted.GetComponent<Tile>().unit = newUnit;
                     newUnit.GetComponent<Troop>().tile = highlighted;
+
+                    newUnit.GetComponent<Troop>().owner = id;
 
                     allTroops.Add(newUnit.GetComponent<Troop>());
 

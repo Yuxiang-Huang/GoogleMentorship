@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Troop : MonoBehaviour
 {
+    public int owner;
+
     public Tile tile;
     Tile lastTarget;
 
@@ -117,7 +119,8 @@ public class Troop : MonoBehaviour
             {
                 tile.unit = null;
                 tile = path[0];
-                path[0].unit = this.gameObject;
+                tile.unit = this.gameObject;
+                tile.owner = owner;
                 Vector2Int tilePos = path[0].pos;
                 transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
                 path.RemoveAt(0);
