@@ -41,8 +41,13 @@ public class Tile : MonoBehaviour
         return pos.ToString();
     }
 
-    public void updateHighlight()
+    public void updateStatus(PlayerController player, GameObject newUnit)
     {
+        this.owner = player;
+        owner.territory.Add(this);
+        this.unit = newUnit;
+
+        //highlight
         ownerHighlight[0].SetActive(false);
 
         lastHighlight = ownerHighlight[owner.id];

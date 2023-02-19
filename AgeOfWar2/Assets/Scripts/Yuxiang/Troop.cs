@@ -15,9 +15,11 @@ public class Troop : MonoBehaviour
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] GameObject highlightTile;
 
-    private void Start()
+    public void Init(PlayerController player, Tile startingTile)
     {
-        tile = TileManager.instance.getTile();
+        owner = player;
+        tile = startingTile;
+        player.allTroops.Add(this);
     }
 
     public void highlight(bool status)
@@ -72,6 +74,7 @@ public class Troop : MonoBehaviour
 
                     if (curDist < 0.01)
                     {
+                        Debug.Log("reach");
                         reach = true;
                         path = dup;
                     }
@@ -120,18 +123,16 @@ public class Troop : MonoBehaviour
             //move to next tile on list if no unit is there
             if (path[0].unit == null)
             {
-                //update tile status
+                //last tile
                 tile.unit = null;
-                tile = path[0];
-                tile.unit = this.gameObject;
-                tile.owner = owner;
-                owner.territory.Add(tile);
 
-                tile.updateHighlight();
+                //update tile
+                tile = path[0];
+                tile.updateStatus(owner, this.gameObject);
 
                 //position
-                Vector2Int tilePos = path[0].pos;
-                transform.position = new Vector3(tilePos.x, tilePos.y, transform.position.z);
+                transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
+
                 path.RemoveAt(0);
             }
 

@@ -17,17 +17,14 @@ public class PlayerController : MonoBehaviour
 
     public string mode;
 
-    List<Troop> allTroops = new List<Troop>();
-
-    public bool[,] canSee;
-
+    public List<Troop> allTroops = new List<Troop>();
     public List<Tile> territory = new List<Tile>();
 
     [SerializeField] GameObject castle;
-
     public GameObject myCastle;
 
     [Header("Spawn")]
+    public bool[,] canSpawn;
     public GameObject toSpawn;
     public int goldNeedToSpawn;
 
@@ -41,15 +38,17 @@ public class PlayerController : MonoBehaviour
 
         TileManager.instance.makeGrid(10, 10);
 
-        //canSee = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+        canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
 
+        //spawn castle
         myCastle = Instantiate(castle, new Vector3(0, 0, 0), Quaternion.identity);
 
-        TileManager.instance.tiles[0, 0].GetComponent<Tile>().unit = myCastle;
+        myCastle.GetComponent<Building>().tile = TileManager.instance.tiles[0, 0];
+        castle.GetComponent<Building>().updateCanSpawn();
 
         territory.Add(TileManager.instance.tiles[0, 0]);
-        TileManager.instance.tiles[0, 0].owner = this;
-        TileManager.instance.tiles[0, 0].updateHighlight();
+
+        TileManager.instance.tiles[0, 0].updateStatus(this, myCastle);
     }
 
     // Update is called once per frame
@@ -114,22 +113,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (highlighted != null && highlighted.unit == null)
                 {
+                    gold -= goldNeedToSpawn;
+
                     //spawn unit and relation tile and unit
                     GameObject newUnit = Instantiate(toSpawn,
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
-                    highlighted.GetComponent<Tile>().unit = newUnit;
-                    newUnit.GetComponent<Troop>().tile = highlighted;
+                    highlighted.updateStatus(this, newUnit);
 
-                    //owner
-                    highlighted.owner = this;
-                    territory.Add(highlighted);
-                    highlighted.updateHighlight();
-                    newUnit.GetComponent<Troop>().owner = this;   
+                    if (newUnit.GetComponent<Troop>() != null)
+                    {
+                        newUnit.GetComponent<Troop>().Init(this, highlighted);
+                    }
 
-                    allTroops.Add(newUnit.GetComponent<Troop>());
-
-                    gold -= goldNeedToSpawn;
+                    //building code here 
                 }
 
                 mode = "move";
