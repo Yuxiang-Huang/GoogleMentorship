@@ -16,14 +16,13 @@ public class TileManager : MonoBehaviour
     [SerializeField] GameObject waterTilePrefab;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
-        makeGrid(10, 10);
     }
 
     //create the map
-    void makeGrid(int rows, int cols)
+    public void makeGrid(int rows, int cols)
     {
         tiles = new GameObject[rows, cols];
 

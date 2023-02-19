@@ -5,15 +5,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject castle;
+
     [SerializeField] GameObject clubMan;
 
     Tile highlighted;
 
-    ITroop playerSelected;
+    Troop playerSelected;
 
     string mode;
 
-    List<ITroop> allTroops = new List<ITroop>();
+    List<Troop> allTroops = new List<Troop>();
+
+    private void Start()
+    {
+        TileManager.instance.makeGrid(10, 10);
+
+        GameObject myCastle = Instantiate(castle, new Vector3(0, 0, 0) , Quaternion.identity);
+
+        TileManager.instance.tiles[0, 0].GetComponent<Tile>().unit = myCastle;
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,7 +53,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (highlighted != null && highlighted.GetComponent<Tile>().unit != null)
                     {
-                        playerSelected = highlighted.GetComponent<Tile>().unit.GetComponent<ITroop>();
+                        playerSelected = highlighted.GetComponent<Tile>().unit.GetComponent<Troop>();
                         playerSelected.highlight(true);
                     }
                 }
@@ -60,7 +71,7 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                foreach (ITroop troop in allTroops)
+                foreach (Troop troop in allTroops)
                 {
                     troop.move();
                 }
@@ -78,9 +89,9 @@ public class GameManager : MonoBehaviour
                         highlighted.gameObject.transform.position, Quaternion.identity);
 
                         highlighted.GetComponent<Tile>().unit = newUnit;
-                        newUnit.GetComponent<ITroop>().tile = highlighted;
+                        newUnit.GetComponent<Troop>().tile = highlighted;
 
-                        allTroops.Add(newUnit.GetComponent<ITroop>());
+                        allTroops.Add(newUnit.GetComponent<Troop>());
 
                         mode = "move";
                     }

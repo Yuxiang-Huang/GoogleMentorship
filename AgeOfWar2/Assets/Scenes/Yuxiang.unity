@@ -743,6 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6ddde09271a4ddd92a7ec8a9115c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
   clubMan: {fileID: 6514224017186162067, guid: b63047aabf50f448283d8221273a5698, type: 3}
 --- !u!1 &1624943615
 GameObject:
