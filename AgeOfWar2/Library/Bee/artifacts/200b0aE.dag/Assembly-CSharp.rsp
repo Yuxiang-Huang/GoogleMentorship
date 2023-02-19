@@ -347,6 +347,7 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Yuxiang/GameManager.cs"
 "Assets/Scripts/Yuxiang/Melee.cs"
+"Assets/Scripts/Yuxiang/PlayerController.cs"
 "Assets/Scripts/Yuxiang/SpawnManager.cs"
 "Assets/Scripts/Yuxiang/Tile.cs"
 "Assets/Scripts/Yuxiang/TileManager.cs"

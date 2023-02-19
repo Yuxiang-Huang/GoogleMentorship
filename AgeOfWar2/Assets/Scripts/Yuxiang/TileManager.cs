@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
+    [SerializeField] GameObject castle;
+    [SerializeField] GameObject landTilePrefab;
+    [SerializeField] GameObject waterTilePrefab;
+
     public static TileManager instance;
 
     public const float cellSize = 1;
 
     public GameObject[,] tiles;
-
-    [SerializeField] GameObject landTilePrefab;
-    [SerializeField] GameObject waterTilePrefab;
 
     // Start is called before the first frame update
     void Awake()
@@ -78,6 +79,10 @@ public class TileManager : MonoBehaviour
                 } 
             }
         }
+
+        GameObject myCastle = Instantiate(castle, new Vector3(0, 0, 0), Quaternion.identity);
+
+        tiles[0, 0].GetComponent<Tile>().unit = myCastle;
     }
 
     //get the tile the cursor is on

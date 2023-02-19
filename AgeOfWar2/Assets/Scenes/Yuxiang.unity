@@ -261,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac024c12995d544b88b906034aac095f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clubMan: {fileID: 6514224017186162067, guid: b63047aabf50f448283d8221273a5698, type: 3}
+  player: {fileID: 0}
 --- !u!1 &851291528
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,8 +482,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1602756415}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 118633158}
+        m_TargetAssemblyTypeName: SpawnManager, Assembly-CSharp
         m_MethodName: spawn
         m_Mode: 1
         m_Arguments:
@@ -692,7 +694,7 @@ RectTransform:
   m_Children:
   - {fileID: 996705850}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -743,8 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6ddde09271a4ddd92a7ec8a9115c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
-  clubMan: {fileID: 6514224017186162067, guid: b63047aabf50f448283d8221273a5698, type: 3}
 --- !u!1 &1624943615
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +829,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1835742418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1835742420}
+  - component: {fileID: 1835742419}
+  m_Layer: 0
+  m_Name: PlayerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1835742419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835742418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1ca0dd41f0a4a028f7bcc5a86eb4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 
+  toSpawn: {fileID: 0}
+--- !u!4 &1835742420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835742418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1927268904
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,6 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf8927c0895845f0a2c7cb8847203c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
   landTilePrefab: {fileID: 224828791676552201, guid: f50b7b13635eb4925b259ebe29031913, type: 3}
   waterTilePrefab: {fileID: 224828791676552201, guid: 0ef032cce133a4f8e9b223f552adc3a7, type: 3}
 --- !u!4 &1927268906

@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject clubMan;
+
+    public static SpawnManager instance;
+
+    public PlayerController player;
+
+    public void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void spawn()
     {
-        
+        if (player.mode == "spawn")
+        {
+            player.mode = "move";
+        }
+        else
+        {
+            player.mode = "spawn";
+            player.toSpawn = clubMan;
+        }
     }
 }
