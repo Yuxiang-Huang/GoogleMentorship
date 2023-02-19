@@ -16,19 +16,19 @@ public class Tile : MonoBehaviour
 
     [SerializeField] GameObject highlightTile;
 
-    [SerializeField] List<GameObject> ownerHighlight;
+    [SerializeField] List<GameObject> ownerColor;
 
-    GameObject lastHighlight;
+    GameObject lastColor;
 
     private void Awake()
     {
         //all highlight off
-        foreach (GameObject highlight in ownerHighlight)
+        foreach (GameObject highlight in ownerColor)
         {
             highlight.SetActive(false);
         }
 
-        ownerHighlight[0].SetActive(true);
+        ownerColor[0].SetActive(true);
     }
 
     public void highlight(bool status)
@@ -43,16 +43,19 @@ public class Tile : MonoBehaviour
 
     public void updateStatus(PlayerController player, GameObject newUnit)
     {
-        this.owner = player;
-        owner.territory.Add(this);
+        if (owner != player)
+        {
+            this.owner = player;
+            owner.territory.Add(this);
+        }
         this.unit = newUnit;
 
         //highlight
-        ownerHighlight[0].SetActive(false);
+        ownerColor[0].SetActive(false);
 
-        lastHighlight = ownerHighlight[owner.id];
+        lastColor = ownerColor[owner.id];
 
-        lastHighlight.SetActive(true);
+        lastColor.SetActive(true);
 
         foreach (Tile tile in neighbors)
         {
@@ -62,6 +65,6 @@ public class Tile : MonoBehaviour
 
     public void removeDark()
     {
-        ownerHighlight[0].SetActive(false);
+        ownerColor[0].SetActive(false);
     }
 }

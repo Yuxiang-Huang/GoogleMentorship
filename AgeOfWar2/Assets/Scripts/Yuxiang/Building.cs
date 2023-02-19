@@ -7,19 +7,13 @@ public class Building : MonoBehaviour
     public Tile tile;
 
     // Start is called before the first frame update
-    void Start()
+    public void Init(Tile startingTile, bool[,] canSpawn)
     {
-        
-    }
+        tile = startingTile;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void updateCanSpawn()
-    {
-
+        foreach (Tile neighbor in tile.neighbors)
+        {
+            canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
+        }
     }
 }

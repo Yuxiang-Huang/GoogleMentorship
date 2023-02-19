@@ -74,7 +74,6 @@ public class Troop : MonoBehaviour
 
                     if (curDist < 0.01)
                     {
-                        Debug.Log("reach");
                         reach = true;
                         path = dup;
                     }
@@ -150,8 +149,10 @@ public class Troop : MonoBehaviour
 
     float dist(Tile t1, Tile t2)
     {
-        Vector2 p1 = TileManager.instance.getWorldPosition(t1);
-        Vector2 p2 = TileManager.instance.getWorldPosition(t2);
-        return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+        //Vector2 p1 = TileManager.instance.getWorldPosition(t1);
+        //Vector2 p2 = TileManager.instance.getWorldPosition(t2);
+        //return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+
+        return Mathf.Abs(t1.pos.x - t2.pos.x) + Mathf.Abs(t1.pos.y - t2.pos.y);
     }
 }

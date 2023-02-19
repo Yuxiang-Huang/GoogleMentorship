@@ -187,9 +187,9 @@ MonoBehaviour:
   neighbors: []
   unit: {fileID: 0}
   terrain: 
-  owner: 0
+  owner: {fileID: 0}
   highlightTile: {fileID: 8168695078935648401}
-  ownerHighlight:
+  ownerColor:
   - {fileID: 67507972968314685}
 --- !u!1 &8168695078935648401
 GameObject:

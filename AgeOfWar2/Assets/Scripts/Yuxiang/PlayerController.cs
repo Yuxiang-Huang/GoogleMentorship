@@ -42,12 +42,7 @@ public class PlayerController : MonoBehaviour
 
         //spawn castle
         myCastle = Instantiate(castle, new Vector3(0, 0, 0), Quaternion.identity);
-
-        myCastle.GetComponent<Building>().tile = TileManager.instance.tiles[0, 0];
-        castle.GetComponent<Building>().updateCanSpawn();
-
-        territory.Add(TileManager.instance.tiles[0, 0]);
-
+        castle.GetComponent<Building>().Init(TileManager.instance.tiles[0, 0], canSpawn);
         TileManager.instance.tiles[0, 0].updateStatus(this, myCastle);
     }
 
@@ -57,23 +52,23 @@ public class PlayerController : MonoBehaviour
         //update gold
         goldText.text = "Gold: " + gold;
 
-        //highlight
-        Tile newHilighted = TileManager.instance.getTile();
-
-        if (highlighted != newHilighted)
-        {
-            if (highlighted != null)
-                highlighted.highlight(false);
-
-            highlighted = newHilighted;
-
-            if (newHilighted != null)
-                highlighted.highlight(true);
-        }
-
         //move
         if (mode == "move")
         {
+            //highlight
+            Tile newHighlighted = TileManager.instance.getTile();
+
+            if (highlighted != newHighlighted)
+            {
+                if (highlighted != null)
+                    highlighted.highlight(false);
+
+                highlighted = newHighlighted;
+
+                if (newHighlighted != null)
+                    highlighted.highlight(true);
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 //select player
@@ -109,9 +104,35 @@ public class PlayerController : MonoBehaviour
         }
         else if (mode == "spawn")
         {
+            //highlight
+            Tile newHighlighted = TileManager.instance.getTile();
+
+            if (highlighted != newHighlighted)
+            {
+                if (highlighted != null) 
+                    highlighted.highlight(false);
+
+                highlighted = newHighlighted;
+
+                if (highlighted != null)
+                {
+                    //can only spawn on spawnable tiles and no unit and terrain is not water
+                    if (canSpawn[highlighted.pos.x, highlighted.pos.y] && highlighted.unit == null
+                        && highlighted.terrain != "water")
+                    {
+                        highlighted.highlight(true);
+                    }
+                    else
+                    {
+                        highlighted = null;
+                    }
+                }
+            }
+
+            //click to spawn
             if (Input.GetMouseButtonDown(0))
             {
-                if (highlighted != null && highlighted.unit == null)
+                if (highlighted != null)
                 {
                     gold -= goldNeedToSpawn;
 
