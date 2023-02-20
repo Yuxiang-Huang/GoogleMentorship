@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using UnityEditor.XR;
 
 public class NetworkManager: MonoBehaviourPunCallbacks
 {
@@ -53,7 +54,10 @@ public class NetworkManager: MonoBehaviourPunCallbacks
         if (string.IsNullOrEmpty(roomNameInput.text))
             return;
 
-        PhotonNetwork.CreateRoom(roomNameInput.text);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 4;
+        PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);
+
         ScreenManager.Instance.DisplayScreen("Loading");
     }
 
