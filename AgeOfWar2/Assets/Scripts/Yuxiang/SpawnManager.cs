@@ -15,12 +15,14 @@ public class SpawnManager : MonoBehaviour
 
     public void spawn()
     {
+        //switch mode
         if (PlayerController.instance.mode == "spawn")
         {
             PlayerController.instance.mode = "move";
         }
         else
         {
+            //give the path to the prefab
             PlayerController.instance.mode = "spawn";
             PlayerController.instance.toSpawn = "Troop/ClubMan";
             PlayerController.instance.goldNeedToSpawn = 2;

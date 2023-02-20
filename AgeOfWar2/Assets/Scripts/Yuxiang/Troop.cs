@@ -76,6 +76,7 @@ public class Troop : MonoBehaviourPunCallbacks
                 {
                     visited[curTile.pos.x, curTile.pos.y] = true;
 
+                    //check this tile dist
                     List<Tile> dup = new List<Tile>(cur);
                     dup.Add(curTile);
 

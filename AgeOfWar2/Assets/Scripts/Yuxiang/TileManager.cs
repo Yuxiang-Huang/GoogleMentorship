@@ -8,16 +8,17 @@ using System.Text;
 
 public class TileManager : MonoBehaviourPunCallbacks
 {
+    public static TileManager instance;
+
     public PhotonView PV;
+
+    public Tile[,] tiles;
+
+    //building blocks
+    public const float cellSize = 1;
 
     [SerializeField] GameObject landTilePrefab;
     [SerializeField] GameObject waterTilePrefab;
-
-    public static TileManager instance;
-
-    public const float cellSize = 1;
-
-    public Tile [,] tiles;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,7 +30,7 @@ public class TileManager : MonoBehaviourPunCallbacks
 
     public void makeGrid(int rows, int cols)
     {
-        //assign type of tiles
+        //assign type of tiles using bit
         StringBuilder instruction = new StringBuilder();
 
         for (int i = 0; i < rows; i++)
@@ -52,6 +53,7 @@ public class TileManager : MonoBehaviourPunCallbacks
 
         int count = 0;
 
+        //generate the grid using instruction
         for (int i = 0; i < tiles.GetLength(0); i++)
         {
             for (int j = 0; j < tiles.GetLength(1); j++)
