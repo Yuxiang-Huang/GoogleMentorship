@@ -113,7 +113,7 @@ public class Tile : MonoBehaviour
             return;
         }
 
-        //bound by other territory
+        //check if bound by other territory
         bool hidden = true;
 
         foreach (Tile tile in neighbors)

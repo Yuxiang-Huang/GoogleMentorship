@@ -85,6 +85,7 @@ public class Troop : MonoBehaviourPunCallbacks
                     {
                         reach = true;
                         path = dup;
+                        minDist = curDist;
                     }
                     else if (curDist < minDist)
                     {
