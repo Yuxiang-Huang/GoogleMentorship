@@ -47,13 +47,24 @@ public class Tile : MonoBehaviour
     {
         if (owner != newOwner)
         {
+            //remove from other player's land
             if (owner != null)
             {
-                //remove from other player's land
                 owner.territory.Remove(this);
+
+                //update dark if mine
+                if (owner == PlayerController.instance)
+                {
+                    foreach (Tile tile in neighbors)
+                    {
+                        tile.updateDark();
+                    }
+
+                    updateDark();
+                }
             }
 
-            //add this land to the player's territory
+            //add this land to new owner's territory
             owner = newOwner;
             owner.territory.Add(this);
         }
@@ -83,13 +94,36 @@ public class Tile : MonoBehaviour
 
             foreach (Tile tile in neighbors)
             {
-                tile.removeDark();
+                tile.setDark(false);
             }
         }
     }
 
-    public void removeDark()
+    void setDark(bool status)
     {
-        dark.SetActive(false);
+        dark.SetActive(status);
+    }
+
+    void updateDark()
+    {
+        //include in territory already
+        if (PlayerController.instance.territory.Contains(this))
+        {
+            dark.SetActive(false);
+            return;
+        }
+
+        //bound by other territory
+        bool hidden = true;
+
+        foreach (Tile tile in neighbors)
+        {
+            if (PlayerController.instance.territory.Contains(tile))
+            {
+                hidden = false;
+            }
+        }
+
+        dark.SetActive(hidden);
     }
 }

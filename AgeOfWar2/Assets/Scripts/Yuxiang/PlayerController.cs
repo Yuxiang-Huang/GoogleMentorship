@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public string mode;
 
     public List<Troop> allTroops = new List<Troop>();
-    public List<Tile> territory = new List<Tile>();
+    public HashSet<Tile> territory = new HashSet<Tile>();
 
     [SerializeField] GameObject castle;
     public GameObject myCastle;
@@ -132,7 +132,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //select player
                 if (playerSelected == null)
                 {
-                    if (highlighted != null && highlighted.GetComponent<Tile>().unit.CompareTag("Troop"))
+                    //if a tile is highlighted, a unit is not on the tile, and it's a movable unit
+                    if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
+                        highlighted.GetComponent<Tile>().unit.CompareTag("Troop"))
                     {
                         playerSelected = highlighted.GetComponent<Tile>().unit.GetComponent<Troop>();
                         playerSelected.highlight(true);

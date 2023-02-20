@@ -142,6 +142,7 @@ public class TileManager : MonoBehaviourPunCallbacks
         return null;
     }
 
+    //get the tile depending on row col
     public Tile getTile(Vector2 pos)
     {
         int x = (int)((pos.x + cellSize / 2.0) / cellSize);
@@ -155,6 +156,7 @@ public class TileManager : MonoBehaviourPunCallbacks
         return null;
     }
 
+    //get world position from row col
     public Vector2 getWorldPosition(Tile tile)
     {
         return new Vector2(tile.pos.x * cellSize + cellSize / 2, tile.pos.y * cellSize + cellSize / 2);
