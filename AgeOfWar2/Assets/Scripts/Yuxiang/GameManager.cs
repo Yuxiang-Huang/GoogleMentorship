@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public static GameManager instance;
 
-    public List<PlayerController> allPlayers = new List<PlayerController>();
-    
+    public SortedDictionary<int, PlayerController> playerList = new SortedDictionary<int, PlayerController>();
+
+    public List<PlayerController> allPlayers;
+
     private void Awake()
     {
         instance = this;
@@ -25,8 +27,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void checkStart()
     {
         //assign ID
-        if (allPlayers.Count == PhotonNetwork.CurrentRoom.PlayerCount)
+        if (playerList.Count == PhotonNetwork.CurrentRoom.PlayerCount)
         {
+            //sorted list
+            foreach (KeyValuePair<int, PlayerController> kvp in playerList)
+            { 
+                allPlayers.Add(kvp.Value);
+            }
+
             for (int i = 0; i < allPlayers.Count; i++)
             {
                 allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i + 1);

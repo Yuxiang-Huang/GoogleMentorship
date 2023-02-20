@@ -37,17 +37,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        //master client in charge of all players
-        if (PhotonNetwork.IsMasterClient)
+        PV = GetComponent<PhotonView>();
+
+        //master client in charge making grid
+        if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            //make grid once
-            if (PV.IsMine)
-            {
-                TileManager.instance.makeGrid(10, 10);
-            }
-            GameManager.instance.allPlayers.Add(this);
-            GameManager.instance.checkStart();
+            TileManager.instance.makeGrid(10, 10);
         }
+
+        GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
+
+        GameManager.instance.checkStart();
 
         if (!PV.IsMine) return;
 
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //select player
                 if (playerSelected == null)
                 {
-                    if (highlighted != null && highlighted.GetComponent<Tile>().unit != null)
+                    if (highlighted != null && highlighted.GetComponent<Tile>().unit.CompareTag("Troop"))
                     {
                         playerSelected = highlighted.GetComponent<Tile>().unit.GetComponent<Troop>();
                         playerSelected.highlight(true);
@@ -190,9 +190,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     highlighted.updateStatus(this, newUnit);
 
-                    if (newUnit.GetComponent<Troop>() != null)
+                    if (newUnit.CompareTag("Troop"))
                     {
-                        newUnit.GetComponent<Troop>().Init(this, highlighted);
+                        newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllBuffered, this, highlighted);
                     }
 
                     //building code here 

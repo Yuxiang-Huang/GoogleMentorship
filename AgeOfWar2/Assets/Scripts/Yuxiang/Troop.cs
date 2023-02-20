@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Troop : MonoBehaviour
+public class Troop : MonoBehaviourPunCallbacks
 {
+    public PhotonView PV;
+    
     public PlayerController owner;
 
     public Tile tile;
@@ -15,6 +18,12 @@ public class Troop : MonoBehaviour
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] GameObject highlightTile;
 
+    private void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+    }
+
+    [PunRPC]
     public void Init(PlayerController player, Tile startingTile)
     {
         owner = player;
@@ -122,15 +131,7 @@ public class Troop : MonoBehaviour
             //move to next tile on list if no unit is there
             if (path[0].unit == null)
             {
-                //last tile
-                tile.unit = null;
-
-                //update tile
-                tile = path[0];
-                tile.updateStatus(owner, this.gameObject);
-
-                //position
-                transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
+                PV.RPC(nameof(updateTile), RpcTarget.AllBuffered, path[0].pos.x, path[0].pos.y);
 
                 path.RemoveAt(0);
             }
@@ -145,6 +146,19 @@ public class Troop : MonoBehaviour
                 arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
             }
         }
+    }
+
+    [PunRPC]
+    public void updateTile(int nextTileX, int nextTileY)
+    {
+        //last tile
+        tile.unit = null;
+
+        //update tile
+        tile = TileManager.instance.getTile(new Vector2(nextTileX, nextTileY));
+        tile.updateStatus(owner, this.gameObject);
+
+        transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
     }
 
     float dist(Tile t1, Tile t2)

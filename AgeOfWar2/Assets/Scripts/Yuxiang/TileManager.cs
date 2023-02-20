@@ -36,7 +36,7 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int j = 0; j < cols; j++)
             {
-                instruction.Append(Random.Range(0, 2));
+                instruction.Append(Random.Range(0, 4));
             }
         }
 
@@ -126,6 +126,19 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             return tiles[x, y].GetComponent<Tile>();
         }
+        return null;
+    }
+
+    public Tile getTile(Vector2 pos)
+    {
+        int x = (int)((pos.x + cellSize / 2.0) / cellSize);
+        int y = (int)((pos.y + cellSize / 2.0) / cellSize);
+
+        if (x >= 0 && x < tiles.GetLength(0) && y >= 0 && y < tiles.GetLength(1))
+        {
+            return tiles[x, y].GetComponent<Tile>();
+        }
+
         return null;
     }
 

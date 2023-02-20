@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Tile : MonoBehaviour
+[System.Serializable]
+public class Tile : MonoBehaviourPunCallbacks
 {
     public Vector2Int pos;
 
