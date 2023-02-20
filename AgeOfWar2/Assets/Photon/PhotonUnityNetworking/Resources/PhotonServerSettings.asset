@@ -41,6 +41,8 @@ MonoBehaviour:
   - updateID
   - ready
   - syncPlayerList
+  - startGame
+  - startGame_all
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

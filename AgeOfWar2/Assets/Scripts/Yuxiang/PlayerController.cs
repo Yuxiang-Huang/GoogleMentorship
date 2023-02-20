@@ -8,8 +8,6 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
-    public string name;
-
     public PhotonView PV;
 
     public static PlayerController instance;
@@ -38,6 +36,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        //master client in charge of all players
         if (PhotonNetwork.IsMasterClient)
         {
             GameManager.instance.allPlayers.Add(this);
@@ -46,37 +45,56 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (!PV.IsMine) return;
 
-        name = PhotonNetwork.NickName;
-
         instance = this;
 
         TileManager.instance.makeGrid(10, 10);
 
         canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-
-        //spawn castle
-        myCastle = Instantiate(castle, new Vector3(0, 0, 0), Quaternion.identity);
-        castle.GetComponent<Building>().Init(TileManager.instance.tiles[0, 0], canSpawn);
-        TileManager.instance.tiles[0, 0].updateStatus(this, myCastle);
     }
 
-    [PunRPC]
-    public void updateID(int newID)
-    {
-        PV.RPC(nameof(updateID_All), RpcTarget.AllBuffered, newID);
-    }
+    #region ID
 
     [PunRPC]
-    void updateID_All(int newID)
+    public void startGame(int newID)
     {
         id = newID;
 
-        Debug.Log(id);
+        //spawn castle
+        Vector2Int pos = new Vector2Int(0, 0);
+
+        Tile[,] tiles = TileManager.instance.tiles;
+
+        //spawn castle
+        if (id == 1)
+        {
+            pos = new Vector2Int(0, 0);
+        }
+
+        else if (id == 2)
+        {
+            pos = new Vector2Int(tiles.GetLength(0) - 1, tiles.GetLength(1) - 1);
+        }
+
+        myCastle = Instantiate(castle, TileManager.instance.getWorldPosition(tiles[pos.x, pos.y]), Quaternion.identity);
+        castle.GetComponent<Building>().Init(TileManager.instance.tiles[0, 0], canSpawn);
+        TileManager.instance.tiles[pos.x, pos.y].updateStatus(this, myCastle);
+
+        PV.RPC(nameof(startGame_all), RpcTarget.AllBuffered, newID);
     }
+
+    [PunRPC]
+    void startGame_all(int newID)
+    {
+        id = newID;
+    }
+
+    #endregion
 
     // Update is called once per frame
     void Update()
     {
+        if (!PV.IsMine) return;
+
         //move
         if (mode == "move")
         {

@@ -24,11 +24,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void checkStart()
     {
+        //assign ID
         if (allPlayers.Count == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             for (int i = 0; i < allPlayers.Count; i++)
             {
-                allPlayers[i].PV.RPC("updateID", allPlayers[i].PV.Owner, i + 1);
+                allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i + 1);
             }
         }
     }
