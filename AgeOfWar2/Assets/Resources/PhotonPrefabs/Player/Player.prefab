@@ -79,6 +79,6 @@ MonoBehaviour:
   territory: []
   castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
   myCastle: {fileID: 0}
-  toSpawn: {fileID: 0}
+  toSpawn: 
   goldNeedToSpawn: 0
   gold: 0

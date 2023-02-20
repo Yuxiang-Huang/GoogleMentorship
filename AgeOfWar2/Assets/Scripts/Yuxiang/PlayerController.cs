@@ -134,9 +134,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     if (highlighted != null)
                     {
                         playerSelected.findPath(highlighted.GetComponent<Tile>());
-                        playerSelected.highlight(false);
-                        playerSelected = null;
                     }
+                    playerSelected.highlight(false);
+                    playerSelected = null;
                 }
             }
 
