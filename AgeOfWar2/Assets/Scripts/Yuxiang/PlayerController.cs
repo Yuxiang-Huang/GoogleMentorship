@@ -81,12 +81,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
             startingTile = new Vector2Int(tiles.GetLength(0) - 2, tiles.GetLength(1) - 2);
         }
 
-        canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-
         myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
             TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity);
 
-        myCastle.GetPhotonView().RPC("Init", RpcTarget.AllBuffered, id, startingTile.x, startingTile.y);                  
+        myCastle.GetPhotonView().RPC("Init", RpcTarget.AllBuffered, id, startingTile.x, startingTile.y);
+
+        //only update can spawn if my castle
+        if (PV.IsMine)
+        {
+            canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+            myCastle.GetComponent<Building>().updateCanSpawn();
+        }
 
         PV.RPC(nameof(startGame_all), RpcTarget.AllBuffered, newID);
     }

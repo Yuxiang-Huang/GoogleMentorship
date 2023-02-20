@@ -23,11 +23,14 @@ public class Building : MonoBehaviourPunCallbacks
         owner = GameManager.instance.allPlayers[playerID];
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
 
+        tile.updateStatus(owner, this.gameObject);
+    }
+
+    public void updateCanSpawn()
+    {
         foreach (Tile neighbor in tile.neighbors)
         {
             owner.canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
         }
-
-        tile.updateStatus(owner, this.gameObject);
     }
 }
