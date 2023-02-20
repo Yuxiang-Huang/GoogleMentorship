@@ -59,8 +59,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public IEnumerator startGame(int newID)
     {
+        //assign id
         id = newID;
+        PV.RPC(nameof(startGame_all), RpcTarget.AllBuffered, newID);
 
+        //make sure map is spawned
         Tile[,] tiles = null;
         do
         {
@@ -92,8 +95,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
             myCastle.GetComponent<Building>().updateCanSpawn();
         }
-
-        PV.RPC(nameof(startGame_all), RpcTarget.AllBuffered, newID);
     }
 
     [PunRPC]

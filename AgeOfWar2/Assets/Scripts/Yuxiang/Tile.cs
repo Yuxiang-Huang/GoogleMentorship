@@ -55,26 +55,28 @@ public class Tile : MonoBehaviour
         }
         this.unit = newUnit;
 
+        //highlight if land
+        if (terrain == "land")
+        {
+            Debug.Log(owner.id);
+
+            lastColor = ownerColor[owner.id];
+
+            lastColor.SetActive(true);
+        }
+        else
+        {
+            lastColor = null;
+        }
+
+        //reveal land only if mine
         if (owner == PlayerController.instance)
         {
-            //reveal land
             dark.SetActive(false);
 
             foreach (Tile tile in neighbors)
             {
                 tile.removeDark();
-            }
-
-            //highlight if land
-            if (terrain == "land")
-            {
-                lastColor = ownerColor[owner.id];
-
-                lastColor.SetActive(true);
-            }
-            else
-            {
-                lastColor = null;
             }
         }
     }
