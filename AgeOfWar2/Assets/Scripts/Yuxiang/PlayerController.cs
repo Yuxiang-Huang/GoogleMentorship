@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using Photon.Pun;
+using System.IO;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -39,6 +40,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge of all players
         if (PhotonNetwork.IsMasterClient)
         {
+            //make grid once
+            if (PV.IsMine)
+            {
+                TileManager.instance.makeGrid(10, 10);
+            }
             GameManager.instance.allPlayers.Add(this);
             GameManager.instance.checkStart();
         }
@@ -46,10 +52,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (!PV.IsMine) return;
 
         instance = this;
-
-        TileManager.instance.makeGrid(10, 10);
-
-        canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
     }
 
     #region ID
@@ -75,8 +77,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
             pos = new Vector2Int(tiles.GetLength(0) - 1, tiles.GetLength(1) - 1);
         }
 
-        myCastle = Instantiate(castle, TileManager.instance.getWorldPosition(tiles[pos.x, pos.y]), Quaternion.identity);
-        castle.GetComponent<Building>().Init(TileManager.instance.tiles[0, 0], canSpawn);
+        canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+
+        myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
+            TileManager.instance.getWorldPosition(tiles[pos.x, pos.y]), Quaternion.identity);
+        myCastle.GetComponent<Building>().Init(TileManager.instance.tiles[pos.x, pos.y], canSpawn);
         TileManager.instance.tiles[pos.x, pos.y].updateStatus(this, myCastle);
 
         PV.RPC(nameof(startGame_all), RpcTarget.AllBuffered, newID);

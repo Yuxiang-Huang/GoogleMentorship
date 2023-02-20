@@ -43,6 +43,7 @@ MonoBehaviour:
   - syncPlayerList
   - startGame
   - startGame_all
+  - makeGrid_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

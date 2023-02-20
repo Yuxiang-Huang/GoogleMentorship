@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Photon.Pun;
+using System.Text;
 
-public class TileManager : MonoBehaviour
+public class TileManager : MonoBehaviourPunCallbacks
 {
+    public PhotonView PV;
+
     [SerializeField] GameObject landTilePrefab;
     [SerializeField] GameObject waterTilePrefab;
 
@@ -19,27 +23,46 @@ public class TileManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        PV = GetComponent<PhotonView>();
     }
 
-    //create the map
     public void makeGrid(int rows, int cols)
     {
-        tiles = new Tile[rows, cols];
-
-        GameObject parent = new GameObject("Map");
+        //assign type of tiles
+        StringBuilder instruction = new StringBuilder();
 
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
+                instruction.Append(Random.Range(0, 2));
+            }
+        }
+
+        PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllBuffered, rows, cols, instruction.ToString());
+    }
+
+    [PunRPC]
+    public void makeGrid_RPC(int rows, int cols, string instruction)
+    {
+        tiles = new Tile[rows, cols];
+
+        GameObject parent = new GameObject("Map");
+
+        int count = 0;
+
+        for (int i = 0; i < tiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
                 //instantiate
-                if (Random.Range(0, 2) == 0)
+                if (instruction[count] == '0')
                 {
                     tiles[i, j] = Instantiate(waterTilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
     Quaternion.identity).GetComponent<Tile>();
                     tiles[i, j].terrain = "water";
                 }
-
                 else
                 {
                     tiles[i, j] = Instantiate(landTilePrefab, new Vector3(i * cellSize, j * cellSize, 0),
@@ -51,6 +74,8 @@ public class TileManager : MonoBehaviour
 
                 //set tile stats
                 tiles[i, j].GetComponent<Tile>().pos = new Vector2Int(i, j);
+
+                count++;
             }
         }
 
@@ -62,9 +87,9 @@ public class TileManager : MonoBehaviour
         tiles[0, 0].transform.SetParent(parent.transform);
 
         //set neighbors
-        for (int row = 0; row < rows; row++)
+        for (int row = 0; row < tiles.GetLength(0); row++)
         {
-            for (int col = 0; col < cols; col++)
+            for (int col = 0; col < tiles.GetLength(1); col++)
             {
                 List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
 

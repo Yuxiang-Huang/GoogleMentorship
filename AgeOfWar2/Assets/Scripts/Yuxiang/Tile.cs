@@ -53,9 +53,16 @@ public class Tile : MonoBehaviour
         //highlight
         ownerColor[0].SetActive(false);
 
-        lastColor = ownerColor[owner.id];
+        if (terrain == "land")
+        {
+            lastColor = ownerColor[owner.id];
 
-        lastColor.SetActive(true);
+            lastColor.SetActive(true);
+        }
+        else
+        {
+            lastColor = null;
+        }
 
         foreach (Tile tile in neighbors)
         {
