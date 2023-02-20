@@ -67,15 +67,19 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Tile[,] tiles = TileManager.instance.tiles;
 
         //spawn castle
-        if (id == 1)
+        if (id == 0)
         {
             pos = new Vector2Int(1, 1);
         }
 
-        else if (id == 2)
+        else if (id == 1)
         {
             pos = new Vector2Int(tiles.GetLength(0) - 2, tiles.GetLength(1) - 2);
         }
+
+        Debug.Log(pos);
+        Debug.Log(tiles[pos.x, pos.y]);
+        Debug.Log(TileManager.instance.getWorldPosition(tiles[pos.x, pos.y]));
 
         canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
 
@@ -197,7 +201,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     //building code here 
                 }
-
                 mode = "move";
             }
         }

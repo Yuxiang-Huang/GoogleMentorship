@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             for (int i = 0; i < allPlayers.Count; i++)
             {
-                allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i + 1);
+                allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i);
             }
         }
     }

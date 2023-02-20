@@ -79,12 +79,25 @@ public class TileManager : MonoBehaviourPunCallbacks
             }
         }
 
+        Vector2Int corner = new Vector2Int(1, 1);
+
         //make sure corner is land
-        Destroy(tiles[0, 0].gameObject);
-        tiles[0, 0] = Instantiate(landTilePrefab, new Vector3(0 * cellSize, 0 * cellSize, 0),
+        Destroy(tiles[corner.x, corner.y].gameObject);
+        tiles[corner.x, corner.y] = Instantiate(landTilePrefab, new Vector3(corner.x * cellSize, corner.y * cellSize, 0),
     Quaternion.identity).GetComponent<Tile>();
-        tiles[0, 0].terrain = "land";
-        tiles[0, 0].transform.SetParent(parent.transform);
+        tiles[corner.x, corner.y].terrain = "land";
+        tiles[corner.x, corner.y].GetComponent<Tile>().pos = corner;
+        tiles[corner.x, corner.y].transform.SetParent(parent.transform);
+
+        corner = new Vector2Int(rows - 2, cols - 2);
+
+        //make sure corner is land
+        Destroy(tiles[corner.x, corner.y].gameObject);
+        tiles[corner.x, corner.y] = Instantiate(landTilePrefab, new Vector3(corner.x * cellSize, corner.y * cellSize, 0),
+    Quaternion.identity).GetComponent<Tile>();
+        tiles[corner.x, corner.y].terrain = "land";
+        tiles[corner.x, corner.y].GetComponent<Tile>().pos = corner;
+        tiles[corner.x, corner.y].transform.SetParent(parent.transform);
 
         //set neighbors
         for (int row = 0; row < tiles.GetLength(0); row++)

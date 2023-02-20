@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 4434306806922390120}
-  id: 0
+  id: -1
   mode: 
   allTroops: []
   territory: []

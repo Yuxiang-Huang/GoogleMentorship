@@ -68,7 +68,7 @@ public class Tile : MonoBehaviourPunCallbacks
         //highlight if land
         if (terrain == "land")
         {
-            lastColor = ownerColor[owner.id - 1];
+            lastColor = ownerColor[owner.id];
 
             lastColor.SetActive(true);
         }
