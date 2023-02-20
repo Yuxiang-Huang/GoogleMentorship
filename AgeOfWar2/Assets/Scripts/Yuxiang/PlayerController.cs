@@ -57,36 +57,36 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region ID
 
     [PunRPC]
-    public void startGame(int newID)
+    public IEnumerator startGame(int newID)
     {
         id = newID;
 
-        //spawn castle
-        Vector2Int pos = new Vector2Int(0, 0);
+        Tile[,] tiles = null;
+        do
+        {
+            tiles = TileManager.instance.tiles;
+            yield return new WaitForSeconds(1f);
+        } while (tiles == null);
 
-        Tile[,] tiles = TileManager.instance.tiles;
-
         //spawn castle
+        Vector2Int startingTile = new Vector2Int(0, 0);
+
         if (id == 0)
         {
-            pos = new Vector2Int(1, 1);
+            startingTile = new Vector2Int(1, 1);
         }
 
         else if (id == 1)
         {
-            pos = new Vector2Int(tiles.GetLength(0) - 2, tiles.GetLength(1) - 2);
+            startingTile = new Vector2Int(tiles.GetLength(0) - 2, tiles.GetLength(1) - 2);
         }
-
-        Debug.Log(pos);
-        Debug.Log(tiles[pos.x, pos.y]);
-        Debug.Log(TileManager.instance.getWorldPosition(tiles[pos.x, pos.y]));
 
         canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
 
         myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
-            TileManager.instance.getWorldPosition(tiles[pos.x, pos.y]), Quaternion.identity);
-        myCastle.GetComponent<Building>().Init(TileManager.instance.tiles[pos.x, pos.y], canSpawn);
-        TileManager.instance.tiles[pos.x, pos.y].updateStatus(this, myCastle);
+            TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity);
+
+        myCastle.GetPhotonView().RPC("Init", RpcTarget.AllBuffered, id, startingTile.x, startingTile.y);                  
 
         PV.RPC(nameof(startGame_all), RpcTarget.AllBuffered, newID);
     }
@@ -196,7 +196,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     if (newUnit.CompareTag("Troop"))
                     {
-                        newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllBuffered, this, highlighted);
+                        newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllBuffered,
+                            id, highlighted.pos.x, highlighted.pos.y);
                     }
 
                     //building code here 

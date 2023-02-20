@@ -1,19 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using static UnityEditor.PlayerSettings;
 
-public class Building : MonoBehaviour
+public class Building : MonoBehaviourPunCallbacks
 {
+    public PhotonView PV;
+
+    public PlayerController owner;
+
     public Tile tile;
 
-    // Start is called before the first frame update
-    public void Init(Tile startingTile, bool[,] canSpawn)
+    private void Awake()
     {
-        tile = startingTile;
+        PV = GetComponent<PhotonView>();
+    }
+
+    [PunRPC]
+    public void Init(int playerID, int startingtTileX, int startingtTileY)
+    {
+        owner = GameManager.instance.allPlayers[playerID];
+        tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
 
         foreach (Tile neighbor in tile.neighbors)
         {
-            canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
+            owner.canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
         }
+
+        tile.updateStatus(owner, this.gameObject);
     }
 }

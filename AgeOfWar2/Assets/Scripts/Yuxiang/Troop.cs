@@ -24,11 +24,11 @@ public class Troop : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void Init(PlayerController player, Tile startingTile)
+    public void Init(int playerID, int startingtTileX, int startingtTileY)
     {
-        owner = player;
-        tile = startingTile;
-        player.allTroops.Add(this);
+        owner = GameManager.instance.allPlayers[playerID];
+        tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
+        owner.allTroops.Add(this);
     }
 
     public void highlight(bool status)

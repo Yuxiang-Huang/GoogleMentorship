@@ -35,9 +35,13 @@ public class GameManager : MonoBehaviourPunCallbacks
                 allPlayers.Add(kvp.Value);
             }
 
-            for (int i = 0; i < allPlayers.Count; i++)
+            //start game once
+            if (PhotonNetwork.IsMasterClient)
             {
-                allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i);
+                for (int i = 0; i < allPlayers.Count; i++)
+                {
+                    allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i);
+                }
             }
         }
     }

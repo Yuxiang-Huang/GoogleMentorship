@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-[System.Serializable]
-public class Tile : MonoBehaviourPunCallbacks
+public class Tile : MonoBehaviour
 {
     public Vector2Int pos;
 
@@ -57,24 +55,27 @@ public class Tile : MonoBehaviourPunCallbacks
         }
         this.unit = newUnit;
 
-        //reveal land
-        dark.SetActive(false);
-
-        foreach (Tile tile in neighbors)
+        if (owner == PlayerController.instance)
         {
-            tile.removeDark();
-        }
+            //reveal land
+            dark.SetActive(false);
 
-        //highlight if land
-        if (terrain == "land")
-        {
-            lastColor = ownerColor[owner.id];
+            foreach (Tile tile in neighbors)
+            {
+                tile.removeDark();
+            }
 
-            lastColor.SetActive(true);
-        }
-        else
-        {
-            lastColor = null;
+            //highlight if land
+            if (terrain == "land")
+            {
+                lastColor = ownerColor[owner.id];
+
+                lastColor.SetActive(true);
+            }
+            else
+            {
+                lastColor = null;
+            }
         }
     }
 
