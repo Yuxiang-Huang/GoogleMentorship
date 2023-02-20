@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public int goldNeedToSpawn;
 
     [Header("Gold")]
-    [SerializeField] int gold;
+    public int gold;
 
     private void Awake()
     {
@@ -152,12 +152,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                gold += territory.Count;
-
-                foreach (Troop troop in allTroops)
-                {
-                    troop.move();
-                }
+                nextTurn();
             }
         }
         else if (mode == "spawn")
@@ -216,6 +211,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public void nextTurn()
     {
         gold += territory.Count;
+
+        GameManager.instance.updateGoldText();
 
         foreach (Troop troop in allTroops)
         {

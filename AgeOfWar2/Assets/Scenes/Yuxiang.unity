@@ -1018,6 +1018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PV: {fileID: 0}
   allPlayers: []
+  goldText: {fileID: 421099528}
 --- !u!114 &1602756416
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,14 +43,18 @@ public class Tile : MonoBehaviour
         return pos.ToString();
     }
 
-    public void updateStatus(PlayerController player, GameObject newUnit)
+    public void updateStatus(PlayerController newOwner, GameObject newUnit)
     {
-        if (owner != player)
+        if (owner != newOwner)
         {
-            //remove from other player's land
+            if (owner != null)
+            {
+                //remove from other player's land
+                owner.territory.Remove(this);
+            }
 
             //add this land to the player's territory
-            this.owner = player;
+            owner = newOwner;
             owner.territory.Add(this);
         }
         this.unit = newUnit;
@@ -58,15 +62,18 @@ public class Tile : MonoBehaviour
         //highlight if land
         if (terrain == "land")
         {
-            Debug.Log(owner.id);
+            //replace the color if different
+            if (lastColor != ownerColor[owner.id])
+            {
+                if (lastColor != null)
+                {
+                    lastColor.SetActive(false);
+                }
 
-            lastColor = ownerColor[owner.id];
+                lastColor = ownerColor[owner.id];
 
-            lastColor.SetActive(true);
-        }
-        else
-        {
-            lastColor = null;
+                lastColor.SetActive(true);
+            }
         }
 
         //reveal land only if mine

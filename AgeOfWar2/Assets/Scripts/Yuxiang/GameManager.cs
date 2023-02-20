@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public SortedDictionary<int, PlayerController> playerList = new SortedDictionary<int, PlayerController>();
 
     public List<PlayerController> allPlayers;
+
+    [SerializeField] TextMeshProUGUI goldText;
 
     private void Awake()
     {
@@ -44,5 +47,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
         }
+    }
+
+    public void updateGoldText()
+    {
+        goldText.text = "Gold: " + PlayerController.instance.gold;
     }
 }
