@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638123315460000000
-    m_Hash: 2465031950
+      ticks: 638124514190000000
+    m_Hash: 133112282
   m_LockFileStatus:
     m_FilePath: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638123315490000000
-    m_Hash: 1291079873
+      ticks: 638124514190000000
+    m_Hash: 1837747457
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -702,6 +702,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.3
     - 3.2.0-pre.4
     - 4.0.0-pre.1
+    - 4.0.0-pre.2
     compatible:
     - 3.0.6
     - 3.2.0-pre.1
@@ -1048,6 +1049,58 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 1.8.0
+    nextVersion: 
+- packageId: com.veriorpies.parrelsync@https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync
+  testable: 0
+  isDirectDependency: 1
+  version: 1.5.0
+  source: 5
+  resolvedPath: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Library/PackageCache/com.veriorpies.parrelsync@f454248221
+  assetPath: Packages/com.veriorpies.parrelsync
+  name: com.veriorpies.parrelsync
+  displayName: ParrelSync
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: ParrelSync is a Unity editor extension that allows users to test multiplayer
+    gameplay without building the project by having another Unity editor window opened
+    and mirror the changes from the original project.
+  status: 0
+  errors: []
+  versions:
+    all: []
+    compatible: []
+    verified: 
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - Networking
+  - Utils
+  - Editor
+  - Extensions
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
     nextVersion: 
 - packageId: com.unity.modules.ai@1.0.0
   testable: 0
