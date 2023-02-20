@@ -443,7 +443,7 @@ MonoBehaviour:
   terrain: 
   owner: {fileID: 0}
   highlightTile: {fileID: 5507542342683702645}
+  dark: {fileID: 1685886697574609719}
   ownerColor:
-  - {fileID: 1685886697574609719}
   - {fileID: 4446476309757399209}
   - {fileID: 780611424114134423}

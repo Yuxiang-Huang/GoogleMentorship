@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [Header("Spawn")]
     public bool[,] canSpawn;
-    public GameObject toSpawn;
+    public string toSpawn;
     public int goldNeedToSpawn;
 
     [Header("Gold")]
@@ -69,12 +69,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //spawn castle
         if (id == 1)
         {
-            pos = new Vector2Int(0, 0);
+            pos = new Vector2Int(1, 1);
         }
 
         else if (id == 2)
         {
-            pos = new Vector2Int(tiles.GetLength(0) - 1, tiles.GetLength(1) - 1);
+            pos = new Vector2Int(tiles.GetLength(0) - 2, tiles.GetLength(1) - 2);
         }
 
         canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     gold -= goldNeedToSpawn;
 
                     //spawn unit and relation tile and unit
-                    GameObject newUnit = Instantiate(toSpawn,
+                    GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", toSpawn),
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     highlighted.updateStatus(this, newUnit);

@@ -105,8 +105,8 @@ MonoBehaviour:
   terrain: 
   owner: {fileID: 0}
   highlightTile: {fileID: 2345102748913751339}
-  ownerColor:
-  - {fileID: 6520112993604184512}
+  dark: {fileID: 6520112993604184512}
+  ownerColor: []
 --- !u!1 &2345102748913751339
 GameObject:
   m_ObjectHideFlags: 0

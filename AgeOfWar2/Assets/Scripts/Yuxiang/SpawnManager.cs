@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
         else
         {
             PlayerController.instance.mode = "spawn";
-            PlayerController.instance.toSpawn = clubMan;
+            PlayerController.instance.toSpawn = "Troop/ClubMan";
             PlayerController.instance.goldNeedToSpawn = 2;
         }
     }

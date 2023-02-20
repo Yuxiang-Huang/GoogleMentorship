@@ -16,19 +16,21 @@ public class Tile : MonoBehaviour
 
     [SerializeField] GameObject highlightTile;
 
+    [SerializeField] GameObject dark;
+
     [SerializeField] List<GameObject> ownerColor;
 
     GameObject lastColor;
 
     private void Awake()
     {
-        //all highlight off
+        //no one own this land in the beginning and is dark
         foreach (GameObject highlight in ownerColor)
         {
             highlight.SetActive(false);
         }
 
-        ownerColor[0].SetActive(true);
+        dark.SetActive(true);
     }
 
     public void highlight(bool status)
@@ -45,17 +47,26 @@ public class Tile : MonoBehaviour
     {
         if (owner != player)
         {
+            //remove from other player's land
+
+            //add this land to the player's territory
             this.owner = player;
             owner.territory.Add(this);
         }
         this.unit = newUnit;
 
-        //highlight
-        ownerColor[0].SetActive(false);
+        //reveal land
+        dark.SetActive(false);
 
+        foreach (Tile tile in neighbors)
+        {
+            tile.removeDark();
+        }
+
+        //highlight if land
         if (terrain == "land")
         {
-            lastColor = ownerColor[owner.id];
+            lastColor = ownerColor[owner.id - 1];
 
             lastColor.SetActive(true);
         }
@@ -63,15 +74,10 @@ public class Tile : MonoBehaviour
         {
             lastColor = null;
         }
-
-        foreach (Tile tile in neighbors)
-        {
-            tile.removeDark();
-        }
     }
 
     public void removeDark()
     {
-        ownerColor[0].SetActive(false);
+        dark.SetActive(false);
     }
 }
