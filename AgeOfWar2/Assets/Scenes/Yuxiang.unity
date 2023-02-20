@@ -1317,8 +1317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf8927c0895845f0a2c7cb8847203c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  landTilePrefab: {fileID: 224828791676552201, guid: f50b7b13635eb4925b259ebe29031913, type: 3}
-  waterTilePrefab: {fileID: 224828791676552201, guid: 0ef032cce133a4f8e9b223f552adc3a7, type: 3}
+  landTilePrefab: {fileID: 8283241427877351645, guid: f50b7b13635eb4925b259ebe29031913, type: 3}
+  waterTilePrefab: {fileID: 741730263035697510, guid: 0ef032cce133a4f8e9b223f552adc3a7, type: 3}
 --- !u!4 &1927268906
 Transform:
   m_ObjectHideFlags: 0
