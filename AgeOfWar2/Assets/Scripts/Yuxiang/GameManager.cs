@@ -22,18 +22,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsVisible = false;
     }
 
-    IEnumerator Start()
+    public void checkStart()
     {
-        yield return new WaitForSeconds(3f);
-
-        if (PhotonNetwork.IsMasterClient)
+        if (allPlayers.Count == PhotonNetwork.CurrentRoom.PlayerCount)
         {
-            if (allPlayers.Count == PhotonNetwork.CurrentRoom.PlayerCount)
+            for (int i = 0; i < allPlayers.Count; i++)
             {
-                for (int i = 0; i < allPlayers.Count; i++)
-                {
-                    allPlayers[i].PV.RPC("updateID", allPlayers[i].PV.Owner, i + 1);
-                }
+                allPlayers[i].PV.RPC("updateID", allPlayers[i].PV.Owner, i + 1);
             }
         }
     }

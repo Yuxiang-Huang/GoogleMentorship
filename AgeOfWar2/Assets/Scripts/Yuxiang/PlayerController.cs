@@ -38,7 +38,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        GameManager.instance.allPlayers.Add(this);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameManager.instance.allPlayers.Add(this);
+            GameManager.instance.checkStart();
+        }
 
         if (!PV.IsMine) return;
 
