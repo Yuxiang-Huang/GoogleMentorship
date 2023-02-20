@@ -4,12 +4,17 @@ using UnityEditor;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
+    public string name;
+
+    public PhotonView PV;
+
     public static PlayerController instance;
 
-    public int id = 1;
+    public int id;
 
     Tile highlighted;
 
@@ -30,10 +35,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Gold")]
     [SerializeField] int gold;
-    [SerializeField] TextMeshProUGUI goldText;
 
-    private void Start()
+    private void Awake()
     {
+        GameManager.instance.allPlayers.Add(this);
+
+        if (!PV.IsMine) return;
+
+        name = PhotonNetwork.NickName;
+
         instance = this;
 
         TileManager.instance.makeGrid(10, 10);
@@ -46,12 +56,23 @@ public class PlayerController : MonoBehaviour
         TileManager.instance.tiles[0, 0].updateStatus(this, myCastle);
     }
 
+    [PunRPC]
+    public void updateID(int newID)
+    {
+        PV.RPC(nameof(updateID_All), RpcTarget.AllBuffered, newID);
+    }
+
+    [PunRPC]
+    void updateID_All(int newID)
+    {
+        id = newID;
+
+        Debug.Log(id);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //update gold
-        goldText.text = "Gold: " + gold;
-
         //move
         if (mode == "move")
         {

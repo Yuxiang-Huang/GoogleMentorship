@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5457201502600834385}
   - component: {fileID: 4434306806922390120}
+  - component: {fileID: 9072613378230689423}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -59,3 +60,26 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &9072613378230689423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378078302541067305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1ca0dd41f0a4a028f7bcc5a86eb4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  PV: {fileID: 4434306806922390120}
+  id: 0
+  mode: 
+  allTroops: []
+  territory: []
+  castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
+  myCastle: {fileID: 0}
+  toSpawn: {fileID: 0}
+  goldNeedToSpawn: 0
+  gold: 0
