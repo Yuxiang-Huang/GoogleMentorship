@@ -380,6 +380,7 @@
 "Assets/Scripts/Yuxiang/Tile.cs"
 "Assets/Scripts/Yuxiang/TileManager.cs"
 "Assets/Scripts/Yuxiang/Troop.cs"
+"Assets/Scripts/Yuxiang/Unit.cs"
 -langversion:9.0
 
 /deterministic

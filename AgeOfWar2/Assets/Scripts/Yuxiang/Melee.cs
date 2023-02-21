@@ -11,11 +11,11 @@ public class Melee : Troop
         //check all surrounding tiles
         foreach (Tile tile in tile.neighbors)
         {
-            ////if can see this tile and there is enemy unit on it
-            //if (!tile.dark.activeSelf && tile.unit.GetComponent<Troop>().owner != owner)
-            //{
-            //    targets.Add(0, tile);
-            //}
+            //if can see this tile and there is enemy unit on it
+            if (!tile.dark.activeSelf && tile.unit != null && tile.unit.ownerID != ownerID)
+            {
+                //targets.Add(0, tile);
+            }
         }
 
         return false;

@@ -10,7 +10,7 @@ public class Tile : MonoBehaviour
 
     public List<Tile> neighbors;
 
-    public GameObject unit;
+    public IUnit unit;
 
     public string terrain;
 
@@ -47,7 +47,7 @@ public class Tile : MonoBehaviour
         return pos.ToString();
     }
 
-    public void updateStatus(int newOwnerID, GameObject newUnit)
+    public void updateStatus(int newOwnerID, IUnit newUnit)
     {
         if (ownerID != newOwnerID)
         {

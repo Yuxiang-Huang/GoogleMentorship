@@ -135,10 +135,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 {
                     //if a tile is highlighted, a unit is not on the tile, and it's a movable unit
                     if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
-                        highlighted.GetComponent<Tile>().unit.CompareTag("Troop"))
+                        highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
                     {
                         //select unit on the tile
-                        playerSelected = highlighted.GetComponent<Tile>().unit.GetComponent<Troop>();
+                        playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
                         playerSelected.highlight(true);
                     }
                 }
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", toSpawn),
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
-                    highlighted.updateStatus(id, newUnit);
+                    highlighted.updateStatus(id, newUnit.GetComponent<Troop>());
 
                     if (newUnit.CompareTag("Troop"))
                     {

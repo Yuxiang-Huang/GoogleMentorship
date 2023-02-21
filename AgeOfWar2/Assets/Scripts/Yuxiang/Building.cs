@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using static UnityEditor.PlayerSettings;
+using static UnityEngine.UI.GridLayoutGroup;
 
-public class Building : MonoBehaviourPunCallbacks
+public class Building : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV;
 
-    public PlayerController owner;
+    public int ownerID { get; set; }
 
     public Tile tile;
 
@@ -20,10 +21,9 @@ public class Building : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Init(int playerID, int startingtTileX, int startingtTileY)
     {
-        //set owner, tile, and update tile
-        owner = GameManager.instance.allPlayers[playerID];
+        ownerID = playerID;
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
-        tile.updateStatus(owner.id, this.gameObject);
+        tile.updateStatus(ownerID, this);
     }
 
     //can spawn troop around building
@@ -31,7 +31,7 @@ public class Building : MonoBehaviourPunCallbacks
     {
         foreach (Tile neighbor in tile.neighbors)
         {
-            owner.canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
+            GameManager.instance.allPlayers[ownerID].canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
         }
     }
 }

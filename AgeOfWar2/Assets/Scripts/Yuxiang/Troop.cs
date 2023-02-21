@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Troop : MonoBehaviourPunCallbacks
+public class Troop : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV;
-    
-    public int ownerID;
+
+    public int ownerID { get; set; }
 
     public Tile tile;
 
@@ -31,7 +31,7 @@ public class Troop : MonoBehaviourPunCallbacks
         ownerID = playerID;
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
 
-        GameManager.instance.allPlayers[playerID].allTroops.Add(this);
+        GameManager.instance.allPlayers[ownerID].allTroops.Add(this);
     }
 
     public void highlight(bool status)
@@ -171,7 +171,7 @@ public class Troop : MonoBehaviourPunCallbacks
 
         //update tile
         tile = TileManager.instance.getTile(new Vector2(nextTileX, nextTileY));
-        tile.updateStatus(ownerID, this.gameObject);
+        tile.updateStatus(ownerID, this);
 
         //update position
         transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
