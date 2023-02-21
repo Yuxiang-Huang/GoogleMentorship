@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public string mode;
 
-    public List<Troop> allTroops = new List<Troop>();
+    public HashSet<Troop> allTroops = new HashSet<Troop>();
     public HashSet<Tile> territory = new HashSet<Tile>();
 
     [SerializeField] GameObject castle;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             TileManager.instance.makeGrid(10, 10);
         }
 
+        //keep track of all players
         GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
 
         GameManager.instance.checkStart();
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         myCastle.GetPhotonView().RPC("Init", RpcTarget.AllBuffered, id, startingTile.x, startingTile.y);
 
-        //only update can spawn if my castle
+        //only update canSpawn if my castle
         if (PV.IsMine)
         {
             canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //move
         if (mode == "move")
         {
-            //highlight
+            //highlight any tile
             Tile newHighlighted = TileManager.instance.getTile();
 
             if (highlighted != newHighlighted)
@@ -136,6 +137,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
                         highlighted.GetComponent<Tile>().unit.CompareTag("Troop"))
                     {
+                        //select unit on the tile
                         playerSelected = highlighted.GetComponent<Tile>().unit.GetComponent<Troop>();
                         playerSelected.highlight(true);
                     }
@@ -147,16 +149,19 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     {
                         playerSelected.findPath(highlighted.GetComponent<Tile>());
                     }
+
                     playerSelected.highlight(false);
                     playerSelected = null;
                 }
             }
 
+            //testing purpose
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 nextTurn();
             }
         }
+        //spawn
         else if (mode == "spawn")
         {
             //highlight
@@ -189,9 +194,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 if (highlighted != null)
                 {
+                    //deduct gold
                     gold -= goldNeedToSpawn;
 
-                    //spawn unit and relation tile and unit
+                    //spawn unit and initiate
                     GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", toSpawn),
                     highlighted.gameObject.transform.position, Quaternion.identity);
 

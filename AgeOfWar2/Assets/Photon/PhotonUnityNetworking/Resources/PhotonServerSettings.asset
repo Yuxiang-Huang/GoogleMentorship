@@ -47,6 +47,7 @@ MonoBehaviour:
   - updateTile
   - Init
   - updateStatus_RPC
+  - moveUpdate_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

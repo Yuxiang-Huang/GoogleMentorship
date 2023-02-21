@@ -20,12 +20,13 @@ public class Building : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Init(int playerID, int startingtTileX, int startingtTileY)
     {
+        //set owner, tile, and update tile
         owner = GameManager.instance.allPlayers[playerID];
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
-
         tile.updateStatus(owner, this.gameObject);
     }
 
+    //can spawn troop around building
     public void updateCanSpawn()
     {
         foreach (Tile neighbor in tile.neighbors)

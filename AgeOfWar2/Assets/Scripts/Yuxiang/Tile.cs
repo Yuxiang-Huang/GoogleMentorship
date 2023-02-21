@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    [Header("Info")]
     public Vector2Int pos;
 
     public List<Tile> neighbors;
@@ -14,22 +15,24 @@ public class Tile : MonoBehaviour
 
     public PlayerController owner;
 
+    [Header("Highlight")]
     [SerializeField] GameObject highlightTile;
 
     [SerializeField] GameObject dark;
 
-    [SerializeField] List<GameObject> ownerColor;
-
     GameObject lastColor;
+
+    [SerializeField] List<GameObject> ownerColor;
 
     private void Awake()
     {
-        //no one own this land in the beginning and is dark
+        //no one own this land in the beginning
         foreach (GameObject highlight in ownerColor)
         {
             highlight.SetActive(false);
         }
 
+        //covered in the beginning
         dark.SetActive(true);
     }
 

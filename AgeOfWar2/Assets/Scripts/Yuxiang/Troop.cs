@@ -10,12 +10,14 @@ public class Troop : MonoBehaviourPunCallbacks
     public PlayerController owner;
 
     public Tile tile;
+
     Tile lastTarget;
 
     public List<Tile> path;
 
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject arrowPrefab;
+
     [SerializeField] GameObject highlightTile;
 
     private void Awake()
@@ -133,7 +135,7 @@ public class Troop : MonoBehaviourPunCallbacks
             //move to next tile on list if no unit is there
             if (path[0].unit == null)
             {
-                PV.RPC(nameof(updateTile), RpcTarget.AllBuffered, path[0].pos.x, path[0].pos.y);
+                PV.RPC(nameof(moveUpdate_RPC), RpcTarget.AllBuffered, path[0].pos.x, path[0].pos.y);
 
                 path.RemoveAt(0);
             }
@@ -151,7 +153,7 @@ public class Troop : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void updateTile(int nextTileX, int nextTileY)
+    public void moveUpdate_RPC(int nextTileX, int nextTileY)
     {
         //last tile
         tile.unit = null;
@@ -160,15 +162,15 @@ public class Troop : MonoBehaviourPunCallbacks
         tile = TileManager.instance.getTile(new Vector2(nextTileX, nextTileY));
         tile.updateStatus(owner, this.gameObject);
 
+        //update position
         transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
     }
 
+    //find distance between two tiles
     float dist(Tile t1, Tile t2)
     {
-        //Vector2 p1 = TileManager.instance.getWorldPosition(t1);
-        //Vector2 p2 = TileManager.instance.getWorldPosition(t2);
-        //return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
-
-        return Mathf.Abs(t1.pos.x - t2.pos.x) + Mathf.Abs(t1.pos.y - t2.pos.y);
+        Vector2 p1 = TileManager.instance.getWorldPosition(t1);
+        Vector2 p2 = TileManager.instance.getWorldPosition(t2);
+        return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     }
 }
