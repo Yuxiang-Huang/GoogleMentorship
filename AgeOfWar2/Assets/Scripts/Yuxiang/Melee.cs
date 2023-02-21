@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Melee : Troop
 {
@@ -14,7 +15,7 @@ public class Melee : Troop
             //if can see this tile and there is enemy unit on it
             if (!tile.dark.activeSelf && tile.unit != null && tile.unit.ownerID != ownerID)
             {
-                tile.unit.takeDamage(damage);
+                tile.unit.PV.RPC(nameof(takeDamage), RpcTarget.AllBuffered, damage);
             }
         }
 

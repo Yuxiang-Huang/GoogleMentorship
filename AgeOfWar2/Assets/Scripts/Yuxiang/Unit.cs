@@ -5,6 +5,8 @@ using UnityEngine;
 
 public interface IUnit
 {
+    PhotonView PV { get; }
+
     int ownerID { get; }
 
     GameObject gameObject { get; }

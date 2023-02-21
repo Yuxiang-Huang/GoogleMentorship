@@ -6,12 +6,11 @@ using TMPro;
 
 public class Building : MonoBehaviourPunCallbacks, IUnit
 {
-    public PhotonView PV;
+    public PhotonView PV { get; set; }
 
     [SerializeField] int health;
     public int fullHealth;
     [SerializeField]  int damage;
-    [SerializeField] TextMeshProUGUI healthText; 
 
     public int ownerID { get; set; }
 
@@ -39,10 +38,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
+    [PunRPC]
     public void takeDamage(int incomingDamage)
     {
         health -= incomingDamage;
-
-        healthText.text = health + " / " + fullHealth;
     }
 }

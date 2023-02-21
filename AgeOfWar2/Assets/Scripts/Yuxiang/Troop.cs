@@ -6,13 +6,12 @@ using TMPro;
 
 public class Troop : MonoBehaviourPunCallbacks, IUnit
 {
-    public PhotonView PV;
+    public PhotonView PV { get; set; }
 
     [Header("Health")]
     [SerializeField] int health;
     public int fullHealth;
     public int damage;
-    [SerializeField] TextMeshProUGUI healthText;
 
     public int ownerID { get; set; }
 
@@ -193,10 +192,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     }
 
+    [PunRPC]
     public void takeDamage(int incomingDamage)
     {
         health -= incomingDamage;
-
-        healthText.text = health + " / " + fullHealth;
     }
 }
