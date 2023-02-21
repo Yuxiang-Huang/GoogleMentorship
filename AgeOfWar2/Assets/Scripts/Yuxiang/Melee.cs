@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.Linq;
 
 public class Melee : Troop
 {
-    public override bool attack()
+    public override void attack()
     {
         SortedDictionary<float, Tile> targets = new SortedDictionary<float, Tile>();
 
         //check all surrounding tiles
-        foreach (Tile tile in tile.neighbors)
+        foreach (Tile curTile in tile.neighbors)
         {
             //if can see this tile and there is enemy unit on it
-            if (!tile.dark.activeSelf && tile.unit != null && tile.unit.ownerID != ownerID)
+            if (!curTile.dark.activeSelf && curTile.unit != null) //&& curTile.unit.ownerID != ownerID)
             {
-                tile.unit.PV.RPC(nameof(takeDamage), RpcTarget.AllBuffered, damage);
-                return true;
+                targets.TryAdd(Vector2.Dot(direction,
+                    (TileManager.instance.getWorldPosition(curTile) - TileManager.instance.getWorldPosition(tile)).normalized),
+                    curTile);
             }
         }
 
-        return false;
+        //attack order depending on dot product
+        if (targets.Count != 0)
+        {
+            targets.Values.First().unit.PV.RPC(nameof(takeDamage), RpcTarget.AllBuffered, damage);
+        }
     }
 }

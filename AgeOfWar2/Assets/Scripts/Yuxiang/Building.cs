@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEditor;
 
 public class Building : MonoBehaviourPunCallbacks, IUnit
 {
@@ -35,6 +36,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         foreach (Tile neighbor in tile.neighbors)
         {
             GameManager.instance.allPlayers[ownerID].canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
+
+            GameManager.instance.allPlayers[ownerID].canSpawnDirection[neighbor.pos.x, neighbor.pos.y] =
+                (TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile)).normalized;
         }
     }
 

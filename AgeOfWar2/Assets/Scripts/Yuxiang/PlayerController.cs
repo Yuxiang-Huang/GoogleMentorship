@@ -26,10 +26,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public HashSet<Tile> territory = new HashSet<Tile>();
 
     [SerializeField] GameObject castle;
-    public GameObject myCastle;
+    public Building myCastle;
 
     [Header("Spawn")]
     public bool[,] canSpawn;
+    public Vector2[,] canSpawnDirection;
     public string toSpawn;
     public int goldNeedToSpawn;
 
@@ -87,14 +88,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
-            TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity);
+            TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity).
+            GetComponent<Building>();
 
-        myCastle.GetPhotonView().RPC("Init", RpcTarget.AllBuffered, id, startingTile.x, startingTile.y);
+        myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.AllBuffered, id, startingTile.x, startingTile.y);
 
         //only update canSpawn if my castle
         if (PV.IsMine)
         {
             canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+            canSpawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
             myCastle.GetComponent<Building>().updateCanSpawn();
         }
     }
@@ -207,7 +210,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     if (newUnit.CompareTag("Troop"))
                     {
                         newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllBuffered,
-                            id, highlighted.pos.x, highlighted.pos.y);
+                            id, highlighted.pos.x, highlighted.pos.y, canSpawnDirection[highlighted.pos.x, highlighted.pos.y]);
                     }
 
                     //building code here 

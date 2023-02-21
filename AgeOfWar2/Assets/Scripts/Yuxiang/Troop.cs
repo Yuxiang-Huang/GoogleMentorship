@@ -8,12 +8,13 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV { get; set; }
 
+    public int ownerID { get; set; }
+
     [Header("Health")]
     [SerializeField] int health;
     public int fullHealth;
     public int damage;
-
-    public int ownerID { get; set; }
+    public Vector2 direction;
 
     [Header("Movement")]
     public Tile tile;
@@ -33,12 +34,14 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection)
     {
         ownerID = playerID;
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
 
         GameManager.instance.allPlayers[ownerID].allTroops.Add(this);
+
+        direction = startDirection;
     }
 
     public void highlight(bool status)
@@ -46,10 +49,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         highlightTile.SetActive(status);
     }
 
-    public virtual bool attack()
-    {
-        return false;
-    }
+    public virtual void attack() { }
 
     public void findPath(Tile target)
     {
@@ -138,13 +138,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             Destroy(arrow);
         }
 
-        bool attacked = false;
-
-        attacked = attack();
-
-        //move
+        //move and then attack
         if (path.Count != 0)
         {
+            //update direction
+            direction = (TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile)).normalized;
+
             //move to next tile on list if no unit is there
             if (path[0].unit == null)
             {
@@ -164,10 +163,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             }
         }
 
-        if (!attacked)
-        {
-            attack();
-        }
+        attack();
     }
 
     [PunRPC]
