@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (newUnit.CompareTag("Troop"))
                 {
-                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
+                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                         id, info.spawnTile.pos.x, info.spawnTile.pos.y,
                         canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
 

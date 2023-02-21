@@ -11,8 +11,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int ownerID { get; set; }
 
+    public int health { get; set; }
+
     [Header("Health")]
-    public int health;
     public int fullHealth;
     public int damage;
     public Vector2 direction;
@@ -32,6 +33,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+
+        health = fullHealth;
     }
 
     [PunRPC]

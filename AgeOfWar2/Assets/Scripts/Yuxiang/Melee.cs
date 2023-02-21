@@ -16,14 +16,20 @@ public class Melee : Troop
             //if can see this tile and there is enemy unit on it
             if (!curTile.dark.activeSelf && curTile.unit != null) //&& curTile.unit.ownerID != ownerID)
             {
+                //attack order depending on dot product
                 targets.TryAdd(Vector2.Dot(direction,
                     TileManager.instance.getWorldPosition(curTile) - TileManager.instance.getWorldPosition(tile)),
                     curTile);
             }
         }
 
-        //attack order depending on dot product
-        if (targets.Count != 0)
+        //don't attack already dead troop
+        while (targets.Count > 0 && targets.Values.Last().unit.health <= 0)
+        {
+            targets.Remove(targets.Keys.Last());
+        }
+
+        if (targets.Count > 0)
         {
             targets.Values.Last().unit.PV.RPC(nameof(takeDamage), RpcTarget.AllViaServer, damage);
         }

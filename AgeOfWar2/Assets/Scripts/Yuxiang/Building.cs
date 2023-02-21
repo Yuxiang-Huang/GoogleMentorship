@@ -9,7 +9,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV { get; set; }
 
-    [SerializeField] int health;
+    public int health { get; set; }
+
     public int fullHealth;
     [SerializeField]  int damage;
 
