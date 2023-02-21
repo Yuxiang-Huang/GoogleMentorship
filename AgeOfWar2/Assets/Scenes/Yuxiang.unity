@@ -771,8 +771,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100, y: 30}
-  m_SizeDelta: {x: 150, y: 40}
+  m_AnchoredPosition: {x: -150, y: 100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1201000673
 MonoBehaviour:
@@ -818,9 +818,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: nextTurn
+      - m_Target: {fileID: 1602756415}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: endTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1019,6 +1019,8 @@ MonoBehaviour:
   PV: {fileID: 0}
   allPlayers: []
   goldText: {fileID: 421099528}
+  playerEndedTurn: 0
+  turnBtn: {fileID: 1201000671}
 --- !u!114 &1602756416
 MonoBehaviour:
   m_ObjectHideFlags: 0

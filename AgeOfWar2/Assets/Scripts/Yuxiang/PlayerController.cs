@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using Photon.Pun;
 using System.IO;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -111,6 +112,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (!PV.IsMine) return;
 
+        //testing purpose
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            nextTurn();
+        }
+
         //move
         if (mode == "move")
         {
@@ -153,12 +160,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     playerSelected.highlight(false);
                     playerSelected = null;
                 }
-            }
-
-            //testing purpose
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                nextTurn();
             }
         }
         //spawn
@@ -216,6 +217,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
     public void nextTurn()
     {
         gold += territory.Count;

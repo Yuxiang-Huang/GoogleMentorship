@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] TextMeshProUGUI goldText;
 
+    [SerializeField] int playerEndedTurn;
+
+    [SerializeField] GameObject turnBtn;
+
     private void Awake()
     {
         instance = this;
@@ -50,8 +54,51 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    #region Turns
+
+    [PunRPC]
+    public void checkTurn()
+    {
+        playerEndedTurn++;
+
+        //everyone is ready
+        if (playerEndedTurn == PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            //reset
+            playerEndedTurn = 0;
+
+            //ask every player to next turn
+            foreach (PlayerController cur in allPlayers)
+            {
+                cur.PV.RPC(nameof(cur.nextTurn), cur.PV.Owner);
+            }
+
+            //different player start every turn
+            allPlayers.Add(allPlayers[0]);
+            allPlayers.RemoveAt(0);
+
+            PV.RPC(nameof(startTurn), RpcTarget.AllBuffered);
+        }
+    }
+
+    [PunRPC]
+    public void startTurn()
+    {
+        turnBtn.SetActive(true);
+    }
+
+    public void endTurn()
+    {
+        turnBtn.SetActive(false);
+
+        //ask master client to count player
+        PV.RPC("checkTurn", RpcTarget.MasterClient);
+    }
+
     public void updateGoldText()
     {
         goldText.text = "Gold: " + PlayerController.instance.gold;
     }
+
+    #endregion
 }

@@ -49,6 +49,9 @@ MonoBehaviour:
   - updateStatus_RPC
   - moveUpdate_RPC
   - takeDamage
+  - checkTurn
+  - startTurn
+  - nextTurn
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

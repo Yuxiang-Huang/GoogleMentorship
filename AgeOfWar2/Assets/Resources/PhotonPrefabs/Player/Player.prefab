@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PV: {fileID: 4434306806922390120}
   id: -1
-  mode: move
+  mode: 
   castle: {fileID: 3892388994446761152, guid: 24929f2bb03cf47b9833672070082de9, type: 3}
   myCastle: {fileID: 0}
   toSpawn: 

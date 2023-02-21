@@ -16,6 +16,7 @@ public class Melee : Troop
             if (!tile.dark.activeSelf && tile.unit != null && tile.unit.ownerID != ownerID)
             {
                 tile.unit.PV.RPC(nameof(takeDamage), RpcTarget.AllBuffered, damage);
+                return true;
             }
         }
 
