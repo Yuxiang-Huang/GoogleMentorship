@@ -14,7 +14,7 @@ public class Melee : Troop
             //if can see this tile and there is enemy unit on it
             if (!tile.dark.activeSelf && tile.unit != null && tile.unit.ownerID != ownerID)
             {
-                //targets.Add(0, tile);
+                tile.unit.takeDamage(damage);
             }
         }
 

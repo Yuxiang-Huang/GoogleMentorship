@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class Troop : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV;
 
+    [Header("Health")]
+    [SerializeField] int health;
+    public int fullHealth;
+    public int damage;
+    [SerializeField] TextMeshProUGUI healthText;
+
     public int ownerID { get; set; }
 
+    [Header("Movement")]
     public Tile tile;
 
     Tile lastTarget;
@@ -183,5 +191,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         Vector2 p1 = TileManager.instance.getWorldPosition(t1);
         Vector2 p2 = TileManager.instance.getWorldPosition(t2);
         return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+    }
+
+    public void takeDamage(int incomingDamage)
+    {
+        health -= incomingDamage;
+
+        healthText.text = health + " / " + fullHealth;
     }
 }

@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.UI.GridLayoutGroup;
+using TMPro;
 
 public class Building : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV;
+
+    [SerializeField] int health;
+    public int fullHealth;
+    [SerializeField]  int damage;
+    [SerializeField] TextMeshProUGUI healthText; 
 
     public int ownerID { get; set; }
 
@@ -33,5 +37,12 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         {
             GameManager.instance.allPlayers[ownerID].canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
         }
+    }
+
+    public void takeDamage(int incomingDamage)
+    {
+        health -= incomingDamage;
+
+        healthText.text = health + " / " + fullHealth;
     }
 }
