@@ -23,7 +23,7 @@ public class Building : MonoBehaviourPunCallbacks
         //set owner, tile, and update tile
         owner = GameManager.instance.allPlayers[playerID];
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
-        tile.updateStatus(owner, this.gameObject);
+        tile.updateStatus(owner.id, this.gameObject);
     }
 
     //can spawn troop around building

@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", toSpawn),
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
-                    highlighted.updateStatus(this, newUnit);
+                    highlighted.updateStatus(id, newUnit);
 
                     if (newUnit.CompareTag("Troop"))
                     {
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         foreach (Troop troop in allTroops)
         {
-            troop.move();
+            troop.takeTurn();
         }
     }
 }

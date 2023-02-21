@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Realtime;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -13,12 +14,12 @@ public class Tile : MonoBehaviour
 
     public string terrain;
 
-    public PlayerController owner;
+    public int ownerID = -1;
 
     [Header("Highlight")]
     [SerializeField] GameObject highlightTile;
 
-    [SerializeField] GameObject dark;
+    public GameObject dark;
 
     GameObject lastColor;
 
@@ -46,17 +47,17 @@ public class Tile : MonoBehaviour
         return pos.ToString();
     }
 
-    public void updateStatus(PlayerController newOwner, GameObject newUnit)
+    public void updateStatus(int newOwnerID, GameObject newUnit)
     {
-        if (owner != newOwner)
+        if (ownerID != newOwnerID)
         {
             //remove from other player's land
-            if (owner != null)
+            if (ownerID != -1)
             {
-                owner.territory.Remove(this);
+                GameManager.instance.allPlayers[ownerID].territory.Remove(this);
 
                 //update dark if mine
-                if (owner == PlayerController.instance)
+                if (ownerID == PlayerController.instance.id)
                 {
                     foreach (Tile tile in neighbors)
                     {
@@ -68,8 +69,8 @@ public class Tile : MonoBehaviour
             }
 
             //add this land to new owner's territory
-            owner = newOwner;
-            owner.territory.Add(this);
+            ownerID = newOwnerID;
+            GameManager.instance.allPlayers[ownerID].territory.Add(this);
         }
         this.unit = newUnit;
 
@@ -77,21 +78,21 @@ public class Tile : MonoBehaviour
         if (terrain == "land")
         {
             //replace the color if different
-            if (lastColor != ownerColor[owner.id])
+            if (lastColor != ownerColor[ownerID])
             {
                 if (lastColor != null)
                 {
                     lastColor.SetActive(false);
                 }
 
-                lastColor = ownerColor[owner.id];
+                lastColor = ownerColor[ownerID];
 
                 lastColor.SetActive(true);
             }
         }
 
         //reveal land only if mine
-        if (owner == PlayerController.instance)
+        if (ownerID == PlayerController.instance.id)
         {
             dark.SetActive(false);
 

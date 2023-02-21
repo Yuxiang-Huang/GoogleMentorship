@@ -7,7 +7,7 @@ public class Troop : MonoBehaviourPunCallbacks
 {
     public PhotonView PV;
     
-    public PlayerController owner;
+    public int ownerID;
 
     public Tile tile;
 
@@ -28,9 +28,10 @@ public class Troop : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Init(int playerID, int startingtTileX, int startingtTileY)
     {
-        owner = GameManager.instance.allPlayers[playerID];
+        ownerID = playerID;
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
-        owner.allTroops.Add(this);
+
+        GameManager.instance.allPlayers[playerID].allTroops.Add(this);
     }
 
     public void highlight(bool status)
@@ -38,9 +39,9 @@ public class Troop : MonoBehaviourPunCallbacks
         highlightTile.SetActive(status);
     }
 
-    public void attack()
+    public virtual bool attack()
     {
-
+        return false;
     }
 
     public void findPath(Tile target)
@@ -123,13 +124,18 @@ public class Troop : MonoBehaviourPunCallbacks
         }
     }
 
-    public void move()
+    public void takeTurn()
     {
         if (arrow != null)
         {
             Destroy(arrow);
         }
 
+        bool attacked = false;
+
+        attacked = attack();
+
+        //move
         if (path.Count != 0)
         {
             //move to next tile on list if no unit is there
@@ -150,6 +156,11 @@ public class Troop : MonoBehaviourPunCallbacks
                 arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
             }
         }
+
+        if (!attacked)
+        {
+            attack();
+        }
     }
 
     [PunRPC]
@@ -160,7 +171,7 @@ public class Troop : MonoBehaviourPunCallbacks
 
         //update tile
         tile = TileManager.instance.getTile(new Vector2(nextTileX, nextTileY));
-        tile.updateStatus(owner, this.gameObject);
+        tile.updateStatus(ownerID, this.gameObject);
 
         //update position
         transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
