@@ -70,6 +70,10 @@ public class Tile : MonoBehaviour
 
             //add this land to new owner's territory
             ownerID = newOwnerID;
+
+            Debug.Log(ownerID);
+            Debug.Log(GameManager.instance.allPlayers);
+
             GameManager.instance.allPlayers[ownerID].territory.Add(this);
         }
         this.unit = newUnit;

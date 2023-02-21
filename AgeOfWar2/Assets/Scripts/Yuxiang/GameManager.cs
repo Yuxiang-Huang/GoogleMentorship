@@ -42,11 +42,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         checkStart();
     }
 
-    public void checkStart()
+    public void createPlayerList()
     {
         //everyone joined
-        if (playerList.Count == PhotonNetwork.CurrentRoom.PlayerCount &&
-            playerReady == PhotonNetwork.CurrentRoom.PlayerCount)
+        if (playerList.Count == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             //sorted list
             foreach (KeyValuePair<int, PlayerController> kvp in playerList)
@@ -54,14 +53,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                 allPlayers.Add(kvp.Value);
             }
 
-            //start game once
-            if (PhotonNetwork.IsMasterClient)
+            GameManager.instance.PV.RPC("getReady", RpcTarget.MasterClient);
+        }
+    }
+
+    public void checkStart()
+    {
+        //master client start game once
+        if (playerReady == PhotonNetwork.CurrentRoom.PlayerCount * 2)
+        {
+            //ask all player to start game
+            for (int i = 0; i < allPlayers.Count; i++)
             {
-                //ask all player to start game
-                for (int i = 0; i < allPlayers.Count; i++)
-                {
-                    allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i);
-                }
+                allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i);
             }
         }
     }
