@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public HashSet<Building> allBuildings = new HashSet<Building>();
     public HashSet<Tile> territory = new HashSet<Tile>();
 
-    [SerializeField] GameObject castle;
     public Building myCastle;
 
     [Header("Spawn")]
@@ -34,6 +33,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public Vector2[,] canSpawnDirection;
     public string toSpawn;
     public int goldNeedToSpawn;
+    [SerializeField] List<SpawnInfo> spawnList = new List<SpawnInfo>();
 
     [Header("Gold")]
     public int gold;
@@ -69,11 +69,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         mode = "start";
 
+        //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
         int startTerritory = 3;
 
-        //assign starting territory
         if (id == 1)
         {
             for (int i = 0; i < startTerritory; i++)
@@ -113,9 +113,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //testing purpose
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            nextTurn();
+            spawn();
+            takeTurn_Player(); 
         }
 
+        //spawn castle
         if (mode == "start")
         {
             //highlight territory tiles
@@ -167,7 +169,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 mode = "move";
             }
         }
-
         //move
         else if (mode == "move")
         {
@@ -190,8 +191,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //select player
                 if (playerSelected == null)
                 {
-                    //if a tile is highlighted, a unit is not on the tile, and it's a movable unit
+                    //if a tile is highlighted, a unit is on the tile, it's my unit, and it's a movable unit
                     if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
+                        highlighted.GetComponent<Tile>().unit.ownerID == id &&
                         highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
                     {
                         //select unit on the tile
@@ -248,19 +250,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     //deduct gold
                     gold -= goldNeedToSpawn;
 
-                    //spawn unit and initiate
-                    GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", toSpawn),
-                    highlighted.gameObject.transform.position, Quaternion.identity);
-
-                    highlighted.updateStatus(id, newUnit.GetComponent<Troop>());
-
-                    if (newUnit.CompareTag("Troop"))
-                    {
-                        newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
-                            id, highlighted.pos.x, highlighted.pos.y, canSpawnDirection[highlighted.pos.x, highlighted.pos.y]);
-                    }
-
-                    //building code here 
+                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1));
                 }
                 mode = "move";
             }
@@ -268,7 +258,27 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void nextTurn()
+    public void spawn()
+    {
+        foreach (SpawnInfo info in spawnList)
+        {
+            //spawn unit and initiate
+            GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
+            info.spawnTile.gameObject.transform.position, Quaternion.identity);
+
+            if (newUnit.CompareTag("Troop"))
+            {
+                newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
+                    id, info.spawnTile.pos.x, info.spawnTile.pos.y,
+                    canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
+            }
+
+            //building code here 
+        }
+    }
+
+    [PunRPC]
+    public void takeTurn_Player()
     {
         gold += territory.Count;
 
@@ -278,5 +288,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             troop.takeTurn();
         }
+
+        GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
     }
 }

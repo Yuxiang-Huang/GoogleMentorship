@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEditor;
 
 public class Troop : MonoBehaviourPunCallbacks, IUnit
 {
@@ -38,6 +39,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     {
         ownerID = playerID;
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
+        tile.updateStatus(ownerID, this);
 
         GameManager.instance.allPlayers[ownerID].allTroops.Add(this);
 
