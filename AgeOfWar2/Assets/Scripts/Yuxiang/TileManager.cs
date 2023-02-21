@@ -127,6 +127,8 @@ public class TileManager : MonoBehaviourPunCallbacks
                 } 
             }
         }
+
+        GameManager.instance.PV.RPC("getReady", RpcTarget.MasterClient);
     }
 
     //get the tile the cursor is on

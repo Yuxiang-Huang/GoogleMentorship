@@ -61,46 +61,39 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region ID
 
     [PunRPC]
-    public IEnumerator startGame(int newID)
+    public void startGame(int newID)
     {
         //assign id
         id = newID;
         PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
 
-        //make sure map is spawned
-        Tile[,] tiles = null;
-        do
-        {
-            tiles = TileManager.instance.tiles;
-            yield return new WaitForSeconds(1f);
-        } while (tiles == null);
+        mode = "start";
 
-        //spawn castle
-        Vector2Int startingTile = new Vector2Int(0, 0);
+        Tile[,] tiles = TileManager.instance.tiles;
 
+        int startTerritory = 3;
+
+        //assign starting territory
         if (id == 0)
         {
-            startingTile = new Vector2Int(1, 1);
+            for (int i = 0; i < startTerritory; i++)
+            {
+                for (int j = 0; j < startTerritory; j++)
+                {
+                    tiles[i, j].updateStatus(id, null);
+                }
+            }
         }
 
         else if (id == 1)
         {
-            startingTile = new Vector2Int(tiles.GetLength(0) - 2, tiles.GetLength(1) - 2);
-        }
-
-        myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
-            TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity).
-            GetComponent<Building>();
-
-        myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y);
-
-        //only update canSpawn if my castle
-        if (PV.IsMine)
-        {
-            canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-            canSpawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-            myCastle.GetComponent<Building>().updateCanSpawn();
-            allBuildings.Add(myCastle);
+            for (int i = 0; i < startTerritory; i++)
+            {
+                for (int j = 0; j < startTerritory; j++)
+                {
+                    tiles[tiles.GetLength(0) - 1 - i, tiles.GetLength(0) - 1 - j].updateStatus(id, null);
+                }
+            }
         }
     }
 
@@ -123,8 +116,60 @@ public class PlayerController : MonoBehaviourPunCallbacks
             nextTurn();
         }
 
+        if (mode == "start")
+        {
+            //highlight territory tiles
+            Tile newHighlighted = TileManager.instance.getTile();
+
+            if (highlighted != newHighlighted)
+            {
+                if (highlighted != null)
+                    highlighted.highlight(false);
+
+                highlighted = newHighlighted;
+
+                if (highlighted != null)
+                {
+                    //can only spawn on territory tiles and terrain is land
+                    if (territory.Contains(highlighted) && highlighted.terrain == "land")
+                    {
+                        highlighted.highlight(true);
+                    }
+                    else
+                    {
+                        highlighted = null;
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0) && highlighted != null)
+            {
+                Tile[,] tiles = TileManager.instance.tiles;
+
+                //spawn castle
+                Vector2Int startingTile = highlighted.pos;
+
+                myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
+                    TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity).
+                    GetComponent<Building>();
+
+                myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y);
+
+                //only update canSpawn if my castle
+                if (PV.IsMine)
+                {
+                    canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+                    canSpawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+                    myCastle.GetComponent<Building>().updateCanSpawn();
+                    allBuildings.Add(myCastle);
+                }
+
+                mode = "move";
+            }
+        }
+
         //move
-        if (mode == "move")
+        else if (mode == "move")
         {
             //highlight any tile
             Tile newHighlighted = TileManager.instance.getTile();
@@ -170,7 +215,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //spawn
         else if (mode == "spawn")
         {
-            //highlight
+            //highlight spawnable tiles
             Tile newHighlighted = TileManager.instance.getTile();
 
             if (highlighted != newHighlighted)

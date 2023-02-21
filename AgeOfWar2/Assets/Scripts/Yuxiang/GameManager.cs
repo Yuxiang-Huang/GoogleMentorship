@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public PhotonView PV;
 
+    [SerializeField] int playerReady;
+
     public SortedDictionary<int, PlayerController> playerList = new SortedDictionary<int, PlayerController>();
 
     public List<PlayerController> allPlayers;
@@ -31,10 +33,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsVisible = false;
     }
 
+    #region Ready
+
+    [PunRPC]
+    public void getReady()
+    {
+        playerReady++;
+        checkStart();
+    }
+
     public void checkStart()
     {
         //everyone joined
-        if (playerList.Count == PhotonNetwork.CurrentRoom.PlayerCount)
+        if (playerList.Count == PhotonNetwork.CurrentRoom.PlayerCount &&
+            playerReady == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             //sorted list
             foreach (KeyValuePair<int, PlayerController> kvp in playerList)
@@ -53,6 +65,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
     }
+
+    #endregion
 
     #region Turns
 

@@ -52,6 +52,7 @@ MonoBehaviour:
   - checkTurn
   - startTurn
   - nextTurn
+  - getReady
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
