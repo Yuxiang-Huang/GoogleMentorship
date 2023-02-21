@@ -22,6 +22,8 @@ public class Melee : Troop
             }
         }
 
+        Debug.Log(targets.Count);
+
         //attack order depending on dot product
         if (targets.Count != 0)
         {

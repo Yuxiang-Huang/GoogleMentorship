@@ -41,8 +41,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
         tile.updateStatus(ownerID, this);
 
-        GameManager.instance.allPlayers[ownerID].allTroops.Add(this);
-
         direction = startDirection;
     }
 
@@ -133,7 +131,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public void takeTurn()
+    public void move()
     {
         if (arrow != null)
         {
@@ -164,8 +162,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
                 arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
             }
         }
-
-        attack();
     }
 
     [PunRPC]
@@ -182,14 +178,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
     }
 
-    //find distance between two tiles
-    float dist(Tile t1, Tile t2)
-    {
-        Vector2 p1 = TileManager.instance.getWorldPosition(t1);
-        Vector2 p2 = TileManager.instance.getWorldPosition(t2);
-        return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
-    }
-
     [PunRPC]
     public void takeDamage(int incomingDamage)
     {
@@ -197,11 +185,20 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void checkAlive()
+    public void checkDeath()
     {
         if (health <= 0)
         {
             Destroy(this.gameObject);
+            PlayerController.instance.allTroops.Remove(this);
         }
+    }
+
+    //find distance between two tiles
+    float dist(Tile t1, Tile t2)
+    {
+        Vector2 p1 = TileManager.instance.getWorldPosition(t1);
+        Vector2 p2 = TileManager.instance.getWorldPosition(t2);
+        return Mathf.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     }
 }

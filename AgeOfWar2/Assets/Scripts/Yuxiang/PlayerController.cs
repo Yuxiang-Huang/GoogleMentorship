@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Photon.Pun;
 using System.IO;
+using System.Linq;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -112,7 +113,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (Input.GetKeyDown(KeyCode.Space))
         {
             spawn();
-            takeTurn_Player(); 
+            troopMove();
+            troopAttack();
+            checkTroopDeath();
         }
 
         //spawn castle
@@ -256,6 +259,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
     }
 
+    #region Turn
+
     [PunRPC]
     public void spawn()
     {
@@ -273,9 +278,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (newUnit.CompareTag("Troop"))
                 {
-                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
+                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                         id, info.spawnTile.pos.x, info.spawnTile.pos.y,
                         canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
+
+                    allTroops.Add(newUnit.GetComponent<Troop>());
                 }
 
                 spawnList.Remove(info);
@@ -283,10 +290,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             //building code here 
         }
+
+        GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
     }
 
     [PunRPC]
-    public void takeTurn_Player()
+    public void troopMove()
     {
         gold += territory.Count;
 
@@ -294,18 +303,33 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         foreach (Troop troop in allTroops)
         {
-            troop.takeTurn();
+            troop.move();
         }
 
         GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
     }
 
     [PunRPC]
-    public void deadTroop()
+    public void troopAttack()
     {
         foreach (Troop troop in allTroops)
         {
-            troop.PV.RPC(nameof(troop.checkAlive), RpcTarget.All);
+            troop.attack();
+        }
+
+        GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
+    }
+
+    [PunRPC]
+    public void checkTroopDeath()
+    {
+        IEnumerator<Troop> iterator = allTroops.GetEnumerator();
+        while (iterator.MoveNext())
+        {
+            Troop troop = iterator.Current;
+            troop.PV.RPC(nameof(troop.checkDeath), RpcTarget.All);
         }
     }
+
+    #endregion
 }

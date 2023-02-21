@@ -89,12 +89,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             playerCount = -1;
 
-            //every player spawn
-            foreach (PlayerController player in allPlayers)
-            {
-                player.PV.RPC(nameof(player.spawn), player.PV.Owner);
-            }
-
             //players takes turn one at a time
             takeTurn();
         }
@@ -103,19 +97,31 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void takeTurn()
     {
-        //each player take turn and then call back to prevent collision
+        int numOfPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
+
         playerCount++;
 
-        if (playerCount < PhotonNetwork.CurrentRoom.PlayerCount)
+        //make sure each player spawned
+        if (playerCount < numOfPlayer)
         {
-            allPlayers[playerCount].PV.RPC("takeTurn_Player", allPlayers[playerCount].PV.Owner);
+            allPlayers[playerCount].PV.RPC("spawn", allPlayers[playerCount].PV.Owner);
+        }
+        //each player take turn and then call back to prevent collision
+        else if (playerCount < numOfPlayer * 2)
+        {
+            allPlayers[playerCount % numOfPlayer].PV.RPC("troopMove", allPlayers[playerCount % numOfPlayer].PV.Owner);
+        }
+        //make sure all player attacked
+        else if (playerCount < numOfPlayer * 3)
+        {
+            allPlayers[playerCount % numOfPlayer].PV.RPC("troopAttack", allPlayers[playerCount % numOfPlayer].PV.Owner);
         }
         else
-        {
+        { 
             //check dead troop
             foreach (PlayerController player in allPlayers)
             {
-                player.PV.RPC(nameof(player.deadTroop), player.PV.Owner);
+                player.PV.RPC(nameof(player.checkTroopDeath), player.PV.Owner);
             }
 
             //different player start every turn

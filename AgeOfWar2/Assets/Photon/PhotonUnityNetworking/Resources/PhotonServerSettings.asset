@@ -58,6 +58,10 @@ MonoBehaviour:
   - spawn
   - checkAlive
   - deadTroop
+  - checkDeath
+  - checkTroopDeath
+  - troopAttack
+  - troopMove
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
