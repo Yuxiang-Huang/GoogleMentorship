@@ -193,6 +193,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         if (health <= 0)
         {
             tile.unit = null;
+            Destroy(arrow);
             Destroy(this.gameObject);
         }
     }

@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328155a15684c4208b7bc1080f14cd6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 10
+  fullHealth: 1
   damage: 1
   direction: {x: 0, y: 0}
   tile: {fileID: 0}

@@ -4,7 +4,6 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
-using UnityEditor.XR;
 
 public class NetworkManager: MonoBehaviourPunCallbacks
 {

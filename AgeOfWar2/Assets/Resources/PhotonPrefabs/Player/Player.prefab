@@ -75,7 +75,10 @@ MonoBehaviour:
   PV: {fileID: 4434306806922390120}
   id: -1
   mode: 
+  allTroops: []
   myCastle: {fileID: 0}
   toSpawn: 
   goldNeedToSpawn: 0
   gold: 0
+  spawnNum: 0
+  troopNum: 0

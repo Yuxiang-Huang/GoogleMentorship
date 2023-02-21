@@ -1,0 +1,28 @@
+<linker>
+	<assembly fullname="Assembly-CSharp" ignoreIfMissing="1">
+		<type fullname="GameManager">
+			<method name="endTurn"/>
+		</type>
+		<type fullname="NetworkManager">
+			<method name="CreateRoom"/>
+			<method name="LeaveRoom"/>
+			<method name="StartGame"/>
+		</type>
+		<type fullname="PlayerNameManager">
+			<method name="onNameInputValueChanged"/>
+			<method name="randomName"/>
+		</type>
+		<type fullname="RoomListItem">
+			<method name="OnClick"/>
+		</type>
+		<type fullname="ScreenManager">
+			<method name="DisplayScreen"/>
+			<method name="DisplayScreen"/>
+			<method name="DisplayScreen"/>
+			<method name="DisplayScreen"/>
+		</type>
+		<type fullname="SpawnManager">
+			<method name="spawn"/>
+		</type>
+	</assembly>
+</linker>
