@@ -298,8 +298,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             //building code here 
         }
-
-        GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
     }
 
     [PunRPC]

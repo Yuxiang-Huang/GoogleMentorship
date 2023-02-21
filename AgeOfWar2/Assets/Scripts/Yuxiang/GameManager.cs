@@ -89,7 +89,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             playerCount = -1;
 
-            //players takes turn one at a time
+            //all players spawn
+            foreach (PlayerController player in allPlayers)
+            {
+                player.PV.RPC(nameof(player.spawn), player.PV.Owner);
+            }
+
             takeTurn();
         }
     }
@@ -101,22 +106,22 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         playerCount++;
 
-        //make sure each player spawned
-        if (playerCount < numOfPlayer)
-        {
-            allPlayers[playerCount].PV.RPC("spawn", allPlayers[playerCount].PV.Owner);
-        }
         //each player take turn and then call back to prevent collision
-        else if (playerCount < numOfPlayer * 2)
+        if (playerCount < numOfPlayer)
         {
             allPlayers[playerCount % numOfPlayer].PV.RPC("troopMove", allPlayers[playerCount % numOfPlayer].PV.Owner);
         }
-        //make sure all player attacked
-        else if (playerCount < numOfPlayer * 3)
+        //all players attack
+        else if (playerCount == numOfPlayer)
         {
-            allPlayers[playerCount % numOfPlayer].PV.RPC("troopAttack", allPlayers[playerCount % numOfPlayer].PV.Owner);
+            for (int i = 0; i < allPlayers.Count; i++)
+            {
+                PlayerController player = allPlayers[i];
+
+                player.PV.RPC(nameof(player.troopAttack), player.PV.Owner);
+            }
         }
-        else
+        else if (playerCount == numOfPlayer * 2)
         { 
             //check dead troop
             foreach (PlayerController player in allPlayers)
