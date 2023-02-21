@@ -142,12 +142,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         if (path.Count != 0)
         {
             //update direction
-            direction = (TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile)).normalized;
+            direction = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
 
             //move to next tile on list if no unit is there
             if (path[0].unit == null)
             {
-                PV.RPC(nameof(moveUpdate_RPC), RpcTarget.AllBuffered, path[0].pos.x, path[0].pos.y);
+                PV.RPC(nameof(moveUpdate_RPC), RpcTarget.All, path[0].pos.x, path[0].pos.y);
 
                 path.RemoveAt(0);
             }

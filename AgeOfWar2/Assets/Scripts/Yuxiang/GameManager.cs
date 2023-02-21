@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             allPlayers.Add(allPlayers[0]);
             allPlayers.RemoveAt(0);
 
-            PV.RPC(nameof(startTurn), RpcTarget.AllBuffered);
+            PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
         }
     }
 

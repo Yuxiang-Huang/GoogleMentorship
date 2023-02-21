@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public string mode;
 
     public HashSet<Troop> allTroops = new HashSet<Troop>();
+    public HashSet<Building> allBuildings = new HashSet<Building>();
     public HashSet<Tile> territory = new HashSet<Tile>();
 
     [SerializeField] GameObject castle;
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         //assign id
         id = newID;
-        PV.RPC(nameof(startGame_all), RpcTarget.AllBuffered, newID);
+        PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
 
         //make sure map is spawned
         Tile[,] tiles = null;
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity).
             GetComponent<Building>();
 
-        myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.AllBuffered, id, startingTile.x, startingTile.y);
+        myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y);
 
         //only update canSpawn if my castle
         if (PV.IsMine)
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
             canSpawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
             myCastle.GetComponent<Building>().updateCanSpawn();
+            allBuildings.Add(myCastle);
         }
     }
 
@@ -209,7 +211,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     if (newUnit.CompareTag("Troop"))
                     {
-                        newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllBuffered,
+                        newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
                             id, highlighted.pos.x, highlighted.pos.y, canSpawnDirection[highlighted.pos.x, highlighted.pos.y]);
                     }
 

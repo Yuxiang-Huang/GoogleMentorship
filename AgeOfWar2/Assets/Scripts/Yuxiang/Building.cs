@@ -38,7 +38,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
             GameManager.instance.allPlayers[ownerID].canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
 
             GameManager.instance.allPlayers[ownerID].canSpawnDirection[neighbor.pos.x, neighbor.pos.y] =
-                (TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile)).normalized;
+                TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile);
         }
     }
 

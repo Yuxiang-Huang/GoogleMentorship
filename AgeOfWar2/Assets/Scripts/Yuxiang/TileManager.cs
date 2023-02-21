@@ -41,7 +41,7 @@ public class TileManager : MonoBehaviourPunCallbacks
             }
         }
 
-        PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllBuffered, rows, cols, instruction.ToString());
+        PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllViaServer, rows, cols, instruction.ToString());
     }
 
     [PunRPC]

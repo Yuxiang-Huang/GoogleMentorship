@@ -17,7 +17,7 @@ public class Melee : Troop
             if (!curTile.dark.activeSelf && curTile.unit != null) //&& curTile.unit.ownerID != ownerID)
             {
                 targets.TryAdd(Vector2.Dot(direction,
-                    (TileManager.instance.getWorldPosition(curTile) - TileManager.instance.getWorldPosition(tile)).normalized),
+                    TileManager.instance.getWorldPosition(curTile) - TileManager.instance.getWorldPosition(tile)),
                     curTile);
             }
         }
@@ -25,7 +25,7 @@ public class Melee : Troop
         //attack order depending on dot product
         if (targets.Count != 0)
         {
-            targets.Values.First().unit.PV.RPC(nameof(takeDamage), RpcTarget.AllBuffered, damage);
+            targets.Values.First().unit.PV.RPC(nameof(takeDamage), RpcTarget.AllViaServer, damage);
         }
     }
 }
