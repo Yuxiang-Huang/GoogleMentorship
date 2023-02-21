@@ -22,12 +22,10 @@ public class Melee : Troop
             }
         }
 
-        Debug.Log(targets.Count);
-
         //attack order depending on dot product
         if (targets.Count != 0)
         {
-            targets.Values.First().unit.PV.RPC(nameof(takeDamage), RpcTarget.AllViaServer, damage);
+            targets.Values.Last().unit.PV.RPC(nameof(takeDamage), RpcTarget.AllViaServer, damage);
         }
     }
 }

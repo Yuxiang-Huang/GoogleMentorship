@@ -12,7 +12,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public int ownerID { get; set; }
 
     [Header("Health")]
-    [SerializeField] int health;
+    public int health;
     public int fullHealth;
     public int damage;
     public Vector2 direction;
@@ -189,8 +189,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     {
         if (health <= 0)
         {
+            tile.unit = null;
             Destroy(this.gameObject);
-            PlayerController.instance.allTroops.Remove(this);
         }
     }
 

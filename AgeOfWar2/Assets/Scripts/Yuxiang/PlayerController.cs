@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public string mode;
 
-    public HashSet<Troop> allTroops = new HashSet<Troop>();
+    public List<Troop> allTroops = new List<Troop>();
     public HashSet<Building> allBuildings = new HashSet<Building>();
     public HashSet<Tile> territory = new HashSet<Tile>();
 
@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [Header("Gold")]
     public int gold;
+
+    [Header("Turn")]
+    [SerializeField] int spawnNum;
+    [SerializeField] int troopNum;
 
     private void Awake()
     {
@@ -264,6 +268,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
+        gold += territory.Count;
+
+        GameManager.instance.updateGoldText();
+
         for (int i = spawnList.Count - 1; i >= 0; i --)
         {
             SpawnInfo info = spawnList[i];
@@ -278,7 +286,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (newUnit.CompareTag("Troop"))
                 {
-                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
+                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
                         id, info.spawnTile.pos.x, info.spawnTile.pos.y,
                         canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
 
@@ -297,10 +305,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void troopMove()
     {
-        gold += territory.Count;
-
-        GameManager.instance.updateGoldText();
-
         foreach (Troop troop in allTroops)
         {
             troop.move();
@@ -323,11 +327,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void checkTroopDeath()
     {
-        IEnumerator<Troop> iterator = allTroops.GetEnumerator();
-        while (iterator.MoveNext())
+        foreach (Troop troop in allTroops)
         {
-            Troop troop = iterator.Current;
             troop.PV.RPC(nameof(troop.checkDeath), RpcTarget.All);
+        }
+
+        for (int i = allTroops.Count - 1; i >= 0; i --)
+        {
+            if (allTroops[i].health <= 0)
+            {
+                allTroops.Remove(allTroops[i]);
+            }
         }
     }
 
