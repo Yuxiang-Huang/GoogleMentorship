@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using Photon.Pun;
 using System.IO;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -249,6 +247,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 {
                     //deduct gold
                     gold -= goldNeedToSpawn;
+                    GameManager.instance.updateGoldText();
 
                     spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1));
                 }
@@ -260,17 +259,26 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
-        foreach (SpawnInfo info in spawnList)
+        for (int i = spawnList.Count - 1; i >= 0; i --)
         {
-            //spawn unit and initiate
-            GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
-            info.spawnTile.gameObject.transform.position, Quaternion.identity);
+            SpawnInfo info = spawnList[i];
 
-            if (newUnit.CompareTag("Troop"))
+            info.turn--;
+
+            if (info.turn == 0)
             {
-                newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
-                    id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                    canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
+                //spawn unit and initiate
+                GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
+                info.spawnTile.gameObject.transform.position, Quaternion.identity);
+
+                if (newUnit.CompareTag("Troop"))
+                {
+                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.AllViaServer,
+                        id, info.spawnTile.pos.x, info.spawnTile.pos.y,
+                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
+                }
+
+                spawnList.Remove(info);
             }
 
             //building code here 
@@ -290,5 +298,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
+    }
+
+    [PunRPC]
+    public void deadTroop()
+    {
+        foreach (Troop troop in allTroops)
+        {
+            troop.PV.RPC(nameof(troop.checkAlive), RpcTarget.All);
+        }
     }
 }

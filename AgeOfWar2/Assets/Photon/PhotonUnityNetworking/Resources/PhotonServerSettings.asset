@@ -53,6 +53,11 @@ MonoBehaviour:
   - startTurn
   - nextTurn
   - getReady
+  - takeTurn
+  - takeTurn_Player
+  - spawn
+  - checkAlive
+  - deadTroop
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

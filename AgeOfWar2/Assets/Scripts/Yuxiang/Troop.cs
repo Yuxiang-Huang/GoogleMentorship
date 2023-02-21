@@ -195,4 +195,13 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     {
         health -= incomingDamage;
     }
+
+    [PunRPC]
+    public void checkAlive()
+    {
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

@@ -112,6 +112,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         else
         {
+            //check dead troop
+            foreach (PlayerController player in allPlayers)
+            {
+                player.PV.RPC(nameof(player.deadTroop), player.PV.Owner);
+            }
+
             //different player start every turn
             allPlayers.Add(allPlayers[0]);
             allPlayers.RemoveAt(0);
