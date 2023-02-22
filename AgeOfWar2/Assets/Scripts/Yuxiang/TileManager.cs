@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
 using System.Text;
+using static UnityEditor.PlayerSettings;
 
 public class TileManager : MonoBehaviourPunCallbacks
 {
@@ -213,19 +214,71 @@ public class TileManager : MonoBehaviourPunCallbacks
             {
                 List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
 
-                if (col > 0) { neighbors.Add(tiles[row, col - 1]); }
-                if (col < tiles.GetLength(1) - 1) { neighbors.Add(tiles[row, col + 1]); }
-                if (row > 0) { neighbors.Add(tiles[row - 1, col]); }
-                if (row < tiles.GetLength(0) - 1) { neighbors.Add(tiles[row + 1, col]); }
-                if (row % 2 == 0 && col > 0)
+                //left and right
+                if (row >= 1)
                 {
-                    if (row > 0) { neighbors.Add(tiles[row - 1, col - 1]); }
-                    if (row < tiles.GetLength(0) - 1) { neighbors.Add(tiles[row + 1, col - 1]); }
+                    neighbors.Add(tiles[row - 1, col]);
                 }
-                else if (row % 2 == 1 && col < tiles.GetLength(1) - 1)
+                if (row < tiles.GetLength(1) - 1)
                 {
-                    if (row > 0) { neighbors.Add(tiles[row - 1, col + 1]); }
-                    if (row < tiles.GetLength(0) - 1) { neighbors.Add(tiles[row + 1, col + 1]); }
+                    neighbors.Add(tiles[row + 1, col]);
+                }
+
+                if (col % 2 == 0)
+                {
+                    //there is a row before it
+                    if (row > 0)
+                    {
+                        //check if end
+                        if (col >= 1)
+                        {
+                            neighbors.Add(tiles[row - 1, col]);
+                        }
+                        if (col < tiles.GetLength(1) - 1)
+                        {
+                            neighbors.Add(tiles[row - 1, col + 1]);
+                        }
+                    }
+                    //there is a row after it
+                    if (row < tiles.GetLength(0) - 1)
+                    {
+                        if (col >= 1)
+                        {
+                            neighbors.Add(tiles[row + 1, col]);
+                        }
+                        if (col < tiles.GetLength(1) - 1)
+                        {
+                            neighbors.Add(tiles[row + 1, col + 1]);
+                        }
+                    }
+                }
+                else
+                {
+                    //there is a row before it
+                    if (row > 0)
+                    {
+                        //check if end
+                        if (col >= 1)
+                        {
+                            neighbors.Add(tiles[row - 1, col - 1]);
+                        }
+                        if (col < tiles.GetLength(1) - 1)
+                        {
+                            neighbors.Add(tiles[row - 1, col]);
+                        }
+                    }
+                    //there is a row after it
+                    if (row < tiles.GetLength(0) - 1)
+                    {
+                        if (col >= 1)
+                        {
+                            neighbors.Add(tiles[row + 1, col - 1]);
+                        }
+                        if (col < tiles.GetLength(1) - 1)
+                        {
+                            neighbors.Add(tiles[row + 1, col]);
+                        }
+                    }
                 }
             }
         }
