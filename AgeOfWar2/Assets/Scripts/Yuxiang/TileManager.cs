@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
 using System.Text;
-using Mono.Reflection;
 
 public class TileManager : MonoBehaviourPunCallbacks
 {
@@ -170,8 +169,8 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int j = 0; j < tiles.GetLength(1); j++)
             {
-                float xPos = i * 0.5f;
-                float yPos = j * Mathf.Sqrt(3f) + (i % 2 * Mathf.Sqrt(3f) / 2);
+                float xPos = i * 0.5f * tileSize;
+                float yPos = j * Mathf.Sqrt(3f) * tileSize + (i % 2 * Mathf.Sqrt(3f) / 2 * tileSize);
 
                 Vector3 pos = new Vector3(xPos, yPos, 0);
 
@@ -241,14 +240,32 @@ public class TileManager : MonoBehaviourPunCallbacks
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        int x = (int)((pos.x + tileSize / 2.0) / tileSize);
-        int y = (int)((pos.y + tileSize / 2.0) / tileSize);
+        //simple division to find rough x and y
+        int roundX = Mathf.RoundToInt(pos.x / 0.5f / tileSize);
+        int roundY = Mathf.RoundToInt(pos.y / Mathf.Sqrt(3f) / tileSize);
 
-        if (x >= 0 && x < tiles.GetLength(0) && y >= 0 && y < tiles.GetLength(1))
+        if (roundX < 0 || roundX >= tiles.GetLength(0) || roundY < 0 || roundY >= tiles.GetLength(1))
         {
-            return tiles[x, y].GetComponent<Tile>();
+            return null;
         }
-        return null;
+
+        //compare with all neighbors
+        Tile oneTile = tiles[roundX, roundY];
+
+        Tile bestTile = oneTile;
+
+        float minDist = dist(pos, getWorldPosition(oneTile));
+
+        foreach (Tile neighbor in oneTile.neighbors)
+        {
+            float mayDist = dist(pos, getWorldPosition(neighbor));
+            if (mayDist < minDist)
+                {
+                minDist = mayDist;
+                bestTile = neighbor;
+            }
+        }
+        return bestTile;
     }
 
     //get the tile depending on row col
@@ -268,6 +285,12 @@ public class TileManager : MonoBehaviourPunCallbacks
     //get world position from row col
     public Vector2 getWorldPosition(Tile tile)
     {
-        return new Vector2(tile.pos.x * tileSize + tileSize / 2, tile.pos.y * tileSize + tileSize / 2);
+        return new Vector2(tile.pos.x * 0.5f, tile.pos.y * Mathf.Sqrt(3f) + (tile.pos.x % 2 * Mathf.Sqrt(3f) / 2));
+    }
+
+    //find distance between two vector2
+    float dist(Vector2 v1, Vector2 v2)
+    {
+        return Mathf.Sqrt((v1.x - v2.x) * (v1.x - v2.x) + (v1.y - v2.y) * (v1.y - v2.y));
     }
 }

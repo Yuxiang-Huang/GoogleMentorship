@@ -69,12 +69,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
         id = newID;
         PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
 
-        mode = "start";
+        mode = "move";
 
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
-        int startTerritory = 3;
+        //int startTerritory = 3;
 
         //if (id == 1)
         //{
