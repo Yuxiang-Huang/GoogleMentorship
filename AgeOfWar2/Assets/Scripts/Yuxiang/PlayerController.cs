@@ -6,6 +6,7 @@ using TMPro;
 using Photon.Pun;
 using System.IO;
 using System.Linq;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -296,6 +297,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             //building code here 
         }
+
+        Hashtable playerProperties = new Hashtable();
+        playerProperties.Add("Spawned", true);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     [PunRPC]
@@ -306,7 +311,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
             troop.move();
         }
 
-        GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
+        Hashtable playerProperties = new Hashtable();
+        playerProperties.Add("Moved", true);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     [PunRPC]
@@ -317,7 +324,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
             troop.attack();
         }
 
-        GameManager.instance.PV.RPC("takeTurn", RpcTarget.MasterClient);
+        Hashtable playerProperties = new Hashtable();
+        playerProperties.Add("Attacked", true);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     [PunRPC]

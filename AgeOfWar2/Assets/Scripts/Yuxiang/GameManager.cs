@@ -14,17 +14,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public PhotonView PV;
 
-    [SerializeField] int playerCount;
-
     public SortedDictionary<int, PlayerController> playerList = new SortedDictionary<int, PlayerController>();
 
     public List<PlayerController> allPlayers;
 
     [SerializeField] TextMeshProUGUI goldText;
 
-    [SerializeField] int playerEndedTurn;
-
     [SerializeField] GameObject turnBtn;
+
+    [SerializeField] int playerMoved;
 
     private void Awake()
     {
@@ -46,8 +44,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         #region turns
 
-        //move
-        else if (changedProps.ContainsKey("EndTurn")) checkTurn();
+        //start turn
+        else if (changedProps.ContainsKey("EndTurn")) checkEndTurn();
+
+        else if (changedProps.ContainsKey("Spawned")) checkSpawn();
+
+        else if (changedProps.ContainsKey("Moved")) checkMove();
+
+        else if (changedProps.ContainsKey("Attacked")) checkAttack();
 
         #endregion
     }
@@ -83,71 +87,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     #endregion
 
-    #region Turns
-
-    public void checkTurn()
-    {
-        //everyone is ready
-        var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("EndTurn") && (bool)p.CustomProperties["EndTurn"]))
-        {
-            //reset
-            playerEndedTurn = 0;
-
-            playerCount = -1;
-
-            //all players spawn
-            foreach (PlayerController player in allPlayers)
-            {
-                player.PV.RPC(nameof(player.spawn), player.PV.Owner);
-            }
-
-            takeTurn();
-        }
-    }
-
-    [PunRPC]
-    public void takeTurn()
-    {
-        int numOfPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
-
-        playerCount++;
-
-        //each player take turn and then call back to prevent collision
-        if (playerCount < numOfPlayer && playerCount < numOfPlayer * 2)
-        {
-            allPlayers[playerCount % numOfPlayer].PV.RPC("troopMove", allPlayers[playerCount % numOfPlayer].PV.Owner);
-        }
-        //all players attack
-        else if (playerCount == numOfPlayer * 2)
-        {
-            for (int i = 0; i < allPlayers.Count; i++)
-            {
-                PlayerController player = allPlayers[i];
-
-                player.PV.RPC(nameof(player.troopAttack), player.PV.Owner);
-            }
-        }
-        else if (playerCount == numOfPlayer * 3)
-        {
-            //check dead troop
-            foreach (PlayerController player in allPlayers)
-            {
-                player.PV.RPC(nameof(player.checkTroopDeath), player.PV.Owner);
-            }
-
-            //different player start every turn
-            allPlayers.Add(allPlayers[0]);
-            allPlayers.RemoveAt(0);
-
-            PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
-        }
-    }
+    #region Start Turn
 
     [PunRPC]
     public void startTurn()
     {
         turnBtn.SetActive(true);
+
+        playerMoved = 0;
 
         //reset endTurn
         Hashtable playerProperties = new Hashtable();
@@ -163,6 +110,75 @@ public class GameManager : MonoBehaviourPunCallbacks
         Hashtable playerProperties = new Hashtable();
         playerProperties.Add("EndTurn", true);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+    }
+
+    #endregion
+
+    #region TakeTurn
+
+    public void checkEndTurn()
+    {
+        //everyone is ready
+        var players = PhotonNetwork.PlayerList;
+        if (players.All(p => p.CustomProperties.ContainsKey("EndTurn") && (bool)p.CustomProperties["EndTurn"]))
+        {
+            //all players spawn
+            foreach (PlayerController player in allPlayers)
+            {
+                player.PV.RPC(nameof(player.spawn), player.PV.Owner);
+            }
+        }
+    }
+
+    public void checkSpawn()
+    {
+        //everyone is ready
+        var players = PhotonNetwork.PlayerList;
+        if (players.All(p => p.CustomProperties.ContainsKey("Spawned") && (bool)p.CustomProperties["Spawned"]))
+        {
+            //all players spawn
+            allPlayers[playerMoved].PV.RPC("troopMove", allPlayers[playerMoved].PV.Owner);
+        }
+    }
+
+    public void checkMove()
+    {
+        playerMoved++;
+
+        //all player moved
+        if (playerMoved == PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            //different player start every turn
+            allPlayers.Add(allPlayers[0]);
+            allPlayers.RemoveAt(0);
+
+            //all players attack
+            foreach (PlayerController player in allPlayers)
+            {
+                player.PV.RPC(nameof(player.troopAttack), player.PV.Owner);
+            }
+        }
+        else
+        {
+            //next player move
+            allPlayers[playerMoved].PV.RPC("troopMove", allPlayers[playerMoved].PV.Owner);
+        }
+    }
+
+    public void checkAttack()
+    {
+        //everyone is ready
+        var players = PhotonNetwork.PlayerList;
+        if (players.All(p => p.CustomProperties.ContainsKey("Attack") && (bool)p.CustomProperties["Attack"]))
+        {
+            //all players check dead troop
+            foreach (PlayerController player in allPlayers)
+            {
+                player.PV.RPC(nameof(player.checkTroopDeath), player.PV.Owner);
+            }
+
+            PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
+        }
     }
 
     public void updateGoldText()
