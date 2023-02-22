@@ -5,6 +5,8 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using System.Linq;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -36,11 +38,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     #region Begin Game
 
-    [PunRPC]
-    public void getReady()
+    //call when each player is ready
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
-        //twice for each player to check playerList created and tiles created
-        playerCount++;
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        if (!changedProps.ContainsKey("Ready")) return;
+
         checkStart();
     }
 
@@ -54,15 +58,14 @@ public class GameManager : MonoBehaviourPunCallbacks
             { 
                 allPlayers.Add(kvp.Value);
             }
-
-            GameManager.instance.PV.RPC("getReady", RpcTarget.MasterClient);
         }
     }
 
     public void checkStart()
     {
-        //master client start game once
-        if (playerCount == PhotonNetwork.CurrentRoom.PlayerCount * 2)
+        //master client start game once when everyone is ready
+        var players = PhotonNetwork.PlayerList;
+        if (players.All(p => p.CustomProperties.ContainsKey("Ready") && (bool)p.CustomProperties["Ready"]))
         {
             //ask all player to start game
             for (int i = 0; i < allPlayers.Count; i++)
@@ -107,12 +110,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         playerCount++;
 
         //each player take turn and then call back to prevent collision
-        if (playerCount < numOfPlayer)
+        if (playerCount >= numOfPlayer && playerCount < numOfPlayer * 2)
         {
             allPlayers[playerCount % numOfPlayer].PV.RPC("troopMove", allPlayers[playerCount % numOfPlayer].PV.Owner);
         }
         //all players attack
-        else if (playerCount == numOfPlayer)
+        else if (playerCount == numOfPlayer * 2)
         {
             for (int i = 0; i < allPlayers.Count; i++)
             {
@@ -121,8 +124,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 player.PV.RPC(nameof(player.troopAttack), player.PV.Owner);
             }
         }
-        else if (playerCount == numOfPlayer * 2)
-        { 
+        else if (playerCount == numOfPlayer * 3)
+        {
             //check dead troop
             foreach (PlayerController player in allPlayers)
             {

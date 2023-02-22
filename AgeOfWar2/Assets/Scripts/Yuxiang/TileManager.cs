@@ -128,7 +128,9 @@ public class TileManager : MonoBehaviourPunCallbacks
             }
         }
 
-        GameManager.instance.PV.RPC("getReady", RpcTarget.MasterClient);
+        var hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash["Ready"] = true;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
     //get the tile the cursor is on
