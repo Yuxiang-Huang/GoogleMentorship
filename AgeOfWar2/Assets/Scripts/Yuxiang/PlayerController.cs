@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            TileManager.instance.makeGrid(10, 10);
+            //TileManager.instance.makeGrid(10, 10);
         }
 
         //keep track of all players
