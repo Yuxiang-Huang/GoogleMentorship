@@ -36,17 +36,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsVisible = false;
     }
 
-    #region Begin Game
-
     //call when each player is ready
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
         if (!PhotonNetwork.IsMasterClient) return;
 
-        if (!changedProps.ContainsKey("Ready")) return;
+        //start
+        if (changedProps.ContainsKey("Ready")) checkStart();
 
-        checkStart();
+        #region turns
+
+        //move
+        else if (changedProps.ContainsKey("EndTurn")) checkTurn();
+
+        #endregion
     }
+
+    #region Begin Game
 
     public void createPlayerList()
     {
@@ -79,13 +85,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     #region Turns
 
-    [PunRPC]
     public void checkTurn()
     {
-        playerEndedTurn++;
-
         //everyone is ready
-        if (playerEndedTurn == PhotonNetwork.CurrentRoom.PlayerCount)
+        var players = PhotonNetwork.PlayerList;
+        if (players.All(p => p.CustomProperties.ContainsKey("EndTurn") && (bool)p.CustomProperties["EndTurn"]))
         {
             //reset
             playerEndedTurn = 0;
@@ -110,7 +114,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         playerCount++;
 
         //each player take turn and then call back to prevent collision
-        if (playerCount >= numOfPlayer && playerCount < numOfPlayer * 2)
+        if (playerCount < numOfPlayer && playerCount < numOfPlayer * 2)
         {
             allPlayers[playerCount % numOfPlayer].PV.RPC("troopMove", allPlayers[playerCount % numOfPlayer].PV.Owner);
         }
@@ -144,6 +148,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void startTurn()
     {
         turnBtn.SetActive(true);
+
+        //reset endTurn
+        Hashtable playerProperties = new Hashtable();
+        playerProperties.Add("EndTurn", false);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     public void endTurn()
@@ -151,7 +160,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         turnBtn.SetActive(false);
 
         //ask master client to count player
-        PV.RPC("checkTurn", RpcTarget.MasterClient);
+        Hashtable playerProperties = new Hashtable();
+        playerProperties.Add("EndTurn", true);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     public void updateGoldText()
