@@ -235,11 +235,9 @@ public class TileManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
-    //get the tile the cursor is on
-    public Tile getTile()
+    //get the tile depending on world position
+    public Tile getTile(Vector2 pos)
     {
-        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         //simple division to find rough x and y
         int roundX = Mathf.RoundToInt(pos.x / 0.5f / tileSize);
         int roundY = Mathf.RoundToInt(pos.y / Mathf.Sqrt(3f) / tileSize);
@@ -260,26 +258,12 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             float mayDist = dist(pos, getWorldPosition(neighbor));
             if (mayDist < minDist)
-                {
+            {
                 minDist = mayDist;
                 bestTile = neighbor;
             }
         }
         return bestTile;
-    }
-
-    //get the tile depending on row col
-    public Tile getTile(Vector2 pos)
-    {
-        int x = (int)((pos.x + tileSize / 2.0) / tileSize);
-        int y = (int)((pos.y + tileSize / 2.0) / tileSize);
-
-        if (x >= 0 && x < tiles.GetLength(0) && y >= 0 && y < tiles.GetLength(1))
-        {
-            return tiles[x, y].GetComponent<Tile>();
-        }
-
-        return null;
     }
 
     //get world position from row col

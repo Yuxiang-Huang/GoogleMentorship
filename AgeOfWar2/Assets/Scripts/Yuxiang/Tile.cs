@@ -34,7 +34,7 @@ public class Tile : MonoBehaviour
         }
 
         //covered in the beginning
-        dark.SetActive(false);
+        dark.SetActive(true);
     }
 
     public void highlight(bool status)

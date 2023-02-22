@@ -41,7 +41,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection)
     {
         ownerID = playerID;
-        tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
+        tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
 
         direction = startDirection;
@@ -174,7 +174,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         tile.unit = null;
 
         //update tile
-        tile = TileManager.instance.getTile(new Vector2(nextTileX, nextTileY));
+        tile = TileManager.instance.tiles[nextTileX, nextTileY];
         tile.updateStatus(ownerID, this);
 
         //update position

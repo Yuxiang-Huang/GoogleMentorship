@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            TileManager.instance.makeGrid(20, 6);
+            TileManager.instance.makeGrid(19, 6);
         }
 
         //keep track of all players
@@ -74,29 +74,29 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
-        //int startTerritory = 3;
+        int startTerritory = 4;
 
-        //if (id == 1)
-        //{
-        //    for (int i = 0; i < startTerritory; i++)
-        //    {
-        //        for (int j = 0; j < startTerritory; j++)
-        //        {
-        //            tiles[i, j].updateStatus(id, null);
-        //        }
-        //    }
-        //}
+        if (id == 1)
+        {
+            for (int i = 0; i < startTerritory; i++)
+            {
+                for (int j = 0; j < startTerritory; j++)
+                {
+                    tiles[i, j].updateStatus(id, null);
+                }
+            }
+        }
 
-        //else if (id == 0)
-        //{
-        //    for (int i = 0; i < startTerritory; i++)
-        //    {
-        //        for (int j = 0; j < startTerritory; j++)
-        //        {
-        //            tiles[tiles.GetLength(0) - 1 - i, tiles.GetLength(0) - 1 - j].updateStatus(id, null);
-        //        }
-        //    }
-        //}
+        else if (id == 0)
+        {
+            for (int i = 0; i < startTerritory * 2; i++)
+            {
+                for (int j = 0; j < startTerritory / 2; j++)
+                {
+                    tiles[tiles.GetLength(0) - 1 - i, tiles.GetLength(1) - 1 - j].updateStatus(id, null);
+                }
+            }
+        }
     }
 
     [PunRPC]
@@ -121,12 +121,18 @@ public class PlayerController : MonoBehaviourPunCallbacks
             checkTroopDeath();
         }
 
+        Tile newHighlighted = null;
+
+        //tile at mousePosition
+        if (TileManager.instance.tiles != null)
+        {
+            newHighlighted = TileManager.instance.getTile(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+
         //spawn castle
         if (mode == "start")
         {
             //highlight territory tiles
-            Tile newHighlighted = TileManager.instance.getTile();
-
             if (highlighted != newHighlighted)
             {
                 if (highlighted != null)
@@ -136,8 +142,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (highlighted != null)
                 {
-                    //can only spawn on territory tiles and terrain is land
-                    if (territory.Contains(highlighted) && highlighted.terrain == "land")
+                    if (territory.Contains(highlighted))
                     {
                         highlighted.highlight(true);
                     }
@@ -177,8 +182,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         else if (mode == "move")
         {
             //highlight any tile
-            Tile newHighlighted = TileManager.instance.getTile();
-
             if (highlighted != newHighlighted)
             {
                 if (highlighted != null)
@@ -222,8 +225,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         else if (mode == "spawn")
         {
             //highlight spawnable tiles
-            Tile newHighlighted = TileManager.instance.getTile();
-
             if (highlighted != newHighlighted)
             {
                 if (highlighted != null) 

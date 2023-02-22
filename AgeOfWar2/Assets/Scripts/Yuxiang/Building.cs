@@ -27,7 +27,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public void Init(int playerID, int startingtTileX, int startingtTileY)
     {
         ownerID = playerID;
-        tile = TileManager.instance.getTile(new Vector2(startingtTileX, startingtTileY));
+        tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
     }
 
