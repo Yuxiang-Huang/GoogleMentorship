@@ -215,40 +215,37 @@ public class TileManager : MonoBehaviourPunCallbacks
                 List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
 
                 //left and right
-                if (row >= 1)
+                if (row >= 2)
                 {
-                    neighbors.Add(tiles[row - 1, col]);
+                    neighbors.Add(tiles[row - 2, col]);
                 }
-                if (row < tiles.GetLength(1) - 1)
+                if (row < tiles.GetLength(0) - 2)
                 {
-                    neighbors.Add(tiles[row + 1, col]);
+                    neighbors.Add(tiles[row + 2, col]);
                 }
 
-                if (col % 2 == 0)
+                if (row % 2 == 0)
                 {
                     //there is a row before it
                     if (row > 0)
                     {
-                        //check if end
+                        neighbors.Add(tiles[row - 1, col]);
+
+                        //even row decrease col
                         if (col >= 1)
                         {
-                            neighbors.Add(tiles[row - 1, col]);
-                        }
-                        if (col < tiles.GetLength(1) - 1)
-                        {
-                            neighbors.Add(tiles[row - 1, col + 1]);
+                            neighbors.Add(tiles[row - 1, col - 1]);
                         }
                     }
                     //there is a row after it
                     if (row < tiles.GetLength(0) - 1)
                     {
+                        neighbors.Add(tiles[row + 1, col]);
+
+                        //even row decrease col
                         if (col >= 1)
                         {
-                            neighbors.Add(tiles[row + 1, col]);
-                        }
-                        if (col < tiles.GetLength(1) - 1)
-                        {
-                            neighbors.Add(tiles[row + 1, col + 1]);
+                            neighbors.Add(tiles[row + 1, col - 1]);
                         }
                     }
                 }
@@ -257,26 +254,23 @@ public class TileManager : MonoBehaviourPunCallbacks
                     //there is a row before it
                     if (row > 0)
                     {
-                        //check if end
-                        if (col >= 1)
-                        {
-                            neighbors.Add(tiles[row - 1, col - 1]);
-                        }
+                        neighbors.Add(tiles[row - 1, col]);
+
+                        //odd row increase col
                         if (col < tiles.GetLength(1) - 1)
                         {
-                            neighbors.Add(tiles[row - 1, col]);
+                            neighbors.Add(tiles[row - 1, col + 1]);
                         }
                     }
                     //there is a row after it
                     if (row < tiles.GetLength(0) - 1)
                     {
-                        if (col >= 1)
-                        {
-                            neighbors.Add(tiles[row + 1, col - 1]);
-                        }
+                        neighbors.Add(tiles[row + 1, col]);
+
+                        //odd row increase col
                         if (col < tiles.GetLength(1) - 1)
                         {
-                            neighbors.Add(tiles[row + 1, col]);
+                            neighbors.Add(tiles[row + 1, col + 1]);
                         }
                     }
                 }
