@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         id = newID;
         PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
 
-        mode = "move";
+        mode = "start";
 
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
@@ -116,9 +116,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (Input.GetKeyDown(KeyCode.Space))
         {
             spawn();
-            troopMove();
-            troopAttack();
-            checkTroopDeath();
         }
 
         Tile newHighlighted = null;
@@ -161,7 +158,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 Vector2Int startingTile = highlighted.pos;
 
                 myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
-                    TileManager.instance.getWorldPosition(tiles[startingTile.x, startingTile.y]), Quaternion.identity).
+                    TileManager.instance.getWorldPosition(highlighted), Quaternion.identity).
                     GetComponent<Building>();
 
                 myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y);

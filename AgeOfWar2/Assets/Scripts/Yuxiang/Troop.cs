@@ -178,7 +178,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         tile.updateStatus(ownerID, this);
 
         //update position
-        transform.position = new Vector3(tile.pos.x, tile.pos.y, transform.position.z);
+        transform.position = TileManager.instance.getWorldPosition(tile);
     }
 
     [PunRPC]
