@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
 using System.Text;
+using Mono.Reflection;
 
 public class TileManager : MonoBehaviourPunCallbacks
 {
@@ -119,13 +120,12 @@ public class TileManager : MonoBehaviourPunCallbacks
         instance = this;
 
         PV = GetComponent<PhotonView>();
-
-        makeGrid(20, 6);
     }
 
-    public void makeGrid(float rows, float cols)
+    public void makeGrid(int rows, int cols)
     {
-        GameObject parent = new GameObject("Map");
+        //store type of tiles using bit
+        StringBuilder instruction = new StringBuilder();
 
         // Random array of  512 values that are [0, 255]
         for (int i = 0; i < 256; i++)
@@ -139,31 +139,21 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int col = 0; col < cols; col++)
             {
-                float noiseNum = pNoise(17 * col / cols + ranElem, 17 * row / rows + ranElem, 0) + 0.1f;
-                if (noiseNum >= 0) { mapGen(row, col, landTilePrefab); }
-                else { mapGen(row, col, waterTilePrefab); }
+                float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
+
+                //assign type
+                if (noiseNum >= 0)
+                {
+                    instruction.Append(0);
+                }
+                else
+                {
+                    instruction.Append(1);
+                }
             }
         }
 
-        ////assign type of tiles using bit
-        //StringBuilder instruction = new StringBuilder();
-
-        //for (int i = 0; i < rows; i++)
-        //{
-        //    for (int j = 0; j < cols; j++)
-        //    {
-        //        instruction.Append(Random.Range(0, 4));
-        //    }
-        //}
-
-        //PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllViaServer, rows, cols, instruction.ToString());
-    }
-
-    public void mapGen(int row, int col, GameObject tile)
-    {
-        float xPos = row * 0.5f;
-        float yPos = col * Mathf.Sqrt(3f) + (row % 2 * Mathf.Sqrt(3f) / 2);
-        Instantiate(tile, new Vector3(xPos, yPos, 0), Quaternion.identity);
+        PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllViaServer, rows, cols, instruction.ToString());
     }
 
     [PunRPC]
@@ -180,48 +170,42 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int j = 0; j < tiles.GetLength(1); j++)
             {
+                float xPos = i * 0.5f;
+                float yPos = j * Mathf.Sqrt(3f) + (i % 2 * Mathf.Sqrt(3f) / 2);
+
+                Vector3 pos = new Vector3(xPos, yPos, 0);
+
                 //instantiate
                 if (instruction[count] == '0')
                 {
-                    tiles[i, j] = Instantiate(waterTilePrefab, new Vector3(i * tileSize, j * tileSize, 0),
-    Quaternion.identity).GetComponent<Tile>();
-                    tiles[i, j].terrain = "water";
+                    tiles[i, j] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                    tiles[i, j].terrain = "land";
                 }
                 else
                 {
-                    tiles[i, j] = Instantiate(landTilePrefab, new Vector3(i * tileSize, j * tileSize, 0),
-    Quaternion.identity).GetComponent<Tile>();
-                    tiles[i, j].terrain = "land";
+                    tiles[i, j] = Instantiate(waterTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                    tiles[i, j].terrain = "water";
                 }
 
+                //set tile stats
                 tiles[i, j].transform.SetParent(parent.transform);
 
-                //set tile stats
                 tiles[i, j].GetComponent<Tile>().pos = new Vector2Int(i, j);
 
                 count++;
             }
         }
 
-        Vector2Int corner = new Vector2Int(1, 1);
+        //    //make sure corner is land
+        //    Vector2Int corner = new Vector2Int(1, 1);
 
-        //make sure corner is land
-        Destroy(tiles[corner.x, corner.y].gameObject);
-        tiles[corner.x, corner.y] = Instantiate(landTilePrefab, new Vector3(corner.x * tileSize, corner.y * tileSize, 0),
-    Quaternion.identity).GetComponent<Tile>();
-        tiles[corner.x, corner.y].terrain = "land";
-        tiles[corner.x, corner.y].GetComponent<Tile>().pos = corner;
-        tiles[corner.x, corner.y].transform.SetParent(parent.transform);
+        //    Destroy(tiles[corner.x, corner.y].gameObject);
+        //    tiles[corner.x, corner.y] = Instantiate(landTilePrefab, new Vector3(corner.x * tileSize, corner.y * tileSize, 0),
+        //Quaternion.identity).GetComponent<Tile>();
+        //    tiles[corner.x, corner.y].terrain = "land";
+        //    tiles[corner.x, corner.y].GetComponent<Tile>().pos = corner;
+        //    tiles[corner.x, corner.y].transform.SetParent(parent.transform);
 
-        corner = new Vector2Int(rows - 2, cols - 2);
-
-        //make sure corner is land
-        Destroy(tiles[corner.x, corner.y].gameObject);
-        tiles[corner.x, corner.y] = Instantiate(landTilePrefab, new Vector3(corner.x * tileSize, corner.y * tileSize, 0),
-    Quaternion.identity).GetComponent<Tile>();
-        tiles[corner.x, corner.y].terrain = "land";
-        tiles[corner.x, corner.y].GetComponent<Tile>().pos = corner;
-        tiles[corner.x, corner.y].transform.SetParent(parent.transform);
 
         //set neighbors
         for (int row = 0; row < tiles.GetLength(0); row++)
@@ -230,23 +214,20 @@ public class TileManager : MonoBehaviourPunCallbacks
             {
                 List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
 
-                for (int i = -1; i <= 1; i++)
+                if (col > 0) { neighbors.Add(tiles[row, col - 1]); }
+                if (col < tiles.GetLength(1) - 1) { neighbors.Add(tiles[row, col + 1]); }
+                if (row > 0) { neighbors.Add(tiles[row - 1, col]); }
+                if (row < tiles.GetLength(0) - 1) { neighbors.Add(tiles[row + 1, col]); }
+                if (row % 2 == 0 && col > 0)
                 {
-                    for (int j = -1; j <= 1; j++)
-                    {
-                        if (i != 0 || j != 0)
-                        {
-                            int curRow = row + i;
-                            int curCol = col + j;
-
-                            if (curRow >= 0 && curRow < tiles.GetLength(0) && 
-                                curCol >= 0 && curCol < tiles.GetLength(1))
-                            {
-                                neighbors.Add(tiles[curRow, curCol].GetComponent<Tile>());
-                            }
-                        }
-                    }
-                } 
+                    if (row > 0) { neighbors.Add(tiles[row - 1, col - 1]); }
+                    if (row < tiles.GetLength(0) - 1) { neighbors.Add(tiles[row + 1, col - 1]); }
+                }
+                else if (row % 2 == 1 && col < tiles.GetLength(1) - 1)
+                {
+                    if (row > 0) { neighbors.Add(tiles[row - 1, col + 1]); }
+                    if (row < tiles.GetLength(0) - 1) { neighbors.Add(tiles[row + 1, col + 1]); }
+                }
             }
         }
 

@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         PV = GetComponent<PhotonView>();
 
         //not able to access after game begins
-        //PhotonNetwork.CurrentRoom.IsOpen = false;
-        //PhotonNetwork.CurrentRoom.IsVisible = false;
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        PhotonNetwork.CurrentRoom.IsVisible = false;
     }
 
     //call when each player is ready

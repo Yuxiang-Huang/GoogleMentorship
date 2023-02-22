@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            //TileManager.instance.makeGrid(10, 10);
+            TileManager.instance.makeGrid(20, 6);
         }
 
         //keep track of all players
@@ -76,27 +76,27 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         int startTerritory = 3;
 
-        if (id == 1)
-        {
-            for (int i = 0; i < startTerritory; i++)
-            {
-                for (int j = 0; j < startTerritory; j++)
-                {
-                    tiles[i, j].updateStatus(id, null);
-                }
-            }
-        }
+        //if (id == 1)
+        //{
+        //    for (int i = 0; i < startTerritory; i++)
+        //    {
+        //        for (int j = 0; j < startTerritory; j++)
+        //        {
+        //            tiles[i, j].updateStatus(id, null);
+        //        }
+        //    }
+        //}
 
-        else if (id == 0)
-        {
-            for (int i = 0; i < startTerritory; i++)
-            {
-                for (int j = 0; j < startTerritory; j++)
-                {
-                    tiles[tiles.GetLength(0) - 1 - i, tiles.GetLength(0) - 1 - j].updateStatus(id, null);
-                }
-            }
-        }
+        //else if (id == 0)
+        //{
+        //    for (int i = 0; i < startTerritory; i++)
+        //    {
+        //        for (int j = 0; j < startTerritory; j++)
+        //        {
+        //            tiles[tiles.GetLength(0) - 1 - i, tiles.GetLength(0) - 1 - j].updateStatus(id, null);
+        //        }
+        //    }
+        //}
     }
 
     [PunRPC]
