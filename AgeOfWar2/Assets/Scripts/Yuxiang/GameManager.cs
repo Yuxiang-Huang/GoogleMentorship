@@ -96,9 +96,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         playerMoved = 0;
 
-        //reset endTurn
+        //reset all vars
         Hashtable playerProperties = new Hashtable();
         playerProperties.Add("EndTurn", false);
+        playerProperties.Add("Spawned", false);
+        playerProperties.Add("Attacked", false);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
@@ -169,7 +171,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         //everyone is ready
         var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("Attack") && (bool)p.CustomProperties["Attack"]))
+        if (players.All(p => p.CustomProperties.ContainsKey("Attacked") && (bool)p.CustomProperties["Attacked"]))
         {
             //all players check dead troop
             foreach (PlayerController player in allPlayers)
