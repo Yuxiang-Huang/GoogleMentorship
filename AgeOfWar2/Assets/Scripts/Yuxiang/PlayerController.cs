@@ -74,27 +74,31 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
-        int startTerritory = 4;
+        int xOffset = 5;
 
-        if (id == 1)
+        int yOffset = 1;
+
+        if (id == 0)
         {
-            for (int i = 0; i < startTerritory; i++)
+            Tile root = tiles[xOffset, yOffset];
+
+            root.updateStatus(id, null);
+
+            foreach (Tile neighbor in TileManager.instance.findNeighborsNeighbors(root))
             {
-                for (int j = 0; j < startTerritory; j++)
-                {
-                    tiles[i, j].updateStatus(id, null);
-                }
+                neighbor.updateStatus(id, null);
             }
         }
 
-        else if (id == 0)
+        else if (id == 1)
         {
-            for (int i = 0; i < startTerritory * 2; i++)
+            Tile root = tiles[tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset];
+
+            root.updateStatus(id, null);
+
+            foreach (Tile neighbor in TileManager.instance.findNeighborsNeighbors(root))
             {
-                for (int j = 0; j < startTerritory / 2; j++)
-                {
-                    tiles[tiles.GetLength(0) - 1 - i, tiles.GetLength(1) - 1 - j].updateStatus(id, null);
-                }
+                neighbor.updateStatus(id, null);
             }
         }
     }

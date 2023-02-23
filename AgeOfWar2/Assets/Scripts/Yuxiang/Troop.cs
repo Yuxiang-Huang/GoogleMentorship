@@ -58,17 +58,19 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     {
         if (lastTarget == target) return; //same path
 
-        //same tile clear path
+        //same tile reset
         if (target == tile)
         {
             path = new List<Tile>();
 
             Destroy(arrow);
 
+            lastTarget = null;
+
             return;
         }
 
-        //other case
+        //otherwise find new path
         lastTarget = target;
 
         float minDist = dist(target, tile);
@@ -123,6 +125,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             }
         }
 
+        //a path is found
         if (path.Count != 0)
         {
             //remove first tile

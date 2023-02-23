@@ -282,12 +282,35 @@ public class TileManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
+    public List<Tile> findNeighborsNeighbors(Tile tile)
+    {
+        List<Tile> ans = new List<Tile>();
+
+        foreach (Tile neighbor in tile.neighbors)
+        {
+            ans.Add(neighbor);
+
+            foreach (Tile neighbor2 in neighbor.neighbors)
+            {
+                if (!ans.Contains(neighbor2))
+                {
+                    ans.Add(neighbor2);
+                }
+            }
+        }
+
+        ans.Remove(tile);
+
+        return ans;
+    }
+
     //get the tile depending on world position
     public Tile getTile(Vector2 pos)
     {
         //simple division to find rough x and y
-        int roundX = Mathf.RoundToInt(pos.x / 0.5f / tileSize);
-        int roundY = Mathf.RoundToInt(pos.y / Mathf.Sqrt(3f) / tileSize);
+        int roundX = (int) (pos.x / 0.5f / tileSize);
+
+        int roundY = (int) (pos.y / Mathf.Sqrt(3f) / tileSize);
 
         if (roundX < 0 || roundX >= tiles.GetLength(0) || roundY < 0 || roundY >= tiles.GetLength(1))
         {
@@ -301,7 +324,7 @@ public class TileManager : MonoBehaviourPunCallbacks
 
         float minDist = dist(pos, getWorldPosition(oneTile));
 
-        foreach (Tile neighbor in oneTile.neighbors)
+        foreach (Tile neighbor in findNeighborsNeighbors(oneTile))
         {
             float mayDist = dist(pos, getWorldPosition(neighbor));
             if (mayDist < minDist)
