@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public bool[,] canSpawn;
     public Vector2[,] canSpawnDirection;
     public string toSpawn;
+    public GameObject toSpawnImage;
     public int goldNeedToSpawn;
     [SerializeField] List<SpawnInfo> spawnList = new List<SpawnInfo>();
     [SerializeField] HashSet<Vector2> spawnLocations = new HashSet<Vector2>();
@@ -260,19 +261,23 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     gold -= goldNeedToSpawn;
                     GameManager.instance.updateGoldText();
 
-                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1));
+                    //spawn an image
+                    GameObject spawnImage = Instantiate(toSpawnImage,
+                    highlighted.gameObject.transform.position, Quaternion.identity);
+
+                    //add to spawn list
+                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1, spawnImage));
 
                     spawnLocations.Add(highlighted.pos);
                 }
                 else
                 {
                     //only change mode when didn't spawn correctly
-                    if (SpawnManager.instance.lastImage != null)
-                    {
-                        SpawnManager.instance.lastImage.GetComponent<Image>().color = Color.white;
-                    }
-
                     mode = "move";
+
+                    //clear selection
+                    SpawnManager.instance.lastImage.GetComponent<Image>().color = Color.white;
+                    SpawnManager.instance.lastImage = null;
                 }
             }
         }
@@ -293,6 +298,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             info.turn--;
 
+            //time to spawn
             if (info.turn == 0)
             {
                 //spawn unit and initiate
@@ -307,6 +313,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     allTroops.Add(newUnit.GetComponent<Troop>());
                 }
+
+                Destroy(info.spawnImage);
 
                 spawnList.Remove(info);
 

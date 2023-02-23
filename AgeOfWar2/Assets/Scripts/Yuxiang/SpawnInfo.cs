@@ -10,10 +10,13 @@ public class SpawnInfo
 
     public int turn;
 
-    public SpawnInfo(Tile spawnTile, string unitName, int turn)
+    public GameObject spawnImage;
+
+    public SpawnInfo(Tile spawnTile, string unitName, int turn, GameObject spawnImage)
     {
         this.spawnTile = spawnTile;
         this.unitName = unitName;
         this.turn = turn;
+        this.spawnImage = spawnImage;
     }
 }

@@ -78,6 +78,7 @@ MonoBehaviour:
   allTroops: []
   myCastle: {fileID: 0}
   toSpawn: 
+  toSpawnImage: {fileID: 0}
   goldNeedToSpawn: 0
   gold: 0
   spawnNum: 0

@@ -18,28 +18,22 @@ public class SpawnManager : MonoBehaviour
         instance = this;
     }
 
-    public void spawn(Image image, string type)
+    public void spawn(Image image, string type, int goldNeedToSpawn, GameObject spawnImage)
     {
-        //switch mode
-        if (PlayerController.instance.mode == "spawn")
+        //image color transition
+        if (lastImage != null)
         {
-            PlayerController.instance.mode = "move";
+            lastImage.GetComponent<Image>().color = Color.white;
         }
-        else
-        {
-            if (lastImage != null)
-            {
-                lastImage.GetComponent<Image>().color = Color.white;
-            }
 
-            image.color = Color.grey;
+        image.color = Color.grey;
 
-            lastImage = image;
+        lastImage = image;
 
-            //give the path to the prefab
-            PlayerController.instance.mode = "spawn";
-            PlayerController.instance.toSpawn = type;
-            PlayerController.instance.goldNeedToSpawn = 2;
-        }
+        //give the path to the prefab
+        PlayerController.instance.mode = "spawn";
+        PlayerController.instance.toSpawn = type;
+        PlayerController.instance.toSpawnImage = spawnImage;
+        PlayerController.instance.goldNeedToSpawn = goldNeedToSpawn;
     }
 }
