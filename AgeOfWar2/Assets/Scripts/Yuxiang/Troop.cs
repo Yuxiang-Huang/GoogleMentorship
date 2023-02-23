@@ -28,8 +28,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject arrowPrefab;
 
-    [SerializeField] GameObject highlightTile;
-
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
@@ -45,11 +43,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         tile.updateStatus(ownerID, this);
 
         direction = startDirection;
-    }
-
-    public void highlight(bool status)
-    {
-        highlightTile.SetActive(status);
     }
 
     public virtual void attack() { }

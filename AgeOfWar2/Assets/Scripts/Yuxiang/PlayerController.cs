@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     {
                         //select unit on the tile
                         playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
-                        playerSelected.highlight(true);
+                        playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
                     }
                 }
                 //findPath
@@ -220,7 +220,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         playerSelected.findPath(highlighted.GetComponent<Tile>());
                     }
 
-                    playerSelected.highlight(false);
+                    //deselect
+                    playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
                     playerSelected = null;
                 }
             }
