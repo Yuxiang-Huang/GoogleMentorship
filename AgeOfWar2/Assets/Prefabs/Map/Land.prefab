@@ -438,12 +438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf9268a434e24d8dbb9d665d570b07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PV: {fileID: 0}
   pos: {x: 0, y: 0}
   neighbors: []
-  unit: {fileID: 0}
   terrain: 
-  owner: {fileID: 0}
+  ownerID: -1
   highlightTile: {fileID: 5507542342683702645}
   dark: {fileID: 1685886697574609719}
   ownerColor:

@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 if (highlighted != null)
                 {
-                    //can't spawn in the same tile twice in a turn
+                    //can't spawn in a tile where there is already a unit going to be spawned
                     if (!spawnLocations.Contains(highlighted.pos))
                     {
                         //deduct gold
