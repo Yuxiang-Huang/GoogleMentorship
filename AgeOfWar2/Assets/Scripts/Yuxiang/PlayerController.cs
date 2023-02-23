@@ -8,6 +8,7 @@ using Photon.Pun;
 using System.IO;
 using System.Linq;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Photon.Realtime;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -52,12 +53,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            TileManager.instance.makeGrid(19, 6);
+            TileManager.instance.makeGrid(29, 10);
         }
 
         //keep track of all players
-        //GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
-        //GameManager.instance.createPlayerList();
+        GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
+        GameManager.instance.createPlayerList();
 
         if (!PV.IsMine) return;
         instance = this;
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         //assign id
         id = newID;
-        //PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
+        PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
 
         mode = "start";
 
@@ -81,38 +82,38 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         int yOffset = 2;
 
+        Tile root = null;
+
         if (id == 0)
         {
-            Tile root = tiles[xOffset, yOffset + 1];
-
-            root.setDark(true);
-
-            foreach (Tile neighbor in root.neighbors)
-            {
-                neighbor.setDark(false);
-            }
-
-            foreach (Tile neighbor in root.neighbors2)
-            {
-                neighbor.setDark(false);
-            }
+            root = tiles[xOffset, yOffset + 1];
         }
 
         else if (id == 1)
         {
-            Tile root = tiles[tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset];
+            root = tiles[tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset];
+        }
 
-            root.setDark(false);
+        else if (id == 2)
+        {
+            root = tiles[xOffset, tiles.GetLength(1) - 1 - yOffset];
+        }
 
-            foreach (Tile neighbor in root.neighbors)
-            {
-                neighbor.setDark(false);
-            }
+        else if (id == 3)
+        {
+            root = tiles[tiles.GetLength(0) - 1 - xOffset, yOffset + 1];
+        }
 
-            foreach (Tile neighbor in root.neighbors2)
-            {
-                neighbor.setDark(false);
-            }
+        root.setDark(false);
+
+        foreach (Tile neighbor in root.neighbors)
+        {
+            neighbor.setDark(false);
+        }
+
+        foreach (Tile neighbor in root.neighbors2)
+        {
+            neighbor.setDark(false);
         }
     }
 
