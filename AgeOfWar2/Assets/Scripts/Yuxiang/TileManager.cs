@@ -282,6 +282,7 @@ public class TileManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
+    //all tiles less than or equal to two tiles away, not including self
     public List<Tile> findNeighborsNeighbors(Tile tile)
     {
         List<Tile> ans = new List<Tile>();

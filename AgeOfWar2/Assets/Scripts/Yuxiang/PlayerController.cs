@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public string toSpawn;
     public int goldNeedToSpawn;
     [SerializeField] List<SpawnInfo> spawnList = new List<SpawnInfo>();
+    [SerializeField] HashSet<Vector2> spawnLocations = new HashSet<Vector2>();
 
     [Header("Gold")]
     public int gold;
@@ -253,11 +254,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 if (highlighted != null)
                 {
-                    //deduct gold
-                    gold -= goldNeedToSpawn;
-                    GameManager.instance.updateGoldText();
+                    //can't spawn in the same tile twice in a turn
+                    if (!spawnLocations.Contains(highlighted.pos))
+                    {
+                        //deduct gold
+                        gold -= goldNeedToSpawn;
+                        GameManager.instance.updateGoldText();
 
-                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1));
+                        spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1));
+
+                        spawnLocations.Add(highlighted.pos);
+                    }
                 }
                 mode = "move";
             }
@@ -295,6 +302,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 }
 
                 spawnList.Remove(info);
+
+                spawnLocations.Remove(info.spawnTile.pos);
             }
 
             //building code here 
