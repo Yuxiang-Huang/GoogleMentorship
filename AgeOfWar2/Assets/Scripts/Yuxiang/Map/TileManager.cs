@@ -170,27 +170,31 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int j = 0; j < tiles.GetLength(1); j++)
             {
-                float xPos = i * 0.5f * tileSize;
-                float yPos = j * Mathf.Sqrt(3f) * tileSize + (i % 2 * Mathf.Sqrt(3f) / 2 * tileSize);
-
-                Vector3 pos = new Vector3(xPos, yPos, 0);
-
-                //instantiate
-                if (instruction[count] == '0')
+                //skip bottom row
+                if (!(i % 2 == 0 && j == 0))
                 {
-                    tiles[i, j] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
-                    tiles[i, j].terrain = "land";
-                }
-                else
-                {
-                    tiles[i, j] = Instantiate(waterTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
-                    tiles[i, j].terrain = "water";
-                }
+                    float xPos = i * 0.5f * tileSize;
+                    float yPos = j * Mathf.Sqrt(3f) * tileSize + (i % 2 * Mathf.Sqrt(3f) / 2 * tileSize);
 
-                //set tile stats
-                tiles[i, j].transform.SetParent(parent.transform);
+                    Vector3 pos = new Vector3(xPos, yPos, 0);
 
-                tiles[i, j].GetComponent<Tile>().pos = new Vector2Int(i, j);
+                    //instantiate
+                    if (instruction[count] == '0')
+                    {
+                        tiles[i, j] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                        tiles[i, j].terrain = "land";
+                    }
+                    else
+                    {
+                        tiles[i, j] = Instantiate(waterTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                        tiles[i, j].terrain = "water";
+                    }
+
+                    //set tile stats
+                    tiles[i, j].transform.SetParent(parent.transform);
+
+                    tiles[i, j].GetComponent<Tile>().pos = new Vector2Int(i, j);
+                }
 
                 count++;
             }
@@ -212,65 +216,78 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int col = 0; col < tiles.GetLength(1); col++)
             {
-                List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
+                //skip bottom row
+                if (!(row % 2 == 0 && col == 0))
+                {
+                    List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
 
-                //left and right
-                if (row >= 2)
-                {
-                    neighbors.Add(tiles[row - 2, col]);
-                }
-                if (row < tiles.GetLength(0) - 2)
-                {
-                    neighbors.Add(tiles[row + 2, col]);
-                }
-
-                if (row % 2 == 0)
-                {
-                    //there is a row before it
-                    if (row > 0)
+                    //left and right
+                    if (row >= 2)
                     {
-                        neighbors.Add(tiles[row - 1, col]);
+                        neighbors.Add(tiles[row - 2, col]);
+                    }
+                    if (row < tiles.GetLength(0) - 2)
+                    {
+                        neighbors.Add(tiles[row + 2, col]);
+                    }
 
-                        //even row decrease col
-                        if (col >= 1)
+                    if (row % 2 == 0)
+                    {
+                        //there is a row before it
+                        if (row > 0)
                         {
-                            neighbors.Add(tiles[row - 1, col - 1]);
+                            neighbors.Add(tiles[row - 1, col]);
+
+                            //even row decrease col
+                            if (col >= 1)
+                            {
+                                neighbors.Add(tiles[row - 1, col - 1]);
+                            }
+                        }
+                        //there is a row after it
+                        if (row < tiles.GetLength(0) - 1)
+                        {
+                            neighbors.Add(tiles[row + 1, col]);
+
+                            //even row decrease col
+                            if (col >= 1)
+                            {
+                                neighbors.Add(tiles[row + 1, col - 1]);
+                            }
                         }
                     }
-                    //there is a row after it
-                    if (row < tiles.GetLength(0) - 1)
+                    else
                     {
-                        neighbors.Add(tiles[row + 1, col]);
-
-                        //even row decrease col
-                        if (col >= 1)
+                        //there is a row before it
+                        if (row > 0)
                         {
-                            neighbors.Add(tiles[row + 1, col - 1]);
+                            neighbors.Add(tiles[row - 1, col]);
+
+                            //odd row increase col
+                            if (col < tiles.GetLength(1) - 1)
+                            {
+                                neighbors.Add(tiles[row - 1, col + 1]);
+                            }
+                        }
+                        //there is a row after it
+                        if (row < tiles.GetLength(0) - 1)
+                        {
+                            neighbors.Add(tiles[row + 1, col]);
+
+                            //odd row increase col
+                            if (col < tiles.GetLength(1) - 1)
+                            {
+                                neighbors.Add(tiles[row + 1, col + 1]);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    //there is a row before it
-                    if (row > 0)
-                    {
-                        neighbors.Add(tiles[row - 1, col]);
 
-                        //odd row increase col
-                        if (col < tiles.GetLength(1) - 1)
-                        {
-                            neighbors.Add(tiles[row - 1, col + 1]);
-                        }
-                    }
-                    //there is a row after it
-                    if (row < tiles.GetLength(0) - 1)
+                    //remove null due to skip bottom row
+                    for (int i = neighbors.Count - 1; i >= 0; i--)
                     {
-                        neighbors.Add(tiles[row + 1, col]);
-
-                        //odd row increase col
-                        if (col < tiles.GetLength(1) - 1)
+                        if (neighbors[i] == null)
                         {
-                            neighbors.Add(tiles[row + 1, col + 1]);
+                            neighbors.RemoveAt(i);
                         }
                     }
                 }
@@ -282,7 +299,11 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int col = 0; col < tiles.GetLength(1); col++)
             {
-                tiles[row, col].neighbors2 = findNeighbors2(tiles[row, col]);
+                //skip bottom row
+                if (!(row % 2 == 0 && col == 0))
+                {
+                    tiles[row, col].neighbors2 = findNeighbors2(tiles[row, col]);
+                }
             }
         }
 
@@ -331,6 +352,12 @@ public class TileManager : MonoBehaviourPunCallbacks
         if (roundX < 0 || roundX >= tiles.GetLength(0) || roundY < 0 || roundY >= tiles.GetLength(1))
         {
             return null;
+        }
+
+        //compensate for the row skipped
+        if (roundY == 0)
+        {
+            roundY++;
         }
 
         //compare with all neighbors
