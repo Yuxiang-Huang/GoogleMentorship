@@ -43,8 +43,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         tile.updateStatus(ownerID, this);
 
         direction = startDirection;
-
-        if (playerID == PlayerController.instance.id) PlayerController.instance.spawnedNum++;
     }
 
     public virtual void attack() { }

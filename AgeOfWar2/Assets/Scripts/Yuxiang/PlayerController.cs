@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public int gold;
 
     [Header("Turn")]
-    public int spawnedNum;
     [SerializeField] int troopNum;
 
     private void Awake()
@@ -300,17 +299,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
-        StartCoroutine(nameof(spawnWrap));
-    }
-
-    IEnumerator spawnWrap()
-    {
         gold += territory.Count;
 
         GameManager.instance.updateGoldText();
-
-        int toSpawnNum = 0;
-        spawnedNum = 0;
 
         for (int i = spawnList.Count - 1; i >= 0; i --)
         {
@@ -321,8 +312,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //time to spawn
             if (info.turn == 0)
             {
-                toSpawnNum++;
-
                 //spawn unit and initiate
                 GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
                 info.spawnTile.gameObject.transform.position, Quaternion.identity);
@@ -346,8 +335,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //building code here 
         }
 
-        yield return new WaitUntil(() => spawnedNum == toSpawnNum);
-
         Hashtable playerProperties = new Hashtable();
         playerProperties.Add("Spawned", true);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
@@ -369,8 +356,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void troopAttack()
     {
-        Debug.Log(allTroops.Count);
-
         foreach (Troop troop in allTroops)
         {
             troop.attack();
