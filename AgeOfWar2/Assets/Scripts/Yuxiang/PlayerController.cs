@@ -87,7 +87,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             root.updateStatus(id, null);
 
-            foreach (Tile neighbor in TileManager.instance.findNeighborsNeighbors(root))
+            foreach (Tile neighbor in root.neighbors)
+            {
+                neighbor.updateStatus(id, null);
+            }
+
+            foreach (Tile neighbor in root.neighbors2)
             {
                 neighbor.updateStatus(id, null);
             }
@@ -99,7 +104,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             root.updateStatus(id, null);
 
-            foreach (Tile neighbor in TileManager.instance.findNeighborsNeighbors(root))
+            foreach (Tile neighbor in root.neighbors)
+            {
+                neighbor.updateStatus(id, null);
+            }
+
+            foreach (Tile neighbor in root.neighbors2)
             {
                 neighbor.updateStatus(id, null);
             }

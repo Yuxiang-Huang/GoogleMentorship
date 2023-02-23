@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6514224017186162069}
   - component: {fileID: 6514224017186162066}
-  - component: {fileID: 5565009924661227109}
   - component: {fileID: 2348981124272579798}
+  - component: {fileID: 8489788014809983747}
   m_Layer: 0
   m_Name: SpearMan
   m_TagString: Troop
@@ -86,26 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5565009924661227109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6514224017186162067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 328155a15684c4208b7bc1080f14cd6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullHealth: 1
-  damage: 1
-  direction: {x: 0, y: 0}
-  tile: {fileID: 0}
-  path: []
-  arrow: {fileID: 0}
-  arrowPrefab: {fileID: 1329018377162125448, guid: bea59c41d27544098baf780849d996e8, type: 3}
-  highlightTile: {fileID: 0}
 --- !u!114 &2348981124272579798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +108,22 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &8489788014809983747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6514224017186162067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21f307f2929245e29273cc1d656f130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 1
+  damage: 0
+  direction: {x: 0, y: 0}
+  tile: {fileID: 0}
+  path: []
+  arrow: {fileID: 0}
+  arrowPrefab: {fileID: 1329018377162125448, guid: bea59c41d27544098baf780849d996e8, type: 3}
