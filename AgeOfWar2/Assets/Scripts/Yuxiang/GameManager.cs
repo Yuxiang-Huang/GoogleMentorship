@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             StopCoroutine(timeCoroutine);
         }
 
-        timerText.text = "Take Turn...";
+        timerText.text = "Waiting for opponents...";
 
         turnBtn.SetActive(false);
 
@@ -151,6 +151,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("EndTurn") && (bool)p.CustomProperties["EndTurn"]))
         {
+            PV.RPC(nameof(updateTimeText), RpcTarget.All, "Take Turns...");
+
             //all players spawn
             foreach (PlayerController player in allPlayers)
             {
@@ -213,6 +215,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void updateGoldText()
     {
         goldText.text = "Gold: " + PlayerController.instance.gold;
+    }
+
+    [PunRPC]
+    void updateTimeText(string message)
+    {
+        timerText.text = message;
     }
 
     #endregion
