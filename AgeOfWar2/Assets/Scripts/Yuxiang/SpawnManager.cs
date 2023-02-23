@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -8,12 +9,16 @@ public class SpawnManager : MonoBehaviour
 
     public static SpawnManager instance;
 
+    [SerializeField] Image lastImage;
+
+    [SerializeField] GameObject testObject;
+
     public void Awake()
     {
         instance = this;
     }
 
-    public void spawn()
+    public void spawn(Image image, string type)
     {
         //switch mode
         if (PlayerController.instance.mode == "spawn")
@@ -22,9 +27,18 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
+            if (lastImage != null)
+            {
+                lastImage.GetComponent<Image>().color = Color.white;
+            }
+
+            image.color = Color.grey;
+
+            lastImage = image;
+
             //give the path to the prefab
             PlayerController.instance.mode = "spawn";
-            PlayerController.instance.toSpawn = "Troop/ClubMan";
+            PlayerController.instance.toSpawn = type;
             PlayerController.instance.goldNeedToSpawn = 2;
         }
     }

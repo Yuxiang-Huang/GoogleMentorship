@@ -356,6 +356,7 @@
 "Assets/Scripts/Yuxiang/GameManager.cs"
 "Assets/Scripts/Yuxiang/Melee.cs"
 "Assets/Scripts/Yuxiang/PlayerController.cs"
+"Assets/Scripts/Yuxiang/SpawnButton.cs"
 "Assets/Scripts/Yuxiang/SpawnInfo.cs"
 "Assets/Scripts/Yuxiang/SpawnManager.cs"
 "Assets/Scripts/Yuxiang/Tile.cs"

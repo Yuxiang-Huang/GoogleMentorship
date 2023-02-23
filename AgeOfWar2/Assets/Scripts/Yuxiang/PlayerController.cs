@@ -54,8 +54,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //keep track of all players
-        GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
-        GameManager.instance.createPlayerList();
+        //GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
+        //GameManager.instance.createPlayerList();
 
         if (!PV.IsMine) return;
         instance = this;
