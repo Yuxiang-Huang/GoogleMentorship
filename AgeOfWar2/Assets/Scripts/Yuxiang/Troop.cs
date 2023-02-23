@@ -56,8 +56,19 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public void findPath(Tile target)
     {
-        if (lastTarget == target || target == tile) return; //same path or same tile
+        if (lastTarget == target) return; //same path
 
+        //same tile clear path
+        if (target == tile)
+        {
+            path = new List<Tile>();
+
+            Destroy(arrow);
+
+            return;
+        }
+
+        //other case
         lastTarget = target;
 
         float minDist = dist(target, tile);
@@ -127,7 +138,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
                 arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
 
-                float angle = Mathf.Atan2(path[0].pos.y - tile.pos.y, path[0].pos.x - tile.pos.x);
+                Vector2 arrowDirection = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
+
+                float angle = Mathf.Atan2(arrowDirection.y, arrowDirection.x);
 
                 arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
             }
@@ -160,7 +173,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             {
                 arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
 
-                float angle = Mathf.Atan2(path[0].pos.y - tile.pos.y, path[0].pos.x - tile.pos.x);
+                Vector2 arrowDirection = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
+
+                float angle = Mathf.Atan2(arrowDirection.y, arrowDirection.x);
 
                 arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
             }
