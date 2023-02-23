@@ -120,6 +120,10 @@ public class TileManager : MonoBehaviourPunCallbacks
         instance = this;
 
         PV = GetComponent<PhotonView>();
+
+        //offline testing
+        makeGrid(19, 6);
+        PlayerController.instance.startGame(0);
     }
 
     public void makeGrid(int rows, int cols)
@@ -139,21 +143,30 @@ public class TileManager : MonoBehaviourPunCallbacks
         {
             for (int col = 0; col < cols; col++)
             {
-                float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
-
-                //assign type
-                if (noiseNum >= 0)
+                //border by water
+                if (row <= 4)
                 {
-                    instruction.Append(0);
+                    instruction.Append(1);
                 }
                 else
                 {
-                    instruction.Append(1);
+                    float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
+
+                    //assign type
+                    if (noiseNum >= 0)
+                    {
+                        instruction.Append(0);
+                    }
+                    else
+                    {
+                        instruction.Append(1);
+                    }
                 }
             }
         }
 
-        PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllViaServer, rows, cols, instruction.ToString());
+        //PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllViaServer, rows, cols, instruction.ToString());
+        makeGrid_RPC(rows, cols, instruction.ToString());
     }
 
     [PunRPC]

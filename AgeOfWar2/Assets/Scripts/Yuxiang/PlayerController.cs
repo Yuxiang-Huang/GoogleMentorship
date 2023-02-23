@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //keep track of all players
-        GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
-        GameManager.instance.createPlayerList();
+        //GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
+        //GameManager.instance.createPlayerList();
 
         if (!PV.IsMine) return;
         instance = this;
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         //assign id
         id = newID;
-        PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
+        //PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
 
         mode = "start";
 
@@ -85,16 +85,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Tile root = tiles[xOffset, yOffset + 1];
 
-            root.updateStatus(id, null);
+            root.setDark(false);
 
             foreach (Tile neighbor in root.neighbors)
             {
-                neighbor.updateStatus(id, null);
+                neighbor.setDark(false);
             }
 
             foreach (Tile neighbor in root.neighbors2)
             {
-                neighbor.updateStatus(id, null);
+                neighbor.setDark(false);
             }
         }
 
@@ -102,16 +102,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Tile root = tiles[tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset];
 
-            root.updateStatus(id, null);
+            root.setDark(false);
 
             foreach (Tile neighbor in root.neighbors)
             {
-                neighbor.updateStatus(id, null);
+                neighbor.setDark(false);
             }
 
             foreach (Tile neighbor in root.neighbors2)
             {
-                neighbor.updateStatus(id, null);
+                neighbor.setDark(false);
             }
         }
     }

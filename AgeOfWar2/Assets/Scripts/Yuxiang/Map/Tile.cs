@@ -104,7 +104,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    void setDark(bool status)
+    public void setDark(bool status)
     {
         dark.SetActive(status);
     }
