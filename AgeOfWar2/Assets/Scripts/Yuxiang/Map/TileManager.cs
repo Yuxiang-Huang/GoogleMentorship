@@ -122,7 +122,7 @@ public class TileManager : MonoBehaviourPunCallbacks
         PV = GetComponent<PhotonView>();
 
         //offline testing
-        makeGrid(19, 6);
+        makeGrid(29, 10);
         PlayerController.instance.startGame(0);
     }
 
@@ -144,23 +144,39 @@ public class TileManager : MonoBehaviourPunCallbacks
             for (int col = 0; col < cols; col++)
             {
                 //border by water
-                if (row <= 4)
+                if (row <= 4 || row >= rows - 5)
+                {
+                    instruction.Append(1);
+                }
+                else if (row % 2 == 0 && col == 1)
+                {
+                    instruction.Append(1);
+                }
+                else if (row % 2 == 1 && col <= 1)
+                {
+                    instruction.Append(1);
+                }
+                else if (row % 2 == 0 && col == cols - 1)
+                {
+                    instruction.Append(1);
+                }
+                else if (row % 2 == 1 && col >= cols - 2)
                 {
                     instruction.Append(1);
                 }
                 else
                 {
-                    float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
+                    //float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
 
-                    //assign type
-                    if (noiseNum >= 0)
-                    {
+                    ////assign type
+                    //if (noiseNum >= 0)
+                    //{
                         instruction.Append(0);
-                    }
-                    else
-                    {
-                        instruction.Append(1);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    instruction.Append(1);
+                    //}
                 }
             }
         }

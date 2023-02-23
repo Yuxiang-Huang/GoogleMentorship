@@ -77,15 +77,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
-        int xOffset = 6;
+        int xOffset = 8;
 
-        int yOffset = 1;
+        int yOffset = 2;
 
         if (id == 0)
         {
             Tile root = tiles[xOffset, yOffset + 1];
 
-            root.setDark(false);
+            root.setDark(true);
 
             foreach (Tile neighbor in root.neighbors)
             {
