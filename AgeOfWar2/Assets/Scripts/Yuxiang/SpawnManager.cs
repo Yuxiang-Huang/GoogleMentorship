@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
 
     public static SpawnManager instance;
 
-    [SerializeField] Image lastImage;
+    public  Image lastImage;
 
     [SerializeField] GameObject testObject;
 

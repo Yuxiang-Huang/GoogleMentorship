@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using System.IO;
@@ -54,8 +55,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //keep track of all players
-        //GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
-        //GameManager.instance.createPlayerList();
+        GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
+        GameManager.instance.createPlayerList();
 
         if (!PV.IsMine) return;
         instance = this;
@@ -252,21 +253,27 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //click to spawn
             if (Input.GetMouseButtonDown(0))
             {
-                if (highlighted != null)
+                //can't spawn in a tile where there is already a unit going to be spawned
+                if (highlighted != null && !spawnLocations.Contains(highlighted.pos))
                 {
-                    //can't spawn in a tile where there is already a unit going to be spawned
-                    if (!spawnLocations.Contains(highlighted.pos))
-                    {
-                        //deduct gold
-                        gold -= goldNeedToSpawn;
-                        GameManager.instance.updateGoldText();
+                    //deduct gold
+                    gold -= goldNeedToSpawn;
+                    GameManager.instance.updateGoldText();
 
-                        spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1));
+                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1));
 
-                        spawnLocations.Add(highlighted.pos);
-                    }
+                    spawnLocations.Add(highlighted.pos);
                 }
-                mode = "move";
+                else
+                {
+                    //only change mode when didn't spawn correctly
+                    if (SpawnManager.instance.lastImage != null)
+                    {
+                        SpawnManager.instance.lastImage.GetComponent<Image>().color = Color.white;
+                    }
+
+                    mode = "move";
+                }
             }
         }
     }
