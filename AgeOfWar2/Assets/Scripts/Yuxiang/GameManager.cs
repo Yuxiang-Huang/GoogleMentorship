@@ -18,11 +18,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public List<PlayerController> allPlayers;
 
-    [SerializeField] TextMeshProUGUI goldText;
-
     [SerializeField] GameObject turnBtn;
 
     [SerializeField] int playerMoved;
+
+
+    [SerializeField] TextMeshProUGUI goldText;
+
+    [SerializeField] Coroutine timeCoroutine;
+
+    [SerializeField] TextMeshProUGUI timerText;
 
     private void Awake()
     {
@@ -96,6 +101,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         playerMoved = 0;
 
+        //timer
+        timeCoroutine = StartCoroutine(nameof(timer));
+
         //reset all vars
         Hashtable playerProperties = new Hashtable();
         playerProperties.Add("EndTurn", false);
@@ -106,12 +114,31 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void endTurn()
     {
+        if (timeCoroutine != null)
+        {
+            StopCoroutine(timeCoroutine);
+        }
+
+        timerText.text = "Take Turn...";
+
         turnBtn.SetActive(false);
 
         //ask master client to count player
         Hashtable playerProperties = new Hashtable();
         playerProperties.Add("EndTurn", true);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+    }
+
+    IEnumerator timer()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            timerText.text = "Time Left: " + (10 - i) + " seconds";
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        endTurn();
     }
 
     #endregion

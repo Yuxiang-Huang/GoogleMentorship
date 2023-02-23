@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //spawn castle
         if (mode == "start")
         {
-            //highlight territory tiles
+            //highlight revealed tiles
             if (highlighted != newHighlighted)
             {
                 if (highlighted != null)
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (highlighted != null)
                 {
-                    if (territory.Contains(highlighted))
+                    if (!highlighted.dark.activeSelf)
                     {
                         highlighted.highlight(true);
                     }

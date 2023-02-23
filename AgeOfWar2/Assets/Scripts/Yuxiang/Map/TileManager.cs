@@ -120,10 +120,6 @@ public class TileManager : MonoBehaviourPunCallbacks
         instance = this;
 
         PV = GetComponent<PhotonView>();
-
-        //offline testing
-        //makeGrid(29, 10);
-        //PlayerController.instance.startGame(0);
     }
 
     public void makeGrid(int rows, int cols)
@@ -227,17 +223,6 @@ public class TileManager : MonoBehaviourPunCallbacks
                 count++;
             }
         }
-
-        //    //make sure corner is land
-        //    Vector2Int corner = new Vector2Int(1, 1);
-
-        //    Destroy(tiles[corner.x, corner.y].gameObject);
-        //    tiles[corner.x, corner.y] = Instantiate(landTilePrefab, new Vector3(corner.x * tileSize, corner.y * tileSize, 0),
-        //Quaternion.identity).GetComponent<Tile>();
-        //    tiles[corner.x, corner.y].terrain = "land";
-        //    tiles[corner.x, corner.y].GetComponent<Tile>().pos = corner;
-        //    tiles[corner.x, corner.y].transform.SetParent(parent.transform);
-
 
         //set neighbors
         for (int row = 0; row < tiles.GetLength(0); row++)
