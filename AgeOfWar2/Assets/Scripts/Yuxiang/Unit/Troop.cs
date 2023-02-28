@@ -57,6 +57,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         healthbar.value = health;
         healthbar.gameObject.transform.SetParent(GameManager.instance.healthbarCanvas.gameObject.transform);
         healthbar.gameObject.transform.position = transform.position + offset;
+
+        healthbar.gameObject.SetActive(!tile.dark.activeSelf);
     }
 
     public virtual void attack() { }
@@ -206,6 +208,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         transform.position = TileManager.instance.getWorldPosition(tile);
 
         healthbar.gameObject.transform.position = transform.position + offset;
+
+        //don't show healthbar unless on revealed tile
+        healthbar.gameObject.SetActive(!tile.dark.activeSelf);
     }
 
     [PunRPC]

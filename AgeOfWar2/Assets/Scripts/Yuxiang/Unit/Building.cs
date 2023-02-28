@@ -31,6 +31,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         ownerID = playerID;
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
+
+        health = fullHealth;
     }
 
     //can spawn troop around building
@@ -49,6 +51,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public void takeDamage(int incomingDamage)
     {
         health -= incomingDamage;
+
         if (health <= 0)
         {
             Destroy(gameObject);
