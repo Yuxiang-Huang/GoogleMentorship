@@ -139,10 +139,17 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         turnBtn.SetActive(false);
 
-        //ask master client to count player
-        Hashtable playerProperties = new Hashtable();
-        playerProperties.Add("EndTurn", true);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        if (PhotonNetwork.OfflineMode)
+        {
+            allPlayers[0].spawn();
+        }
+        else
+        {
+            //ask master client to count player
+            Hashtable playerProperties = new Hashtable();
+            playerProperties.Add("EndTurn", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        }
     }
 
     IEnumerator timer()

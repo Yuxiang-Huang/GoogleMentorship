@@ -304,7 +304,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         GameManager.instance.updateGoldText();
 
-        for (int i = spawnList.Count - 1; i >= 0; i --)
+        for (int i = spawnList.Count - 1; i >= 0; i--)
         {
             SpawnInfo info = spawnList[i];
 
@@ -321,7 +321,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 {
                     newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                         id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], GameManager.instance.healthbarCanvas);
+                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
 
                     allTroops.Add(newUnit.GetComponent<Troop>());
                 }
@@ -336,24 +336,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //building code here 
         }
 
-        Hashtable playerProperties = new Hashtable();
-        playerProperties.Add("Spawned", true);
-
         if (PhotonNetwork.OfflineMode)
         {
-            StartCoroutine(nameof(UpdateHashtableValue), playerProperties);
+            troopMove();
         }
         else
         {
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+            Hashtable playerProperties = new Hashtable();
+            playerProperties.Add("Spawned", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
         }
-    }
-
-    IEnumerator UpdateHashtableValue(Hashtable playerProperties)
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     [PunRPC]
@@ -364,9 +356,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
             troop.move();
         }
 
-        Hashtable playerProperties = new Hashtable();
-        playerProperties.Add("Moved", true);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        if (PhotonNetwork.OfflineMode)
+        {
+            troopAttack();
+        }
+        else
+        {
+            Hashtable playerProperties = new Hashtable();
+            playerProperties.Add("Moved", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        }
     }
 
     [PunRPC]
@@ -377,9 +376,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
             troop.attack();
         }
 
-        Hashtable playerProperties = new Hashtable();
-        playerProperties.Add("Attacked", true);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        if (PhotonNetwork.OfflineMode)
+        {
+            checkTroopDeath();
+        }
+        else
+        {
+            Hashtable playerProperties = new Hashtable();
+            playerProperties.Add("Attacked", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
+        }
     }
 
     [PunRPC]
@@ -396,6 +402,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 allTroops.Remove(allTroops[i]);
             }
+        }
+
+        if (PhotonNetwork.OfflineMode)
+        {
+            GameManager.instance.startTurn();
         }
     }
 

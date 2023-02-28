@@ -39,7 +39,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection, Canvas canvas)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection)
     {
         ownerID = playerID;
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
@@ -47,8 +47,11 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
         direction = startDirection;
 
+        //health
+        health = fullHealth;
         healthbar.maxValue = fullHealth;
-        healthbar.gameObject.transform.SetParent(canvas.gameObject.transform);
+        healthbar.value = health;
+        healthbar.gameObject.transform.SetParent(GameManager.instance.healthbarCanvas.gameObject.transform);
         healthbar.gameObject.transform.position = transform.position + offset;
     }
 
