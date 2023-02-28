@@ -189,7 +189,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 485.5, y: 28}
-  m_SizeDelta: {x: 30, y: 20}
+  m_SizeDelta: {x: 1, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854043445853921571
 MonoBehaviour:
@@ -382,6 +382,7 @@ MonoBehaviour:
   damage: 1
   direction: {x: 0, y: 0}
   healthbar: {fileID: 854043445853921571}
+  offset: {x: 0, y: -0.5, z: 0}
   tile: {fileID: 0}
   path: []
   arrow: {fileID: 0}

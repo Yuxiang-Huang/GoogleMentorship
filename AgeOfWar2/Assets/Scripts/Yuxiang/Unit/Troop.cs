@@ -19,6 +19,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public int damage;
     public Vector2 direction;
     public Slider healthbar;
+    public Vector3 offset;
 
     [Header("Movement")]
     public Tile tile;
@@ -38,7 +39,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection, Canvas canvas)
     {
         ownerID = playerID;
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
@@ -47,6 +48,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         direction = startDirection;
 
         healthbar.maxValue = fullHealth;
+        healthbar.gameObject.transform.SetParent(canvas.gameObject.transform);
+        healthbar.gameObject.transform.position = transform.position + offset;
     }
 
     public virtual void attack() { }
@@ -194,6 +197,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
         //update position
         transform.position = TileManager.instance.getWorldPosition(tile);
+
+        healthbar.gameObject.transform.position = transform.position + offset;
     }
 
     [PunRPC]

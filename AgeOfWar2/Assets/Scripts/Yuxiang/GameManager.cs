@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] TextMeshProUGUI timerText;
 
+    public Canvas healthbarCanvas;
+
     private void Awake()
     {
         instance = this;
@@ -170,7 +172,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             //all players spawn
             foreach (PlayerController player in allPlayers)
             {
-                player.PV.RPC(nameof(player.spawn), player.PV.Owner);
+                player.PV.RPC("spawn", player.PV.Owner);
             }
         }
     }

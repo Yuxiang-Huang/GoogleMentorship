@@ -321,7 +321,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 {
                     newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                         id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
+                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], GameManager.instance.healthbarCanvas);
 
                     allTroops.Add(newUnit.GetComponent<Troop>());
                 }
@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             troop.PV.RPC(nameof(troop.checkDeath), RpcTarget.All);
         }
 
-        for (int i = allTroops.Count - 1; i >= 0; i --)
+        for (int i = allTroops.Count - 1; i >= 0; i--)
         {
             if (allTroops[i].health <= 0)
             {
