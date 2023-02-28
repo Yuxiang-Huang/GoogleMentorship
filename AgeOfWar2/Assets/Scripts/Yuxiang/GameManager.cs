@@ -32,12 +32,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public Canvas healthbarCanvas;
 
+    [Header("Age")]    
+    [SerializeField] TextMeshProUGUI ageText;
+    [SerializeField] TextMeshProUGUI goldNeedToAdvanceText;
+
     private void Awake()
     {
         instance = this;
         PV = GetComponent<PhotonView>();
 
-        bool offlineMode = false;
+        bool offlineMode = true;
 
         //not able to access after game begins
         if (!offlineMode)
@@ -244,6 +248,22 @@ public class GameManager : MonoBehaviourPunCallbacks
     void updateTimeText(string message)
     {
         timerText.text = message;
+    }
+
+    #endregion
+
+    #region Age System
+
+    public void ageAdvance()
+    {
+        PlayerController.instance.gold -= PlayerController.instance.goldNeedToAdvance;
+
+        //modify age
+        PlayerController.instance.age++;
+        ageText.text = "Upgrade Age: " + PlayerController.instance.age;
+        PlayerController.instance.goldNeedToAdvance *= 2;
+        goldNeedToAdvanceText.text = PlayerController.instance.goldNeedToAdvance + " gold";
+        goldText.text = "Gold: " + PlayerController.instance.gold;
     }
 
     #endregion

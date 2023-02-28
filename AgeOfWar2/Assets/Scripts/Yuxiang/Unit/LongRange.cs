@@ -43,7 +43,7 @@ public class LongRange : Troop
         foreach (Tile curTile in tile.neighbors2)
         {
             //if can see this tile and there is enemy unit on it
-            if (!curTile.dark.activeSelf && curTile.unit != null) //&& curTile.unit.ownerID != ownerID)
+            if (!curTile.dark.activeSelf && curTile.unit != null && curTile.unit.ownerID != ownerID)
             {
                 //attack order depending on dot product
                 targets.TryAdd(Vector2.Dot(direction,

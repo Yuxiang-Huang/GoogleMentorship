@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [Header("Gold")]
     public int gold;
+    public int age;
+    public int goldNeedToAdvance = 16;
 
     [Header("Turn")]
     [SerializeField] int troopNum;
@@ -147,7 +149,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //spawn castle
         if (mode == "start")
         {
-            //highlight revealed tiles
+            //highlight revealed land tiles
             if (highlighted != newHighlighted)
             {
                 if (highlighted != null)
@@ -157,7 +159,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (highlighted != null)
                 {
-                    if (!highlighted.dark.activeSelf)
+                    if (!highlighted.dark.activeSelf && highlighted.terrain == "land")
                     {
                         highlighted.highlight(true);
                     }
@@ -250,9 +252,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (highlighted != null)
                 {
-                    //can only spawn on spawnable tiles and no unit and terrain is not water
+                    //can only spawn on spawnable tiles and no unit and terrain is land
                     if (canSpawn[highlighted.pos.x, highlighted.pos.y] && highlighted.unit == null
-                        && highlighted.terrain != "water")
+                        && highlighted.terrain == "land")
                     {
                         highlighted.highlight(true);
                     }
