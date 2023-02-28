@@ -220,6 +220,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         {
             tile.unit = null;
             Destroy(arrow);
+            Destroy(healthbar.gameObject);
             Destroy(this.gameObject);
         }
     }
