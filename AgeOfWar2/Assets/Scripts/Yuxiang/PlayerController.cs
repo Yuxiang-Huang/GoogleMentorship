@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 if (highlighted != null && !spawnLocations.Contains(highlighted.pos))
                 {
                     //deduct gold
-                    gold -= goldNeedToSpawn;
+                    gold -= goldNeedToSpawn * (int) Mathf.Pow(2, age);
                     GameManager.instance.updateGoldText();
 
                     //spawn an image
@@ -302,7 +302,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
-        gold += territory.Count;
+        gold += territory.Count * (int) Mathf.Pow(2, age);
 
         GameManager.instance.updateGoldText();
 
@@ -323,7 +323,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 {
                     newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                         id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y]);
+                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age);
 
                     allTroops.Add(newUnit.GetComponent<Troop>());
                 }

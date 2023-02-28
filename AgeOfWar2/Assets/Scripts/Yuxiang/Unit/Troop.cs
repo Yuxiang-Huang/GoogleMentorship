@@ -39,13 +39,17 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection, int age)
     {
         ownerID = playerID;
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
 
         direction = startDirection;
+
+        //modify according to age
+        fullHealth *= (int) Mathf.Pow(2, age);
+        damage *= (int) Mathf.Pow(2, age);
 
         //health
         health = fullHealth;

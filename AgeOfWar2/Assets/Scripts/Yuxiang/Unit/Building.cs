@@ -15,7 +15,6 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public Slider healthbar { get; set; }
 
     public int fullHealth;
-    [SerializeField]  int damage;
 
     public int ownerID { get; set; }
 

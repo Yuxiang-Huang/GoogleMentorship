@@ -548,7 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 388878472}
   path: Troop/SpearMan
-  goldNeedToSpawn: 2
+  goldNeedToSpawn: 4
   spawnImage: {fileID: 1371028787450875553, guid: 806398d3c81b84a6a932a9df7a6e15f5, type: 3}
 --- !u!1 &421099526
 GameObject:
@@ -971,7 +971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 996705852}
   path: Troop/ClubMan
-  goldNeedToSpawn: 1
+  goldNeedToSpawn: 2
   spawnImage: {fileID: 3350579417564403051, guid: 85330372dcccb4576ac7d6f8ed02e152, type: 3}
 --- !u!1 &1182744707
 GameObject:

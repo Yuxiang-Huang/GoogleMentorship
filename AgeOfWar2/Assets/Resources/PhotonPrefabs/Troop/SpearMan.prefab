@@ -327,7 +327,6 @@ MonoBehaviour:
   fullHealth: 1
   damage: 1
   direction: {x: 0, y: 0}
-  offset: {x: 0, y: 0, z: 0}
   healthbar: {fileID: 3000440573061297952}
   tile: {fileID: 0}
   path: []
