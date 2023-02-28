@@ -4,12 +4,15 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class Building : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV { get; set; }
 
     public int health { get; set; }
+
+    public Slider healthbar { get; set; }
 
     public int fullHealth;
     [SerializeField]  int damage;
