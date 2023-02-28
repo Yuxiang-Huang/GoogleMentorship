@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class Troop : MonoBehaviourPunCallbacks, IUnit
 {
@@ -17,6 +18,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public int fullHealth;
     public int damage;
     public Vector2 direction;
+    public Slider healthbar;
 
     [Header("Movement")]
     public Tile tile;
@@ -43,6 +45,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         tile.updateStatus(ownerID, this);
 
         direction = startDirection;
+
+        healthbar.maxValue = fullHealth;
     }
 
     public virtual void attack() { }
@@ -196,6 +200,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void takeDamage(int incomingDamage)
     {
         health -= incomingDamage;
+
+        //health bar
+        healthbar.value = health;
     }
 
     [PunRPC]
