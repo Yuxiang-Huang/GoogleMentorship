@@ -256,14 +256,18 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void ageAdvance()
     {
-        PlayerController.instance.gold -= PlayerController.instance.goldNeedToAdvance;
+        //if enough gold
+        if (PlayerController.instance.gold >= PlayerController.instance.goldNeedToAdvance)
+        {
+            PlayerController.instance.gold -= PlayerController.instance.goldNeedToAdvance;
 
-        //modify age
-        PlayerController.instance.age++;
-        ageText.text = "Upgrade Age: " + PlayerController.instance.age;
-        PlayerController.instance.goldNeedToAdvance *= 2;
-        goldNeedToAdvanceText.text = PlayerController.instance.goldNeedToAdvance + " gold";
-        goldText.text = "Gold: " + PlayerController.instance.gold;
+            //modify age
+            PlayerController.instance.age++;
+            ageText.text = "Upgrade Age: " + PlayerController.instance.age;
+            PlayerController.instance.goldNeedToAdvance *= 2;
+            goldNeedToAdvanceText.text = PlayerController.instance.goldNeedToAdvance + " gold";
+            goldText.text = "Gold: " + PlayerController.instance.gold;
+        }
     }
 
     #endregion

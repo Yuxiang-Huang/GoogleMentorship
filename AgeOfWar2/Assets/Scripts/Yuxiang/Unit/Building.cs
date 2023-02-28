@@ -49,5 +49,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public void takeDamage(int incomingDamage)
     {
         health -= incomingDamage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

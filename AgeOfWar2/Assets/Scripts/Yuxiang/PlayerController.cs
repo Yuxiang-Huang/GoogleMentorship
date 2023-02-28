@@ -268,8 +268,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //click to spawn
             if (Input.GetMouseButtonDown(0))
             {
-                //can't spawn in a tile where there is already a unit going to be spawned
-                if (highlighted != null && !spawnLocations.Contains(highlighted.pos))
+                //can't spawn in a tile where there is already a unit going to be spawned and enough gold
+                if (highlighted != null && !spawnLocations.Contains(highlighted.pos)
+                    && gold >= goldNeedToSpawn * (int)Mathf.Pow(2, age))
                 {
                     //deduct gold
                     gold -= goldNeedToSpawn * (int) Mathf.Pow(2, age);
