@@ -338,6 +338,21 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         Hashtable playerProperties = new Hashtable();
         playerProperties.Add("Spawned", true);
+
+        if (PhotonNetwork.OfflineMode)
+        {
+            StartCoroutine(nameof(UpdateHashtableValue), playerProperties);
+        }
+        else
+        {
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        }
+    }
+
+    IEnumerator UpdateHashtableValue(Hashtable playerProperties)
+    {
+        yield return new WaitForSeconds(0.1f);
+
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
