@@ -1190,6 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6ddde09271a4ddd92a7ec8a9115c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offlineMode: 0
   PV: {fileID: 0}
   allPlayers: []
   turnBtn: {fileID: 1201000671}

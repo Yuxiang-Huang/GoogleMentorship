@@ -7,6 +7,7 @@ using TMPro;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using System.Linq;
+using System.IO;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -34,9 +35,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance = this;
         PV = GetComponent<PhotonView>();
 
+        bool offlineMode = true;
+
         //not able to access after game begins
-        PhotonNetwork.CurrentRoom.IsOpen = false;
-        PhotonNetwork.CurrentRoom.IsVisible = false;
+        if (!offlineMode)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+        }
+        else
+        {
+            PhotonNetwork.OfflineMode = true;
+            RoomOptions roomOptions = new RoomOptions();
+            PhotonNetwork.CreateRoom("offline", roomOptions);
+
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player/PlayerManager"), Vector3.zero, Quaternion.identity);
+        }
     }
 
     //call when each player is ready

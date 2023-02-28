@@ -49,15 +49,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         PV = GetComponent<PhotonView>();
 
+        //keep track of all players
+        GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
+        GameManager.instance.createPlayerList();
+
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
             TileManager.instance.makeGrid(29, 10);
         }
-
-        //keep track of all players
-        GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
-        GameManager.instance.createPlayerList();
 
         if (!PV.IsMine) return;
         instance = this;
@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         //assign id
         id = newID;
+
         PV.RPC(nameof(startGame_all), RpcTarget.AllViaServer, newID);
 
         mode = "start";
