@@ -18,7 +18,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public int fullHealth;
     public int damage;
     public Vector2 direction;
-    [SerializeField] Vector3 offset = new Vector3(0, -0.5f, 0);
+    Vector3 offset = new Vector3(0, -0.5f, 0);
     public Slider healthbar;
 
     [Header("Movement")]
