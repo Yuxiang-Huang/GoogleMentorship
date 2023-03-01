@@ -4,10 +4,14 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using System.IO;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using TMPro;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager Instance;
+
+    [SerializeField] TextMeshProUGUI mapSettingText;
 
     void Awake()
     {
@@ -41,5 +45,24 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player/PlayerManager"), Vector3.zero, Quaternion.identity);
         }
+    }
+
+    //change map setting
+    public void changeMapSetting()
+    {
+        bool hasWater = !(bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"];
+
+        if (hasWater)
+        {
+            mapSettingText.text = "Water: On";
+        }
+        else
+        {
+            mapSettingText.text = "Water: Off";
+        }
+
+        Hashtable hash = new Hashtable();
+        hash.Add("Water", hasWater);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
     }
 }

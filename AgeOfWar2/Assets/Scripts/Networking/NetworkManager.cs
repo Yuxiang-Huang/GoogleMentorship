@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NetworkManager: MonoBehaviourPunCallbacks
 {
@@ -55,6 +56,7 @@ public class NetworkManager: MonoBehaviourPunCallbacks
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
+        roomOptions.CustomRoomProperties = new Hashtable() { { "Water", true } };
         PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);
 
         ScreenManager.Instance.DisplayScreen("Loading");

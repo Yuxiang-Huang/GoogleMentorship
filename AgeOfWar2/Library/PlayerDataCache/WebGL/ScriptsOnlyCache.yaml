@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Building
     - GameManager
+    - LongRange
     - Melee
     - NetworkManager
     - PlayerController
@@ -13,11 +14,13 @@ ScriptsOnlyBuild:
     - RoomManager
     - Screen
     - ScreenManager
+    - SpawnButton
     - SpawnManager
     - Tile
     - TileManager
+    ParrelSync.dll:
+    - ParrelSync.ClonesManagerWindow
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonView
@@ -31,8 +34,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    Unity.Timeline.Editor.dll:
-    - TimelineProjectSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -46,6 +47,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.RectMask2D
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     PhotonRealtime:
@@ -86,6 +88,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
+    - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
@@ -119,11 +122,17 @@ ScriptsOnlyBuild:
     fullTypeName: ScreenManager
     methodName: DisplayScreen
   - assembly: Assembly-CSharp
-    fullTypeName: SpawnManager
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
     methodName: spawn
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: endTurn
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: ageAdvance
   sceneClasses:
     Assets/Scenes/Lobby.unity:
     - Class: 1
@@ -151,9 +160,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1552}
     - Class: 114
-      Script: {instanceID: 1724}
+      Script: {instanceID: 1722}
     - Class: 114
-      Script: {instanceID: 2044}
+      Script: {instanceID: 2042}
+    - Class: 114
+      Script: {instanceID: 2052}
     - Class: 114
       Script: {instanceID: 2118}
     - Class: 114
@@ -183,6 +194,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4906}
     - Class: 114
+      Script: {instanceID: 5016}
+    - Class: 114
       Script: {instanceID: 5088}
     - Class: 114
       Script: {instanceID: 5314}
@@ -203,7 +216,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7632}
     - Class: 114
-      Script: {instanceID: 7818}
+      Script: {instanceID: 7820}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -262,8 +275,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5088}
     - Class: 114
-      Script: {instanceID: 5314}
-    - Class: 114
       Script: {instanceID: 5642}
     - Class: 114
       Script: {instanceID: 5790}
@@ -271,6 +282,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5896}
     - Class: 114
       Script: {instanceID: 6106}
+    - Class: 114
+      Script: {instanceID: 7758}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -358,10 +371,16 @@ ScriptsOnlyBuild:
     className: OnPointerOverTooltip
   - hash:
       serializedVersion: 2
-      Hash: 3d473303f1101cba4a68357043bcd780
+      Hash: 34550e8a8021c4dfe70535d18b23b6cb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Building
+  - hash:
+      serializedVersion: 2
+      Hash: bf2dafe9ec36290ffaf4627678936e1b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LongRange
   - hash:
       serializedVersion: 2
       Hash: 9b88922525dc6ce436df0a77851f03e1
@@ -628,7 +647,7 @@ ScriptsOnlyBuild:
     className: VariablesAsset
   - hash:
       serializedVersion: 2
-      Hash: 3da3cf57a78072d59d7f3dd95abd252f
+      Hash: 6bb0af7a72b9cb2369f34587b7f70f5b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TileManager
@@ -682,13 +701,13 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: adedcfa086a3ec30744d99f1c551f4fb
+      Hash: a1794dacd3c1177180698320ac7ec873
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnManager
   - hash:
       serializedVersion: 2
-      Hash: 23be78ab17cf777006342e571b69cdd0
+      Hash: 2e4bf7ccd131f6a4d4cd99fb1eeb62fe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -838,7 +857,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: cfb007c194dec3f4e4f18f1ed0af296f
+      Hash: bf2dafe9ec36290ffaf4627678936e1b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Troop
@@ -964,7 +983,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: cfb007c194dec3f4e4f18f1ed0af296f
+      Hash: bf2dafe9ec36290ffaf4627678936e1b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Melee
@@ -1030,7 +1049,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 4887be09a338683a797863f9eaca6a84
+      Hash: d426b5cc20b4e13082f5835e233b01e4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tile
@@ -1360,13 +1379,19 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
+      Hash: 224a5c183705586c261295540f7c764a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpawnButton
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 55c22e0783e5a1403d65e44007d1a029
+      Hash: 6b92bd840501f134f2ead3288530feda
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1410,4 +1435,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/Useful Tools/AgeOfWar2Builds/Version0
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version1

@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
 using System.Text;
-using static UnityEditor.PlayerSettings;
 
 public class TileManager : MonoBehaviourPunCallbacks
 {
@@ -135,44 +134,58 @@ public class TileManager : MonoBehaviourPunCallbacks
         }
         float ranElem = Random.Range(0, 200);
 
-        for (int row = 0; row < rows; row++)
+        //decide map
+        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
         {
-            for (int col = 0; col < cols; col++)
+            for (int row = 0; row < rows; row++)
             {
-                //border by water
-                if (row <= 4 || row >= rows - 5)
+                for (int col = 0; col < cols; col++)
                 {
-                    instruction.Append(1);
-                }
-                else if (row % 2 == 0 && col == 1)
-                {
-                    instruction.Append(1);
-                }
-                else if (row % 2 == 1 && col <= 1)
-                {
-                    instruction.Append(1);
-                }
-                else if (row % 2 == 0 && col == cols - 1)
-                {
-                    instruction.Append(1);
-                }
-                else if (row % 2 == 1 && col >= cols - 2)
-                {
-                    instruction.Append(1);
-                }
-                else
-                {
-                    float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
-
-                    //assign type
-                    if (noiseNum >= 0)
-                    {
-                        instruction.Append(0);
-                    }
-                    else
+                    //border by water
+                    if (row <= 4 || row >= rows - 5)
                     {
                         instruction.Append(1);
                     }
+                    else if (row % 2 == 0 && col == 1)
+                    {
+                        instruction.Append(1);
+                    }
+                    else if (row % 2 == 1 && col <= 1)
+                    {
+                        instruction.Append(1);
+                    }
+                    else if (row % 2 == 0 && col == cols - 1)
+                    {
+                        instruction.Append(1);
+                    }
+                    else if (row % 2 == 1 && col >= cols - 2)
+                    {
+                        instruction.Append(1);
+                    }
+                    else
+                    {
+                        float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
+
+                        //assign type
+                        if (noiseNum >= 0)
+                        {
+                            instruction.Append(0);
+                        }
+                        else
+                        {
+                            instruction.Append(1);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < cols; col++)
+                {
+                    instruction.Append(0);
                 }
             }
         }
