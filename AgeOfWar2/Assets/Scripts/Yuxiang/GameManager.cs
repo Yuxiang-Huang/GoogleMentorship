@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] GameObject turnBtn;
 
+    [SerializeField] GameObject ageAdvanceBtn;
+
     [SerializeField] int playerMoved;
 
 
@@ -158,9 +160,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     IEnumerator timer()
     {
-        for (int i = 0; i < 10; i++)
+        int time = 10 * (PlayerController.instance.age + 1);
+
+        for (int i = 0; i < time; i++)
         {
-            timerText.text = "Time Left: " + (10 - i) + " seconds";
+            timerText.text = "Time Left: " + (time - i) + " seconds";
 
             yield return new WaitForSeconds(1f);
         }
@@ -267,6 +271,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             PlayerController.instance.goldNeedToAdvance *= 2;
             goldNeedToAdvanceText.text = PlayerController.instance.goldNeedToAdvance + " gold";
             goldText.text = "Gold: " + PlayerController.instance.gold;
+
+            //age limit
+            if (PlayerController.instance.age >= 5)
+            {
+                ageAdvanceBtn.SetActive(false);
+            }
         }
     }
 

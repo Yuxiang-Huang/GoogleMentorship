@@ -82,5 +82,5 @@ MonoBehaviour:
   goldNeedToSpawn: 0
   gold: 6
   age: 0
-  goldNeedToAdvance: 16
+  goldNeedToAdvance: 64
   troopNum: 0

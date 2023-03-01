@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [Header("Gold")]
     public int gold;
     public int age;
-    public int goldNeedToAdvance = 16;
+    public int goldNeedToAdvance;
 
     [Header("Turn")]
     [SerializeField] int troopNum;

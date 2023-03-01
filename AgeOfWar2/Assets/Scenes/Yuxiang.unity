@@ -585,7 +585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -62, y: -26}
+  m_AnchoredPosition: {x: -125, y: -30}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &421099528
@@ -1564,6 +1564,7 @@ MonoBehaviour:
   PV: {fileID: 0}
   allPlayers: []
   turnBtn: {fileID: 1201000671}
+  ageAdvanceBtn: {fileID: 1513020140}
   playerMoved: 0
   goldText: {fileID: 421099528}
   timerText: {fileID: 2132260250}
