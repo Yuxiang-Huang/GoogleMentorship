@@ -55,9 +55,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         {
             if (neighbor.terrain == "land")
             {
-                GameManager.instance.allPlayers[ownerID].canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
+                PlayerController.instance.canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
 
-                GameManager.instance.allPlayers[ownerID].spawnDirection[neighbor.pos.x, neighbor.pos.y] =
+                PlayerController.instance.spawnDirection[neighbor.pos.x, neighbor.pos.y] =
                     TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile);
             }
         }

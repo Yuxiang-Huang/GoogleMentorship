@@ -203,8 +203,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 highlighted = newHighlighted;
 
-                if (newHighlighted != null && !newHighlighted.dark.activeSelf)
+                if (highlighted != null && !highlighted.dark.activeSelf)
+                {
                     highlighted.highlight(true);
+                }
+                else
+                {
+                    highlighted = null;
+                }
             }
 
             //show healthbar if there is a unit here
@@ -244,7 +250,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 highlighted = newHighlighted;
 
                 if (newHighlighted != null)
+                {
                     highlighted.highlight(true);
+                }
+                else
+                {
+                    newHighlighted = null;
+                }                    
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -355,7 +367,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
-        gold += territory.Count * (int) Mathf.Pow(2, age);
+        //income from territory and all buildings
+        gold += (territory.Count + allBuildings.Count - 1) * (int) Mathf.Pow(2, age);
 
         GameManager.instance.updateGoldText();
 

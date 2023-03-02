@@ -440,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: {x: 0, y: 0}
   neighbors: []
+  neighbors2: []
   terrain: 
   ownerID: -1
   highlightTile: {fileID: 5507542342683702645}
