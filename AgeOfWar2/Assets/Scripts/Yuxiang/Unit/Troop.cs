@@ -186,6 +186,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             //move to next tile on list if no unit is there
             if (path[0].unit == null)
             {
+                PV.RPC(nameof(removeTileUnit), RpcTarget.All);
                 PV.RPC(nameof(moveUpdate_RPC), RpcTarget.All, path[0].pos.x, path[0].pos.y);
 
                 path.RemoveAt(0);
@@ -194,10 +195,11 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             else if (path[0].unit.gameObject.CompareTag("Troop"))
             {
                 //leave space
-                PV.RPC(nameof(updateTileUnit), RpcTarget.All, (IUnit)null);
+                PV.RPC(nameof(removeTileUnit), RpcTarget.All);
 
                 path[0].unit.gameObject.GetComponent<Troop>().move();
 
+                //try to move again
                 if (path[0].unit == null)
                 {
                     PV.RPC(nameof(moveUpdate_RPC), RpcTarget.All, path[0].pos.x, path[0].pos.y);
@@ -206,8 +208,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
                 }
                 else
                 {
-                    //space reverse
-                    PV.RPC(nameof(updateTileUnit), RpcTarget.All, this);
+                    //reverse leave space
+                    PV.RPC(nameof(updateTileUnit), RpcTarget.All);
                 }
             }
 
@@ -228,9 +230,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     [PunRPC]
     public void moveUpdate_RPC(int nextTileX, int nextTileY)
     {
-        //last tile
-        tile.unit = null;
-
         //update tile
         tile = TileManager.instance.tiles[nextTileX, nextTileY];
         tile.updateStatus(ownerID, this);
@@ -242,10 +241,18 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void updateTileUnit(IUnit unit)
+    public void updateTileUnit()
     {
-        tile.unit = unit;
+        tile.unit = this;
     }
+
+    [PunRPC]
+    public void removeTileUnit()
+    {
+        tile.unit = null;
+    }
+
+    #region Damage
 
     [PunRPC]
     public void takeDamage(int incomingDamage)
@@ -270,6 +277,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             Destroy(this.gameObject);
         }
     }
+
+    #endregion
 
     //find distance between two tiles
     float dist(Tile t1, Tile t2)

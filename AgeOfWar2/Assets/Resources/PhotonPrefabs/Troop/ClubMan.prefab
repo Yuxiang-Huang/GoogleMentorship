@@ -386,6 +386,7 @@ MonoBehaviour:
   path: []
   arrow: {fileID: 0}
   arrowPrefab: {fileID: 1329018377162125448, guid: bea59c41d27544098baf780849d996e8, type: 3}
+  moved: 0
 --- !u!114 &1286591508214976548
 MonoBehaviour:
   m_ObjectHideFlags: 0
