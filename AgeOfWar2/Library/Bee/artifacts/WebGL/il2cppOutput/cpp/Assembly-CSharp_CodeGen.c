@@ -314,99 +314,103 @@ extern void Troop_findPath_m6BCAF5BB87B5DBB0B1BE870557C0602014775D5A (void);
 extern void Troop_move_mD1477C16AD3FDBDA036EF7BA2ACFAF7382F28CDF (void);
 // 0x00000097 System.Void Troop::moveUpdate_RPC(System.Int32,System.Int32)
 extern void Troop_moveUpdate_RPC_mD6012F7861A9EA2535E8542E1E2F44D14AD92BB9 (void);
-// 0x00000098 System.Void Troop::takeDamage(System.Int32)
+// 0x00000098 System.Void Troop::updateTileUnit()
+extern void Troop_updateTileUnit_mC0A0F88C42B14BDCB38BF7B129B7137AFA9FDF7C (void);
+// 0x00000099 System.Void Troop::removeTileUnit()
+extern void Troop_removeTileUnit_m33BFB647D96107D231C85886059FFAB268F824D1 (void);
+// 0x0000009A System.Void Troop::takeDamage(System.Int32)
 extern void Troop_takeDamage_m3689130DDD8C9569BE0BCBC6711E002DCC7099C6 (void);
-// 0x00000099 System.Void Troop::setHealthBar(System.Boolean)
+// 0x0000009B System.Void Troop::setHealthBar(System.Boolean)
 extern void Troop_setHealthBar_m95FB60C7799283B4B973529F65685A3A860E7FED (void);
-// 0x0000009A System.Void Troop::checkDeath()
+// 0x0000009C System.Void Troop::checkDeath()
 extern void Troop_checkDeath_mC077812598636FF824A7D4FEAEC24CE457BCD1E7 (void);
-// 0x0000009B System.Single Troop::dist(Tile,Tile)
+// 0x0000009D System.Single Troop::dist(Tile,Tile)
 extern void Troop_dist_mFFD9956774D00FC4B6975B6BDA88FA63BBB0AD57 (void);
-// 0x0000009C System.Void Troop::.ctor()
+// 0x0000009E System.Void Troop::.ctor()
 extern void Troop__ctor_m19CB5433B00B0C794D26048C40A8630DB81E3EA8 (void);
-// 0x0000009D UnityEngine.GameObject Troop::IUnit.get_gameObject()
+// 0x0000009F UnityEngine.GameObject Troop::IUnit.get_gameObject()
 extern void Troop_IUnit_get_gameObject_m435DC9655037D9064962B3CD3E8842028A6E5EC5 (void);
-// 0x0000009E Photon.Pun.PhotonView IUnit::get_PV()
-// 0x0000009F System.Int32 IUnit::get_health()
-// 0x000000A0 System.Int32 IUnit::get_ownerID()
-// 0x000000A1 UnityEngine.GameObject IUnit::get_gameObject()
-// 0x000000A2 System.Void IUnit::takeDamage(System.Int32)
-// 0x000000A3 System.Void IUnit::setHealthBar(System.Boolean)
-// 0x000000A4 System.Boolean ExitGames.Client.Photon.WaitForRealSeconds::get_keepWaiting()
+// 0x000000A0 Photon.Pun.PhotonView IUnit::get_PV()
+// 0x000000A1 System.Int32 IUnit::get_health()
+// 0x000000A2 System.Int32 IUnit::get_ownerID()
+// 0x000000A3 UnityEngine.GameObject IUnit::get_gameObject()
+// 0x000000A4 System.Void IUnit::takeDamage(System.Int32)
+// 0x000000A5 System.Void IUnit::setHealthBar(System.Boolean)
+// 0x000000A6 System.Boolean ExitGames.Client.Photon.WaitForRealSeconds::get_keepWaiting()
 extern void WaitForRealSeconds_get_keepWaiting_mBCB76C9E272B6A0002C2E72E9D5EF7A4615CA69E (void);
-// 0x000000A5 System.Void ExitGames.Client.Photon.WaitForRealSeconds::.ctor(System.Single)
+// 0x000000A7 System.Void ExitGames.Client.Photon.WaitForRealSeconds::.ctor(System.Single)
 extern void WaitForRealSeconds__ctor_mAD70795E28862CD7367610588610A392EFD473D9 (void);
-// 0x000000A6 System.Void ExitGames.Client.Photon.SocketWebTcp::.ctor(ExitGames.Client.Photon.PeerBase)
+// 0x000000A8 System.Void ExitGames.Client.Photon.SocketWebTcp::.ctor(ExitGames.Client.Photon.PeerBase)
 extern void SocketWebTcp__ctor_mF2E9EB5C118B3CC4CF3F9D2BA7BE97F55905CE0F (void);
-// 0x000000A7 System.Void ExitGames.Client.Photon.SocketWebTcp::Dispose()
+// 0x000000A9 System.Void ExitGames.Client.Photon.SocketWebTcp::Dispose()
 extern void SocketWebTcp_Dispose_m40B05850D2D5FE096D4EE9CB3C2F592846B5AB49 (void);
-// 0x000000A8 System.Boolean ExitGames.Client.Photon.SocketWebTcp::Connect()
+// 0x000000AA System.Boolean ExitGames.Client.Photon.SocketWebTcp::Connect()
 extern void SocketWebTcp_Connect_m3BBDE1170CE82973AE5B045F537EA553D2A843AA (void);
-// 0x000000A9 System.Boolean ExitGames.Client.Photon.SocketWebTcp::ReadProxyConfigScheme(System.String,System.String,System.String&)
+// 0x000000AB System.Boolean ExitGames.Client.Photon.SocketWebTcp::ReadProxyConfigScheme(System.String,System.String,System.String&)
 extern void SocketWebTcp_ReadProxyConfigScheme_mD1F3B07429ADC0856123279574E00F6B3E8462C7 (void);
-// 0x000000AA System.Boolean ExitGames.Client.Photon.SocketWebTcp::Disconnect()
+// 0x000000AC System.Boolean ExitGames.Client.Photon.SocketWebTcp::Disconnect()
 extern void SocketWebTcp_Disconnect_m132F573D38A5CC16ED3A0A446EAE18B3D0353B4F (void);
-// 0x000000AB ExitGames.Client.Photon.PhotonSocketError ExitGames.Client.Photon.SocketWebTcp::Send(System.Byte[],System.Int32)
+// 0x000000AD ExitGames.Client.Photon.PhotonSocketError ExitGames.Client.Photon.SocketWebTcp::Send(System.Byte[],System.Int32)
 extern void SocketWebTcp_Send_m20B3CD73922977483CB0A314CE226AC6556D38F0 (void);
-// 0x000000AC ExitGames.Client.Photon.PhotonSocketError ExitGames.Client.Photon.SocketWebTcp::Receive(System.Byte[]&)
+// 0x000000AE ExitGames.Client.Photon.PhotonSocketError ExitGames.Client.Photon.SocketWebTcp::Receive(System.Byte[]&)
 extern void SocketWebTcp_Receive_m940621770C1E229CAE999D760FA8192A1FB96A1F (void);
-// 0x000000AD System.Collections.IEnumerator ExitGames.Client.Photon.SocketWebTcp::ReceiveLoop()
+// 0x000000AF System.Collections.IEnumerator ExitGames.Client.Photon.SocketWebTcp::ReceiveLoop()
 extern void SocketWebTcp_ReceiveLoop_m90563FF779A5086910ED50CB76056C34EF4DD4CE (void);
-// 0x000000AE System.Void ExitGames.Client.Photon.SocketWebTcp::<Connect>b__5_0(ExitGames.Client.Photon.DebugLevel,System.String)
+// 0x000000B0 System.Void ExitGames.Client.Photon.SocketWebTcp::<Connect>b__5_0(ExitGames.Client.Photon.DebugLevel,System.String)
 extern void SocketWebTcp_U3CConnectU3Eb__5_0_m59125F79F4F39FD99861A3A97B61AA851A7EE25D (void);
-// 0x000000AF System.Void ExitGames.Client.Photon.SocketWebTcp/MonoBehaviourExt::.ctor()
+// 0x000000B1 System.Void ExitGames.Client.Photon.SocketWebTcp/MonoBehaviourExt::.ctor()
 extern void MonoBehaviourExt__ctor_m4EF4DAD19A26800A993A414354D608E260EE8F70 (void);
-// 0x000000B0 System.Void ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::.ctor(System.Int32)
+// 0x000000B2 System.Void ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::.ctor(System.Int32)
 extern void U3CReceiveLoopU3Ed__13__ctor_m74DA61D26E784B8B747BCC45EA73EE44379F24B7 (void);
-// 0x000000B1 System.Void ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.IDisposable.Dispose()
+// 0x000000B3 System.Void ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.IDisposable.Dispose()
 extern void U3CReceiveLoopU3Ed__13_System_IDisposable_Dispose_m5387AF469EC5792ADF109F6C367180416C4101E9 (void);
-// 0x000000B2 System.Boolean ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::MoveNext()
+// 0x000000B4 System.Boolean ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::MoveNext()
 extern void U3CReceiveLoopU3Ed__13_MoveNext_m7BC468918DFCAC052E3BF83F1666AA5F689563BA (void);
-// 0x000000B3 System.Object ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+// 0x000000B5 System.Object ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
 extern void U3CReceiveLoopU3Ed__13_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m8560F5B6E1E06970A5145F628C3C918B2619AF32 (void);
-// 0x000000B4 System.Void ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.Collections.IEnumerator.Reset()
+// 0x000000B6 System.Void ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.Collections.IEnumerator.Reset()
 extern void U3CReceiveLoopU3Ed__13_System_Collections_IEnumerator_Reset_m04F24633404B12C0BB32BD8F87B781BFEF58669C (void);
-// 0x000000B5 System.Object ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.Collections.IEnumerator.get_Current()
+// 0x000000B7 System.Object ExitGames.Client.Photon.SocketWebTcp/<ReceiveLoop>d__13::System.Collections.IEnumerator.get_Current()
 extern void U3CReceiveLoopU3Ed__13_System_Collections_IEnumerator_get_Current_m5BBACC4CDE496B214E8516274BE8327CF6BCD870 (void);
-// 0x000000B6 System.Action`2<ExitGames.Client.Photon.DebugLevel,System.String> ExitGames.Client.Photon.WebSocket::get_DebugReturn()
+// 0x000000B8 System.Action`2<ExitGames.Client.Photon.DebugLevel,System.String> ExitGames.Client.Photon.WebSocket::get_DebugReturn()
 extern void WebSocket_get_DebugReturn_mCAC308CC7D52756DB64F5D153BD31AE45D290687 (void);
-// 0x000000B7 System.Void ExitGames.Client.Photon.WebSocket::set_DebugReturn(System.Action`2<ExitGames.Client.Photon.DebugLevel,System.String>)
+// 0x000000B9 System.Void ExitGames.Client.Photon.WebSocket::set_DebugReturn(System.Action`2<ExitGames.Client.Photon.DebugLevel,System.String>)
 extern void WebSocket_set_DebugReturn_mFFCA1E6269F716339404AB19D621E772B29921A5 (void);
-// 0x000000B8 System.Void ExitGames.Client.Photon.WebSocket::.ctor(System.Uri,System.String,System.String)
+// 0x000000BA System.Void ExitGames.Client.Photon.WebSocket::.ctor(System.Uri,System.String,System.String)
 extern void WebSocket__ctor_mE4721C4DB1E53D894243B79FFCC090A6C904F70C (void);
-// 0x000000B9 System.String ExitGames.Client.Photon.WebSocket::get_ProxyAddress()
+// 0x000000BB System.String ExitGames.Client.Photon.WebSocket::get_ProxyAddress()
 extern void WebSocket_get_ProxyAddress_m976C6BF04E3DA660EB42D333503BAC4867B9C0C3 (void);
-// 0x000000BA System.Void ExitGames.Client.Photon.WebSocket::SendString(System.String)
+// 0x000000BC System.Void ExitGames.Client.Photon.WebSocket::SendString(System.String)
 extern void WebSocket_SendString_m5293C75E8F89CE379549AA67604AE1E8091D1D8B (void);
-// 0x000000BB System.String ExitGames.Client.Photon.WebSocket::RecvString()
+// 0x000000BD System.String ExitGames.Client.Photon.WebSocket::RecvString()
 extern void WebSocket_RecvString_m6CBBF6BCD10468351A137ED729B1EAE77077C600 (void);
-// 0x000000BC System.Int32 ExitGames.Client.Photon.WebSocket::SocketCreate(System.String,System.String)
+// 0x000000BE System.Int32 ExitGames.Client.Photon.WebSocket::SocketCreate(System.String,System.String)
 extern void WebSocket_SocketCreate_mC8EC9EF77ABC16929D4FE49B18CEEA77D568A102 (void);
-// 0x000000BD System.Int32 ExitGames.Client.Photon.WebSocket::SocketState(System.Int32)
+// 0x000000BF System.Int32 ExitGames.Client.Photon.WebSocket::SocketState(System.Int32)
 extern void WebSocket_SocketState_m5DF899791780A85B8662B678886B936876755A6E (void);
-// 0x000000BE System.Void ExitGames.Client.Photon.WebSocket::SocketSend(System.Int32,System.Byte[],System.Int32)
+// 0x000000C0 System.Void ExitGames.Client.Photon.WebSocket::SocketSend(System.Int32,System.Byte[],System.Int32)
 extern void WebSocket_SocketSend_mAD6DB1889E877BA6B7508A7E372AE425C7EA668F (void);
-// 0x000000BF System.Void ExitGames.Client.Photon.WebSocket::SocketRecv(System.Int32,System.Byte[],System.Int32)
+// 0x000000C1 System.Void ExitGames.Client.Photon.WebSocket::SocketRecv(System.Int32,System.Byte[],System.Int32)
 extern void WebSocket_SocketRecv_m29C11E96CC093B381119F917893606F8034E74B2 (void);
-// 0x000000C0 System.Int32 ExitGames.Client.Photon.WebSocket::SocketRecvLength(System.Int32)
+// 0x000000C2 System.Int32 ExitGames.Client.Photon.WebSocket::SocketRecvLength(System.Int32)
 extern void WebSocket_SocketRecvLength_mE481043205BFC37D948C0879B902A54F09D8F508 (void);
-// 0x000000C1 System.Void ExitGames.Client.Photon.WebSocket::SocketClose(System.Int32)
+// 0x000000C3 System.Void ExitGames.Client.Photon.WebSocket::SocketClose(System.Int32)
 extern void WebSocket_SocketClose_mF869929D2C713487E6246536E970A3B93C410600 (void);
-// 0x000000C2 System.Int32 ExitGames.Client.Photon.WebSocket::SocketError(System.Int32,System.Byte[],System.Int32)
+// 0x000000C4 System.Int32 ExitGames.Client.Photon.WebSocket::SocketError(System.Int32,System.Byte[],System.Int32)
 extern void WebSocket_SocketError_m3488AD7573B5791C796C3BCE0CDAD848EF1D28E2 (void);
-// 0x000000C3 System.Void ExitGames.Client.Photon.WebSocket::Send(System.Byte[])
+// 0x000000C5 System.Void ExitGames.Client.Photon.WebSocket::Send(System.Byte[])
 extern void WebSocket_Send_mD4B1295B4D9D9687987116A6B7710773A31C7F2E (void);
-// 0x000000C4 System.Byte[] ExitGames.Client.Photon.WebSocket::Recv()
+// 0x000000C6 System.Byte[] ExitGames.Client.Photon.WebSocket::Recv()
 extern void WebSocket_Recv_mEACB78B578488E4E0ED5BF37886932D0C0C0AD43 (void);
-// 0x000000C5 System.Void ExitGames.Client.Photon.WebSocket::Connect()
+// 0x000000C7 System.Void ExitGames.Client.Photon.WebSocket::Connect()
 extern void WebSocket_Connect_m395E986EBB2985B29B7C9857DDC89315758F92E6 (void);
-// 0x000000C6 System.Void ExitGames.Client.Photon.WebSocket::Close()
+// 0x000000C8 System.Void ExitGames.Client.Photon.WebSocket::Close()
 extern void WebSocket_Close_mEBFAB80947385C48D84F5F6496E8BD49CCC540A5 (void);
-// 0x000000C7 System.Boolean ExitGames.Client.Photon.WebSocket::get_Connected()
+// 0x000000C9 System.Boolean ExitGames.Client.Photon.WebSocket::get_Connected()
 extern void WebSocket_get_Connected_mBB8227012F2C636EFC7D63313F1DDB7D31EA2417 (void);
-// 0x000000C8 System.String ExitGames.Client.Photon.WebSocket::get_Error()
+// 0x000000CA System.String ExitGames.Client.Photon.WebSocket::get_Error()
 extern void WebSocket_get_Error_m57258F3B04019AD3E9A4FCA3B22F6D036232A588 (void);
-static Il2CppMethodPointer s_methodPointers[200] = 
+static Il2CppMethodPointer s_methodPointers[202] = 
 {
 	Scroll_Start_mF19F7A27C97F5126E5E60259C66350F3DEAEB5E7,
 	Scroll_Update_m4DB217D38193A67EAEC02D8700AE406DB5A2CBB7,
@@ -559,6 +563,8 @@ static Il2CppMethodPointer s_methodPointers[200] =
 	Troop_findPath_m6BCAF5BB87B5DBB0B1BE870557C0602014775D5A,
 	Troop_move_mD1477C16AD3FDBDA036EF7BA2ACFAF7382F28CDF,
 	Troop_moveUpdate_RPC_mD6012F7861A9EA2535E8542E1E2F44D14AD92BB9,
+	Troop_updateTileUnit_mC0A0F88C42B14BDCB38BF7B129B7137AFA9FDF7C,
+	Troop_removeTileUnit_m33BFB647D96107D231C85886059FFAB268F824D1,
 	Troop_takeDamage_m3689130DDD8C9569BE0BCBC6711E002DCC7099C6,
 	Troop_setHealthBar_m95FB60C7799283B4B973529F65685A3A860E7FED,
 	Troop_checkDeath_mC077812598636FF824A7D4FEAEC24CE457BCD1E7,
@@ -609,7 +615,7 @@ static Il2CppMethodPointer s_methodPointers[200] =
 	WebSocket_get_Connected_mBB8227012F2C636EFC7D63313F1DDB7D31EA2417,
 	WebSocket_get_Error_m57258F3B04019AD3E9A4FCA3B22F6D036232A588,
 };
-static const int32_t s_InvokerIndices[200] = 
+static const int32_t s_InvokerIndices[202] = 
 {
 	4069,
 	4069,
@@ -762,6 +768,8 @@ static const int32_t s_InvokerIndices[200] =
 	3312,
 	4069,
 	1736,
+	4069,
+	4069,
 	3294,
 	3245,
 	4069,
@@ -816,7 +824,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	200,
+	202,
 	s_methodPointers,
 	0,
 	NULL,

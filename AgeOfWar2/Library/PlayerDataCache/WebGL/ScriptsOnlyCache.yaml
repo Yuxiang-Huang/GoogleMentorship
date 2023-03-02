@@ -19,6 +19,8 @@ ScriptsOnlyBuild:
     - SpawnManager
     - Tile
     - TileManager
+    ParrelSync.dll:
+    - ParrelSync.ClonesManagerWindow
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
@@ -384,7 +386,7 @@ ScriptsOnlyBuild:
     className: Building
   - hash:
       serializedVersion: 2
-      Hash: bf2dafe9ec36290ffaf4627678936e1b
+      Hash: 7b77d24dc77b79f114481130ded9ba5f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LongRange
@@ -864,7 +866,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: bf2dafe9ec36290ffaf4627678936e1b
+      Hash: 7b77d24dc77b79f114481130ded9ba5f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Troop
@@ -996,7 +998,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: bf2dafe9ec36290ffaf4627678936e1b
+      Hash: 7b77d24dc77b79f114481130ded9ba5f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Melee
@@ -1448,4 +1450,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version2
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version3
