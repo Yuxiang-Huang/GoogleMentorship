@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [Header("Spawn")]
     public bool[,] canSpawn;
-    public Vector2[,] canSpawnDirection;
+    public Vector2[,] spawnDirection;
     public string toSpawnType;
     public string toSpawn;
     public GameObject toSpawnImage;
@@ -178,13 +178,20 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y);
 
-                //only update canSpawn if my castle
+                //only if my castle
                 if (PV.IsMine)
                 {
+                    //update canSpawn
                     canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-                    canSpawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+                    spawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
                     myCastle.GetComponent<Building>().updateCanSpawn();
                     allBuildings.Add(myCastle);
+
+                    //update territory
+                    foreach (Tile neighbor in highlighted.neighbors)
+                    {
+                        neighbor.updateStatus(id, null);
+                    }
                 }
 
                 mode = "move";
@@ -312,7 +319,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                     id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                    canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age);
+                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age);
 
                 allTroops.Add(newUnit.GetComponent<Troop>());
             }
