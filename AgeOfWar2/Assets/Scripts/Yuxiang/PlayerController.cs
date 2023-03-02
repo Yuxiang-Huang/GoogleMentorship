@@ -170,9 +170,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //spawn castle
                 Vector2Int startingTile = highlighted.pos;
 
-                Building myBase = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
+                MainBase myBase = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/MainBase"),
                     TileManager.instance.getWorldPosition(highlighted), Quaternion.identity).
-                    GetComponent<Building>();
+                    GetComponent<MainBase>();
 
                 myBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y, age);
 
@@ -182,11 +182,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 myBase.GetComponent<Building>().updateCanSpawn();
                 allBuildings.Add(myBase);
 
-                //update territory
-                foreach (Tile neighbor in highlighted.neighbors)
-                {
-                    neighbor.updateStatus(id, null);
-                }
+                myBase.PV.RPC(nameof(myBase.updateTerritory), RpcTarget.All);
 
                 mode = "select";
             }
