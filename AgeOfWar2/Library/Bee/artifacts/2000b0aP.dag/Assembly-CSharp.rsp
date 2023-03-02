@@ -312,6 +312,7 @@
 "Assets/Scripts/Yuxiang/PlayerController.cs"
 "Assets/Scripts/Yuxiang/Unit/Building.cs"
 "Assets/Scripts/Yuxiang/Unit/LongRange.cs"
+"Assets/Scripts/Yuxiang/Unit/MainBase.cs"
 "Assets/Scripts/Yuxiang/Unit/Melee.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop.cs"
 "Assets/Scripts/Yuxiang/Unit/Unit.cs"
