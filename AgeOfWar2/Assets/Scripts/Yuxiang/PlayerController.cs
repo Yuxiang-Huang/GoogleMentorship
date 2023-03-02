@@ -317,8 +317,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     if (highlighted != null)
                     {
-                        //can spawn on territory tiles and no units is going to be spawn here
-                        if (territory.Contains(highlighted) && !spawnLocations.Contains(highlighted.pos))
+                        //can spawn on territory tiles and no units here and no units is going to be spawn here
+                        if (territory.Contains(highlighted) && highlighted.unit == null
+                            && !spawnLocations.Contains(highlighted.pos))
                         {
                             highlighted.highlight(true);
                         }

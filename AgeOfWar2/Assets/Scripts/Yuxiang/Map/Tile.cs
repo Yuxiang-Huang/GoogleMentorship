@@ -55,7 +55,7 @@ public class Tile : MonoBehaviour
             //remove from other player's land
             if (ownerID != -1)
             {
-                GameManager.instance.allPlayers[ownerID].territory.Remove(this);
+                GameManager.instance.allPlayersOriginal[ownerID].territory.Remove(this);
 
                 //update dark if mine
                 if (ownerID == PlayerController.instance.id)
@@ -71,7 +71,8 @@ public class Tile : MonoBehaviour
 
             //add this land to new owner's territory
             ownerID = newOwnerID;
-            GameManager.instance.allPlayers[ownerID].territory.Add(this);
+
+            GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
         }
         this.unit = newUnit;
 

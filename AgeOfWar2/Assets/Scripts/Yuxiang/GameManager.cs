@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public SortedDictionary<int, PlayerController> playerList = new SortedDictionary<int, PlayerController>();
 
+    public List<PlayerController> allPlayersOriginal;
     public List<PlayerController> allPlayers;
 
     [SerializeField] GameObject turnBtn;
@@ -93,9 +94,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             //sorted list depending on actor number
             foreach (KeyValuePair<int, PlayerController> kvp in playerList)
-            { 
-                allPlayers.Add(kvp.Value);
+            {
+                allPlayersOriginal.Add(kvp.Value);
             }
+
+            allPlayers = new List<PlayerController>(allPlayersOriginal);
         }
     }
 
@@ -124,6 +127,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         playerMoved = 0;
 
+        PlayerController.instance.mode = "select";
+
         //timer
         timeCoroutine = StartCoroutine(nameof(timer));
 
@@ -137,6 +142,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void endTurn()
     {
+        PlayerController.instance.mode = "";
+
         if (timeCoroutine != null)
         {
             StopCoroutine(timeCoroutine);
