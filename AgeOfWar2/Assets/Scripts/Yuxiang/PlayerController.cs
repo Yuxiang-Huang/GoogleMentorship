@@ -25,10 +25,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public string mode;
 
     public List<Troop> allTroops = new List<Troop>();
-    public HashSet<Building> allBuildings = new HashSet<Building>();
+    public List<Building> allBuildings = new List<Building>();
     public HashSet<Tile> territory = new HashSet<Tile>();
-
-    public Building myCastle;
 
     [Header("Spawn")]
     public bool[,] canSpawn;
@@ -172,26 +170,22 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //spawn castle
                 Vector2Int startingTile = highlighted.pos;
 
-                myCastle = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
+                Building myBase = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/Castle"),
                     TileManager.instance.getWorldPosition(highlighted), Quaternion.identity).
                     GetComponent<Building>();
 
-                myCastle.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y);
+                myBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y, age);
 
-                //only if my castle
-                if (PV.IsMine)
+                //update canSpawn
+                canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+                spawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+                myBase.GetComponent<Building>().updateCanSpawn();
+                allBuildings.Add(myBase);
+
+                //update territory
+                foreach (Tile neighbor in highlighted.neighbors)
                 {
-                    //update canSpawn
-                    canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-                    spawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-                    myCastle.GetComponent<Building>().updateCanSpawn();
-                    allBuildings.Add(myCastle);
-
-                    //update territory
-                    foreach (Tile neighbor in highlighted.neighbors)
-                    {
-                        neighbor.updateStatus(id, null);
-                    }
+                    neighbor.updateStatus(id, null);
                 }
 
                 mode = "move";
@@ -352,16 +346,21 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 allTroops.Add(newUnit.GetComponent<Troop>());
             }
+            else if (newUnit.CompareTag("Building"))
+            {
+                newUnit.GetComponent<Building>().PV.RPC("Init", RpcTarget.All,
+                    id, info.spawnTile.pos.x, info.spawnTile.pos.y, age);
+                newUnit.GetComponent<Building>().updateCanSpawn();
+
+                allBuildings.Add(newUnit.GetComponent<Building>());
+            }
 
             Destroy(info.spawnImage);
-
-            spawnLocations.Remove(info.spawnTile.pos);
-
-            //building code here 
         }
 
         //clear list
         spawnList = new List<SpawnInfo>();
+        spawnLocations = new HashSet<Vector2>();
 
         if (PhotonNetwork.OfflineMode)
         {

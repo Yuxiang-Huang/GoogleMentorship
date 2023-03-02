@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEditor;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class Building : MonoBehaviourPunCallbacks, IUnit
 {
@@ -26,11 +27,14 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, int age)
     {
         ownerID = playerID;
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
+
+        //modify according to age
+        fullHealth *= (int)Mathf.Pow(2, age);
 
         health = fullHealth;
     }
@@ -43,6 +47,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
             if (neighbor.terrain == "land")
             {
                 GameManager.instance.allPlayers[ownerID].canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
+
                 GameManager.instance.allPlayers[ownerID].spawnDirection[neighbor.pos.x, neighbor.pos.y] =
                     TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile);
             }

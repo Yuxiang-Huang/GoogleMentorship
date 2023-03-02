@@ -34,8 +34,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
-
-        health = fullHealth;
     }
 
     [PunRPC]
