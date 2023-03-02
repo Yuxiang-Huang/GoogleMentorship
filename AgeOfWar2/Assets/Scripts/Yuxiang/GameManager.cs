@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance = this;
         PV = GetComponent<PhotonView>();
 
-        bool offlineMode = false;
+        bool offlineMode = true;
 
         //not able to access after game begins
         if (!offlineMode)
@@ -138,6 +138,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         playerProperties.Add("Spawned", false);
         playerProperties.Add("Attacked", false);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+
+        //reset movement;
+        foreach (Troop troop in PlayerController.instance.allTroops)
+        {
+            troop.moved = false;
+        }
     }
 
     public void endTurn()

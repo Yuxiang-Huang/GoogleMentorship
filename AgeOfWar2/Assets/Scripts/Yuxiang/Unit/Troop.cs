@@ -31,6 +31,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject arrowPrefab;
 
+    public bool moved;
+
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
@@ -104,30 +106,35 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
             foreach (Tile curTile in lastTile.neighbors)
             {
-                //not visited and land tile
+                //not visited and land tile 
                 if (!visited[curTile.pos.x, curTile.pos.y] && curTile.terrain == "land")
                 {
-                    visited[curTile.pos.x, curTile.pos.y] = true;
+                    //no team building
+                    if (curTile.unit == null || !curTile.unit.gameObject.CompareTag("Building") ||
+                        curTile.unit.ownerID != ownerID)
+                    { 
+                        visited[curTile.pos.x, curTile.pos.y] = true;
 
-                    //check this tile dist
-                    List<Tile> dup = new List<Tile>(cur);
-                    dup.Add(curTile);
+                        //check this tile dist
+                        List<Tile> dup = new List<Tile>(cur);
+                        dup.Add(curTile);
 
-                    float curDist = dist(target, curTile);
+                        float curDist = dist(target, curTile);
 
-                    if (curDist < 0.01)
-                    {
-                        reach = true;
-                        path = dup;
-                        minDist = curDist;
+                        if (curDist < 0.01)
+                        {
+                            reach = true;
+                            path = dup;
+                            minDist = curDist;
+                        }
+                        else if (curDist < minDist)
+                        {
+                            minDist = curDist;
+                            path = dup;
+                        }
+
+                        allPath.Enqueue(dup);
                     }
-                    else if (curDist < minDist)
-                    {
-                        minDist = curDist;
-                        path = dup;
-                    }
-
-                    allPath.Enqueue(dup);
                 }
             }
         }
@@ -159,6 +166,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public void move()
     {
+        //moved in this turn already
+        if (moved) return;
+
+        moved = true;
+
+        //destroy arrow
         if (arrow != null)
         {
             Destroy(arrow);
@@ -176,6 +189,26 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
                 PV.RPC(nameof(moveUpdate_RPC), RpcTarget.All, path[0].pos.x, path[0].pos.y);
 
                 path.RemoveAt(0);
+            }
+            //ask it to move first
+            else if (path[0].unit.gameObject.CompareTag("Troop"))
+            {
+                //leave space
+                PV.RPC(nameof(updateTileUnit), RpcTarget.All, (IUnit)null);
+
+                path[0].unit.gameObject.GetComponent<Troop>().move();
+
+                if (path[0].unit == null)
+                {
+                    PV.RPC(nameof(moveUpdate_RPC), RpcTarget.All, path[0].pos.x, path[0].pos.y);
+
+                    path.RemoveAt(0);
+                }
+                else
+                {
+                    //space reverse
+                    PV.RPC(nameof(updateTileUnit), RpcTarget.All, this);
+                }
             }
 
             //display arrow
@@ -206,6 +239,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         transform.position = TileManager.instance.getWorldPosition(tile);
 
         healthbar.gameObject.transform.position = transform.position + offset;
+    }
+
+    [PunRPC]
+    public void updateTileUnit(IUnit unit)
+    {
+        tile.unit = unit;
     }
 
     [PunRPC]
