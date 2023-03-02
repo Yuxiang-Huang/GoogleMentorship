@@ -215,8 +215,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void takeDamage(int incomingDamage)
     {
         health -= incomingDamage;
-
-        //health bar
         healthbar.value = health;
     }
 

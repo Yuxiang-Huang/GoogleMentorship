@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 5990717552439171017}
-  fullHealth: 1
+  fullHealth: 8
   tile: {fileID: 0}
 --- !u!114 &-3314618277700626794
 MonoBehaviour:

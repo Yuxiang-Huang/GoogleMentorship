@@ -83,11 +83,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public void takeDamage(int incomingDamage)
     {
         health -= incomingDamage;
-
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        healthbar.value = health;
     }
 
     [PunRPC]
@@ -96,6 +92,12 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         if (health <= 0)
         {
             tile.unit = null;
+
+            foreach (Tile neighbor in tile.neighbors)
+            {
+                neighbor.updateCanSpawn();
+            }
+
             Destroy(healthbar.gameObject);
             Destroy(this.gameObject);
         }

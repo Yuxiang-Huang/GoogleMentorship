@@ -131,4 +131,19 @@ public class Tile : MonoBehaviour
 
         dark.SetActive(hidden);
     }
+
+    public void updateCanSpawn()
+    {
+        foreach (Tile neighbor in neighbors)
+        {
+            //if any neighbor has my team's building
+            if (neighbor.unit != null && neighbor.unit.gameObject.CompareTag("Building") && neighbor.unit.ownerID == ownerID)
+            {
+                return;
+            }
+        }
+
+        //can't be spawn any more
+        PlayerController.instance.canSpawn[pos.x, pos.y] = false;
+    }
 }
