@@ -245,24 +245,54 @@ public class PlayerController : MonoBehaviourPunCallbacks
         else if (mode == "spawn")
         {
             //highlight spawnable tiles
-            if (highlighted != newHighlighted)
+
+            //for troops
+            if (toSpawnType == "Troop")
             {
-                if (highlighted != null) 
-                    highlighted.highlight(false);
-
-                highlighted = newHighlighted;
-
-                if (highlighted != null)
+                if (highlighted != newHighlighted)
                 {
-                    //can only spawn on spawnable tiles and no unit and terrain is land
-                    if (canSpawn[highlighted.pos.x, highlighted.pos.y] && highlighted.unit == null
-                        && highlighted.terrain == "land")
+                    if (highlighted != null)
+                        highlighted.highlight(false);
+
+                    highlighted = newHighlighted;
+
+                    if (highlighted != null)
                     {
-                        highlighted.highlight(true);
+                        //can only spawn on spawnable tiles and no unit and tile is still my territory
+                        //and no units is going to be spawn here
+                        if (canSpawn[highlighted.pos.x, highlighted.pos.y] && highlighted.unit == null
+                            && territory.Contains(highlighted) && !spawnLocations.Contains(highlighted.pos))
+                        {
+                            highlighted.highlight(true);
+                        }
+                        else
+                        {
+                            highlighted = null;
+                        }
                     }
-                    else
+                }
+            }
+            //for buildings
+            else if (toSpawnType == "Building")
+            {
+                if (highlighted != newHighlighted)
+                {
+                    if (highlighted != null)
+                        highlighted.highlight(false);
+
+                    highlighted = newHighlighted;
+
+                    if (highlighted != null)
                     {
-                        highlighted = null;
+                        //can spawn on territory tiles and no units is going to be spawn here
+                        if (territory.Contains(highlighted) && !spawnLocations.Contains(highlighted.pos))
+                        {
+                            highlighted.highlight(true);
+                        }
+                        else
+                        {
+                            highlighted = null;
+                        }
                     }
                 }
             }
@@ -270,9 +300,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //click to spawn
             if (Input.GetMouseButtonDown(0))
             {
-                //can't spawn in a tile where there is already a unit going to be spawned and enough gold
-                if (highlighted != null && !spawnLocations.Contains(highlighted.pos)
-                    && gold >= goldNeedToSpawn * (int)Mathf.Pow(2, age))
+                //there is a highlighted tile and enough gold
+                if (highlighted != null && gold >= goldNeedToSpawn * (int)Mathf.Pow(2, age))
                 {
                     //deduct gold
                     gold -= goldNeedToSpawn * (int) Mathf.Pow(2, age);
