@@ -404,7 +404,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
-            checkTroopDeath();
+            checkDeath();
         }
         else
         {
@@ -415,8 +415,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void checkTroopDeath()
+    public void checkDeath()
     {
+        //troops
         foreach (Troop troop in allTroops)
         {
             troop.PV.RPC(nameof(troop.checkDeath), RpcTarget.All);
@@ -430,9 +431,41 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
         }
 
+        //buildings
+        foreach (Building building in allBuildings)
+        {
+            building.PV.RPC(nameof(building.checkDeath), RpcTarget.All);
+        }
+
+        for (int i = allBuildings.Count - 1; i >= 0; i--)
+        {
+            if (allBuildings[i].health <= 0)
+            {
+                allBuildings.Remove(allBuildings[i]);
+            }
+            else
+            {
+                //update visibility of health bar
+                allBuildings[i].PV.RPC("updateVisibility", RpcTarget.All);
+            }
+        }
+
         if (PhotonNetwork.OfflineMode)
         {
             GameManager.instance.startTurn();
+        }
+    }
+
+    #endregion
+
+    #region Age
+
+    //called when age increase
+    public void updateBuldingHealth()
+    {
+        foreach (Building building in allBuildings)
+        {
+            building.PV.RPC(nameof(building.updateHealth), RpcTarget.All);
         }
     }
 

@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             //all players check dead troop
             foreach (PlayerController player in allPlayers)
             {
-                player.PV.RPC(nameof(player.checkTroopDeath), player.PV.Owner);
+                player.PV.RPC(nameof(player.checkDeath), player.PV.Owner);
             }
 
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
@@ -278,6 +278,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 ageAdvanceBtn.SetActive(false);
             }
+
+            //update building health
+            PlayerController.instance.updateBuldingHealth();
         }
     }
 

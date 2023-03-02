@@ -76,12 +76,12 @@ MonoBehaviour:
   id: -1
   mode: 
   allTroops: []
-  myCastle: {fileID: 0}
+  allBuildings: []
   toSpawnType: 
   toSpawn: 
   toSpawnImage: {fileID: 0}
   goldNeedToSpawn: 0
-  gold: 6
+  gold: 8
   age: 0
   goldNeedToAdvance: 32
   troopNum: 0
