@@ -367,6 +367,29 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     #region Turn
 
+    public void stop()
+    {
+        if (mode == "spawn")
+        {
+
+        }
+
+        else if (mode == "move")
+        {
+            playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            playerSelected = null;
+        }
+        else if (mode == "select")
+        {
+            if (highlighted != null)
+                highlighted.highlight(false);
+
+            highlighted = null;
+        }
+
+        mode = "";
+    }
+
     [PunRPC]
     public void spawn()
     {

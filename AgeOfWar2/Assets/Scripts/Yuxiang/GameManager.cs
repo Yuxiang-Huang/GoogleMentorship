@@ -148,7 +148,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void endTurn()
     {
-        PlayerController.instance.mode = "";
+        //stop action of player
+        PlayerController.instance.stop();
 
         if (timeCoroutine != null)
         {
