@@ -347,8 +347,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     //add to spawn list
                     spawnList.Add(new SpawnInfo(highlighted, toSpawn, spawnImage));
-
                     spawnLocations.Add(highlighted.pos);
+
+                    //reset to prevent double spawn
+                    highlighted = null;
                 }
                 else
                 {
