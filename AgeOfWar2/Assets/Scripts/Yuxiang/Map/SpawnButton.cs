@@ -9,12 +9,14 @@ public class SpawnButton : MonoBehaviour
 
     [SerializeField] string path;
 
+    [SerializeField] string type;
+
     [SerializeField] int goldNeedToSpawn;
 
     [SerializeField] GameObject spawnImage;
 
     public void spawn()
     {
-        SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage);
+        SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage, type);
     }
 }

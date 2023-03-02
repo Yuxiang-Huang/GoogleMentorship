@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [Header("Spawn")]
     public bool[,] canSpawn;
     public Vector2[,] canSpawnDirection;
+    public string toSpawnType;
     public string toSpawn;
     public GameObject toSpawnImage;
     public int goldNeedToSpawn;
@@ -275,7 +276,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     //add to spawn list
-                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, 1, spawnImage));
+                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, spawnImage));
 
                     spawnLocations.Add(highlighted.pos);
                 }
@@ -301,37 +302,30 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         GameManager.instance.updateGoldText();
 
-        for (int i = spawnList.Count - 1; i >= 0; i--)
+        foreach (SpawnInfo info in spawnList)
         {
-            SpawnInfo info = spawnList[i];
+            //spawn unit and initiate
+            GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
+            info.spawnTile.gameObject.transform.position, Quaternion.identity);
 
-            info.turn--;
-
-            //time to spawn
-            if (info.turn == 0)
+            if (newUnit.CompareTag("Troop"))
             {
-                //spawn unit and initiate
-                GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
-                info.spawnTile.gameObject.transform.position, Quaternion.identity);
+                newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
+                    id, info.spawnTile.pos.x, info.spawnTile.pos.y,
+                    canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age);
 
-                if (newUnit.CompareTag("Troop"))
-                {
-                    newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
-                        id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                        canSpawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age);
-
-                    allTroops.Add(newUnit.GetComponent<Troop>());
-                }
-
-                Destroy(info.spawnImage);
-
-                spawnList.Remove(info);
-
-                spawnLocations.Remove(info.spawnTile.pos);
+                allTroops.Add(newUnit.GetComponent<Troop>());
             }
+
+            Destroy(info.spawnImage);
+
+            spawnLocations.Remove(info.spawnTile.pos);
 
             //building code here 
         }
+
+        //clear list
+        spawnList = new List<SpawnInfo>();
 
         if (PhotonNetwork.OfflineMode)
         {

@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
         instance = this;
     }
 
-    public void spawn(Image image, string type, int goldNeedToSpawn, GameObject spawnImage)
+    public void spawn(Image image, string path, int goldNeedToSpawn, GameObject spawnImage, string type)
     {
         //image color transition
         if (lastImage != null)
@@ -32,8 +32,9 @@ public class SpawnManager : MonoBehaviour
 
         //give the path to the prefab
         PlayerController.instance.mode = "spawn";
-        PlayerController.instance.toSpawn = type;
+        PlayerController.instance.toSpawn = path;
         PlayerController.instance.toSpawnImage = spawnImage;
         PlayerController.instance.goldNeedToSpawn = goldNeedToSpawn;
+        PlayerController.instance.toSpawnType = type;
     }
 }
