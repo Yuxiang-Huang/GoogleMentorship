@@ -271,6 +271,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
                 playerSelected = null;
 
+                highlighted.highlight(false);
+                highlighted = null;
+
                 mode = "select";
             }
         }
@@ -394,7 +397,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public void spawn()
     {
         //income from territory and all buildings
-        gold += territory.Count + allBuildings.Count - 1;
+        gold += territory.Count + (allBuildings.Count - 1) * (int) Mathf.Pow(2, age);
 
         GameManager.instance.updateGoldText();
 
