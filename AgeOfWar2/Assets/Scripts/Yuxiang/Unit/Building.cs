@@ -45,7 +45,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         healthbar.gameObject.transform.SetParent(GameManager.instance.healthbarCanvas.gameObject.transform);
         healthbar.gameObject.transform.position = transform.position + offset;
 
-        healthbar.gameObject.SetActive(!tile.dark.activeSelf);
+        healthbar.gameObject.SetActive(false);
     }
 
     //can spawn troop on land tiles around building
@@ -64,12 +64,6 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void updateVisibility()
-    {
-        healthbar.gameObject.SetActive(!tile.dark.activeSelf);
-    }
-
-    [PunRPC]
     public void updateHealth()
     {
         //health double when age increase
@@ -77,6 +71,11 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         health *= 2;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
+    }
+
+    public void setHealthBar(bool status)
+    {
+        healthbar.gameObject.SetActive(status);
     }
 
     [PunRPC]

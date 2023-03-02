@@ -15,4 +15,6 @@ public interface IUnit
     GameObject gameObject { get; }
 
     public void takeDamage(int incomingDamage);
+
+    public void setHealthBar(bool status);
 }

@@ -188,7 +188,52 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     neighbor.updateStatus(id, null);
                 }
 
-                mode = "move";
+                mode = "select";
+            }
+        }
+        //none
+        else if (mode == "select")
+        {
+            //highlight any revealed
+            if (highlighted != newHighlighted)
+            {
+                if (highlighted != null)
+                {
+                    highlighted.highlight(false);
+
+                    if (highlighted.unit != null)
+                        highlighted.unit.setHealthBar(false);
+                }
+
+                highlighted = newHighlighted;
+
+                if (newHighlighted != null && !newHighlighted.dark.activeSelf)
+                    highlighted.highlight(true);
+            }
+
+            //show healthbar if there is a unit here
+            if (highlighted != null && highlighted.unit != null)
+            {
+                highlighted.unit.setHealthBar(true);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                //select player
+ 
+                //if a tile is highlighted, a unit is on the tile, it's my unit, and it's a movable unit
+                if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
+                    highlighted.GetComponent<Tile>().unit.ownerID == id &&
+                    highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
+                {
+                    highlighted.unit.setHealthBar(false);
+
+                    //select unit on the tile
+                    playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
+                    playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
+
+                    mode = "move";
+                }
             }
         }
         //move
@@ -208,31 +253,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             if (Input.GetMouseButtonDown(0))
             {
-                //select player
-                if (playerSelected == null)
-                {
-                    //if a tile is highlighted, a unit is on the tile, it's my unit, and it's a movable unit
-                    if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
-                        highlighted.GetComponent<Tile>().unit.ownerID == id &&
-                        highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
-                    {
-                        //select unit on the tile
-                        playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
-                        playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
-                    }
-                }
                 //findPath
-                else
+                if (highlighted != null)
                 {
-                    if (highlighted != null)
-                    {
-                        playerSelected.findPath(highlighted.GetComponent<Tile>());
-                    }
-
-                    //deselect
-                    playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-                    playerSelected = null;
+                    playerSelected.findPath(highlighted.GetComponent<Tile>());
                 }
+
+                //deselect
+                playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                playerSelected = null;
+
+                mode = "select";
             }
         }
         //spawn
@@ -313,7 +344,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 else
                 {
                     //only change mode when didn't spawn correctly
-                    mode = "move";
+                    mode = "select";
 
                     //clear selection
                     SpawnManager.instance.lastImage.GetComponent<Image>().color = Color.white;
@@ -442,11 +473,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (allBuildings[i].health <= 0)
             {
                 allBuildings.Remove(allBuildings[i]);
-            }
-            else
-            {
-                //update visibility of health bar
-                allBuildings[i].PV.RPC("updateVisibility", RpcTarget.All);
             }
         }
 
