@@ -132,12 +132,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (!PV.IsMine) return;
 
-        //testing purpose
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            spawn();
-        }
-
         Tile newHighlighted = null;
 
         //tile at mousePosition
