@@ -14,6 +14,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int health { get; set; }
 
+    [SerializeField] int ageFactor = 4;
+
     [Header("Health")]
     public int fullHealth;
     public int damage;
@@ -48,8 +50,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         direction = startDirection;
 
         //modify according to age
-        fullHealth *= (int) Mathf.Pow(2, age);
-        damage *= (int) Mathf.Pow(2, age);
+        fullHealth *= (int) Mathf.Pow(ageFactor, age);
+        damage *= (int) Mathf.Pow(ageFactor, age);
 
         //health
         health = fullHealth;
@@ -238,6 +240,16 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         transform.position = TileManager.instance.getWorldPosition(tile);
 
         healthbar.gameObject.transform.position = transform.position + offset;
+    }
+
+    [PunRPC]
+    public void updateHealth()
+    {
+        //health double when age increase
+        fullHealth *= ageFactor;
+        health *= ageFactor;
+        healthbar.maxValue = fullHealth;
+        healthbar.value = health;
     }
 
     [PunRPC]

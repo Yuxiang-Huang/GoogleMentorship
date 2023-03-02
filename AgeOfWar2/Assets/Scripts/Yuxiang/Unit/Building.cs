@@ -23,6 +23,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
     Vector3 offset = new Vector3(0, 0.5f, 0);
 
+    [SerializeField] int ageFactor = 4;
+
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
@@ -36,7 +38,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         tile.updateStatus(ownerID, this);
 
         //modify according to age
-        fullHealth *= (int)Mathf.Pow(2, age);
+        fullHealth *= (int)Mathf.Pow(ageFactor, age);
 
         //health
         health = fullHealth;
@@ -67,8 +69,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public void updateHealth()
     {
         //health double when age increase
-        fullHealth *= 2;
-        health *= 2;
+        fullHealth *= ageFactor;
+        health *= ageFactor;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
     }

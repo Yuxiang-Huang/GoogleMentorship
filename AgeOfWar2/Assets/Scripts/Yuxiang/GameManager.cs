@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance = this;
         PV = GetComponent<PhotonView>();
 
-        bool offlineMode = false;
+        bool offlineMode = true;
 
         //not able to access after game begins
         if (!offlineMode)
@@ -293,7 +293,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
 
             //update building health
-            PlayerController.instance.updateBuldingHealth();
+            PlayerController.instance.updateExistingUnits();
         }
     }
 

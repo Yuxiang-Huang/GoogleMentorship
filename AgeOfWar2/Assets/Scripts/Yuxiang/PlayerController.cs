@@ -371,7 +371,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public void spawn()
     {
         //income from territory and all buildings
-        gold += (territory.Count + allBuildings.Count - 1) * (int) Mathf.Pow(2, age);
+        gold += territory.Count + allBuildings.Count - 1;
 
         GameManager.instance.updateGoldText();
 
@@ -499,11 +499,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region Age
 
     //called when age increase
-    public void updateBuldingHealth()
+    public void updateExistingUnits()
     {
         foreach (Building building in allBuildings)
         {
             building.PV.RPC(nameof(building.updateHealth), RpcTarget.All);
+        }
+
+        foreach (Troop troop in allTroops)
+        {
+            troop.PV.RPC(nameof(troop.updateHealth), RpcTarget.All);
         }
     }
 
