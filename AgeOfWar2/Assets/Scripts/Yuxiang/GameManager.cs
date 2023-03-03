@@ -20,22 +20,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     public List<PlayerController> allPlayersOriginal;
     public List<PlayerController> allPlayers;
 
-    [SerializeField] GameObject turnBtn;
-
-    [SerializeField] GameObject ageAdvanceBtn;
-
     [SerializeField] int playerMoved;
-
 
     [SerializeField] TextMeshProUGUI goldText;
 
-    [SerializeField] Coroutine timeCoroutine;
-
-    [SerializeField] TextMeshProUGUI timerText;
-
     public Canvas healthbarCanvas;
 
-    [Header("Age")]    
+    [Header("Turn")]
+    [SerializeField] GameObject turnBtn;
+    [SerializeField] Coroutine timeCoroutine;
+    [SerializeField] TextMeshProUGUI timerText;
+
+    [Header("Age")]
+    [SerializeField] List<string> ageNameList;
+    [SerializeField] GameObject ageAdvanceBtn;
     [SerializeField] TextMeshProUGUI ageText;
     [SerializeField] TextMeshProUGUI goldNeedToAdvanceText;
 
@@ -282,9 +280,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             //modify age
             PlayerController.instance.age++;
-            ageText.text = "Upgrade Age: " + PlayerController.instance.age;
+            ageText.text = ageNameList[PlayerController.instance.age - 1];
             PlayerController.instance.goldNeedToAdvance *= 2;
-            goldNeedToAdvanceText.text = PlayerController.instance.goldNeedToAdvance + " gold";
+            goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
             goldText.text = "Gold: " + PlayerController.instance.gold;
 
             //age limit
