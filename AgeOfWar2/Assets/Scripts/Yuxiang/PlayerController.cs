@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [Header("Gold")]
     public int gold;
-    public int age;
+    public int age = 1;
     public int goldNeedToAdvance;
 
     [Header("Turn")]
@@ -338,10 +338,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (Input.GetMouseButtonDown(0))
             {
                 //there is a highlighted tile and enough gold
-                if (highlighted != null && gold >= goldNeedToSpawn * (int)Mathf.Pow(2, age))
+                if (highlighted != null && gold >= goldNeedToSpawn * age)
                 {
                     //deduct gold
-                    gold -= goldNeedToSpawn * (int) Mathf.Pow(2, age);
+                    gold -= goldNeedToSpawn * age;
                     GameManager.instance.updateGoldText();
 
                     //spawn an image
@@ -397,7 +397,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public void spawn()
     {
         //income from territory and all buildings
-        gold += territory.Count + (allBuildings.Count - 1) * (int) Mathf.Pow(2, age);
+        gold += territory.Count + (allBuildings.Count - 1) * age;
 
         GameManager.instance.updateGoldText();
 
