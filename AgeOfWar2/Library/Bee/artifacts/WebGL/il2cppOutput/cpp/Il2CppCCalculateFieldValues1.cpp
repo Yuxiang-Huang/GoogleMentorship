@@ -402,6 +402,8 @@ struct List_1_t200118F3BAA96EE542F0FC561BA520560BD1A6C7;
 struct List_1_t6F972EAFC64258DD491584080B232EC12BE33581;
 // System.Collections.Generic.List`1<UnityEngine.Rigidbody2D>
 struct List_1_tCD5F926D25FC8BFAF39E4BE6F879C1FA11501C76;
+// System.Collections.Generic.List`1<SpawnButton>
+struct List_1_tB53CBC2F98591E4BCADF1068DD5A5D3213B9E4BF;
 // System.Collections.Generic.List`1<SpawnInfo>
 struct List_1_t4C38545F40ECAC62D72CD2169C0637A6C4176301;
 // System.Collections.Generic.List`1<UnityEngine.TextCore.Text.SpriteAsset>
@@ -15562,6 +15564,8 @@ struct SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361  : public MonoBehav
 	int32_t ___goldNeedToSpawn_7;
 	// UnityEngine.GameObject SpawnButton::spawnImage
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___spawnImage_8;
+	// TMPro.TextMeshProUGUI SpawnButton::costText
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___costText_9;
 };
 
 // SpawnManager
@@ -15573,6 +15577,8 @@ struct SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC  : public MonoBeha
 	Image_tBC1D03F63BF71132E9A5E472B8742F172A011E7E* ___lastImage_6;
 	// UnityEngine.GameObject SpawnManager::testObject
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___testObject_7;
+	// System.Collections.Generic.List`1<SpawnButton> SpawnManager::spawnInfoList
+	List_1_tB53CBC2F98591E4BCADF1068DD5A5D3213B9E4BF* ___spawnInfoList_8;
 };
 
 // Photon.Pun.UtilityScripts.StatesGui
@@ -16770,18 +16776,20 @@ struct PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95  : public Mono
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___toSpawnImage_18;
 	// System.Int32 PlayerController::goldNeedToSpawn
 	int32_t ___goldNeedToSpawn_19;
+	// UnityEngine.UI.Image PlayerController::curSpawnImage
+	Image_tBC1D03F63BF71132E9A5E472B8742F172A011E7E* ___curSpawnImage_20;
 	// System.Collections.Generic.List`1<SpawnInfo> PlayerController::spawnList
-	List_1_t4C38545F40ECAC62D72CD2169C0637A6C4176301* ___spawnList_20;
+	List_1_t4C38545F40ECAC62D72CD2169C0637A6C4176301* ___spawnList_21;
 	// System.Collections.Generic.HashSet`1<UnityEngine.Vector2> PlayerController::spawnLocations
-	HashSet_1_t2F0E1C2709E331559F34589801FA4F8364A1EAFD* ___spawnLocations_21;
+	HashSet_1_t2F0E1C2709E331559F34589801FA4F8364A1EAFD* ___spawnLocations_22;
 	// System.Int32 PlayerController::gold
-	int32_t ___gold_22;
+	int32_t ___gold_23;
 	// System.Int32 PlayerController::age
-	int32_t ___age_23;
+	int32_t ___age_24;
 	// System.Int32 PlayerController::goldNeedToAdvance
-	int32_t ___goldNeedToAdvance_24;
+	int32_t ___goldNeedToAdvance_25;
 	// System.Int32 PlayerController::troopNum
-	int32_t ___troopNum_25;
+	int32_t ___troopNum_26;
 };
 
 // PlayerListItem
@@ -26953,24 +26961,24 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4564[5] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4565[14] = 
 {
 	static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___PV_6)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___playerList_7)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___allPlayersOriginal_8)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___allPlayers_9)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___turnBtn_10)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___ageAdvanceBtn_11)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___playerMoved_12)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___goldText_13)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___timeCoroutine_14)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___timerText_15)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___healthbarCanvas_16)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___ageText_17)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___goldNeedToAdvanceText_18)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4566[5] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4566[6] = 
 {
-	static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___image_4)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___path_5)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___type_6)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___goldNeedToSpawn_7)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___spawnImage_8)),};
+	static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___image_4)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___path_5)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___type_6)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___goldNeedToSpawn_7)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___spawnImage_8)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___costText_9)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4567[3] = 
 {
 	static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnTile_0)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___unitName_1)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnImage_2)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4568[4] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4568[5] = 
 {
-	static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___clubMan_4)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___lastImage_6)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___testObject_7)),};
+	static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___clubMan_4)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___lastImage_6)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___testObject_7)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___spawnInfoList_8)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4569[10] = 
 {
 	static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___pos_4)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___neighbors_5)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___neighbors2_6)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___unit_7)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___terrain_8)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___ownerID_9)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___highlightTile_10)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___dark_11)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___lastColor_12)),static_cast<int32_t>(offsetof(Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64, ___ownerColor_13)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4570[8] = 
 {
 	static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___PV_6)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___tiles_7)),0,static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___landTilePrefab_9)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___waterTilePrefab_10)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___randomVals_11)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___usedVals_12)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4571[21] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4571[22] = 
 {
-	static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___PV_5)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_StaticFields, ___instance_6)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___id_7)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___highlighted_8)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___playerSelected_9)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___mode_10)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allTroops_11)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allBuildings_12)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___territory_13)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___canSpawn_14)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnDirection_15)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnType_16)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawn_17)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnImage_18)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToSpawn_19)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnList_20)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnLocations_21)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___gold_22)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___age_23)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToAdvance_24)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___troopNum_25)),};
+	static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___PV_5)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_StaticFields, ___instance_6)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___id_7)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___highlighted_8)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___playerSelected_9)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___mode_10)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allTroops_11)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allBuildings_12)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___territory_13)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___canSpawn_14)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnDirection_15)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnType_16)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawn_17)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnImage_18)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToSpawn_19)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___curSpawnImage_20)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnList_21)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnLocations_22)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___gold_23)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___age_24)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToAdvance_25)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___troopNum_26)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4572[8] = 
 {
 	static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CPVU3Ek__BackingField_5)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3ChealthU3Ek__BackingField_6)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___healthbar_7)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___fullHealth_8)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CownerIDU3Ek__BackingField_9)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___tile_10)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___offset_11)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___ageFactor_12)),};

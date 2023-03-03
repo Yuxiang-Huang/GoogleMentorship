@@ -710,7 +710,7 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: a1794dacd3c1177180698320ac7ec873
+      Hash: 69bebfe0ce1753a03cdad4666051b1f5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnManager
@@ -1394,7 +1394,7 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
-      Hash: 890e362454c82c3dada9e696f371bbe1
+      Hash: 981562cff4f8fd33155680e8390290c0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnButton
@@ -1406,7 +1406,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: fd1694ef0d16d8ffa01696fa06213e8a
+      Hash: 74a2cede0509046787231c8f7a922f57
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1450,4 +1450,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version4
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version5
