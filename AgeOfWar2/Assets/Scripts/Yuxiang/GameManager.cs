@@ -22,21 +22,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] int playerMoved;
 
-    [SerializeField] TextMeshProUGUI goldText;
-
-    public Canvas healthbarCanvas;
-
-    [Header("Turn")]
-    [SerializeField] GameObject turnBtn;
-    [SerializeField] Coroutine timeCoroutine;
-    [SerializeField] TextMeshProUGUI timerText;
-
-    [Header("Age")]
-    [SerializeField] List<string> ageNameList;
-    [SerializeField] GameObject ageAdvanceBtn;
-    [SerializeField] TextMeshProUGUI ageText;
-    [SerializeField] TextMeshProUGUI goldNeedToAdvanceText;
-
     private void Awake()
     {
         instance = this;
@@ -121,14 +106,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void startTurn()
     {
-        turnBtn.SetActive(true);
-
         playerMoved = 0;
 
         PlayerController.instance.mode = "select";
 
-        //timer
-        timeCoroutine = StartCoroutine(nameof(timer));
+        UIManager.instance.startTurn();
 
         //reset all vars
         Hashtable playerProperties = new Hashtable();
@@ -149,14 +131,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         //stop action of player
         PlayerController.instance.stop();
 
-        if (timeCoroutine != null)
-        {
-            StopCoroutine(timeCoroutine);
-        }
-
-        timerText.text = "Waiting for opponents...";
-
-        turnBtn.SetActive(false);
+        UIManager.instance.endTurn();
 
         if (PhotonNetwork.OfflineMode)
         {
@@ -171,20 +146,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    IEnumerator timer()
-    {
-        int time = 10 * (PlayerController.instance.age + 1);
-
-        for (int i = 0; i < time; i++)
-        {
-            timerText.text = "Time Left: " + (time - i) + " seconds";
-
-            yield return new WaitForSeconds(1f);
-        }
-
-        endTurn();
-    }
-
     #endregion
 
     #region TakeTurn
@@ -195,7 +156,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("EndTurn") && (bool)p.CustomProperties["EndTurn"]))
         {
-            PV.RPC(nameof(updateTimeText), RpcTarget.All, "Take Turns...");
+            UIManager.instance.PV.RPC(nameof(UIManager.instance.updateTimeText), RpcTarget.All, "Take Turns...");
 
             //all players spawn
             foreach (PlayerController player in allPlayers)
@@ -253,46 +214,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
 
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
-        }
-    }
-
-    public void updateGoldText()
-    {
-        goldText.text = "Gold: " + PlayerController.instance.gold;
-    }
-
-    [PunRPC]
-    void updateTimeText(string message)
-    {
-        timerText.text = message;
-    }
-
-    #endregion
-
-    #region Age System
-
-    public void ageAdvance()
-    {
-        //if enough gold
-        if (PlayerController.instance.gold >= PlayerController.instance.goldNeedToAdvance)
-        {
-            PlayerController.instance.gold -= PlayerController.instance.goldNeedToAdvance;
-
-            //modify age
-            PlayerController.instance.age++;
-            ageText.text = ageNameList[PlayerController.instance.age - 1];
-            PlayerController.instance.goldNeedToAdvance *= 2;
-            goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
-            goldText.text = "Gold: " + PlayerController.instance.gold;
-
-            //age limit
-            if (PlayerController.instance.age >= 5)
-            {
-                ageAdvanceBtn.SetActive(false);
-            }
-
-            //update building health
-            PlayerController.instance.updateExistingUnits();
         }
     }
 

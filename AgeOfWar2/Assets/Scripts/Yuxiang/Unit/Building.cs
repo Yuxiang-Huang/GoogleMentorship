@@ -44,7 +44,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         health = fullHealth;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
-        healthbar.gameObject.transform.SetParent(GameManager.instance.healthbarCanvas.gameObject.transform);
+        healthbar.gameObject.transform.SetParent(UIManager.instance.healthbarCanvas.gameObject.transform);
         healthbar.gameObject.transform.position = transform.position + offset;
 
         healthbar.gameObject.SetActive(false);

@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 myBase.PV.RPC(nameof(myBase.updateTerritory), RpcTarget.All);
 
-                mode = "select";
+                GameManager.instance.endTurn();
             }
         }
         //none
@@ -343,7 +343,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 {
                     //deduct gold
                     gold -= goldNeedToSpawn * age;
-                    GameManager.instance.updateGoldText();
+                    UIManager.instance.updateGoldText();
 
                     //spawn an image
                     GameObject spawnImage = Instantiate(toSpawnImage,
@@ -400,7 +400,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //income from territory and all buildings
         gold += territory.Count + (allBuildings.Count - 1) * age;
 
-        GameManager.instance.updateGoldText();
+        UIManager.instance.updateGoldText();
 
         foreach (SpawnInfo info in spawnList)
         {
