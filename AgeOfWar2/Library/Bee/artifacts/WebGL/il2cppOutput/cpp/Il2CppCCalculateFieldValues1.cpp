@@ -16414,6 +16414,8 @@ struct Building_t950D5394E080624D7E96B158EF852EA16ADB3650  : public MonoBehaviou
 	Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* ___tile_10;
 	// UnityEngine.Vector3 Building::offset
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___offset_11;
+	// System.Int32 Building::ageFactor
+	int32_t ___ageFactor_12;
 };
 
 // UnityEngine.UI.Button
@@ -17176,28 +17178,30 @@ struct Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8  : public MonoBehaviourPu
 	int32_t ___U3CownerIDU3Ek__BackingField_6;
 	// System.Int32 Troop::<health>k__BackingField
 	int32_t ___U3ChealthU3Ek__BackingField_7;
+	// System.Int32 Troop::ageFactor
+	int32_t ___ageFactor_8;
 	// System.Int32 Troop::fullHealth
-	int32_t ___fullHealth_8;
+	int32_t ___fullHealth_9;
 	// System.Int32 Troop::damage
-	int32_t ___damage_9;
+	int32_t ___damage_10;
 	// UnityEngine.Vector2 Troop::direction
-	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___direction_10;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___direction_11;
 	// UnityEngine.Vector3 Troop::offset
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___offset_11;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___offset_12;
 	// UnityEngine.UI.Slider Troop::healthbar
-	Slider_t87EA570E3D6556CABF57456C2F3873FFD86E652F* ___healthbar_12;
+	Slider_t87EA570E3D6556CABF57456C2F3873FFD86E652F* ___healthbar_13;
 	// Tile Troop::tile
-	Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* ___tile_13;
+	Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* ___tile_14;
 	// Tile Troop::lastTarget
-	Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* ___lastTarget_14;
+	Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* ___lastTarget_15;
 	// System.Collections.Generic.List`1<Tile> Troop::path
-	List_1_tCBB1F8BBB7BC1D7430F9D6708B9E7B65A57CFEB3* ___path_15;
+	List_1_tCBB1F8BBB7BC1D7430F9D6708B9E7B65A57CFEB3* ___path_16;
 	// UnityEngine.GameObject Troop::arrow
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___arrow_16;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___arrow_17;
 	// UnityEngine.GameObject Troop::arrowPrefab
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___arrowPrefab_17;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___arrowPrefab_18;
 	// System.Boolean Troop::moved
-	bool ___moved_18;
+	bool ___moved_19;
 };
 
 // UnityEngine.UI.Image
@@ -26967,12 +26971,12 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4570[8] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4571[21] = 
 {
 	static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___PV_5)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_StaticFields, ___instance_6)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___id_7)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___highlighted_8)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___playerSelected_9)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___mode_10)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allTroops_11)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allBuildings_12)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___territory_13)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___canSpawn_14)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnDirection_15)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnType_16)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawn_17)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnImage_18)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToSpawn_19)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnList_20)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnLocations_21)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___gold_22)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___age_23)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToAdvance_24)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___troopNum_25)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4572[7] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4572[8] = 
 {
-	static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CPVU3Ek__BackingField_5)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3ChealthU3Ek__BackingField_6)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___healthbar_7)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___fullHealth_8)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CownerIDU3Ek__BackingField_9)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___tile_10)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___offset_11)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4576[14] = 
+	static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CPVU3Ek__BackingField_5)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3ChealthU3Ek__BackingField_6)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___healthbar_7)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___fullHealth_8)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CownerIDU3Ek__BackingField_9)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___tile_10)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___offset_11)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___ageFactor_12)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4576[15] = 
 {
-	static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___U3CPVU3Ek__BackingField_5)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___U3CownerIDU3Ek__BackingField_6)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___U3ChealthU3Ek__BackingField_7)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___fullHealth_8)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___damage_9)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___direction_10)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___offset_11)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___healthbar_12)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___tile_13)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___lastTarget_14)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___path_15)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___arrow_16)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___arrowPrefab_17)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___moved_18)),};
+	static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___U3CPVU3Ek__BackingField_5)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___U3CownerIDU3Ek__BackingField_6)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___U3ChealthU3Ek__BackingField_7)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___ageFactor_8)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___fullHealth_9)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___damage_10)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___direction_11)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___offset_12)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___healthbar_13)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___tile_14)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___lastTarget_15)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___path_16)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___arrow_17)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___arrowPrefab_18)),static_cast<int32_t>(offsetof(Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8, ___moved_19)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4578[1] = 
 {
 	static_cast<int32_t>(offsetof(WaitForRealSeconds_t4EBABED572F3C7700817247BE1D848E82C03FC8C, ____endTime_0)),};

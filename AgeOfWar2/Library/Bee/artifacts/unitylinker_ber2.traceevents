@@ -1,381 +1,367 @@
 { "pid": "host", "ph":"M", "name": "process_name", "args": {"name": "host"} },
 { "pid": "host", "ph":"M", "name": "process_sort_index", "args": {"sort_index": 0} },
 { "pid": "host", "tid": 1, "ph":"M", "name": "thread_name", "args": {"name": ""} },
-{ "pid": "host", "tid": 1,"ts": 1677731764356857,"dur": 2863324, "ph":"X", "name": "UnityLinker.exe"},
-{ "pid": "host", "tid": 1,"ts": 1677731764358044,"dur": 79407, "ph":"X", "name": "Step : Unity.Linker.Steps.SetupAndRegisterUnityEngineSteps"},
-{ "pid": "host", "tid": 1,"ts": 1677731764437489,"dur": 18015, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveUnityEngine"},
-{ "pid": "host", "tid": 1,"ts": 1677731764455995,"dur": 46429, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Temp/StagingArea/Data/Managed/MethodsToPreserve.xml"},
-{ "pid": "host", "tid": 1,"ts": 1677731764502436,"dur": 282092, "ph":"X", "name": "Step : Unity.Linker.Steps.InitializeEngineStrippingStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764784538,"dur": 2545, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveForEngineModuleStrippingEnabledStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764787087,"dur": 8193, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Temp/StagingArea/Data/Managed/TypesInScenes.xml"},
-{ "pid": "host", "tid": 1,"ts": 1677731764795308,"dur": 1076, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Temp/StagingArea/Data/Managed/SerializedTypes.xml"},
-{ "pid": "host", "tid": 1,"ts": 1677731764796385,"dur": 2874, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Assets/Photon/PhotonUnityNetworking/link.xml"},
-{ "pid": "host", "tid": 1,"ts": 1677731764799266,"dur": 6146, "ph":"X", "name": "Step : Unity.Linker.Steps.Resolution.ResolveAssemblyDirectoryStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764805416,"dur": 2427, "ph":"X", "name": "Step : Unity.Linker.Steps.SetupAndRegisterUnityRootsSteps"},
-{ "pid": "host", "tid": 1,"ts": 1677731764807846,"dur": 5848, "ph":"X", "name": "Step : Mono.Linker.Steps.ResolveFromAssemblyStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764813964,"dur": 1184, "ph":"X", "name": "Step : Mono.Linker.Steps.ResolveFromAssemblyStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764816713,"dur": 1082, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityLoadReferencesStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764818530,"dur": 10286, "ph":"X", "name": "Step : Unity.Linker.Steps.Resolution.ResolveFromDescriptorsStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764829066,"dur": 1380, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Applications/Unity/Hub/Editor/2021.3.18f1/Unity.app/Contents/il2cpp/LinkerDescriptors/Default/mscorlib.xml"},
-{ "pid": "host", "tid": 1,"ts": 1677731764831594,"dur": 27591, "ph":"X", "name": "Step : Unity.Linker.Steps.Resolution.UnityBlacklistStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731764859190,"dur": 8262, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: mscorlib Resource: mscorlib.xml"},
-{ "pid": "host", "tid": 1,"ts": 1677731764867461,"dur": 222842, "ph":"X", "name": "Step : Mono.Linker.Steps.DynamicDependencyLookupStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731765092561,"dur": 2566, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveFromMonoBehaviours"},
-{ "pid": "host", "tid": 1,"ts": 1677731765095441,"dur": 144759, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveFromPreserveAttribute"},
-{ "pid": "host", "tid": 1,"ts": 1677731765240219,"dur": 8181, "ph":"X", "name": "Step : Unity.Linker.Steps.EngineStrippingAnnotationStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731765248411,"dur": 133751, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityTypeMapStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731765382437,"dur": 105452, "ph":"X", "name": "Step : Unity.Linker.Steps.Analytics.BeforeMarkAnalyticsStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731765487900,"dur": 13902, "ph":"X", "name": "Step : Mono.Linker.Steps.RemoveSecurityStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731765501819,"dur": 2764, "ph":"X", "name": "Step : Unity.Linker.Steps.RemoveSecurityFromCopyAssemblies"},
-{ "pid": "host", "tid": 1,"ts": 1677731765504589,"dur": 12387, "ph":"X", "name": "Step : Mono.Linker.Steps.RemoveFeaturesStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731765516992,"dur": 9162, "ph":"X", "name": "Step : Mono.Linker.Steps.RemoveUnreachableBlocksStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731765526166,"dur": 1169552, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityMarkStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766696220,"dur": 3457, "ph":"X", "name": "Step : Mono.Linker.Steps.ProcessWarningsStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766699680,"dur": 46456, "ph":"X", "name": "Step : Unity.Linker.Steps.UnitySweepStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766746144,"dur": 2223, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityCodeRewriterStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766748371,"dur": 2727, "ph":"X", "name": "Step : Mono.Linker.Steps.CleanStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766751101,"dur": 1680, "ph":"X", "name": "Step : Unity.Linker.Steps.StubifyStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766752783,"dur": 1911, "ph":"X", "name": "Step : Unity.Linker.Steps.AddUnresolvedStubsStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766754696,"dur": 1666, "ph":"X", "name": "Step : Unity.Linker.Steps.Analytics.BeforeOutputAnalyticsStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731766756982,"dur": 390769, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityOutputStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731767147760,"dur": 20464, "ph":"X", "name": "Step : Unity.Linker.Steps.LinkerToEditorDataGenerationStep"},
-{ "pid": "host", "tid": 1,"ts": 1677731767175246,"dur": 44935, "ph":"X", "name": "Analytics"},
+{ "pid": "host", "tid": 1,"ts": 1677772535525883,"dur": 2675931, "ph":"X", "name": "UnityLinker.exe"},
+{ "pid": "host", "tid": 1,"ts": 1677772535527092,"dur": 62109, "ph":"X", "name": "Step : Unity.Linker.Steps.SetupAndRegisterUnityEngineSteps"},
+{ "pid": "host", "tid": 1,"ts": 1677772535589236,"dur": 9595, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveUnityEngine"},
+{ "pid": "host", "tid": 1,"ts": 1677772535599420,"dur": 33065, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Temp/StagingArea/Data/Managed/MethodsToPreserve.xml"},
+{ "pid": "host", "tid": 1,"ts": 1677772535632492,"dur": 234880, "ph":"X", "name": "Step : Unity.Linker.Steps.InitializeEngineStrippingStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772535867378,"dur": 2463, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveForEngineModuleStrippingEnabledStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772535869844,"dur": 8382, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Temp/StagingArea/Data/Managed/TypesInScenes.xml"},
+{ "pid": "host", "tid": 1,"ts": 1677772535878939,"dur": 2682, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Users/yuxianghuang/GoogleMentorship/AgeOfWar2/Assets/Photon/PhotonUnityNetworking/link.xml"},
+{ "pid": "host", "tid": 1,"ts": 1677772535881625,"dur": 5700, "ph":"X", "name": "Step : Unity.Linker.Steps.Resolution.ResolveAssemblyDirectoryStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772535887328,"dur": 2129, "ph":"X", "name": "Step : Unity.Linker.Steps.SetupAndRegisterUnityRootsSteps"},
+{ "pid": "host", "tid": 1,"ts": 1677772535889459,"dur": 5792, "ph":"X", "name": "Step : Mono.Linker.Steps.ResolveFromAssemblyStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772535896631,"dur": 2009, "ph":"X", "name": "Step : Mono.Linker.Steps.ResolveFromAssemblyStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772535901347,"dur": 7674, "ph":"X", "name": "Step : Unity.Linker.Steps.Resolution.ResolveFromDescriptorsStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772535909230,"dur": 1204, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: /Applications/Unity/Hub/Editor/2021.3.18f1/Unity.app/Contents/il2cpp/LinkerDescriptors/Default/mscorlib.xml"},
+{ "pid": "host", "tid": 1,"ts": 1677772535911432,"dur": 24569, "ph":"X", "name": "Step : Unity.Linker.Steps.Resolution.UnityBlacklistStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772535936002,"dur": 3817, "ph":"X", "name": "Step : UnityUnityResolveFromXmlStep: mscorlib Resource: mscorlib.xml"},
+{ "pid": "host", "tid": 1,"ts": 1677772535939823,"dur": 183139, "ph":"X", "name": "Step : Mono.Linker.Steps.DynamicDependencyLookupStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772536125047,"dur": 2632, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveFromMonoBehaviours"},
+{ "pid": "host", "tid": 1,"ts": 1677772536127983,"dur": 143789, "ph":"X", "name": "Step : Unity.Linker.Steps.Rooting.ResolveFromPreserveAttribute"},
+{ "pid": "host", "tid": 1,"ts": 1677772536271783,"dur": 28946, "ph":"X", "name": "Step : Unity.Linker.Steps.EngineStrippingAnnotationStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772536300737,"dur": 125010, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityTypeMapStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772536425979,"dur": 75105, "ph":"X", "name": "Step : Unity.Linker.Steps.Analytics.BeforeMarkAnalyticsStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772536501092,"dur": 12696, "ph":"X", "name": "Step : Mono.Linker.Steps.RemoveSecurityStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772536513798,"dur": 2358, "ph":"X", "name": "Step : Unity.Linker.Steps.RemoveSecurityFromCopyAssemblies"},
+{ "pid": "host", "tid": 1,"ts": 1677772536516161,"dur": 10033, "ph":"X", "name": "Step : Mono.Linker.Steps.RemoveFeaturesStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772536526202,"dur": 8536, "ph":"X", "name": "Step : Mono.Linker.Steps.RemoveUnreachableBlocksStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772536534744,"dur": 1168512, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityMarkStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537703757,"dur": 3486, "ph":"X", "name": "Step : Mono.Linker.Steps.ProcessWarningsStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537707247,"dur": 43567, "ph":"X", "name": "Step : Unity.Linker.Steps.UnitySweepStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537750824,"dur": 2478, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityCodeRewriterStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537753307,"dur": 2892, "ph":"X", "name": "Step : Mono.Linker.Steps.CleanStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537756203,"dur": 1734, "ph":"X", "name": "Step : Unity.Linker.Steps.StubifyStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537757940,"dur": 1987, "ph":"X", "name": "Step : Unity.Linker.Steps.AddUnresolvedStubsStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537759930,"dur": 1717, "ph":"X", "name": "Step : Unity.Linker.Steps.Analytics.BeforeOutputAnalyticsStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772537762287,"dur": 369375, "ph":"X", "name": "Step : Unity.Linker.Steps.UnityOutputStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772538131669,"dur": 20268, "ph":"X", "name": "Step : Unity.Linker.Steps.LinkerToEditorDataGenerationStep"},
+{ "pid": "host", "tid": 1,"ts": 1677772538158743,"dur": 43071, "ph":"X", "name": "Analytics"},
 { "pid": "host", "tid": 0, "ph":"M", "name": "thread_name", "args": {"name": "GC"} },
-{ "pid": "host", "tid": 0,"ts": 1677731764492000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772535637000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764625000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772535743000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764815000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772535899000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764844000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772535927000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764903000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772535937000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764925000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772535947000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764941000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772535999000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764950000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536009000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764978000,"dur": 6000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536033000,"dur": 6000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731764990000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536043000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765042000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536086000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765053000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536097000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765080000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536123000,"dur": 6000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765090000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536134000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765148000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536187000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765199000,"dur": 19000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536227000,"dur": 11000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765221000,"dur": 14000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536258000,"dur": 11000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765264000,"dur": 14000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536275000,"dur": 18000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765307000,"dur": 13000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536295000,"dur": 16000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765345000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536362000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765362000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536372000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765380000,"dur": 8000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536399000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765430000,"dur": 13000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536407000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765444000,"dur": 8000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536431000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765468000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536444000,"dur": 6000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765473000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536477000,"dur": 8000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765483000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536504000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765496000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536518000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765509000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536520000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765511000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536521000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765512000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536523000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765513000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536524000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765514000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536525000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765515000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536526000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765516000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536527000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765517000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536529000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765518000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536530000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765519000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536531000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765520000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536532000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765521000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536533000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765522000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536534000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765524000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536535000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765535000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536536000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765540000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536537000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765552000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536538000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765641000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536548000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765678000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536552000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765683000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536563000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765690000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536647000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765692000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536685000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765694000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536689000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765696000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536696000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765698000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536698000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765699000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536700000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765701000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536702000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765703000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536704000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765705000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536705000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765707000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536707000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765709000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536709000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765710000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536711000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765714000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536713000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765716000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536715000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765718000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536719000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765720000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536721000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765722000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536722000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765726000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536724000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765728000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536726000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765730000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536729000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765733000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536732000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765736000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536734000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765742000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536736000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765753000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536738000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765769000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536742000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765779000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536747000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765813000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536753000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765891000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536769000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765911000,"dur": 9000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536771000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765942000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536776000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765987000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536778000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731765999000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536818000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766027000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536896000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766035000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536916000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766081000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536943000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766115000,"dur": 8000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536951000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766153000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772536992000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766163000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537013000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766191000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537059000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766210000,"dur": 9000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537089000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766238000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537148000,"dur": 9000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766246000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537162000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766254000,"dur": 0, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537174000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766265000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537220000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766281000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537241000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766296000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537333000,"dur": 9000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766309000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537357000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766345000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537405000,"dur": 6000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766354000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537430000,"dur": 9000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766363000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537470000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766410000,"dur": 6000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537488000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766437000,"dur": 9000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537505000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766485000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537554000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766495000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537581000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766542000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537637000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766569000,"dur": 6000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537670000,"dur": 9000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766631000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537717000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766665000,"dur": 5000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537734000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766754000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537768000,"dur": 10000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766771000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537852000,"dur": 15000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766911000,"dur": 14000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772537992000,"dur": 10000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731766967000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538019000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731767005000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538034000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731767029000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538039000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731767046000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538056000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731767066000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538081000,"dur": 7000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731767080000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538114000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731767102000,"dur": 1000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538120000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": 0,"ts": 1677731767107000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
-},
-{ "pid": "host", "tid": 0,"ts": 1677731767122000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
-},
-{ "pid": "host", "tid": 0,"ts": 1677731767130000,"dur": 3000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
-},
-{ "pid": "host", "tid": 0,"ts": 1677731767138000,"dur": 4000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
-},
-{ "pid": "host", "tid": 0,"ts": 1677731767173000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": 0,"ts": 1677772538149000,"dur": 2000, "ph":"X", "name": "GC - Gen 0", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
 { "pid": "host", "tid": -1, "ph":"M", "name": "thread_name", "args": {"name": "GC"} },
-{ "pid": "host", "tid": -1,"ts": 1677731764512000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772535651000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731764829000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772535912000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731764838000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772535921000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731764863000,"dur": 5000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772535935000,"dur": 0, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731764917000,"dur": 6000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772535991000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731764930000,"dur": 5000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536020000,"dur": 8000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731764961000,"dur": 12000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536072000,"dur": 9000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765026000,"dur": 10000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536107000,"dur": 11000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765064000,"dur": 10000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536143000,"dur": 9000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765117000,"dur": 9000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536201000,"dur": 24000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765163000,"dur": 30000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536240000,"dur": 12000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765237000,"dur": 21000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536317000,"dur": 22000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765324000,"dur": 17000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536380000,"dur": 6000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765401000,"dur": 7000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536414000,"dur": 6000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765453000,"dur": 14000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536455000,"dur": 9000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765501000,"dur": 7000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536489000,"dur": 13000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765606000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536511000,"dur": 5000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765686000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536614000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765712000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536692000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765749000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536717000,"dur": 0, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765764000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536750000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765771000,"dur": 0, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536773000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765926000,"dur": 12000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536928000,"dur": 11000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731765967000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772536973000,"dur": 4000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766009000,"dur": 13000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537030000,"dur": 9000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766055000,"dur": 5000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537113000,"dur": 9000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766129000,"dur": 18000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537199000,"dur": 14000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766221000,"dur": 12000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537228000,"dur": 1000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766327000,"dur": 8000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC during background GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537379000,"dur": 8000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766384000,"dur": 6000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537446000,"dur": 17000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766452000,"dur": 18000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537525000,"dur": 7000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766514000,"dur": 6000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537603000,"dur": 10000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766595000,"dur": 13000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537687000,"dur": 17000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766695000,"dur": 10000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772537943000,"dur": 9000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766933000,"dur": 24000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772538009000,"dur": 5000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731766994000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772538025000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731767010000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772538102000,"dur": 8000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731767039000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772538137000,"dur": 6000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -1,"ts": 1677731767092000,"dur": 5000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
-},
-{ "pid": "host", "tid": -1,"ts": 1677731767159000,"dur": 7000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
-},
-{ "pid": "host", "tid": -1,"ts": 1677731767182000,"dur": 2000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -1,"ts": 1677772538159000,"dur": 3000, "ph":"X", "name": "GC - Gen 1", "args": { "detail": "Reason: SOH allocation, Type: Blocking GC"}
 },
 { "pid": "host", "tid": -2, "ph":"M", "name": "thread_name", "args": {"name": "GC"} },
-{ "pid": "host", "tid": -2,"ts": 1677731764451000,"dur": 1000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: LOH allocation, Type: Blocking GC"}
+{ "pid": "host", "tid": -2,"ts": 1677772535611000,"dur": 1000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: LOH allocation, Type: Blocking GC"}
 },
-{ "pid": "host", "tid": -2,"ts": 1677731764494000,"dur": 1000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: LOH allocation, Type: Background GC"}
+{ "pid": "host", "tid": -2,"ts": 1677772535638000,"dur": 2000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: LOH allocation, Type: Background GC"}
 },
-{ "pid": "host", "tid": -2,"ts": 1677731764829000,"dur": 7000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
+{ "pid": "host", "tid": -2,"ts": 1677772535912000,"dur": 7000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
 },
-{ "pid": "host", "tid": -2,"ts": 1677731764990000,"dur": 34000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
+{ "pid": "host", "tid": -2,"ts": 1677772536043000,"dur": 28000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
 },
-{ "pid": "host", "tid": -2,"ts": 1677731765090000,"dur": 43000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
+{ "pid": "host", "tid": -2,"ts": 1677772536143000,"dur": 40000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
 },
-{ "pid": "host", "tid": -2,"ts": 1677731766221000,"dur": 127000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
+{ "pid": "host", "tid": -2,"ts": 1677772537174000,"dur": 155000, "ph":"X", "name": "GC - Gen 2", "args": { "detail": "Reason: SOH allocation, Type: Background GC"}
 },

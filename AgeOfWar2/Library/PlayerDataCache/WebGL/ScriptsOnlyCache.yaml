@@ -380,13 +380,13 @@ ScriptsOnlyBuild:
     className: OnPointerOverTooltip
   - hash:
       serializedVersion: 2
-      Hash: 0f7e79713a077c1d0b163e3e37295f04
+      Hash: f4fd643d9c26b399bc956bff7afbd48e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Building
   - hash:
       serializedVersion: 2
-      Hash: 7b77d24dc77b79f114481130ded9ba5f
+      Hash: afebf87776d8db25a043ad85a41da555
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LongRange
@@ -866,7 +866,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 7b77d24dc77b79f114481130ded9ba5f
+      Hash: afebf87776d8db25a043ad85a41da555
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Troop
@@ -974,7 +974,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 0f7e79713a077c1d0b163e3e37295f04
+      Hash: f4fd643d9c26b399bc956bff7afbd48e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainBase
@@ -998,7 +998,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 7b77d24dc77b79f114481130ded9ba5f
+      Hash: afebf87776d8db25a043ad85a41da555
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Melee
@@ -1450,4 +1450,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version3
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version4
