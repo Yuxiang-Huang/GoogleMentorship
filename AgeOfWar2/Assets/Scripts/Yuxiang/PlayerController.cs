@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (mode == "spawn")
         {
-            //curSpawnImage.color = Color.white;
+            curSpawnImage.color = Color.white;
         }
 
         else if (mode == "move")
@@ -536,6 +536,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         foreach (Troop troop in allTroops)
         {
             troop.PV.RPC(nameof(troop.updateHealth), RpcTarget.All);
+        }
+
+        foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
+        {
+            spawnBtn.costUpdate();
         }
     }
 

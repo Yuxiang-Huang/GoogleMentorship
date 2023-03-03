@@ -13,6 +13,8 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] GameObject testObject;
 
+    public List<SpawnButton> spawnInfoList;
+
     public void Awake()
     {
         instance = this;

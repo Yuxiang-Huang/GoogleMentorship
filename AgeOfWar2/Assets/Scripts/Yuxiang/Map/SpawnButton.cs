@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpawnButton : MonoBehaviour
 {
@@ -15,10 +16,17 @@ public class SpawnButton : MonoBehaviour
 
     [SerializeField] GameObject spawnImage;
 
+    [SerializeField] TextMeshProUGUI costText;
+
     public void spawn()
     {
         //not during taking turn phase
         if (PlayerController.instance.mode != "")
             SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage, type);
+    }
+
+    public void costUpdate()
+    {
+        costText.text = PlayerController.instance.age * goldNeedToSpawn + " gold";
     }
 }

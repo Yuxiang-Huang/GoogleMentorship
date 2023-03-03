@@ -399,6 +399,10 @@ MonoBehaviour:
   clubMan: {fileID: 6514224017186162067, guid: b63047aabf50f448283d8221273a5698, type: 3}
   lastImage: {fileID: 996705852}
   testObject: {fileID: 996705849}
+  spawnInfoList:
+  - {fileID: 996705854}
+  - {fileID: 388878474}
+  - {fileID: 154927612}
 --- !u!1 &154927610
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +461,7 @@ MonoBehaviour:
   type: Building
   goldNeedToSpawn: 8
   spawnImage: {fileID: 6580721310958061044, guid: 560cca3f230d94bdeb1a549f3277f240, type: 3}
+  costText: {fileID: 633742205}
 --- !u!114 &154927613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,6 +708,7 @@ MonoBehaviour:
   type: Troop
   goldNeedToSpawn: 4
   spawnImage: {fileID: 1371028787450875553, guid: 806398d3c81b84a6a932a9df7a6e15f5, type: 3}
+  costText: {fileID: 1760341031}
 --- !u!1 &421099526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1268,7 @@ MonoBehaviour:
   type: Troop
   goldNeedToSpawn: 2
   spawnImage: {fileID: 3350579417564403051, guid: 85330372dcccb4576ac7d6f8ed02e152, type: 3}
+  costText: {fileID: 851291530}
 --- !u!1 &1182744707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,6 +1859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 0}
+  allPlayersOriginal: []
   allPlayers: []
   turnBtn: {fileID: 1201000671}
   ageAdvanceBtn: {fileID: 1513020140}
