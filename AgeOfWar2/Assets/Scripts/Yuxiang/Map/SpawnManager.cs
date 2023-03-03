@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
 
     public static SpawnManager instance;
 
-    public  Image lastImage;
+    public Image lastImage;
 
     [SerializeField] GameObject testObject;
 
@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
         //image color transition
         if (lastImage != null)
         {
-            lastImage.GetComponent<Image>().color = Color.white;
+            lastImage.color = Color.white;
         }
 
         image.color = Color.grey;
@@ -36,5 +36,6 @@ public class SpawnManager : MonoBehaviour
         PlayerController.instance.toSpawnImage = spawnImage;
         PlayerController.instance.goldNeedToSpawn = goldNeedToSpawn;
         PlayerController.instance.toSpawnType = type;
+        PlayerController.instance.curSpawnImage = lastImage;
     }
 }

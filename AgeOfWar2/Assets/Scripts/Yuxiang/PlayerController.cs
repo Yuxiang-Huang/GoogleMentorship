@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public string toSpawn;
     public GameObject toSpawnImage;
     public int goldNeedToSpawn;
+    public Image curSpawnImage;
     [SerializeField] List<SpawnInfo> spawnList = new List<SpawnInfo>();
     [SerializeField] HashSet<Vector2> spawnLocations = new HashSet<Vector2>();
 
@@ -374,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (mode == "spawn")
         {
-
+            //curSpawnImage.color = Color.white;
         }
 
         else if (mode == "move")
