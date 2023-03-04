@@ -105,10 +105,12 @@ public class UIManager : MonoBehaviour
     public void updateInfoTab(IUnit unit)
     {
         infoTab.SetActive(true);
-        string unitName = unit.ToString();
-        unitNameText.text = unitName.Substring(0, unitName.IndexOf("("));
-        unitHealthText.text = "Health: " + unit.health + " / " + unit.getFullHealth();
-        unitDamageText.text = "Damage: " + unit.damage.ToString();
+        unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText);
+    }
+
+    public void hideInfoTab()
+    {
+        infoTab.SetActive(false);
     }
 
     public void updateGoldText()

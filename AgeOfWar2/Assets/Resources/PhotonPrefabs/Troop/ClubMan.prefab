@@ -379,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ageFactor: 4
+  healthbar: {fileID: 854043445853921571}
   fullHealth: 2
   damage: 1
   direction: {x: 0, y: 0}
-  healthbar: {fileID: 854043445853921571}
   tile: {fileID: 0}
   path: []
   arrow: {fileID: 0}

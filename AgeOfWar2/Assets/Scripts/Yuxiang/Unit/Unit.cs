@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public interface IUnit
 {
@@ -14,11 +15,9 @@ public interface IUnit
 
     int health { get; }
 
-    int damage { get; }
-
     public void takeDamage(int incomingDamage);
 
     public void setHealthBar(bool status);
 
-    public int getFullHealth();
+    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText, TextMeshProUGUI damageText);
 }

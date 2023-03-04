@@ -17,8 +17,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     [Header("Health")]
     public Slider healthbar;
     public int health { get; set; }
-    public int fullHealth { get; set; }
-    public int damage { get; set; }
+    public int fullHealth;
+    public int damage;
     public Vector2 direction;
     Vector3 offset = new Vector3(0, 0.5f, 0);
 
@@ -61,6 +61,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
         healthbar.gameObject.SetActive(false);
     }
+
+    #region Movement
 
     public virtual void attack() { }
 
@@ -241,11 +243,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         healthbar.gameObject.transform.position = transform.position + offset;
     }
 
-    public int getFullHealth()
-    {
-        return fullHealth;
-    }
-
     [PunRPC]
     public void updateHealth()
     {
@@ -267,6 +264,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     {
         tile.unit = null;
     }
+
+#endregion
 
     #region Damage
 
@@ -292,6 +291,14 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             Destroy(healthbar.gameObject);
             Destroy(this.gameObject);
         }
+    }
+
+    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText, TextMeshProUGUI damageText)
+    {
+        string unitName = ToString();
+        nameText.text = unitName.Substring(0, unitName.IndexOf("("));
+        healthText.text = "Health: " + health + " / " + fullHealth;
+        damageText.text = "Damage: " + damage.ToString();
     }
 
     #endregion

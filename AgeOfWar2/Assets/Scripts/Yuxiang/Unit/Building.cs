@@ -21,7 +21,6 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public Slider healthbar;
     public int health { get; set; }
     public int fullHealth;
-    public int damage { get; set; }
     Vector3 offset = new Vector3(0, 0.5f, 0);
 
     private void Awake()
@@ -64,9 +63,12 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public int getFullHealth()
+    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText, TextMeshProUGUI damageText)
     {
-        return fullHealth;
+        string unitName = ToString();
+        nameText.text = unitName.Substring(0, unitName.IndexOf("("));
+        healthText.text = "Health: " + health + " / " + fullHealth;
+        damageText.text = "Damage: n/a";
     }
 
     [PunRPC]
