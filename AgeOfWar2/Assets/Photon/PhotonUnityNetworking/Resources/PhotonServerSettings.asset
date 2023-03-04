@@ -68,6 +68,7 @@ MonoBehaviour:
   - updateTerritory
   - updateTileUnit
   - removeTileUnit
+  - reveal
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

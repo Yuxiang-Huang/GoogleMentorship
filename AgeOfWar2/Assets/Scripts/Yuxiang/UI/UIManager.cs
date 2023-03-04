@@ -44,7 +44,15 @@ public class UIManager : MonoBehaviour
         Shop.SetActive(true);
 
         playerUI = playerUIList[id];
-        playerUI.gameObject.SetActive(true);
+        playerUI.playerName.text = PhotonNetwork.NickName;
+
+        PV.RPC(nameof(reveal), RpcTarget.All, id);
+    }
+
+    [PunRPC]
+    public void reveal(int id)
+    {
+        playerUIList[id].gameObject.SetActive(true);
     }
 
     public void startTurn()
