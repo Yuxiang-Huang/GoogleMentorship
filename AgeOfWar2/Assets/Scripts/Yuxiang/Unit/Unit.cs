@@ -8,13 +8,17 @@ public interface IUnit
 {
     PhotonView PV { get; }
 
-    int health { get; }
-
     int ownerID { get; }
 
     GameObject gameObject { get; }
 
+    int health { get; }
+
+    int damage { get; }
+
     public void takeDamage(int incomingDamage);
 
     public void setHealthBar(bool status);
+
+    public int getFullHealth();
 }

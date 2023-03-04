@@ -12,16 +12,15 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int ownerID { get; set; }
 
-    public int health { get; set; }
-
     [SerializeField] int ageFactor = 4;
 
     [Header("Health")]
-    public int fullHealth;
-    public int damage;
+    public Slider healthbar;
+    public int health { get; set; }
+    public int fullHealth { get; set; }
+    public int damage { get; set; }
     public Vector2 direction;
     Vector3 offset = new Vector3(0, 0.5f, 0);
-    public Slider healthbar;
 
     [Header("Movement")]
     public Tile tile;
@@ -240,6 +239,11 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         transform.position = TileManager.instance.getWorldPosition(tile);
 
         healthbar.gameObject.transform.position = transform.position + offset;
+    }
+
+    public int getFullHealth()
+    {
+        return fullHealth;
     }
 
     [PunRPC]

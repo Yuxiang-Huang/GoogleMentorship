@@ -24,6 +24,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject turnBtn;
     [SerializeField] Coroutine timeCoroutine;
 
+    [Header("InfoTab")]
+    [SerializeField] GameObject infoTab;
+    [SerializeField] TextMeshProUGUI unitNameText;
+    [SerializeField] TextMeshProUGUI unitHealthText;
+    [SerializeField] TextMeshProUGUI unitDamageText;
+
     [Header("Age")]
     [SerializeField] List<string> ageNameList;
     [SerializeField] GameObject ageAdvanceBtn;
@@ -35,9 +41,12 @@ public class UIManager : MonoBehaviour
         instance = this;
         PV = GetComponent<PhotonView>();
 
+        //everything set false first
         turnBtn.SetActive(false);
+        infoTab.SetActive(false);
     }
 
+    #region Start Game
     public void startGame(int id)
     {
         IntroText.SetActive(false);
@@ -54,6 +63,10 @@ public class UIManager : MonoBehaviour
     {
         playerUIList[id].gameObject.SetActive(true);
     }
+
+    #endregion
+
+    #region Turn
 
     public void startTurn()
     {
@@ -85,6 +98,17 @@ public class UIManager : MonoBehaviour
         playerUI.timeText.text = "Waiting for opponents...";
 
         turnBtn.SetActive(false);
+    }
+
+    #endregion
+
+    public void updateInfoTab(IUnit unit)
+    {
+        infoTab.SetActive(true);
+        string unitName = unit.ToString();
+        unitNameText.text = unitName.Substring(0, unitName.IndexOf("("));
+        unitHealthText.text = "Health: " + unit.health + " / " + unit.getFullHealth();
+        unitDamageText.text = "Damage: " + unit.damage.ToString();
     }
 
     public void updateGoldText()

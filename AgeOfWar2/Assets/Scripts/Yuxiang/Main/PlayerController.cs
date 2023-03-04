@@ -225,19 +225,24 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (Input.GetMouseButtonDown(0))
             {
                 //select player
- 
-                //if a tile is highlighted, a unit is on the tile, it's my unit, and it's a movable unit
+
+                //if a tile is highlighted, a unit is on the tile, it's my unit
                 if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
-                    highlighted.GetComponent<Tile>().unit.ownerID == id &&
-                    highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
+                    highlighted.GetComponent<Tile>().unit.ownerID == id)
                 {
+
                     highlighted.unit.setHealthBar(false);
+                    UIManager.instance.updateInfoTab(highlighted.unit);
 
-                    //select unit on the tile
-                    playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
-                    playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
+                    //if movable
+                    if (highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
+                    {
+                        //select unit on the tile
+                        playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
+                        playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
 
-                    mode = "move";
+                        mode = "move";
+                    }
                 }
             }
         }

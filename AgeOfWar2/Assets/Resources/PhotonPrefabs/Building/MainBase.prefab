@@ -145,10 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f33ca6f97d642c1b3656f05ed71e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthbar: {fileID: 5990717552439171017}
-  fullHealth: 8
   tile: {fileID: 0}
   ageFactor: 4
+  healthbar: {fileID: 5990717552439171017}
+  fullHealth: 8
 --- !u!212 &8897531206132012376
 SpriteRenderer:
   m_ObjectHideFlags: 0

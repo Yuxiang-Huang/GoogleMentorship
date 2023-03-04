@@ -11,19 +11,18 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 {
     public PhotonView PV { get; set; }
 
-    public int health { get; set; }
-
-    public Slider healthbar;
-
-    public int fullHealth;
-
     public int ownerID { get; set; }
 
     public Tile tile;
 
-    Vector3 offset = new Vector3(0, 0.5f, 0);
-
     [SerializeField] int ageFactor = 4;
+
+    [Header("Health")]
+    public Slider healthbar;
+    public int health { get; set; }
+    public int fullHealth;
+    public int damage { get; set; }
+    Vector3 offset = new Vector3(0, 0.5f, 0);
 
     private void Awake()
     {
@@ -63,6 +62,11 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
                     TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile);
             }
         }
+    }
+
+    public int getFullHealth()
+    {
+        return fullHealth;
     }
 
     [PunRPC]
