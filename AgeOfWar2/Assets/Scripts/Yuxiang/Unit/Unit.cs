@@ -19,5 +19,6 @@ public interface IUnit
 
     public void setHealthBar(bool status);
 
-    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText, TextMeshProUGUI damageText);
+    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText);
 }

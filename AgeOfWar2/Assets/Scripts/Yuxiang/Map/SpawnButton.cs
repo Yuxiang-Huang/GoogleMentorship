@@ -18,6 +18,11 @@ public class SpawnButton : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI costText;
 
+    void Awake()
+    {
+        costUpdate();
+    }
+
     public void spawn()
     {
         //not during taking turn phase

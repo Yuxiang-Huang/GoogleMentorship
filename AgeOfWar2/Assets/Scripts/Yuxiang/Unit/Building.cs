@@ -15,7 +15,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
     public Tile tile;
 
-    [SerializeField] int ageFactor = 4;
+    [SerializeField] int ageFactor = 2;
+
+    [SerializeField] int sellGold;
 
     [Header("Health")]
     public Slider healthbar;
@@ -63,12 +65,14 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText, TextMeshProUGUI damageText)
+    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Health: " + health + " / " + fullHealth;
         damageText.text = "Damage: n/a";
+        sellText.text = "Sell: " + sellGold + " Gold";
     }
 
     [PunRPC]

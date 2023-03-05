@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     Tile highlighted;
 
-    Troop playerSelected;
+    public Troop playerSelected;
 
     public string mode;
 
@@ -419,7 +419,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                     id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age);
+                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age, goldNeedToSpawn / 2);
 
                 allTroops.Add(newUnit.GetComponent<Troop>());
             }

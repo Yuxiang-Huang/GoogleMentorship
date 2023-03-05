@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Advance: 32 Gold'
+  m_text: 'Advance: 64 Gold'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -594,7 +594,7 @@ MonoBehaviour:
   image: {fileID: 154927614}
   path: Building/ExtraMoney
   type: Building
-  goldNeedToSpawn: 8
+  goldNeedToSpawn: 16
   spawnImage: {fileID: 6580721310958061044, guid: 560cca3f230d94bdeb1a549f3277f240, type: 3}
   costText: {fileID: 633742205}
 --- !u!114 &154927613
@@ -1076,7 +1076,7 @@ MonoBehaviour:
   image: {fileID: 388878472}
   path: Troop/SpearMan
   type: Troop
-  goldNeedToSpawn: 4
+  goldNeedToSpawn: 8
   spawnImage: {fileID: 1371028787450875553, guid: 806398d3c81b84a6a932a9df7a6e15f5, type: 3}
   costText: {fileID: 1760341031}
 --- !u!1001 &620669016
@@ -2007,7 +2007,7 @@ MonoBehaviour:
   image: {fileID: 996705852}
   path: Troop/ClubMan
   type: Troop
-  goldNeedToSpawn: 2
+  goldNeedToSpawn: 4
   spawnImage: {fileID: 3350579417564403051, guid: 85330372dcccb4576ac7d6f8ed02e152, type: 3}
   costText: {fileID: 851291530}
 --- !u!1 &1053616278
@@ -3030,8 +3030,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1602756415}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1655113464}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ageAdvance
         m_Mode: 1
         m_Arguments:
@@ -3385,6 +3385,7 @@ MonoBehaviour:
   unitNameText: {fileID: 1294527431}
   unitHealthText: {fileID: 854828128}
   unitDamageText: {fileID: 1919864603}
+  unitSellText: {fileID: 85506212}
   ageNameList:
   - Stone Age
   - Bronze Age

@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI unitNameText;
     [SerializeField] TextMeshProUGUI unitHealthText;
     [SerializeField] TextMeshProUGUI unitDamageText;
+    [SerializeField] TextMeshProUGUI unitSellText;
 
     [Header("Age")]
     [SerializeField] List<string> ageNameList;
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
     }
 
     #region Start Game
+
     public void startGame(int id)
     {
         IntroText.SetActive(false);
@@ -102,16 +104,25 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region Info Tab
+
     public void updateInfoTab(IUnit unit)
     {
         infoTab.SetActive(true);
-        unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText);
+        unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText);
     }
 
     public void hideInfoTab()
     {
         infoTab.SetActive(false);
     }
+
+    public void sell()
+    {
+        //PlayerController.instance.playerSelected
+    }
+
+    #endregion
 
     public void updateGoldText()
     {

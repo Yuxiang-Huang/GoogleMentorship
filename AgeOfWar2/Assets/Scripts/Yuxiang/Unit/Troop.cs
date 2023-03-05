@@ -12,9 +12,11 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int ownerID { get; set; }
 
-    [SerializeField] int ageFactor = 4;
+    [SerializeField] int ageFactor = 2;
 
     public SpriteRenderer imageRender;
+
+    [SerializeField] int sellGold;
 
     [Header("Health")]
     public Slider healthbar;
@@ -26,11 +28,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     [Header("Movement")]
     public Tile tile;
-
     Tile lastTarget;
-
     public List<Tile> path;
-
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject arrowPrefab;
 
@@ -42,13 +41,17 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection, int age)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection, int age, int sellGold)
     {
+        //setting tile, ID, direction, sell gold
         ownerID = playerID;
+
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
 
         direction = startDirection;
+
+        this.sellGold = sellGold;
 
         //modify according to age
         fullHealth *= (int) Mathf.Pow(ageFactor, age);
@@ -246,16 +249,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void updateHealth()
-    {
-        //health double when age increase
-        fullHealth *= ageFactor;
-        health *= ageFactor;
-        healthbar.maxValue = fullHealth;
-        healthbar.value = health;
-    }
-
-    [PunRPC]
     public void updateTileUnit()
     {
         tile.unit = this;
@@ -267,7 +260,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         tile.unit = null;
     }
 
-#endregion
+    #endregion
 
     #region Damage
 
@@ -295,15 +288,30 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText, TextMeshProUGUI damageText)
+    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Health: " + health + " / " + fullHealth;
         damageText.text = "Damage: " + damage.ToString();
+        sellText.text = "Sell: " + sellGold + " Gold";
     }
 
     #endregion
+
+    [PunRPC]
+    public void updateHealth()
+    {
+        //health double when age increase
+        fullHealth *= ageFactor;
+        health *= ageFactor;
+        healthbar.maxValue = fullHealth;
+        healthbar.value = health;
+
+        //update sell gold
+        sellGold += sellGold / (PlayerController.instance.age - 1);
+    }
 
     //find distance between two tiles
     float dist(Tile t1, Tile t2)

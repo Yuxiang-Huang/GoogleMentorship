@@ -74,6 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PV: {fileID: 4434306806922390120}
   id: -1
+  playerSelected: {fileID: 0}
   mode: 
   allTroops: []
   allBuildings: []
@@ -84,5 +85,5 @@ MonoBehaviour:
   curSpawnImage: {fileID: 0}
   gold: 8
   age: 1
-  goldNeedToAdvance: 32
+  goldNeedToAdvance: 64
   troopNum: 0
