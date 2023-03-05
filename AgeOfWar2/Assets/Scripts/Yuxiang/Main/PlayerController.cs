@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             newHighlighted = TileManager.instance.getTile(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
-        //spawn castle
+        //spawn castle in the start
         if (mode == "start")
         {
             //highlight revealed land tiles
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 GameManager.instance.endTurn();
             }
         }
-        //none
+        //select
         else if (mode == "select")
         {
             //highlight any revealed
@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //select unit when mouse pressed
             if (Input.GetMouseButtonDown(0))
             {
-                //deselect
+                //deselect if something is selected
                 if (unitSelected != null)
                 {
                     unitSelected.setImage(Color.white);
@@ -287,7 +287,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 if (highlighted != null)
                 {
                     highlighted.highlight(false);
-                    //unitSelected.findPath(highlighted.GetComponent<Tile>());
+                    unitSelected.gameObject.GetComponent<Troop>().findPath(highlighted.GetComponent<Tile>());
                 }
 
                 //deselect

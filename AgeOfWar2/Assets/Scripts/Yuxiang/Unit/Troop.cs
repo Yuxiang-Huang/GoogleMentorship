@@ -320,6 +320,23 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         imageRenderer.color = color;
     }
 
+    public void sell()
+    {
+        PlayerController.instance.gold += sellGold;
+
+        PlayerController.instance.allTroops.Remove(this);
+
+        tile.unit = null;
+
+        Destroy(arrow);
+
+        Destroy(healthbar);
+
+        Destroy(gameObject);
+
+        PlayerController.instance.mode = "select";
+    }
+
     #endregion
 
     //find distance between two tiles

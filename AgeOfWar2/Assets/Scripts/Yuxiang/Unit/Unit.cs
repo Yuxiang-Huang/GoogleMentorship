@@ -25,4 +25,6 @@ public interface IUnit
         TextMeshProUGUI damageText, TextMeshProUGUI sellText);
 
     public void setImage(Color color);
+
+    public void sell();
 }

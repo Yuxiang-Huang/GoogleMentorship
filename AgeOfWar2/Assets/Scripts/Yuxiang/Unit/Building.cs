@@ -69,6 +69,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
+    #region UI
+
     public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
         TextMeshProUGUI damageText, TextMeshProUGUI sellText)
     {
@@ -83,6 +85,10 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     {
         imageRenderer.color = color;
     }
+
+    #endregion
+
+    #region Damage
 
     [PunRPC]
     public void updateHealth()
@@ -125,4 +131,24 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
             Destroy(this.gameObject);
         }
     }
+
+    public void sell()
+    {
+        PlayerController.instance.gold += sellGold;
+
+        PlayerController.instance.allBuildings.Remove(this);
+
+        tile.unit = null;
+
+        foreach (Tile neighbor in tile.neighbors)
+        {
+            neighbor.updateCanSpawn();
+        }
+
+        Destroy(healthbar);
+
+        Destroy(gameObject);
+    }
+
+    #endregion
 }

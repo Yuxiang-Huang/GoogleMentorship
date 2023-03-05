@@ -26,7 +26,7 @@ public class SpawnButton : MonoBehaviour
     public void spawn()
     {
         //not during taking turn phase
-        if (PlayerController.instance.mode != "")
+        if (!PlayerController.instance.turnEnded)
             SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage, type);
     }
 
