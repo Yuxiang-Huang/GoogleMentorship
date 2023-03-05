@@ -14,6 +14,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     [SerializeField] int ageFactor = 4;
 
+    public SpriteRenderer imageRender;
+
     [Header("Health")]
     public Slider healthbar;
     public int health { get; set; }

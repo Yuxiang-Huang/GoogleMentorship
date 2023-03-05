@@ -357,10 +357,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ageFactor: 4
+  imageRender: {fileID: 1060377993}
+  healthbar: {fileID: 3000440573061297952}
   fullHealth: 1
   damage: 1
   direction: {x: 0, y: 0}
-  healthbar: {fileID: 3000440573061297952}
   tile: {fileID: 0}
   path: []
   arrow: {fileID: 0}

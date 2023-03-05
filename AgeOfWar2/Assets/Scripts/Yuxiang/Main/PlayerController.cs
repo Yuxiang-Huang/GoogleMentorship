@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     {
                         //select unit on the tile
                         playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
-                        playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
+                        playerSelected.imageRender.color = Color.grey;
 
                         mode = "move";
                     }
@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 }
 
                 //deselect
-                playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                playerSelected.imageRender.color = Color.white;
                 playerSelected = null;
 
                 highlighted.highlight(false);

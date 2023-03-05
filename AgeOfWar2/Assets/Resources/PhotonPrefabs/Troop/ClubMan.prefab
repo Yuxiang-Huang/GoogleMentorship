@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ageFactor: 4
+  imageRender: {fileID: 8551424322139322304}
   healthbar: {fileID: 854043445853921571}
   fullHealth: 2
   damage: 1
