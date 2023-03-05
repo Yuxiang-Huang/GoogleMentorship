@@ -15,10 +15,14 @@ public interface IUnit
 
     int health { get; }
 
+    int sellGold { get; }
+
     public void takeDamage(int incomingDamage);
 
     public void setHealthBar(bool status);
 
     public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
         TextMeshProUGUI damageText, TextMeshProUGUI sellText);
+
+    public void setImage(Color color);
 }

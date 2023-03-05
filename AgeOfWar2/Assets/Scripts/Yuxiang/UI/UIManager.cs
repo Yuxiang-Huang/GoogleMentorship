@@ -119,7 +119,13 @@ public class UIManager : MonoBehaviour
 
     public void sell()
     {
-        //PlayerController.instance.playerSelected
+        Debug.Log(PlayerController.instance.unitSelected);
+
+        PlayerController.instance.gold += PlayerController.instance.unitSelected.sellGold;
+
+        //PlayerController.instance.allTroops.Remove(PlayerController.instance.unitSelected);
+
+        Destroy(PlayerController.instance.unitSelected.gameObject);
     }
 
     #endregion

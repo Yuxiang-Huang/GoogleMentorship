@@ -14,9 +14,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     [SerializeField] int ageFactor = 2;
 
-    public SpriteRenderer imageRender;
+    public SpriteRenderer imageRenderer;
 
-    [SerializeField] int sellGold;
+    public int sellGold { get; set; }
 
     [Header("Health")]
     public Slider healthbar;
@@ -300,6 +300,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     #endregion
 
+    #region UI
+
     [PunRPC]
     public void ageUpdateInfo()
     {
@@ -309,11 +311,16 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
 
-
-
         //update sell gold
         sellGold += sellGold / (PlayerController.instance.age - 1);
     }
+
+    public void setImage(Color color)
+    {
+        imageRenderer.color = color;
+    }
+
+    #endregion
 
     //find distance between two tiles
     float dist(Tile t1, Tile t2)

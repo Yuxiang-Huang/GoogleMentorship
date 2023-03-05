@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         playerMoved = 0;
 
-        PlayerController.instance.mode = "select";
+        PlayerController.instance.turnEnded = false;
 
         UIManager.instance.startTurn();
 

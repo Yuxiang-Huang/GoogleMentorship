@@ -17,7 +17,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
     [SerializeField] int ageFactor = 2;
 
-    [SerializeField] int sellGold;
+    public int sellGold { get; set; }
+
+    public SpriteRenderer imageRenderer;
 
     [Header("Health")]
     public Slider healthbar;
@@ -75,6 +77,11 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         healthText.text = "Health: " + health + " / " + fullHealth;
         damageText.text = "Damage: n/a";
         sellText.text = "Sell: " + sellGold + " Gold";
+    }
+
+    public void setImage(Color color)
+    {
+        imageRenderer.color = color;
     }
 
     [PunRPC]

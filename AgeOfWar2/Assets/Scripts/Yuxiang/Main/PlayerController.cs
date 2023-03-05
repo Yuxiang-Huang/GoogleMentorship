@@ -20,9 +20,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     Tile highlighted;
 
-    public Troop playerSelected;
+    public IUnit unitSelected;
 
     public string mode;
+
+    public bool turnEnded;
 
     public List<Troop> allTroops = new List<Troop>();
     public List<Building> allBuildings = new List<Building>();
@@ -226,9 +228,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 highlighted.unit.setHealthBar(true);
             }
 
+            //select unit when mouse pressed
             if (Input.GetMouseButtonDown(0))
             {
-                //select player
+                //deselect
+                if (unitSelected != null)
+                {
+                    unitSelected.setImage(Color.white);
+                    UIManager.instance.hideInfoTab();
+
+                    unitSelected = null;
+                }
 
                 //if a tile is highlighted, a unit is on the tile, it's my unit
                 if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
@@ -238,13 +248,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     highlighted.unit.setHealthBar(false);
                     UIManager.instance.updateInfoTab(highlighted.unit);
 
-                    //if movable
-                    if (highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
-                    {
-                        //select unit on the tile
-                        playerSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<Troop>();
-                        playerSelected.imageRender.color = Color.grey;
+                    unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
+                    unitSelected.setImage(Color.grey);
 
+                    //if movable and turn not ended
+                    if (highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop")
+                        && !turnEnded)
+                    {
                         mode = "move";
                     }
                 }
@@ -277,12 +287,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 if (highlighted != null)
                 {
                     highlighted.highlight(false);
-                    playerSelected.findPath(highlighted.GetComponent<Tile>());
+                    //unitSelected.findPath(highlighted.GetComponent<Tile>());
                 }
 
                 //deselect
-                playerSelected.imageRender.color = Color.white;
-                playerSelected = null;
+                unitSelected.setImage(Color.white);
 
                 highlighted = null;
 
@@ -391,18 +400,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         else if (mode == "move")
         {
-            playerSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            playerSelected = null;
-        }
-        else if (mode == "select")
-        {
-            if (highlighted != null)
-                highlighted.highlight(false);
-
-            highlighted = null;
+            unitSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            unitSelected = null;
         }
 
-        mode = "";
+        mode = "select";
+        turnEnded = true;
     }
 
     [PunRPC]
