@@ -65,9 +65,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //TileManager.instance.makeGrid(29, 10);
 
             TileManager.instance.makeGrid(19, 6);
-            Camera.main.orthographicSize = 6.5f;
-            Camera.main.transform.position = new Vector3(4, 5.25f, -10);
         }
+
+        Camera.main.orthographicSize = 6.5f;
+        Camera.main.transform.position = new Vector3(4, 5.25f, -10);
 
         if (!PV.IsMine) return;
         instance = this;

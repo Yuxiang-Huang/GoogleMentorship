@@ -70,6 +70,8 @@ MonoBehaviour:
   - removeTileUnit
   - reveal
   - ageUpdateInfo
+  - updateAgeText
+  - updatePlayerInfo
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

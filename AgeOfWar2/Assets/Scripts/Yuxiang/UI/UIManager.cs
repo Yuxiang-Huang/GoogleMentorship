@@ -52,26 +52,39 @@ public class UIManager : MonoBehaviour
 
     #region Start Game
 
+    //public void startGame(int id)
+    //{
+    //    IntroText.SetActive(false);
+    //    Shop.SetActive(true);
+    //    AgeUI.SetActive(true);
+
+    //    playerUI = playerUIList[id];
+    //    playerUI.playerName.text = PhotonNetwork.NickName;
+
+    //    goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
+
+    //    //PV.RPC(nameof(reveal), RpcTarget.All, id);
+    //}
+
     public void startGame(int id)
     {
         IntroText.SetActive(false);
         Shop.SetActive(true);
         AgeUI.SetActive(true);
 
-        playerUI = playerUIList[id];
+        playerUI = playerUIList[0];
         playerUI.playerName.text = PhotonNetwork.NickName;
 
         goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
 
-        //PV.RPC(nameof(reveal), RpcTarget.All, id);
-        reveal(PlayerController.instance.id);
+        playerUIList[0].gameObject.SetActive(true);
     }
 
-    [PunRPC]
-    public void reveal(int id)
-    {
-        playerUIList[id].gameObject.SetActive(true);
-    }
+    //[PunRPC]
+    //public void reveal(int id)
+    //{
+    //    playerUIList[id].gameObject.SetActive(true);
+    //}
 
     #endregion
 
@@ -83,8 +96,8 @@ public class UIManager : MonoBehaviour
         timeCoroutine = StartCoroutine(nameof(timer));
 
         //update Player info
-        playerUI.troopText.text = "Troop: " + PlayerController.instance.allTroops.Count;
-        playerUI.buildingText.text = "Buildings: " + PlayerController.instance.allBuildings.Count;
+
+        // PlayerController.instance.allTroops.Count, PlayerController.instance.allBuildings.Count;
     }
 
     IEnumerator timer()
@@ -170,6 +183,13 @@ public class UIManager : MonoBehaviour
 
     #region Player Info
 
+    [PunRPC]
+    public void updatePlayerInfo(int troopCount, int buildingCount)
+    {
+        playerUI.troopText.text = "Troop: " + troopCount;
+        playerUI.buildingText.text = "Buildings: " + buildingCount;
+    }
+
     #endregion
 
     #region Age System
@@ -185,7 +205,7 @@ public class UIManager : MonoBehaviour
 
             //modify age
             PlayerController.instance.age++;
-            ageText.text = ageNameList[PlayerController.instance.age - 1];
+            PV.RPC(nameof(updateAgeText), RpcTarget.All, PlayerController.instance.age);
             PlayerController.instance.goldNeedToAdvance *= 2;
             goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
             playerUI.goldText.text = "Gold: " + PlayerController.instance.gold;
@@ -199,6 +219,12 @@ public class UIManager : MonoBehaviour
             //update building health
             PlayerController.instance.updateExistingUnits();
         }
+    }
+
+    [PunRPC]
+    public void updateAgeText(int ageIndex)
+    {
+        ageText.text = ageNameList[PlayerController.instance.age - 1];
     }
 
     #endregion
