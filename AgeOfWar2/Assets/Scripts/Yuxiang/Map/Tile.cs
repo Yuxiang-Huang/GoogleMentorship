@@ -57,7 +57,7 @@ public class Tile : MonoBehaviour
             {
                 GameManager.instance.allPlayersOriginal[ownerID].territory.Remove(this);
 
-                //update dark if mine
+                //update dark if I was the owner
                 if (ownerID == PlayerController.instance.id)
                 {
                     foreach (Tile tile in neighbors)
@@ -76,7 +76,7 @@ public class Tile : MonoBehaviour
         }
         this.unit = newUnit;
 
-        //highlight if land
+        //territory color if land
         if (terrain == "land")
         {
             //replace the color if different

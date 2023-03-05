@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   ageFactor: 2
+  sellGold: 0
   imageRenderer: {fileID: 8022036788490994061}
   healthbar: {fileID: 1307476644734130030}
   fullHealth: 1

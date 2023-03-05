@@ -288,16 +288,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
-    {
-        string unitName = ToString();
-        nameText.text = unitName.Substring(0, unitName.IndexOf("("));
-        healthText.text = "Health: " + health + " / " + fullHealth;
-        damageText.text = "Damage: " + damage.ToString();
-        sellText.text = "Sell: " + sellGold + " Gold";
-    }
-
     #endregion
 
     #region UI
@@ -318,6 +308,16 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void setImage(Color color)
     {
         imageRenderer.color = color;
+    }
+
+    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
+    TextMeshProUGUI damageText, TextMeshProUGUI sellText)
+    {
+        string unitName = ToString();
+        nameText.text = unitName.Substring(0, unitName.IndexOf("("));
+        healthText.text = "Health: " + health + " / " + fullHealth;
+        damageText.text = "Damage: " + damage.ToString();
+        sellText.text = "Sell: " + sellGold + " Gold";
     }
 
     public void sell()

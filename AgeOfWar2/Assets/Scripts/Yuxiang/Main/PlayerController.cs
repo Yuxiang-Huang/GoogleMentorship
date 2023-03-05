@@ -33,9 +33,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [Header("Spawn")]
     public bool[,] canSpawn;
     public Vector2[,] spawnDirection;
+
     public string toSpawnType;
     public string toSpawn;
     public GameObject toSpawnImage;
+    public IUnit toSpawnUnit;
     public int goldNeedToSpawn;
     public Image curSpawnImage;
     [SerializeField] Dictionary<Vector2, SpawnInfo> spawnList = new Dictionary<Vector2, SpawnInfo>();
@@ -240,7 +242,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 }
 
                 //if a tile is highlighted
-                if (highlighted != null) {
+                if (highlighted != null)
+                {
                     //if a unit is on the tile and it's my unit
                     if (highlighted.GetComponent<Tile>().unit != null &&
                         highlighted.GetComponent<Tile>().unit.ownerID == id)
@@ -251,8 +254,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         //update info tab
                         UIManager.instance.updateInfoTab(highlighted.unit);
 
-                        //change color to show selection
+                        //select unit
                         unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
+
+                        //change color to show selection
                         unitSelected.setImage(Color.grey);
 
                         //if movable and turn not ended
@@ -265,7 +270,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     //if I am going to spawn a unit here
                     else if (spawnList.ContainsKey(highlighted.pos))
                     {
-
+                        UIManager.instance.updateInfoTab(spawnList[highlighted.pos]);
                     }
                 }
             }
@@ -366,7 +371,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     //add to spawn list
-                    spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, spawnImage, goldNeedToSpawn / 2));
+                    spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, toSpawnUnit,
+                        spawnImage, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn
                     highlighted.highlight(false);

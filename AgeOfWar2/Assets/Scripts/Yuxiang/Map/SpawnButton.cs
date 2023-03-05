@@ -18,6 +18,8 @@ public class SpawnButton : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI costText;
 
+    [SerializeField] GameObject unit;
+
     void Awake()
     {
         costUpdate();
@@ -27,7 +29,7 @@ public class SpawnButton : MonoBehaviour
     {
         //not during taking turn phase
         if (!PlayerController.instance.turnEnded)
-            SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage, type);
+            SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage, type, unit.GetComponent<IUnit>());
     }
 
     public void costUpdate()
