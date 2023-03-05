@@ -17,7 +17,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
     [SerializeField] int ageFactor = 2;
 
-    public int sellGold { get; set; }
+    public int sellGold;
 
     public SpriteRenderer imageRenderer;
 
@@ -135,6 +135,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public void sell()
     {
         PlayerController.instance.gold += sellGold;
+        UIManager.instance.updateGoldText();
 
         PlayerController.instance.allBuildings.Remove(this);
 

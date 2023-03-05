@@ -38,8 +38,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public GameObject toSpawnImage;
     public int goldNeedToSpawn;
     public Image curSpawnImage;
-    [SerializeField] List<SpawnInfo> spawnList = new List<SpawnInfo>();
-    [SerializeField] HashSet<Vector2> spawnLocations = new HashSet<Vector2>();
+    [SerializeField] Dictionary<Vector2, SpawnInfo> spawnList = new Dictionary<Vector2, SpawnInfo>();
 
     [Header("Gold")]
     public int gold;
@@ -240,25 +239,33 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     unitSelected = null;
                 }
 
-                //if a tile is highlighted, a unit is on the tile, it's my unit
-                if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
-                    highlighted.GetComponent<Tile>().unit.ownerID == id)
-                {
-                    //show health bar
-                    highlighted.unit.setHealthBar(false);
-
-                    //update info tab
-                    UIManager.instance.updateInfoTab(highlighted.unit);
-
-                    //change color to show selection
-                    unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
-                    unitSelected.setImage(Color.grey);
-
-                    //if movable and turn not ended
-                    if (highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop")
-                        && !turnEnded)
+                //if a tile is highlighted
+                if (highlighted != null) {
+                    //if a unit is on the tile and it's my unit
+                    if (highlighted.GetComponent<Tile>().unit != null &&
+                        highlighted.GetComponent<Tile>().unit.ownerID == id)
                     {
-                        mode = "move";
+                        //show health bar
+                        highlighted.unit.setHealthBar(false);
+
+                        //update info tab
+                        UIManager.instance.updateInfoTab(highlighted.unit);
+
+                        //change color to show selection
+                        unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
+                        unitSelected.setImage(Color.grey);
+
+                        //if movable and turn not ended
+                        if (highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop")
+                            && !turnEnded)
+                        {
+                            mode = "move";
+                        }
+                    }
+                    //if I am going to spawn a unit here
+                    else if (spawnList.ContainsKey(highlighted.pos))
+                    {
+
                     }
                 }
             }
@@ -307,23 +314,23 @@ public class PlayerController : MonoBehaviourPunCallbacks
         else if (mode == "spawn")
         {
             //highlight spawnable tiles
-
-            //for troops
-            if (toSpawnType == "Troop")
+            if (highlighted != newHighlighted)
             {
-                if (highlighted != newHighlighted)
+                if (highlighted != null)
+                    highlighted.highlight(false);
+
+                highlighted = newHighlighted;
+
+                //if tile is not null and no unit is here and the tile is still my territory
+                //and no units is going to be spawn here
+                if (highlighted != null && highlighted.unit == null
+                    && territory.Contains(highlighted) && !spawnList.ContainsKey(highlighted.pos))
                 {
-                    if (highlighted != null)
-                        highlighted.highlight(false);
-
-                    highlighted = newHighlighted;
-
-                    if (highlighted != null)
+                    //for troops
+                    if (toSpawnType == "Troop")
                     {
-                        //can only spawn on spawnable tiles and no unit and tile is still my territory
-                        //and no units is going to be spawn here
-                        if (canSpawn[highlighted.pos.x, highlighted.pos.y] && highlighted.unit == null
-                            && territory.Contains(highlighted) && !spawnLocations.Contains(highlighted.pos))
+                        //can only spawn on spawnable tiles 
+                        if (canSpawn[highlighted.pos.x, highlighted.pos.y])
                         {
                             highlighted.highlight(true);
                         }
@@ -331,32 +338,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         {
                             highlighted = null;
                         }
+                    }
+                    //for buildings
+                    else if (toSpawnType == "Building")
+                    {
+                        highlighted.highlight(true);
                     }
                 }
-            }
-            //for buildings
-            else if (toSpawnType == "Building")
-            {
-                if (highlighted != newHighlighted)
+                else
                 {
-                    if (highlighted != null)
-                        highlighted.highlight(false);
-
-                    highlighted = newHighlighted;
-
-                    if (highlighted != null)
-                    {
-                        //can spawn on territory tiles and no units here and no units is going to be spawn here
-                        if (territory.Contains(highlighted) && highlighted.unit == null
-                            && !spawnLocations.Contains(highlighted.pos))
-                        {
-                            highlighted.highlight(true);
-                        }
-                        else
-                        {
-                            highlighted = null;
-                        }
-                    }
+                    highlighted = null;
                 }
             }
 
@@ -375,10 +366,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     //add to spawn list
-                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, spawnImage, goldNeedToSpawn / 2));
-                    spawnLocations.Add(highlighted.pos);
+                    spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, spawnImage, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn
+                    highlighted.highlight(false);
                     highlighted = null;
                 }
                 else
@@ -421,7 +412,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         UIManager.instance.updateGoldText();
 
-        foreach (SpawnInfo info in spawnList)
+        foreach (SpawnInfo info in spawnList.Values)
         {
             //spawn unit and initiate
             GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
@@ -448,8 +439,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //clear list
-        spawnList = new List<SpawnInfo>();
-        spawnLocations = new HashSet<Vector2>();
+        spawnList = new Dictionary<Vector2, SpawnInfo>();
 
         if (PhotonNetwork.OfflineMode)
         {

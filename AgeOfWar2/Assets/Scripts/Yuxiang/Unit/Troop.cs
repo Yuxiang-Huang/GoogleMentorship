@@ -16,7 +16,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public SpriteRenderer imageRenderer;
 
-    public int sellGold { get; set; }
+    public int sellGold;
 
     [Header("Health")]
     public Slider healthbar;
@@ -323,6 +323,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void sell()
     {
         PlayerController.instance.gold += sellGold;
+        UIManager.instance.updateGoldText();
 
         PlayerController.instance.allTroops.Remove(this);
 
