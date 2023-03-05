@@ -74,8 +74,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PV: {fileID: 4434306806922390120}
   id: -1
-  playerSelected: {fileID: 0}
   mode: 
+  turnEnded: 0
   allTroops: []
   allBuildings: []
   toSpawnType: 

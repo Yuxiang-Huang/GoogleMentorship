@@ -244,10 +244,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 if (highlighted != null && highlighted.GetComponent<Tile>().unit != null &&
                     highlighted.GetComponent<Tile>().unit.ownerID == id)
                 {
-
+                    //show health bar
                     highlighted.unit.setHealthBar(false);
+
+                    //update info tab
                     UIManager.instance.updateInfoTab(highlighted.unit);
 
+                    //change color to show selection
                     unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
                     unitSelected.setImage(Color.grey);
 
@@ -292,6 +295,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 //deselect
                 unitSelected.setImage(Color.white);
+                unitSelected = null;
+                UIManager.instance.hideInfoTab();
 
                 highlighted = null;
 
