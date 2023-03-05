@@ -63,7 +63,8 @@ public class UIManager : MonoBehaviour
 
         goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
 
-        PV.RPC(nameof(reveal), RpcTarget.All, id);
+        //PV.RPC(nameof(reveal), RpcTarget.All, id);
+        reveal(PlayerController.instance.id);
     }
 
     [PunRPC]
@@ -80,6 +81,10 @@ public class UIManager : MonoBehaviour
     {
         turnBtn.SetActive(true);
         timeCoroutine = StartCoroutine(nameof(timer));
+
+        //update Player info
+        playerUI.troopText.text = "Troop: " + PlayerController.instance.allTroops.Count;
+        playerUI.buildingText.text = "Buildings: " + PlayerController.instance.allBuildings.Count;
     }
 
     IEnumerator timer()
@@ -163,16 +168,9 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    public void updateGoldText()
-    {
-        playerUI.goldText.text = "Gold: " + PlayerController.instance.gold;
-    }
+    #region Player Info
 
-    [PunRPC]
-    public void updateTimeText(string message)
-    {
-        playerUI.timeText.text = message;
-    }
+    #endregion
 
     #region Age System
 
@@ -204,4 +202,15 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    public void updateGoldText()
+    {
+        playerUI.goldText.text = "Gold: " + PlayerController.instance.gold;
+    }
+
+    [PunRPC]
+    public void updateTimeText(string message)
+    {
+        playerUI.timeText.text = message;
+    }
 }
