@@ -3419,6 +3419,7 @@ MonoBehaviour:
   unitHealthText: {fileID: 854828128}
   unitDamageText: {fileID: 1919864603}
   unitSellText: {fileID: 85506212}
+  sellBtn: {fileID: 852082104}
   ageNameList:
   - Stone Age
   - Bronze Age

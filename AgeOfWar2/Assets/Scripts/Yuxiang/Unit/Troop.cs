@@ -302,6 +302,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
 
+        damage *= ageFactor;
+
         //update sell gold
         sellGold += sellGold / (PlayerController.instance.age - 1);
     }

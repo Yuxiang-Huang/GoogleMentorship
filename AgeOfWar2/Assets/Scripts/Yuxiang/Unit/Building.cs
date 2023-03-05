@@ -79,6 +79,12 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         healthText.text = "Health: " + health + " / " + fullHealth;
         damageText.text = "Damage: n/a";
         sellText.text = "Sell: " + sellGold + " Gold";
+
+        //main base
+        if (sellGold < 0)
+        {
+            sellText.text = "Quit";
+        }
     }
 
     public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,

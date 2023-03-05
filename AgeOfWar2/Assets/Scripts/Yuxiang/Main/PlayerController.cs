@@ -388,6 +388,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     //clear selection
                     SpawnManager.instance.lastImage.GetComponent<Image>().color = Color.white;
                     SpawnManager.instance.lastImage = null;
+
+                    //info tab
+                    UIManager.instance.hideInfoTab();
+                    UIManager.instance.sellBtn.SetActive(true);
                 }
             }
         }
@@ -400,6 +404,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (mode == "spawn")
         {
             curSpawnImage.color = Color.white;
+            UIManager.instance.sellBtn.SetActive(true);
         }
 
         else if (mode == "move")

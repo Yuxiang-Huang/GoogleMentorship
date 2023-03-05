@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI unitHealthText;
     [SerializeField] TextMeshProUGUI unitDamageText;
     [SerializeField] TextMeshProUGUI unitSellText;
+    public GameObject sellBtn;
 
     [Header("Age")]
     [SerializeField] List<string> ageNameList;
@@ -116,6 +117,7 @@ public class UIManager : MonoBehaviour
     {
         infoTab.SetActive(true);
         unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText);
+        sellBtn.SetActive(false);
     }
 
     public void updateInfoTab(SpawnInfo spawnInfo)
