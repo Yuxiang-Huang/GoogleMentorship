@@ -29,7 +29,14 @@ public class SpawnButton : MonoBehaviour
     {
         //not during taking turn phase
         if (!PlayerController.instance.turnEnded)
+        {
             SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage, type, unit.GetComponent<IUnit>());
+            UIManager.instance.updateInfoTabSpawn(unit.GetComponent<IUnit>());
+        }
+        else
+        {
+            UIManager.instance.hideInfoTab();
+        }
     }
 
     public void costUpdate()

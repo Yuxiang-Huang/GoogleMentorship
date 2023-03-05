@@ -81,6 +81,16 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         sellText.text = "Sell: " + sellGold + " Gold";
     }
 
+    public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
+    {
+        string unitName = ToString();
+        nameText.text = unitName.Substring(0, unitName.IndexOf("("));
+        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(ageFactor, PlayerController.instance.age);
+        damageText.text = "Damage: n/a";
+        sellText.text = "Despawn";
+    }
+
     public void setImage(Color color)
     {
         imageRenderer.color = color;

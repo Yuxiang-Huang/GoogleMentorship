@@ -22,6 +22,9 @@ public interface IUnit
     public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
         TextMeshProUGUI damageText, TextMeshProUGUI sellText);
 
+    public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
+       TextMeshProUGUI damageText, TextMeshProUGUI sellText);
+
     public void setImage(Color color);
 
     public void sell();

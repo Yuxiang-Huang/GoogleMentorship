@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEditor;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class Troop : MonoBehaviourPunCallbacks, IUnit
 {
@@ -316,8 +317,18 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Health: " + health + " / " + fullHealth;
-        damageText.text = "Damage: " + damage.ToString();
+        damageText.text = "Damage: " + damage;
         sellText.text = "Sell: " + sellGold + " Gold";
+    }
+
+    public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
+    {
+        string unitName = ToString();
+        nameText.text = unitName.Substring(0, unitName.IndexOf("("));
+        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(ageFactor, PlayerController.instance.age);
+        damageText.text = "Damage: " + damage * (int)Mathf.Pow(ageFactor, PlayerController.instance.age);
+        sellText.text = "Despawn";
     }
 
     public void sell()

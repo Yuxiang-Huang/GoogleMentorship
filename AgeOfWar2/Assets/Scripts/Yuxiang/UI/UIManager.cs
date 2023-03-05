@@ -112,10 +112,16 @@ public class UIManager : MonoBehaviour
         unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText);
     }
 
+    public void updateInfoTabSpawn(IUnit unit)
+    {
+        infoTab.SetActive(true);
+        unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText);
+    }
+
     public void updateInfoTab(SpawnInfo spawnInfo)
     {
         infoTab.SetActive(true);
-        spawnInfo.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText);
+        spawnInfo.unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText);
     }
 
     public void hideInfoTab()

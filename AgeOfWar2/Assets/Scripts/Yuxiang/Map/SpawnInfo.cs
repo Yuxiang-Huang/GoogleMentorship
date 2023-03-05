@@ -26,10 +26,4 @@ public class SpawnInfo
         this.sellGold = sellGold;
         this.unit = unit;
     }
-
-    public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-    TextMeshProUGUI damageText, TextMeshProUGUI sellText)
-    {
-        unit.fillInfoTab(nameText, healthText, damageText, sellText);
-    }
 }
