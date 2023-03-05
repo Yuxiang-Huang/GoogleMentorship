@@ -142,6 +142,8 @@ public class UIManager : MonoBehaviour
         //if enough gold
         if (PlayerController.instance.gold >= PlayerController.instance.goldNeedToAdvance)
         {
+            infoTab.SetActive(false);
+
             PlayerController.instance.gold -= PlayerController.instance.goldNeedToAdvance;
 
             //modify age

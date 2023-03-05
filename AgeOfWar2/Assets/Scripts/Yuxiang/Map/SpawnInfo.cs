@@ -10,10 +10,13 @@ public class SpawnInfo
 
     public GameObject spawnImage;
 
-    public SpawnInfo(Tile spawnTile, string unitName, GameObject spawnImage)
+    public int sellGold;
+
+    public SpawnInfo(Tile spawnTile, string unitName, GameObject spawnImage, int sellGold)
     {
         this.spawnTile = spawnTile;
         this.unitName = unitName;
         this.spawnImage = spawnImage;
+        this.sellGold = sellGold;
     }
 }

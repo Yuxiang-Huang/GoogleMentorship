@@ -58,7 +58,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            TileManager.instance.makeGrid(29, 10);
+            //TileManager.instance.makeGrid(29, 10);
+
+            TileManager.instance.makeGrid(17, 6);
+            Camera.main.orthographicSize = 6.5f;
+            Camera.main.transform.position = new Vector3(4, 5.25f, -10);
         }
 
         if (!PV.IsMine) return;
@@ -175,7 +179,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     TileManager.instance.getWorldPosition(highlighted), Quaternion.identity).
                     GetComponent<MainBase>();
 
-                myBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y, age);
+                myBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y, age, -1);
 
                 //update canSpawn
                 canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
@@ -272,6 +276,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //findPath
                 if (highlighted != null)
                 {
+                    highlighted.highlight(false);
                     playerSelected.findPath(highlighted.GetComponent<Tile>());
                 }
 
@@ -279,7 +284,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 playerSelected.imageRender.color = Color.white;
                 playerSelected = null;
 
-                highlighted.highlight(false);
                 highlighted = null;
 
                 mode = "select";
@@ -357,7 +361,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     //add to spawn list
-                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, spawnImage));
+                    spawnList.Add(new SpawnInfo(highlighted, toSpawn, spawnImage, goldNeedToSpawn / 2));
                     spawnLocations.Add(highlighted.pos);
 
                     //reset to prevent double spawn
@@ -419,14 +423,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                     id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age, goldNeedToSpawn / 2);
+                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age, info.sellGold);
 
                 allTroops.Add(newUnit.GetComponent<Troop>());
             }
             else if (newUnit.CompareTag("Building"))
             {
                 newUnit.GetComponent<Building>().PV.RPC("Init", RpcTarget.All,
-                    id, info.spawnTile.pos.x, info.spawnTile.pos.y, age);
+                    id, info.spawnTile.pos.x, info.spawnTile.pos.y, age, info.sellGold);
                 newUnit.GetComponent<Building>().updateCanSpawn();
 
                 allBuildings.Add(newUnit.GetComponent<Building>());
@@ -542,7 +546,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         foreach (Troop troop in allTroops)
         {
-            troop.PV.RPC(nameof(troop.updateHealth), RpcTarget.All);
+            troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All);
         }
 
         foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)

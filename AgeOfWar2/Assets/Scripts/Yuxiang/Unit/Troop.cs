@@ -301,13 +301,15 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     #endregion
 
     [PunRPC]
-    public void updateHealth()
+    public void ageUpdateInfo()
     {
         //health double when age increase
         fullHealth *= ageFactor;
         health *= ageFactor;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
+
+
 
         //update sell gold
         sellGold += sellGold / (PlayerController.instance.age - 1);

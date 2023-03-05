@@ -31,11 +31,13 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, int age)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, int age, int sellGold)
     {
         ownerID = playerID;
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
+
+        this.sellGold = sellGold;
 
         //modify according to age
         fullHealth *= (int)Mathf.Pow(ageFactor, age);
@@ -83,6 +85,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         health *= ageFactor;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
+
+        //update sell gold
+        sellGold += sellGold / (PlayerController.instance.age - 1);
     }
 
     public void setHealthBar(bool status)
