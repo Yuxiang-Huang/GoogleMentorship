@@ -11,15 +11,18 @@ public class SpawnInfo
 
     public GameObject spawnImage;
 
+    public int spawnGold;
+
     public int sellGold;
 
     public IUnit unit;
 
-    public SpawnInfo(Tile spawnTile, string unitName, IUnit unit, GameObject spawnImage, int sellGold)
+    public SpawnInfo(Tile spawnTile, string unitName, IUnit unit, GameObject spawnImage, int spawnGold, int sellGold)
     {
         this.spawnTile = spawnTile;
         this.unitName = unitName;
         this.spawnImage = spawnImage;
+        this.spawnGold = spawnGold;
         this.sellGold = sellGold;
         this.unit = unit;
     }

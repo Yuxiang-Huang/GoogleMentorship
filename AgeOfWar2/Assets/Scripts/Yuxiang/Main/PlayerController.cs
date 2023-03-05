@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     Tile highlighted;
 
     public IUnit unitSelected;
+    public SpawnInfo spawnInfoSelected;
 
     public string mode;
 
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public IUnit toSpawnUnit;
     public int goldNeedToSpawn;
     public Image curSpawnImage;
-    [SerializeField] Dictionary<Vector2, SpawnInfo> spawnList = new Dictionary<Vector2, SpawnInfo>();
+    public Dictionary<Vector2, SpawnInfo> spawnList = new Dictionary<Vector2, SpawnInfo>();
 
     [Header("Gold")]
     public int gold;
@@ -270,7 +271,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     //if I am going to spawn a unit here
                     else if (spawnList.ContainsKey(highlighted.pos))
                     {
-                        UIManager.instance.updateInfoTab(spawnList[highlighted.pos]);
+                        spawnInfoSelected = spawnList[highlighted.pos];
+                        UIManager.instance.updateInfoTab(spawnInfoSelected);
                     }
                 }
             }
@@ -372,7 +374,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     //add to spawn list
                     spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, toSpawnUnit,
-                        spawnImage, goldNeedToSpawn / 2));
+                        spawnImage, goldNeedToSpawn, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn
                     highlighted.highlight(false);

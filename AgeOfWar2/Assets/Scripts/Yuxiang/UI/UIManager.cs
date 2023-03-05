@@ -125,8 +125,26 @@ public class UIManager : MonoBehaviour
 
     public void sell()
     {
-        PlayerController.instance.unitSelected.sell();
-        PlayerController.instance.unitSelected = null;
+        //sell
+        if (PlayerController.instance.unitSelected != null)
+        {
+            PlayerController.instance.unitSelected.sell();
+            PlayerController.instance.unitSelected = null;
+        }
+        //despawn
+        else if (PlayerController.instance.spawnInfoSelected != null)
+        {
+            SpawnInfo cur = PlayerController.instance.spawnInfoSelected;
+
+            //remove from list
+            Destroy(cur.spawnImage);
+            PlayerController.instance.spawnList.Remove(cur.spawnTile.pos);
+
+            //return gold
+            PlayerController.instance.gold += cur.spawnGold;
+            updateGoldText();
+        }
+
         infoTab.SetActive(false);
     }
 
