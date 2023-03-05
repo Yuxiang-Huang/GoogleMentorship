@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [Header("Start Game")]
     [SerializeField] GameObject IntroText;
     [SerializeField] GameObject Shop;
+    [SerializeField] GameObject AgeUI;
 
     [Header("Turn")]
     [SerializeField] GameObject turnBtn;
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour
         //everything set false first
         turnBtn.SetActive(false);
         infoTab.SetActive(false);
+        AgeUI.SetActive(false);
     }
 
     #region Start Game
@@ -54,9 +56,12 @@ public class UIManager : MonoBehaviour
     {
         IntroText.SetActive(false);
         Shop.SetActive(true);
+        AgeUI.SetActive(true);
 
         playerUI = playerUIList[id];
         playerUI.playerName.text = PhotonNetwork.NickName;
+
+        goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
 
         PV.RPC(nameof(reveal), RpcTarget.All, id);
     }

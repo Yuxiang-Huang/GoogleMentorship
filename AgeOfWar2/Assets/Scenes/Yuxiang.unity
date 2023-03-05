@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Advance: 64 Gold'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -594,7 +594,7 @@ MonoBehaviour:
   image: {fileID: 154927614}
   path: Building/ExtraMoney
   type: Building
-  goldNeedToSpawn: 16
+  goldNeedToSpawn: 8
   spawnImage: {fileID: 6580721310958061044, guid: 560cca3f230d94bdeb1a549f3277f240, type: 3}
   costText: {fileID: 633742205}
   unit: {fileID: 711456527856458077, guid: 2ea4d13b1b6b64ed29c22170e5787943, type: 3}
@@ -692,6 +692,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154927610}
   m_CullTransparentMesh: 1
+--- !u!1 &270290791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 270290792}
+  m_Layer: 5
+  m_Name: Age
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &270290792
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270290791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 990020500}
+  - {fileID: 1513020141}
+  m_Father: {fileID: 1549545118}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 45, y: 50}
+  m_SizeDelta: {x: 320, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &316512878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1077,7 +1115,7 @@ MonoBehaviour:
   image: {fileID: 388878472}
   path: Troop/SpearMan
   type: Troop
-  goldNeedToSpawn: 8
+  goldNeedToSpawn: 4
   spawnImage: {fileID: 1371028787450875553, guid: 806398d3c81b84a6a932a9df7a6e15f5, type: 3}
   costText: {fileID: 1760341031}
   unit: {fileID: 6514224017186162067, guid: 8bf82ab7f5c814d8b9bb6f62636310b0, type: 3}
@@ -1779,17 +1817,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990020499}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1549545118}
-  m_RootOrder: 3
+  m_Father: {fileID: 270290792}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -15, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -60.000008, y: 0.0000076293945}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &990020501
@@ -2039,7 +2077,7 @@ MonoBehaviour:
   image: {fileID: 996705852}
   path: Troop/ClubMan
   type: Troop
-  goldNeedToSpawn: 4
+  goldNeedToSpawn: 2
   spawnImage: {fileID: 3350579417564403051, guid: 85330372dcccb4576ac7d6f8ed02e152, type: 3}
   costText: {fileID: 851291530}
   unit: {fileID: 1162110229138419472, guid: b63047aabf50f448283d8221273a5698, type: 3}
@@ -3005,18 +3043,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513020140}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 33079940}
-  m_Father: {fileID: 1549545118}
-  m_RootOrder: 4
+  m_Father: {fileID: 270290792}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 150, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 104.99999, y: 0.0000076293945}
   m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513020142
@@ -3208,8 +3246,7 @@ RectTransform:
   - {fileID: 1317317238}
   - {fileID: 1053616279}
   - {fileID: 1201000672}
-  - {fileID: 990020500}
-  - {fileID: 1513020141}
+  - {fileID: 270290792}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3413,6 +3450,7 @@ MonoBehaviour:
   healthbarCanvas: {fileID: 1287991804}
   IntroText: {fileID: 1317317237}
   Shop: {fileID: 1053616278}
+  AgeUI: {fileID: 270290791}
   turnBtn: {fileID: 1201000671}
   infoTab: {fileID: 1356005891}
   unitNameText: {fileID: 1294527431}

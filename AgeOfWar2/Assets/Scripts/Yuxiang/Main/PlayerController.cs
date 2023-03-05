@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             //TileManager.instance.makeGrid(29, 10);
 
-            TileManager.instance.makeGrid(17, 6);
+            TileManager.instance.makeGrid(19, 6);
             Camera.main.orthographicSize = 6.5f;
             Camera.main.transform.position = new Vector3(4, 5.25f, -10);
         }
@@ -88,9 +88,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
-        int xOffset = 8;
+        int xOffset = 2;
 
-        int yOffset = 2;
+        int yOffset = 0;
 
         Tile root = null;
 
