@@ -402,13 +402,13 @@ ScriptsOnlyBuild:
     className: OnPointerOverTooltip
   - hash:
       serializedVersion: 2
-      Hash: e5a0e9df3203672adecac21d1907e330
+      Hash: a2a8b816484c36a1b8611e3bf906cbc5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Building
   - hash:
       serializedVersion: 2
-      Hash: 115a25fb84384149507746108c0740d7
+      Hash: a779906d8c8aac23c8331f607021169d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LongRange
@@ -720,7 +720,7 @@ ScriptsOnlyBuild:
     className: TextMeshPro
   - hash:
       serializedVersion: 2
-      Hash: 6219129bfa2c2318bca1c101cbb62ee7
+      Hash: 7d017a2d8f29abd7096a2a72c6559ee2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerUI
@@ -744,7 +744,7 @@ ScriptsOnlyBuild:
     className: SpawnManager
   - hash:
       serializedVersion: 2
-      Hash: 631369a1b5f7dfc07610caab53050083
+      Hash: cf2c2b5473652eeb3fc1ffd3c07dad61
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -894,7 +894,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 115a25fb84384149507746108c0740d7
+      Hash: a779906d8c8aac23c8331f607021169d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Troop
@@ -1002,7 +1002,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: e5a0e9df3203672adecac21d1907e330
+      Hash: a2a8b816484c36a1b8611e3bf906cbc5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainBase
@@ -1026,7 +1026,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 115a25fb84384149507746108c0740d7
+      Hash: a779906d8c8aac23c8331f607021169d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Melee
@@ -1484,4 +1484,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version6
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version7

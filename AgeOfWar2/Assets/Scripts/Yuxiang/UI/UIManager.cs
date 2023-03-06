@@ -96,8 +96,8 @@ public class UIManager : MonoBehaviour
         timeCoroutine = StartCoroutine(nameof(timer));
 
         //update Player info
-
-        // PlayerController.instance.allTroops.Count, PlayerController.instance.allBuildings.Count;
+        updatePlayerInfo(PlayerController.instance.allTroops.Count,
+            PlayerController.instance.allBuildings.Count);
     }
 
     IEnumerator timer()

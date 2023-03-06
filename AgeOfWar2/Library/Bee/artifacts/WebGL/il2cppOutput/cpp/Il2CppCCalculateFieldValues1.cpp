@@ -3545,6 +3545,8 @@ struct SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD  : public RuntimeObje
 	int32_t ___sellGold_4;
 	// IUnit SpawnInfo::unit
 	RuntimeObject* ___unit_5;
+	// System.Int32 SpawnInfo::age
+	int32_t ___age_6;
 };
 
 // UnityEngine.U2D.SpriteAtlasManager
@@ -15525,10 +15527,10 @@ struct PlayerNameManager_tDEFE436ADFFC44F20A0AC35FC5B5BEAA80D1E5B2  : public Mon
 // PlayerUI
 struct PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
-	// TMPro.TextMeshProUGUI PlayerUI::playerName
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___playerName_4;
-	// TMPro.TextMeshProUGUI PlayerUI::age
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___age_5;
+	// TMPro.TextMeshProUGUI PlayerUI::nameText
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___nameText_4;
+	// TMPro.TextMeshProUGUI PlayerUI::ageText
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___ageText_5;
 	// TMPro.TextMeshProUGUI PlayerUI::goldText
 	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___goldText_6;
 	// TMPro.TextMeshProUGUI PlayerUI::troopText
@@ -16579,6 +16581,12 @@ struct GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6  : public MonoBehav
 	List_1_t18744BF3ED4ECD9F511A802AC4D4209F00DF6FC5* ___allPlayers_9;
 	// System.Int32 GameManager::playerMoved
 	int32_t ___playerMoved_10;
+	// System.Int32 GameManager::ageIncomeOffset
+	int32_t ___ageIncomeOffset_11;
+	// System.Int32 GameManager::ageCostFactor
+	int32_t ___ageCostFactor_12;
+	// System.Int32 GameManager::ageUnitFactor
+	int32_t ___ageUnitFactor_13;
 };
 
 // UnityEngine.UI.GraphicRaycaster
@@ -20050,14 +20058,14 @@ struct U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields
 {
 	// GameManager/<>c GameManager/<>c::<>9
 	U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5* ___U3CU3E9_0;
-	// System.Func`2<Photon.Realtime.Player,System.Boolean> GameManager/<>c::<>9__9_0
-	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__9_0_1;
 	// System.Func`2<Photon.Realtime.Player,System.Boolean> GameManager/<>c::<>9__12_0
-	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__12_0_2;
-	// System.Func`2<Photon.Realtime.Player,System.Boolean> GameManager/<>c::<>9__13_0
-	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__13_0_3;
+	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__12_0_1;
 	// System.Func`2<Photon.Realtime.Player,System.Boolean> GameManager/<>c::<>9__15_0
-	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__15_0_4;
+	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__15_0_2;
+	// System.Func`2<Photon.Realtime.Player,System.Boolean> GameManager/<>c::<>9__16_0
+	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__16_0_3;
+	// System.Func`2<Photon.Realtime.Player,System.Boolean> GameManager/<>c::<>9__18_0
+	Func_2_tE73BE1F71F753F8A05FA45214DBA33F739035166* ___U3CU3E9__18_0_4;
 };
 
 // GameManager/<>c
@@ -27035,19 +27043,19 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4560[2] =
 	static_cast<int32_t>(offsetof(ScreenManager_t74B00CC32B0370204F289774CED60C5963251C50_StaticFields, ___Instance_4)),static_cast<int32_t>(offsetof(ScreenManager_t74B00CC32B0370204F289774CED60C5963251C50, ___screens_5)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4563[5] = 
 {
-	static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9_0)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__9_0_1)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__12_0_2)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__13_0_3)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__15_0_4)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4564[6] = 
+	static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9_0)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__12_0_1)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__15_0_2)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__16_0_3)),static_cast<int32_t>(offsetof(U3CU3Ec_t934A682FC7A2310EB64DF8FB184FC75102272AA5_StaticFields, ___U3CU3E9__18_0_4)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4564[9] = 
 {
-	static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___PV_6)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___playerList_7)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___allPlayersOriginal_8)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___allPlayers_9)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___playerMoved_10)),};
+	static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___PV_6)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___playerList_7)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___allPlayersOriginal_8)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___allPlayers_9)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___playerMoved_10)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___ageIncomeOffset_11)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___ageCostFactor_12)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___ageUnitFactor_13)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4565[24] = 
 {
 	static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___PV_5)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_StaticFields, ___instance_6)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___id_7)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___highlighted_8)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___unitSelected_9)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnInfoSelected_10)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___mode_11)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___turnEnded_12)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allTroops_13)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___allBuildings_14)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___territory_15)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___canSpawn_16)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnDirection_17)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnType_18)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawn_19)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnImage_20)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___toSpawnUnit_21)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToSpawn_22)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___curSpawnImage_23)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___spawnList_24)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___gold_25)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___age_26)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___goldNeedToAdvance_27)),static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___troopNum_28)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4566[7] = 
 {
 	static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___image_4)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___path_5)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___type_6)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___goldNeedToSpawn_7)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___spawnImage_8)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___costText_9)),static_cast<int32_t>(offsetof(SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361, ___unit_10)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4567[6] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4567[7] = 
 {
-	static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnTile_0)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___unitName_1)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnImage_2)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnGold_3)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___sellGold_4)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___unit_5)),};
+	static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnTile_0)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___unitName_1)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnImage_2)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___spawnGold_3)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___sellGold_4)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___unit_5)),static_cast<int32_t>(offsetof(SpawnInfo_t068B01EC8EF44154CC46EAFEFDDCC7DE5DC943BD, ___age_6)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4568[5] = 
 {
 	static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___clubMan_4)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___lastImage_6)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___testObject_7)),static_cast<int32_t>(offsetof(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC, ___spawnInfoList_8)),};
@@ -27059,7 +27067,7 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4570[8] =
 	static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5_StaticFields, ___instance_5)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___PV_6)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___tiles_7)),0,static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___landTilePrefab_9)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___waterTilePrefab_10)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___randomVals_11)),static_cast<int32_t>(offsetof(TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5, ___usedVals_12)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4571[6] = 
 {
-	static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___playerName_4)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___age_5)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___goldText_6)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___troopText_7)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___buildingText_8)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___timeText_9)),};
+	static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___nameText_4)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___ageText_5)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___goldText_6)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___troopText_7)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___buildingText_8)),static_cast<int32_t>(offsetof(PlayerUI_tEEE7AB3934BDE7673874A47BB104A4C45AC8BD1F, ___timeText_9)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4572[5] = 
 {
 	static_cast<int32_t>(offsetof(U3CtimerU3Ed__23_t670C43B132A3FF01D3033B2C2B359425D90AEB0E, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CtimerU3Ed__23_t670C43B132A3FF01D3033B2C2B359425D90AEB0E, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CtimerU3Ed__23_t670C43B132A3FF01D3033B2C2B359425D90AEB0E, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CtimerU3Ed__23_t670C43B132A3FF01D3033B2C2B359425D90AEB0E, ___U3CtimeU3E5__2_3)),static_cast<int32_t>(offsetof(U3CtimerU3Ed__23_t670C43B132A3FF01D3033B2C2B359425D90AEB0E, ___U3CiU3E5__3_4)),};
