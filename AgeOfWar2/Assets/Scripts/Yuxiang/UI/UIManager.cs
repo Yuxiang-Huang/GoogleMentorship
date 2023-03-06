@@ -228,7 +228,7 @@ public class UIManager : MonoBehaviour
             //update spawn buttons
             foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
             {
-                spawnBtn.costUpdate();
+                spawnBtn.ageAdvanceUpdate();
             }
         }
     }
