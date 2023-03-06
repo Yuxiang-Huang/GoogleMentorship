@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6514224017186162069}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1060377993
 SpriteRenderer:
@@ -229,7 +229,7 @@ RectTransform:
   - {fileID: 9194064654390484018}
   - {fileID: 3386925211400993312}
   m_Father: {fileID: 6514224017186162069}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 2348981124272579798}
   - component: {fileID: 8489788014809983747}
   m_Layer: 0
-  m_Name: SpearMan
+  m_Name: LongRange
   m_TagString: Troop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,8 +317,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3621597521633477294}
   - {fileID: 1060377992}
+  - {fileID: 3621597521633477294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

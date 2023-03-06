@@ -15,9 +15,11 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     private int ageFactor;
 
+    public int sellGold;
+
     public SpriteRenderer imageRenderer;
 
-    public int sellGold;
+    public List<Sprite> unitImages { get; set; }
 
     [Header("Health")]
     public Slider healthbar;
@@ -44,7 +46,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection, int age, int sellGold)
+    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection,
+        string path, int age, int sellGold)
     {
         //setting tile, ID, direction, sell gold
         ownerID = playerID;
@@ -56,7 +59,11 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
         this.sellGold = sellGold;
 
-        //modify according to age
+        //modify images
+        unitImages = SpawnManager.instance.spawnBtnMap[path].unitImages;
+        imageRenderer.sprite = unitImages[age];
+
+        //modify health and damage according to age
         fullHealth *= (int) Mathf.Pow(ageFactor, age);
         damage *= (int) Mathf.Pow(ageFactor, age);
 

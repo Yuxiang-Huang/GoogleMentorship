@@ -226,7 +226,7 @@ public class UIManager : MonoBehaviour
             PlayerController.instance.updateExistingUnits();
 
             //update spawn buttons
-            foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
+            foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnBtnList)
             {
                 spawnBtn.ageAdvanceUpdate();
             }

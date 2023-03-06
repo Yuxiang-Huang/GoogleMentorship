@@ -184,7 +184,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     TileManager.instance.getWorldPosition(highlighted), Quaternion.identity).
                     GetComponent<MainBase>();
 
-                myBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y, age, -1);
+                myBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y,
+                     "Building/MainBase", age, -1);
 
                 //update canSpawn
                 canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
@@ -436,14 +437,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                     id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], info.age, info.sellGold);
+                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y],
+                    info.unitName, info.age, info.sellGold);
 
                 allTroops.Add(newUnit.GetComponent<Troop>());
             }
             else if (newUnit.CompareTag("Building"))
             {
                 newUnit.GetComponent<Building>().PV.RPC("Init", RpcTarget.All,
-                    id, info.spawnTile.pos.x, info.spawnTile.pos.y, age, info.sellGold);
+                    id, info.spawnTile.pos.x, info.spawnTile.pos.y,
+                    info.unitName, age, info.sellGold);
                 newUnit.GetComponent<Building>().updateCanSpawn();
 
                 allBuildings.Add(newUnit.GetComponent<Building>());

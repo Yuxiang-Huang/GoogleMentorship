@@ -13,11 +13,20 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] GameObject testObject;
 
-    public List<SpawnButton> spawnInfoList;
+    public List<SpawnButton> spawnBtnList;
+
+    public Dictionary<string, SpawnButton> spawnBtnMap;
 
     public void Awake()
     {
         instance = this;
+
+        //creating dictionary
+        spawnBtnMap = new Dictionary<string, SpawnButton>();
+        foreach (SpawnButton spawnButton in spawnBtnList)
+        {
+            spawnBtnMap[spawnButton.path] = spawnButton;
+        }
     }
 
     public void spawn(Image image, string path, int goldNeedToSpawn, GameObject spawnImage,

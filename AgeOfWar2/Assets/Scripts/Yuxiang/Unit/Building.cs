@@ -20,6 +20,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public int sellGold;
 
     public SpriteRenderer imageRenderer;
+    public List<Sprite> unitImages { get; set; }
 
     [Header("Health")]
     public Slider healthbar;
@@ -35,7 +36,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, int age, int sellGold)
+    public void Init(int playerID, int startingtTileX, int startingtTileY,
+        string path, int age, int sellGold)
     {
         ownerID = playerID;
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
@@ -43,7 +45,11 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
         this.sellGold = sellGold;
 
-        //modify according to age
+        //modify images
+        unitImages = SpawnManager.instance.spawnBtnMap[path].unitImages;
+        imageRenderer.sprite = unitImages[age];
+
+        //modify health according to age
         fullHealth *= (int)Mathf.Pow(ageFactor, age);
 
         //health

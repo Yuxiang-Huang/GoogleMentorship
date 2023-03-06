@@ -8,7 +8,7 @@ public class SpawnButton : MonoBehaviour
 {
     [SerializeField] Image image;
 
-    [SerializeField] string path;
+    public string path;
 
     [SerializeField] string type;
 
@@ -20,7 +20,7 @@ public class SpawnButton : MonoBehaviour
 
     [SerializeField] GameObject unit;
 
-    [SerializeField] List<Sprite> unitImages;
+    public List<Sprite> unitImages;
 
     void Awake()
     {
@@ -45,10 +45,14 @@ public class SpawnButton : MonoBehaviour
 
     public void ageAdvanceUpdate()
     {
+        //exception of main base
+        if (type == "MainBase") return;
+
         costText.text = goldNeedToSpawn
-            * (int) Mathf.Pow(GameManager.instance.ageCostFactor, PlayerController.instance.age)
-            +" gold";
+        * (int) Mathf.Pow(GameManager.instance.ageCostFactor, PlayerController.instance.age)
+        +" gold";
 
         GetComponent<Image>().sprite = unitImages[PlayerController.instance.age];
+        spawnImage.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = unitImages[PlayerController.instance.age];
     }
 }
