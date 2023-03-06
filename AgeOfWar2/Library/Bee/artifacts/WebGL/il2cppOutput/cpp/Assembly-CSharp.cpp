@@ -12859,7 +12859,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerController_updateExistingUnits_mA3
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Enumerator_Dispose_m0231F32CAFD421AA87AA8D95A531CF97FAC728D8_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Enumerator_Dispose_m45C04DCD4C418008749730CA8F40FCF918F8AE8C_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Enumerator_Dispose_m85DD232F0CA8B1E49200BC0E47B010153209399C_RuntimeMethod_var);
@@ -12869,9 +12868,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerController_updateExistingUnits_mA3
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Enumerator_get_Current_m3F9CC79812419BABA00150466E8C49AD5DE3C5DA_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Enumerator_get_Current_m99271080DE072BF42D392D16BE6E8B9603F7AC37_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Enumerator_get_Current_mFC1CA3AF29F29127B989FE165C49D6896D4581D4_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&List_1_GetEnumerator_m2D0D54D9648F81E88DACE7A69AAFF98071B935BC_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&List_1_GetEnumerator_m823E4340B66BA23B3D76D3A6AA50D037439DD26C_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&List_1_GetEnumerator_mF3B3F5C48963FB9A77CCB44A56B20004F6E5815A_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral2BA1DD338E078526047495B62858EA7AA3A619BE);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralCDE487D565F5F4473E287E78B31C0625F085D219);
@@ -12894,7 +12895,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerController_updateExistingUnits_mA3
 		auto __finallyBlock = il2cpp::utils::Finally([&]
 		{
 
-FINALLY_0035:
+FINALLY_0044:
 			{// begin finally (depth: 1)
 				Enumerator_Dispose_m85DD232F0CA8B1E49200BC0E47B010153209399C((&V_0), Enumerator_Dispose_m85DD232F0CA8B1E49200BC0E47B010153209399C_RuntimeMethod_var);
 				return;
@@ -12903,7 +12904,7 @@ FINALLY_0035:
 		try
 		{// begin try (depth: 1)
 			{
-				goto IL_002a_1;
+				goto IL_0039_1;
 			}
 
 IL_000e_1:
@@ -12911,26 +12912,31 @@ IL_000e_1:
 				// foreach (Building building in allBuildings)
 				Building_t950D5394E080624D7E96B158EF852EA16ADB3650* L_2;
 				L_2 = Enumerator_get_Current_mFC1CA3AF29F29127B989FE165C49D6896D4581D4_inline((&V_0), Enumerator_get_Current_mFC1CA3AF29F29127B989FE165C49D6896D4581D4_RuntimeMethod_var);
-				// building.PV.RPC(nameof(building.updateHealth), RpcTarget.All);
+				// building.PV.RPC(nameof(building.updateHealth), RpcTarget.All, age);
 				PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* L_3;
 				L_3 = Building_get_PV_m1F396204932C42BED1E55206260A94B904D68DA4_inline(L_2, NULL);
-				ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_4;
-				L_4 = Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_inline(Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_RuntimeMethod_var);
-				PhotonView_RPC_mD406BD732C9B9AFD46C149F63514AB3A923EB5BB(L_3, _stringLiteral2BA1DD338E078526047495B62858EA7AA3A619BE, 0, L_4, NULL);
+				ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_4 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)SZArrayNew(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918_il2cpp_TypeInfo_var, (uint32_t)1);
+				ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_5 = L_4;
+				int32_t L_6 = __this->___age_26;
+				int32_t L_7 = L_6;
+				RuntimeObject* L_8 = Box(Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_il2cpp_TypeInfo_var, &L_7);
+				ArrayElementTypeCheck (L_5, L_8);
+				(L_5)->SetAtUnchecked(static_cast<il2cpp_array_size_t>(0), (RuntimeObject*)L_8);
+				PhotonView_RPC_mD406BD732C9B9AFD46C149F63514AB3A923EB5BB(L_3, _stringLiteral2BA1DD338E078526047495B62858EA7AA3A619BE, 0, L_5, NULL);
 			}
 
-IL_002a_1:
+IL_0039_1:
 			{
 				// foreach (Building building in allBuildings)
-				bool L_5;
-				L_5 = Enumerator_MoveNext_m992AFCDC194D018EC10B7F1BB98C3ACF4B1B15A3((&V_0), Enumerator_MoveNext_m992AFCDC194D018EC10B7F1BB98C3ACF4B1B15A3_RuntimeMethod_var);
-				if (L_5)
+				bool L_9;
+				L_9 = Enumerator_MoveNext_m992AFCDC194D018EC10B7F1BB98C3ACF4B1B15A3((&V_0), Enumerator_MoveNext_m992AFCDC194D018EC10B7F1BB98C3ACF4B1B15A3_RuntimeMethod_var);
+				if (L_9)
 				{
 					goto IL_000e_1;
 				}
 			}
 			{
-				goto IL_0043;
+				goto IL_0052;
 			}
 		}// end try (depth: 1)
 		catch(Il2CppExceptionWrapper& e)
@@ -12939,19 +12945,19 @@ IL_002a_1:
 		}
 	}
 
-IL_0043:
+IL_0052:
 	{
 		// foreach (Troop troop in allTroops)
-		List_1_tEA2B1F28941C511ACFA6C65A701FDF0C24426633* L_6 = __this->___allTroops_13;
-		Enumerator_t7A0F7B8AAF5F934BC2EC73815656D5836CF3D8BB L_7;
-		L_7 = List_1_GetEnumerator_m2D0D54D9648F81E88DACE7A69AAFF98071B935BC(L_6, List_1_GetEnumerator_m2D0D54D9648F81E88DACE7A69AAFF98071B935BC_RuntimeMethod_var);
-		V_1 = L_7;
+		List_1_tEA2B1F28941C511ACFA6C65A701FDF0C24426633* L_10 = __this->___allTroops_13;
+		Enumerator_t7A0F7B8AAF5F934BC2EC73815656D5836CF3D8BB L_11;
+		L_11 = List_1_GetEnumerator_m2D0D54D9648F81E88DACE7A69AAFF98071B935BC(L_10, List_1_GetEnumerator_m2D0D54D9648F81E88DACE7A69AAFF98071B935BC_RuntimeMethod_var);
+		V_1 = L_11;
 	}
 	{
 		auto __finallyBlock = il2cpp::utils::Finally([&]
 		{
 
-FINALLY_0078:
+FINALLY_0096:
 			{// begin finally (depth: 1)
 				Enumerator_Dispose_m45C04DCD4C418008749730CA8F40FCF918F8AE8C((&V_1), Enumerator_Dispose_m45C04DCD4C418008749730CA8F40FCF918F8AE8C_RuntimeMethod_var);
 				return;
@@ -12960,34 +12966,39 @@ FINALLY_0078:
 		try
 		{// begin try (depth: 1)
 			{
-				goto IL_006d_1;
+				goto IL_008b_1;
 			}
 
-IL_0051_1:
+IL_0060_1:
 			{
 				// foreach (Troop troop in allTroops)
-				Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8* L_8;
-				L_8 = Enumerator_get_Current_m3F9CC79812419BABA00150466E8C49AD5DE3C5DA_inline((&V_1), Enumerator_get_Current_m3F9CC79812419BABA00150466E8C49AD5DE3C5DA_RuntimeMethod_var);
-				// troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All);
-				PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* L_9;
-				L_9 = Troop_get_PV_mA3463D175D374584507E536180106FE3CC0EE159_inline(L_8, NULL);
-				ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_10;
-				L_10 = Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_inline(Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_RuntimeMethod_var);
-				PhotonView_RPC_mD406BD732C9B9AFD46C149F63514AB3A923EB5BB(L_9, _stringLiteralCDE487D565F5F4473E287E78B31C0625F085D219, 0, L_10, NULL);
+				Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8* L_12;
+				L_12 = Enumerator_get_Current_m3F9CC79812419BABA00150466E8C49AD5DE3C5DA_inline((&V_1), Enumerator_get_Current_m3F9CC79812419BABA00150466E8C49AD5DE3C5DA_RuntimeMethod_var);
+				// troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All, age);
+				PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* L_13;
+				L_13 = Troop_get_PV_mA3463D175D374584507E536180106FE3CC0EE159_inline(L_12, NULL);
+				ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_14 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)SZArrayNew(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918_il2cpp_TypeInfo_var, (uint32_t)1);
+				ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_15 = L_14;
+				int32_t L_16 = __this->___age_26;
+				int32_t L_17 = L_16;
+				RuntimeObject* L_18 = Box(Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_il2cpp_TypeInfo_var, &L_17);
+				ArrayElementTypeCheck (L_15, L_18);
+				(L_15)->SetAtUnchecked(static_cast<il2cpp_array_size_t>(0), (RuntimeObject*)L_18);
+				PhotonView_RPC_mD406BD732C9B9AFD46C149F63514AB3A923EB5BB(L_13, _stringLiteralCDE487D565F5F4473E287E78B31C0625F085D219, 0, L_15, NULL);
 			}
 
-IL_006d_1:
+IL_008b_1:
 			{
 				// foreach (Troop troop in allTroops)
-				bool L_11;
-				L_11 = Enumerator_MoveNext_m086F048918F984DC4823C4BF19AD8216318D0502((&V_1), Enumerator_MoveNext_m086F048918F984DC4823C4BF19AD8216318D0502_RuntimeMethod_var);
-				if (L_11)
+				bool L_19;
+				L_19 = Enumerator_MoveNext_m086F048918F984DC4823C4BF19AD8216318D0502((&V_1), Enumerator_MoveNext_m086F048918F984DC4823C4BF19AD8216318D0502_RuntimeMethod_var);
+				if (L_19)
 				{
-					goto IL_0051_1;
+					goto IL_0060_1;
 				}
 			}
 			{
-				goto IL_0086;
+				goto IL_00a4;
 			}
 		}// end try (depth: 1)
 		catch(Il2CppExceptionWrapper& e)
@@ -12996,20 +13007,20 @@ IL_006d_1:
 		}
 	}
 
-IL_0086:
+IL_00a4:
 	{
 		// foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
-		SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC* L_12 = ((SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_StaticFields*)il2cpp_codegen_static_fields_for(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_il2cpp_TypeInfo_var))->___instance_5;
-		List_1_tB53CBC2F98591E4BCADF1068DD5A5D3213B9E4BF* L_13 = L_12->___spawnInfoList_8;
-		Enumerator_tDCF44907C5B8BFAA77E32592E8C2C895C649B6A8 L_14;
-		L_14 = List_1_GetEnumerator_mF3B3F5C48963FB9A77CCB44A56B20004F6E5815A(L_13, List_1_GetEnumerator_mF3B3F5C48963FB9A77CCB44A56B20004F6E5815A_RuntimeMethod_var);
-		V_2 = L_14;
+		SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC* L_20 = ((SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_StaticFields*)il2cpp_codegen_static_fields_for(SpawnManager_tD38605BF221D4CC849CF709A85499D2B698FD6FC_il2cpp_TypeInfo_var))->___instance_5;
+		List_1_tB53CBC2F98591E4BCADF1068DD5A5D3213B9E4BF* L_21 = L_20->___spawnInfoList_8;
+		Enumerator_tDCF44907C5B8BFAA77E32592E8C2C895C649B6A8 L_22;
+		L_22 = List_1_GetEnumerator_mF3B3F5C48963FB9A77CCB44A56B20004F6E5815A(L_21, List_1_GetEnumerator_mF3B3F5C48963FB9A77CCB44A56B20004F6E5815A_RuntimeMethod_var);
+		V_2 = L_22;
 	}
 	{
 		auto __finallyBlock = il2cpp::utils::Finally([&]
 		{
 
-FINALLY_00af:
+FINALLY_00cd:
 			{// begin finally (depth: 1)
 				Enumerator_Dispose_m0231F32CAFD421AA87AA8D95A531CF97FAC728D8((&V_2), Enumerator_Dispose_m0231F32CAFD421AA87AA8D95A531CF97FAC728D8_RuntimeMethod_var);
 				return;
@@ -13018,30 +13029,30 @@ FINALLY_00af:
 		try
 		{// begin try (depth: 1)
 			{
-				goto IL_00a4_1;
+				goto IL_00c2_1;
 			}
 
-IL_0098_1:
+IL_00b6_1:
 			{
 				// foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
-				SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361* L_15;
-				L_15 = Enumerator_get_Current_m99271080DE072BF42D392D16BE6E8B9603F7AC37_inline((&V_2), Enumerator_get_Current_m99271080DE072BF42D392D16BE6E8B9603F7AC37_RuntimeMethod_var);
+				SpawnButton_tF9DD304F6103435B5C331C9A1F603439CEE15361* L_23;
+				L_23 = Enumerator_get_Current_m99271080DE072BF42D392D16BE6E8B9603F7AC37_inline((&V_2), Enumerator_get_Current_m99271080DE072BF42D392D16BE6E8B9603F7AC37_RuntimeMethod_var);
 				// spawnBtn.costUpdate();
-				SpawnButton_costUpdate_m08EC82C519BA0781CDDB37095920B19FD18283BC(L_15, NULL);
+				SpawnButton_costUpdate_m08EC82C519BA0781CDDB37095920B19FD18283BC(L_23, NULL);
 			}
 
-IL_00a4_1:
+IL_00c2_1:
 			{
 				// foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
-				bool L_16;
-				L_16 = Enumerator_MoveNext_mBD8F04F67B470217CE53B2BC2FC60DA4789BE9B9((&V_2), Enumerator_MoveNext_mBD8F04F67B470217CE53B2BC2FC60DA4789BE9B9_RuntimeMethod_var);
-				if (L_16)
+				bool L_24;
+				L_24 = Enumerator_MoveNext_mBD8F04F67B470217CE53B2BC2FC60DA4789BE9B9((&V_2), Enumerator_MoveNext_mBD8F04F67B470217CE53B2BC2FC60DA4789BE9B9_RuntimeMethod_var);
+				if (L_24)
 				{
-					goto IL_0098_1;
+					goto IL_00b6_1;
 				}
 			}
 			{
-				goto IL_00bd;
+				goto IL_00db;
 			}
 		}// end try (depth: 1)
 		catch(Il2CppExceptionWrapper& e)
@@ -13050,7 +13061,7 @@ IL_00a4_1:
 		}
 	}
 
-IL_00bd:
+IL_00db:
 	{
 		// }
 		return;
@@ -17133,15 +17144,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Building_setImage_m12E646C6AC5A805D30C56
 		return;
 	}
 }
-// System.Void Building::updateHealth()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Building_updateHealth_mA1240C3E1AC675EE3FD2FEFEBB96384DA93EBF9B (Building_t950D5394E080624D7E96B158EF852EA16ADB3650* __this, const RuntimeMethod* method) 
+// System.Void Building::updateHealth(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Building_updateHealth_m11AB14AF4B5CC0210CD36129E1482E79BF656288 (Building_t950D5394E080624D7E96B158EF852EA16ADB3650* __this, int32_t ___0_playerAge, const RuntimeMethod* method) 
 {
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
 	{
 		// fullHealth *= ageFactor;
 		int32_t L_0 = __this->___fullHealth_13;
@@ -17161,12 +17166,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Building_updateHealth_mA1240C3E1AC675EE3
 		int32_t L_7;
 		L_7 = Building_get_health_m543B2D1ADF4B6830C91B8913C224CFB29FE43F94_inline(__this, NULL);
 		VirtualActionInvoker1< float >::Invoke(47 /* System.Void UnityEngine.UI.Slider::set_value(System.Single) */, L_6, ((float)L_7));
-		// sellGold += sellGold / (PlayerController.instance.age - 1);
+		// sellGold += sellGold / (playerAge - 1);
 		int32_t L_8 = __this->___sellGold_9;
 		int32_t L_9 = __this->___sellGold_9;
-		PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95* L_10 = ((PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_StaticFields*)il2cpp_codegen_static_fields_for(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_il2cpp_TypeInfo_var))->___instance_6;
-		int32_t L_11 = L_10->___age_26;
-		__this->___sellGold_9 = ((int32_t)il2cpp_codegen_add(L_8, ((int32_t)(L_9/((int32_t)il2cpp_codegen_subtract(L_11, 1))))));
+		int32_t L_10 = ___0_playerAge;
+		__this->___sellGold_9 = ((int32_t)il2cpp_codegen_add(L_8, ((int32_t)(L_9/((int32_t)il2cpp_codegen_subtract(L_10, 1))))));
 		// }
 		return;
 	}
@@ -19239,15 +19243,9 @@ IL_003b:
 		return;
 	}
 }
-// System.Void Troop::ageUpdateInfo()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Troop_ageUpdateInfo_mF34BC2C60EA61639713AFB6608035AD0171B0F0D (Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8* __this, const RuntimeMethod* method) 
+// System.Void Troop::ageUpdateInfo(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Troop_ageUpdateInfo_mD540D9A2D774208D10D25276795EB5B372105705 (Troop_t5F3CBC2300855131B9E5E6A1E6BDC42E7A99BDF8* __this, int32_t ___0_playerAge, const RuntimeMethod* method) 
 {
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
 	{
 		// fullHealth *= ageFactor;
 		int32_t L_0 = __this->___fullHealth_12;
@@ -19271,12 +19269,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Troop_ageUpdateInfo_mF34BC2C60EA61639713
 		int32_t L_8 = __this->___damage_13;
 		int32_t L_9 = __this->___ageFactor_7;
 		__this->___damage_13 = ((int32_t)il2cpp_codegen_multiply(L_8, L_9));
-		// sellGold += sellGold / (PlayerController.instance.age - 1);
+		// sellGold += sellGold / (playerAge - 1);
 		int32_t L_10 = __this->___sellGold_9;
 		int32_t L_11 = __this->___sellGold_9;
-		PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95* L_12 = ((PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_StaticFields*)il2cpp_codegen_static_fields_for(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95_il2cpp_TypeInfo_var))->___instance_6;
-		int32_t L_13 = L_12->___age_26;
-		__this->___sellGold_9 = ((int32_t)il2cpp_codegen_add(L_10, ((int32_t)(L_11/((int32_t)il2cpp_codegen_subtract(L_13, 1))))));
+		int32_t L_12 = ___0_playerAge;
+		__this->___sellGold_9 = ((int32_t)il2cpp_codegen_add(L_10, ((int32_t)(L_11/((int32_t)il2cpp_codegen_subtract(L_12, 1))))));
 		// }
 		return;
 	}

@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     //add to spawn list
                     spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, toSpawnUnit,
-                        spawnImage, goldNeedToSpawn, goldNeedToSpawn / 2));
+                        spawnImage, goldNeedToSpawn * age, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn
                     highlighted.highlight(false);

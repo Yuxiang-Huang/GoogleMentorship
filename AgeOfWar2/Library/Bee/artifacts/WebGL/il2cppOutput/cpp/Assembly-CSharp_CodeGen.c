@@ -304,8 +304,8 @@ extern void Building_fillInfoTab_m7C72087D70E119AA192A4E583134579BD1C322E6 (void
 extern void Building_fillInfoTabSpawn_m2FC21ED5AB051EA211B91E4E3EFAFB9BDB948660 (void);
 // 0x00000092 System.Void Building::setImage(UnityEngine.Color)
 extern void Building_setImage_m12E646C6AC5A805D30C56E1EAA6BCEEDF904A897 (void);
-// 0x00000093 System.Void Building::updateHealth()
-extern void Building_updateHealth_mA1240C3E1AC675EE3FD2FEFEBB96384DA93EBF9B (void);
+// 0x00000093 System.Void Building::updateHealth(System.Int32)
+extern void Building_updateHealth_m11AB14AF4B5CC0210CD36129E1482E79BF656288 (void);
 // 0x00000094 System.Void Building::setHealthBar(System.Boolean)
 extern void Building_setHealthBar_mD5040DE538E076B3920F1CCF62CA76D93E431CD6 (void);
 // 0x00000095 System.Void Building::takeDamage(System.Int32)
@@ -364,8 +364,8 @@ extern void Troop_takeDamage_m3689130DDD8C9569BE0BCBC6711E002DCC7099C6 (void);
 extern void Troop_setHealthBar_m95FB60C7799283B4B973529F65685A3A860E7FED (void);
 // 0x000000B0 System.Void Troop::checkDeath()
 extern void Troop_checkDeath_mC077812598636FF824A7D4FEAEC24CE457BCD1E7 (void);
-// 0x000000B1 System.Void Troop::ageUpdateInfo()
-extern void Troop_ageUpdateInfo_mF34BC2C60EA61639713AFB6608035AD0171B0F0D (void);
+// 0x000000B1 System.Void Troop::ageUpdateInfo(System.Int32)
+extern void Troop_ageUpdateInfo_mD540D9A2D774208D10D25276795EB5B372105705 (void);
 // 0x000000B2 System.Void Troop::setImage(UnityEngine.Color)
 extern void Troop_setImage_m2FFED6B7463F505D54B57A3EC50DBC54A065114E (void);
 // 0x000000B3 System.Void Troop::fillInfoTab(TMPro.TextMeshProUGUI,TMPro.TextMeshProUGUI,TMPro.TextMeshProUGUI,TMPro.TextMeshProUGUI)
@@ -612,7 +612,7 @@ static Il2CppMethodPointer s_methodPointers[231] =
 	Building_fillInfoTab_m7C72087D70E119AA192A4E583134579BD1C322E6,
 	Building_fillInfoTabSpawn_m2FC21ED5AB051EA211B91E4E3EFAFB9BDB948660,
 	Building_setImage_m12E646C6AC5A805D30C56E1EAA6BCEEDF904A897,
-	Building_updateHealth_mA1240C3E1AC675EE3FD2FEFEBB96384DA93EBF9B,
+	Building_updateHealth_m11AB14AF4B5CC0210CD36129E1482E79BF656288,
 	Building_setHealthBar_mD5040DE538E076B3920F1CCF62CA76D93E431CD6,
 	Building_takeDamage_m6ECB33F272DFAFEACC917CB29402FD33D8888016,
 	Building_checkDeath_m54E1166D4C09EF7BD6FE6AF97B661576C094B119,
@@ -642,7 +642,7 @@ static Il2CppMethodPointer s_methodPointers[231] =
 	Troop_takeDamage_m3689130DDD8C9569BE0BCBC6711E002DCC7099C6,
 	Troop_setHealthBar_m95FB60C7799283B4B973529F65685A3A860E7FED,
 	Troop_checkDeath_mC077812598636FF824A7D4FEAEC24CE457BCD1E7,
-	Troop_ageUpdateInfo_mF34BC2C60EA61639713AFB6608035AD0171B0F0D,
+	Troop_ageUpdateInfo_mD540D9A2D774208D10D25276795EB5B372105705,
 	Troop_setImage_m2FFED6B7463F505D54B57A3EC50DBC54A065114E,
 	Troop_fillInfoTab_m4573712A13D73A6E4D9FF529E60C49FF03C03655,
 	Troop_fillInfoTabSpawn_m65CA03445C4667C765212700A1F36B704B3796B2,
@@ -846,7 +846,7 @@ static const int32_t s_InvokerIndices[231] =
 	736,
 	736,
 	3253,
-	4077,
+	3299,
 	3250,
 	3299,
 	4077,
@@ -876,7 +876,7 @@ static const int32_t s_InvokerIndices[231] =
 	3299,
 	3250,
 	4077,
-	4077,
+	3299,
 	3253,
 	736,
 	736,

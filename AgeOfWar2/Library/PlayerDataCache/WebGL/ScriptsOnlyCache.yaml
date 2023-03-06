@@ -21,6 +21,8 @@ ScriptsOnlyBuild:
     - Tile
     - TileManager
     - UIManager
+    ParrelSync.dll:
+    - ParrelSync.ClonesManagerWindow
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
