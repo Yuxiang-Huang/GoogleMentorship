@@ -13,7 +13,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int ownerID { get; set; }
 
-    [SerializeField] int ageFactor = 2;
+    private int ageFactor;
 
     public SpriteRenderer imageRenderer;
 
@@ -39,6 +39,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+
+        ageFactor = GameManager.instance.ageUnitFactor;
     }
 
     [PunRPC]
@@ -305,7 +307,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         damage *= ageFactor;
 
         //update sell gold
-        sellGold += sellGold / (playerAge - 1);
+        sellGold *= GameManager.instance.ageCostFactor;
     }
 
     public void setImage(Color color)

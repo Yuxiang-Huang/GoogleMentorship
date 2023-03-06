@@ -378,12 +378,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328155a15684c4208b7bc1080f14cd6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ageFactor: 2
   imageRenderer: {fileID: 8551424322139322304}
   sellGold: 0
   healthbar: {fileID: 854043445853921571}
-  fullHealth: 2
-  damage: 1
+  fullHealth: 200
+  damage: 100
   direction: {x: 0, y: 0}
   tile: {fileID: 0}
   path: []

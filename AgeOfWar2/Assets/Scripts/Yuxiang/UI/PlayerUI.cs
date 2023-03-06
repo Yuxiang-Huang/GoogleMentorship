@@ -5,8 +5,8 @@ using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
-    public TextMeshProUGUI playerName;
-    public TextMeshProUGUI age;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI ageText;
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI troopText;
     public TextMeshProUGUI buildingText;

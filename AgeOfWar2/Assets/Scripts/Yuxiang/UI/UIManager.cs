@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
         AgeUI.SetActive(true);
 
         playerUI = playerUIList[0];
-        playerUI.playerName.text = PhotonNetwork.NickName;
+        playerUI.nameText.text = PhotonNetwork.NickName;
 
         goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
 
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator timer()
     {
-        int time = 10 * (PlayerController.instance.age + 1);
+        int time = 10 * (PlayerController.instance.age + 2);
 
         for (int i = 0; i < time; i++)
         {
@@ -205,8 +205,11 @@ public class UIManager : MonoBehaviour
 
             //modify age
             PlayerController.instance.age++;
-            PV.RPC(nameof(updateAgeText), RpcTarget.All, PlayerController.instance.age);
-            PlayerController.instance.goldNeedToAdvance *= 2;
+            ageText.text = ageNameList[PlayerController.instance.age];
+            playerUI.ageText.text = ageNameList[PlayerController.instance.age]; //Need to Sync later
+
+            //modify gold
+            PlayerController.instance.goldNeedToAdvance *= GameManager.instance.ageCostFactor;
             goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
             playerUI.goldText.text = "Gold: " + PlayerController.instance.gold;
 
@@ -218,13 +221,13 @@ public class UIManager : MonoBehaviour
 
             //update building health
             PlayerController.instance.updateExistingUnits();
-        }
-    }
 
-    [PunRPC]
-    public void updateAgeText(int ageIndex)
-    {
-        ageText.text = ageNameList[PlayerController.instance.age - 1];
+            //update spawn buttons
+            foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
+            {
+                spawnBtn.costUpdate();
+            }
+        }
     }
 
     #endregion

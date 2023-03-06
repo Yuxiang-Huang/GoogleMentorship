@@ -30,7 +30,9 @@ public class SpawnButton : MonoBehaviour
         //not during taking turn phase
         if (!PlayerController.instance.turnEnded)
         {
-            SpawnManager.instance.spawn(image, path, goldNeedToSpawn, spawnImage, type, unit.GetComponent<IUnit>());
+            SpawnManager.instance.spawn(image, path,
+                goldNeedToSpawn * (int) Mathf.Pow(GameManager.instance.ageCostFactor, PlayerController.instance.age),
+                spawnImage, type, unit.GetComponent<IUnit>());
             UIManager.instance.updateInfoTabSpawn(unit.GetComponent<IUnit>());
         }
         else
@@ -41,6 +43,8 @@ public class SpawnButton : MonoBehaviour
 
     public void costUpdate()
     {
-        costText.text = PlayerController.instance.age * goldNeedToSpawn + " gold";
+        costText.text = goldNeedToSpawn
+            * (int) Mathf.Pow(GameManager.instance.ageCostFactor, PlayerController.instance.age)
+            +" gold";
     }
 }

@@ -15,7 +15,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
     public Tile tile;
 
-    [SerializeField] int ageFactor = 2;
+    private int ageFactor;
 
     public int sellGold;
 
@@ -30,6 +30,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+
+        ageFactor = GameManager.instance.ageUnitFactor;
     }
 
     [PunRPC]
@@ -116,7 +118,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         healthbar.value = health;
 
         //update sell gold
-        sellGold += sellGold / (playerAge - 1);
+        sellGold *= GameManager.instance.ageCostFactor;
     }
 
     public void setHealthBar(bool status)

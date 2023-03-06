@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Age: Bronze'
+  m_text: Stone Age
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -460,8 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29def66dad01447f9889d337dffb2291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: {fileID: 7635068182240824798}
-  age: {fileID: 5020391903020976009}
+  nameText: {fileID: 7635068182240824798}
+  ageText: {fileID: 5020391903020976009}
   goldText: {fileID: 7635068182009415809}
   troopText: {fileID: 7635068181390710449}
   buildingText: {fileID: 7635068183373417361}

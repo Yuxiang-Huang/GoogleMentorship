@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [Header("Gold")]
     public int gold;
-    public int age = 1;
+    public int age;
     public int goldNeedToAdvance;
 
     [Header("Turn")]
@@ -363,10 +363,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (Input.GetMouseButtonDown(0))
             {
                 //there is a highlighted tile and enough gold
-                if (highlighted != null && gold >= goldNeedToSpawn * age)
+                if (highlighted != null && gold >= goldNeedToSpawn)
                 {
                     //deduct gold
-                    gold -= goldNeedToSpawn * age;
+                    gold -= goldNeedToSpawn;
                     UIManager.instance.updateGoldText();
 
                     //spawn an image
@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     //add to spawn list
                     spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, toSpawnUnit,
-                        spawnImage, goldNeedToSpawn * age, goldNeedToSpawn / 2));
+                        spawnImage, goldNeedToSpawn, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn
                     highlighted.highlight(false);
@@ -422,7 +422,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public void spawn()
     {
         //income from territory and all buildings
-        gold += territory.Count + (allBuildings.Count - 1) * age;
+        gold += (territory.Count + allBuildings.Count - 1) * (age + GameManager.instance.ageIncomeOffset);
 
         UIManager.instance.updateGoldText();
 
@@ -559,11 +559,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         foreach (Troop troop in allTroops)
         {
             troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All, age);
-        }
-
-        foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)
-        {
-            spawnBtn.costUpdate();
         }
     }
 
