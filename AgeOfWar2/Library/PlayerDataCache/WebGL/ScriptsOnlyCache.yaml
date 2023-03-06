@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - PlayerListItem
     - PlayerManager
     - PlayerNameManager
+    - PlayerUI
     - RoomListItem
     - RoomManager
     - Screen
@@ -19,8 +20,7 @@ ScriptsOnlyBuild:
     - SpawnManager
     - Tile
     - TileManager
-    ParrelSync.dll:
-    - ParrelSync.ClonesManagerWindow
+    - UIManager
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
@@ -41,6 +41,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -84,6 +85,8 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.GlyphMetrics
     - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
+    - UnityEngine.EventSystems.EventTrigger/Entry
+    - UnityEngine.EventSystems.EventTrigger/TriggerEvent
     - UnityEngine.UI.AnimationTriggers
     - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
@@ -132,13 +135,16 @@ ScriptsOnlyBuild:
     fullTypeName: SpawnButton
     methodName: spawn
   - assembly: Assembly-CSharp
+    fullTypeName: UIManager
+    methodName: sell
+  - assembly: Assembly-CSharp
     fullTypeName: SpawnButton
     methodName: spawn
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: endTurn
   - assembly: Assembly-CSharp
-    fullTypeName: GameManager
+    fullTypeName: UIManager
     methodName: ageAdvance
   sceneClasses:
     Assets/Scenes/Lobby.unity:
@@ -191,41 +197,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3122}
     - Class: 114
-      Script: {instanceID: 4126}
+      Script: {instanceID: 4128}
     - Class: 114
-      Script: {instanceID: 4140}
+      Script: {instanceID: 4142}
     - Class: 114
-      Script: {instanceID: 4390}
+      Script: {instanceID: 4392}
     - Class: 114
-      Script: {instanceID: 4786}
+      Script: {instanceID: 4788}
     - Class: 114
-      Script: {instanceID: 4906}
+      Script: {instanceID: 4908}
     - Class: 114
-      Script: {instanceID: 5016}
+      Script: {instanceID: 5018}
     - Class: 114
-      Script: {instanceID: 5088}
+      Script: {instanceID: 5090}
     - Class: 114
-      Script: {instanceID: 5194}
+      Script: {instanceID: 5196}
     - Class: 114
-      Script: {instanceID: 5316}
+      Script: {instanceID: 5318}
     - Class: 114
-      Script: {instanceID: 5644}
+      Script: {instanceID: 5648}
     - Class: 114
-      Script: {instanceID: 5792}
+      Script: {instanceID: 5796}
     - Class: 114
-      Script: {instanceID: 6108}
+      Script: {instanceID: 6112}
     - Class: 114
-      Script: {instanceID: 6524}
+      Script: {instanceID: 6528}
     - Class: 114
-      Script: {instanceID: 6906}
+      Script: {instanceID: 6910}
     - Class: 114
-      Script: {instanceID: 7262}
+      Script: {instanceID: 7266}
     - Class: 114
-      Script: {instanceID: 7528}
+      Script: {instanceID: 7532}
     - Class: 114
-      Script: {instanceID: 7634}
+      Script: {instanceID: 7638}
     - Class: 114
-      Script: {instanceID: 7822}
+      Script: {instanceID: 7826}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -268,6 +274,10 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1552}
     - Class: 114
+      Script: {instanceID: 2042}
+    - Class: 114
+      Script: {instanceID: 2052}
+    - Class: 114
       Script: {instanceID: 2620}
     - Class: 114
       Script: {instanceID: 2838}
@@ -278,21 +288,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3360}
     - Class: 114
-      Script: {instanceID: 3592}
+      Script: {instanceID: 3578}
     - Class: 114
-      Script: {instanceID: 3714}
+      Script: {instanceID: 3594}
     - Class: 114
-      Script: {instanceID: 5088}
+      Script: {instanceID: 3716}
     - Class: 114
-      Script: {instanceID: 5644}
+      Script: {instanceID: 5018}
     - Class: 114
-      Script: {instanceID: 5792}
+      Script: {instanceID: 5090}
     - Class: 114
-      Script: {instanceID: 5898}
+      Script: {instanceID: 5318}
     - Class: 114
-      Script: {instanceID: 6108}
+      Script: {instanceID: 5486}
     - Class: 114
-      Script: {instanceID: 7760}
+      Script: {instanceID: 5648}
+    - Class: 114
+      Script: {instanceID: 5796}
+    - Class: 114
+      Script: {instanceID: 5902}
+    - Class: 114
+      Script: {instanceID: 6112}
+    - Class: 114
+      Script: {instanceID: 6834}
+    - Class: 114
+      Script: {instanceID: 7764}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -380,13 +400,13 @@ ScriptsOnlyBuild:
     className: OnPointerOverTooltip
   - hash:
       serializedVersion: 2
-      Hash: f4fd643d9c26b399bc956bff7afbd48e
+      Hash: e5a0e9df3203672adecac21d1907e330
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Building
   - hash:
       serializedVersion: 2
-      Hash: afebf87776d8db25a043ad85a41da555
+      Hash: 115a25fb84384149507746108c0740d7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LongRange
@@ -698,6 +718,12 @@ ScriptsOnlyBuild:
     className: TextMeshPro
   - hash:
       serializedVersion: 2
+      Hash: 6219129bfa2c2318bca1c101cbb62ee7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerUI
+  - hash:
+      serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -716,7 +742,7 @@ ScriptsOnlyBuild:
     className: SpawnManager
   - hash:
       serializedVersion: 2
-      Hash: 04ede9bb3c723a59ac30560cb9fedd31
+      Hash: 631369a1b5f7dfc07610caab53050083
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -866,7 +892,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: afebf87776d8db25a043ad85a41da555
+      Hash: 115a25fb84384149507746108c0740d7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Troop
@@ -974,7 +1000,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: f4fd643d9c26b399bc956bff7afbd48e
+      Hash: e5a0e9df3203672adecac21d1907e330
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainBase
@@ -998,7 +1024,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: afebf87776d8db25a043ad85a41da555
+      Hash: 115a25fb84384149507746108c0740d7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Melee
@@ -1020,6 +1046,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
     className: PunPlayerScores
+  - hash:
+      serializedVersion: 2
+      Hash: d4b6aab2520e381c849106a455b58e07
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIManager
   - hash:
       serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
@@ -1394,7 +1426,7 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
-      Hash: 981562cff4f8fd33155680e8390290c0
+      Hash: 66f8603081991399ce2221fafcbe799c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnButton
@@ -1406,7 +1438,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 74a2cede0509046787231c8f7a922f57
+      Hash: 3971a7c69e09c83e12ae115f203ecf32
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1450,4 +1482,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version5
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version6

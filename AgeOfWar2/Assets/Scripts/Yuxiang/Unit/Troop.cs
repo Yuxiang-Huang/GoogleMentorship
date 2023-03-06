@@ -294,7 +294,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     #region UI
 
     [PunRPC]
-    public void ageUpdateInfo()
+    public void ageUpdateInfo(int playerAge)
     {
         //health double when age increase
         fullHealth *= ageFactor;
@@ -305,7 +305,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         damage *= ageFactor;
 
         //update sell gold
-        sellGold += sellGold / (PlayerController.instance.age - 1);
+        sellGold += sellGold / (playerAge - 1);
     }
 
     public void setImage(Color color)

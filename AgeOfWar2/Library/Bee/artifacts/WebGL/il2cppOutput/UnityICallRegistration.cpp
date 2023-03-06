@@ -250,6 +250,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Camera_get_pixelRect_Injected();
 		Register_UnityEngine_Camera_get_pixelRect_Injected();
 
+		//System.Void UnityEngine.Camera::set_orthographicSize(System.Single)
+		void Register_UnityEngine_Camera_set_orthographicSize();
+		Register_UnityEngine_Camera_set_orthographicSize();
+
 		//UnityEngine.Camera UnityEngine.Camera::get_current()
 		void Register_UnityEngine_Camera_get_current();
 		Register_UnityEngine_Camera_get_current();

@@ -553,12 +553,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         foreach (Building building in allBuildings)
         {
-            building.PV.RPC(nameof(building.updateHealth), RpcTarget.All);
+            building.PV.RPC(nameof(building.updateHealth), RpcTarget.All, age);
         }
 
         foreach (Troop troop in allTroops)
         {
-            troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All);
+            troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All, age);
         }
 
         foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnInfoList)

@@ -107,7 +107,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     #region Damage
 
     [PunRPC]
-    public void updateHealth()
+    public void updateHealth(int playerAge)
     {
         //health double when age increase
         fullHealth *= ageFactor;
@@ -116,7 +116,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         healthbar.value = health;
 
         //update sell gold
-        sellGold += sellGold / (PlayerController.instance.age - 1);
+        sellGold += sellGold / (playerAge - 1);
     }
 
     public void setHealthBar(bool status)
