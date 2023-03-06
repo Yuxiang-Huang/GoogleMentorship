@@ -15,18 +15,9 @@ public class SpawnManager : MonoBehaviour
 
     public List<SpawnButton> spawnBtnList;
 
-    public Dictionary<string, SpawnButton> spawnBtnMap;
-
     public void Awake()
     {
         instance = this;
-
-        //creating dictionary
-        spawnBtnMap = new Dictionary<string, SpawnButton>();
-        foreach (SpawnButton spawnButton in spawnBtnList)
-        {
-            spawnBtnMap[spawnButton.path] = spawnButton;
-        }
     }
 
     public void spawn(Image image, string path, int goldNeedToSpawn, GameObject spawnImage,
@@ -44,7 +35,7 @@ public class SpawnManager : MonoBehaviour
 
         //give the path to the prefab
         PlayerController.instance.mode = "spawn";
-        PlayerController.instance.toSpawn = path;
+        PlayerController.instance.toSpawnPath = path;
         PlayerController.instance.toSpawnImage = spawnImage;
         PlayerController.instance.goldNeedToSpawn = goldNeedToSpawn;
         PlayerController.instance.toSpawnType = type;

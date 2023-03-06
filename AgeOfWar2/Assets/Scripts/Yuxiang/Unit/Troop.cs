@@ -19,7 +19,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public SpriteRenderer imageRenderer;
 
-    public List<Sprite> unitImages { get; set; }
+    [SerializeField] List<GameObject> unitImages;
 
     [Header("Health")]
     public Slider healthbar;
@@ -60,8 +60,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         this.sellGold = sellGold;
 
         //modify images
-        unitImages = SpawnManager.instance.spawnBtnMap[path].unitImages;
-        imageRenderer.sprite = unitImages[age];
+        foreach (GameObject cur in unitImages)
+        {
+            cur.SetActive(false);
+        }
+        unitImages[age].SetActive(true);
+        imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
 
         //modify health and damage according to age
         fullHealth *= (int) Mathf.Pow(ageFactor, age);

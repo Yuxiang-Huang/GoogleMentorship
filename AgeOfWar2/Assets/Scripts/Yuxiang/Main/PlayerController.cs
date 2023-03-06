@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public Vector2[,] spawnDirection;
 
     public string toSpawnType;
-    public string toSpawn;
+    public string toSpawnPath;
     public GameObject toSpawnImage;
     public IUnit toSpawnUnit;
     public int goldNeedToSpawn;
@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     //add to spawn list
-                    spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, toSpawnUnit,
+                    spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawnPath, toSpawnUnit,
                         spawnImage, age, goldNeedToSpawn, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn

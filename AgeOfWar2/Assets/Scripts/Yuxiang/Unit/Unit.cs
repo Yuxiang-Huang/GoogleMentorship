@@ -15,8 +15,6 @@ public interface IUnit
 
     int health { get; }
 
-    List<Sprite> unitImages { set; }
-
     public void takeDamage(int incomingDamage);
 
     public void setHealthBar(bool status);

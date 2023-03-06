@@ -45,9 +45,6 @@ public class SpawnButton : MonoBehaviour
 
     public void ageAdvanceUpdate()
     {
-        //exception of main base
-        if (type == "MainBase") return;
-
         costText.text = goldNeedToSpawn
         * (int) Mathf.Pow(GameManager.instance.ageCostFactor, PlayerController.instance.age)
         +" gold";

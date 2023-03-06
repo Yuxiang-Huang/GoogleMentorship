@@ -79,7 +79,7 @@ MonoBehaviour:
   allTroops: []
   allBuildings: []
   toSpawnType: 
-  toSpawn: 
+  toSpawnPath: 
   toSpawnImage: {fileID: 0}
   goldNeedToSpawn: 0
   curSpawnImage: {fileID: 0}
