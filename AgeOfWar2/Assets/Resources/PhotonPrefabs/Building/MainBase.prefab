@@ -149,7 +149,7 @@ MonoBehaviour:
   sellGold: 0
   imageRenderer: {fileID: 8897531206132012376}
   healthbar: {fileID: 5990717552439171017}
-  fullHealth: 8
+  fullHealth: 800
 --- !u!212 &8897531206132012376
 SpriteRenderer:
   m_ObjectHideFlags: 0

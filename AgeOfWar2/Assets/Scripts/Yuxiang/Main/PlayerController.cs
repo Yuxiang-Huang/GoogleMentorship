@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     //add to spawn list
                     spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawn, toSpawnUnit,
-                        spawnImage, goldNeedToSpawn, goldNeedToSpawn / 2));
+                        spawnImage, age, goldNeedToSpawn, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn
                     highlighted.highlight(false);
@@ -436,7 +436,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                     id, info.spawnTile.pos.x, info.spawnTile.pos.y,
-                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], age, info.sellGold);
+                    spawnDirection[info.spawnTile.pos.x, info.spawnTile.pos.y], info.age, info.sellGold);
 
                 allTroops.Add(newUnit.GetComponent<Troop>());
             }
@@ -553,13 +553,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         foreach (Building building in allBuildings)
         {
-            building.PV.RPC(nameof(building.updateHealth), RpcTarget.All, age);
+            building.PV.RPC(nameof(building.ageUpdateInfo), RpcTarget.All, age);
         }
 
-        foreach (Troop troop in allTroops)
-        {
-            troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All, age);
-        }
+        //foreach (Troop troop in allTroops)
+        //{
+        //    troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All, age);
+        //}
     }
 
     #endregion

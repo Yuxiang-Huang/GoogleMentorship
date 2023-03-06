@@ -130,23 +130,26 @@ public class UIManager : MonoBehaviour
 
     #region Info Tab
 
+    //for existing units
     public void updateInfoTab(IUnit unit)
     {
         infoTab.SetActive(true);
         unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText);
     }
 
+    //for spawn buttons
     public void updateInfoTabSpawn(IUnit unit)
     {
         infoTab.SetActive(true);
-        unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText);
+        unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText, PlayerController.instance.age);
         sellBtn.SetActive(false);
     }
 
+    //for spawn images
     public void updateInfoTab(SpawnInfo spawnInfo)
     {
         infoTab.SetActive(true);
-        spawnInfo.unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText);
+        spawnInfo.unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText, spawnInfo.age);
     }
 
     public void hideInfoTab()

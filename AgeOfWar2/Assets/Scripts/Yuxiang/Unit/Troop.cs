@@ -326,12 +326,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText, int age)
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
-        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(ageFactor, PlayerController.instance.age);
-        damageText.text = "Damage: " + damage * (int)Mathf.Pow(ageFactor, PlayerController.instance.age);
+        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(ageFactor, age);
+        damageText.text = "Damage: " + damage * (int)Mathf.Pow(ageFactor, age);
         sellText.text = "Despawn";
     }
 

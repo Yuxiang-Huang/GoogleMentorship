@@ -23,7 +23,7 @@ public interface IUnit
         TextMeshProUGUI damageText, TextMeshProUGUI sellText);
 
     public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-       TextMeshProUGUI damageText, TextMeshProUGUI sellText);
+       TextMeshProUGUI damageText, TextMeshProUGUI sellText, int age);
 
     public void setImage(Color color);
 

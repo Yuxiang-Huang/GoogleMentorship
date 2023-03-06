@@ -17,7 +17,9 @@ public class SpawnInfo
 
     public IUnit unit;
 
-    public SpawnInfo(Tile spawnTile, string unitName, IUnit unit, GameObject spawnImage, int spawnGold, int sellGold)
+    public int age;
+
+    public SpawnInfo(Tile spawnTile, string unitName, IUnit unit, GameObject spawnImage, int age, int spawnGold, int sellGold)
     {
         this.spawnTile = spawnTile;
         this.unitName = unitName;
@@ -25,5 +27,6 @@ public class SpawnInfo
         this.spawnGold = spawnGold;
         this.sellGold = sellGold;
         this.unit = unit;
+        this.age = age;
     }
 }

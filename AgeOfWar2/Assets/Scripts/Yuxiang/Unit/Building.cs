@@ -90,7 +90,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText, int age)
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
@@ -109,7 +109,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     #region Damage
 
     [PunRPC]
-    public void updateHealth(int playerAge)
+    public void ageUpdateInfo(int playerAge)
     {
         //health double when age increase
         fullHealth *= ageFactor;
