@@ -13,7 +13,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int ownerID { get; set; }
 
-    private int ageFactor;
+    [SerializeField] int ageFactor = 2;
 
     public int sellGold;
 
@@ -41,8 +41,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
-
-        ageFactor = GameManager.instance.ageUnitFactor;
     }
 
     [PunRPC]

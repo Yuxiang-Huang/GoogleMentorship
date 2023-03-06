@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public int ageIncomeOffset;
     public int ageCostFactor;
-    public int ageUnitFactor;
 
     private void Awake()
     {

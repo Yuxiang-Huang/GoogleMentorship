@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
+  ageFactor: 2
   sellGold: 0
   imageRenderer: {fileID: 0}
   unitImages:
