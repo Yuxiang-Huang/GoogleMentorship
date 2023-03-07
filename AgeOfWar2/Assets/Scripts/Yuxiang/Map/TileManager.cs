@@ -184,9 +184,6 @@ public class TileManager : MonoBehaviourPunCallbacks
                     //}
                 }
             }
-
-            Camera.main.orthographicSize = 8.5f;
-            Camera.main.transform.position = new Vector3(5, 7f, -10);
         }
         else
         {
@@ -200,9 +197,6 @@ public class TileManager : MonoBehaviourPunCallbacks
                     instruction.Append(0);
                 }
             }
-
-            Camera.main.orthographicSize = 6.5f;
-            Camera.main.transform.position = new Vector3(4, 5.25f, -10);
         }
 
         PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllViaServer, rows, cols, instruction.ToString());
@@ -211,6 +205,19 @@ public class TileManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void makeGrid_RPC(int rows, int cols, string instruction)
     {
+        //setting camera
+        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
+        {
+            Camera.main.orthographicSize = 8.5f;
+            Camera.main.transform.position = new Vector3(5, 7f, -10);
+        }
+        else
+        {
+            Camera.main.orthographicSize = 6.5f;
+            Camera.main.transform.position = new Vector3(4, 5.25f, -10);
+        }
+
+        //make map
         tiles = new Tile[rows, cols];
 
         GameObject parent = new GameObject("Map");

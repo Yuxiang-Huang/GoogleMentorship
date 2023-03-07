@@ -402,13 +402,13 @@ ScriptsOnlyBuild:
     className: OnPointerOverTooltip
   - hash:
       serializedVersion: 2
-      Hash: a2a8b816484c36a1b8611e3bf906cbc5
+      Hash: eddc6ef364bc48957944e3d8bbe0f8c0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Building
   - hash:
       serializedVersion: 2
-      Hash: a779906d8c8aac23c8331f607021169d
+      Hash: 1b2360b969a19ddfd2d15b9c1547a3a7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LongRange
@@ -546,7 +546,7 @@ ScriptsOnlyBuild:
     className: CoroutineRunner
   - hash:
       serializedVersion: 2
-      Hash: 2a973aedd6aaeb2353606905046f8c54
+      Hash: 22ee8e409fe68206babe6990fde5b55f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomManager
@@ -738,13 +738,13 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 69bebfe0ce1753a03cdad4666051b1f5
+      Hash: fa857de5492f642bbe8cacbcfc8d6d95
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnManager
   - hash:
       serializedVersion: 2
-      Hash: cf2c2b5473652eeb3fc1ffd3c07dad61
+      Hash: 9a09c9912c100ae8a9e0cbd0f7702b53
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -894,7 +894,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: a779906d8c8aac23c8331f607021169d
+      Hash: 1b2360b969a19ddfd2d15b9c1547a3a7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Troop
@@ -1002,7 +1002,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: a2a8b816484c36a1b8611e3bf906cbc5
+      Hash: eddc6ef364bc48957944e3d8bbe0f8c0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainBase
@@ -1026,7 +1026,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: a779906d8c8aac23c8331f607021169d
+      Hash: 1b2360b969a19ddfd2d15b9c1547a3a7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Melee
@@ -1050,7 +1050,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: d4b6aab2520e381c849106a455b58e07
+      Hash: 47a52cc58c9f377b587719b8078fdbbf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -1428,7 +1428,7 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
-      Hash: 66f8603081991399ce2221fafcbe799c
+      Hash: 494538fad10a488fa364f6f5e8a61cec
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnButton
@@ -1440,7 +1440,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 3971a7c69e09c83e12ae115f203ecf32
+      Hash: 4b5ab289180733d0ee6895a51921e8cc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1484,4 +1484,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version7
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version8
