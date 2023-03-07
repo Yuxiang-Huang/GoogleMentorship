@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
 
     public Canvas healthbarCanvas;
 
+    [Header("Settting")]
+    [SerializeField] int initialTime;
+    [SerializeField] int timeInc;
+
     [Header("Start Game")]
     [SerializeField] GameObject IntroText;
     [SerializeField] GameObject Shop;
@@ -104,7 +108,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator timer()
     {
-        int time = 10 * (PlayerController.instance.age + 2);
+        int time = initialTime + timeInc * PlayerController.instance.age;
 
         for (int i = 0; i < time; i++)
         {
