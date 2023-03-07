@@ -1872,7 +1872,7 @@ MonoBehaviour:
   goldNeedToSpawn: 20
   spawnImage: {fileID: 3350579417564403051, guid: 85330372dcccb4576ac7d6f8ed02e152, type: 3}
   costText: {fileID: 851291530}
-  unit: {fileID: 1162110229138419472, guid: b63047aabf50f448283d8221273a5698, type: 3}
+  unit: {fileID: 4005839721537878175, guid: b63047aabf50f448283d8221273a5698, type: 3}
   unitImages:
   - {fileID: 21300000, guid: e8e97d59158d840fa9be98cc6b7006e2, type: 3}
   - {fileID: 21300000, guid: 23926f9eefb294223989c6f57237c7c8, type: 3}
