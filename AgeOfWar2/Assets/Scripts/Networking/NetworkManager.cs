@@ -57,7 +57,12 @@ public class NetworkManager: MonoBehaviourPunCallbacks
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
-        roomOptions.CustomRoomProperties = new Hashtable() { { "Water", false } };
+
+        //default setting
+        roomOptions.CustomRoomProperties = new Hashtable() {
+            { "Water", false }
+        };
+
         PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);
 
         ScreenManager.Instance.DisplayScreen("Loading");

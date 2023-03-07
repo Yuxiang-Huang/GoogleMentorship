@@ -62,18 +62,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
-            //large map
-            //TileManager.instance.makeGrid(29, 10);
-
-            //small map
-            TileManager.instance.makeGrid(19, 6);
-
-            //small test
-            //TileManager.instance.makeGrid(9, 3);
+            TileManager.instance.makeGrid();
         }
-
-        Camera.main.orthographicSize = 6.5f;
-        Camera.main.transform.position = new Vector3(4, 5.25f, -10);
 
         if (!PV.IsMine) return;
         instance = this;
@@ -95,8 +85,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Tile[,] tiles = TileManager.instance.tiles;
 
         int xOffset = 2;
-
         int yOffset = 0;
+
+        //change if water map
+        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
+        {
+            xOffset = 6;
+            yOffset = 1;
+        }
 
         Tile root = null;
 

@@ -121,7 +121,7 @@ public class TileManager : MonoBehaviourPunCallbacks
         PV = GetComponent<PhotonView>();
     }
 
-    public void makeGrid(int rows, int cols)
+    public void makeGrid()
     {
         //store type of tiles using bit
         StringBuilder instruction = new StringBuilder();
@@ -134,36 +134,42 @@ public class TileManager : MonoBehaviourPunCallbacks
         }
         float ranElem = Random.Range(0, 200);
 
+        int rows = -1;
+        int cols = -1;
+
         //decide map
         if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
         {
+            rows = 25;
+            cols = 8;
+
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    //border by water
-                    if (row <= 4 || row >= rows - 5)
-                    {
-                        instruction.Append(1);
-                    }
-                    else if (row % 2 == 0 && col == 1)
-                    {
-                        instruction.Append(1);
-                    }
-                    else if (row % 2 == 1 && col <= 1)
-                    {
-                        instruction.Append(1);
-                    }
-                    else if (row % 2 == 0 && col == cols - 1)
-                    {
-                        instruction.Append(1);
-                    }
-                    else if (row % 2 == 1 && col >= cols - 2)
-                    {
-                        instruction.Append(1);
-                    }
-                    else
-                    {
+                    ////border by water
+                    //if (row <= 4 || row >= rows - 5)
+                    //{
+                    //    instruction.Append(1);
+                    //}
+                    //else if (row % 2 == 0 && col == 1)
+                    //{
+                    //    instruction.Append(1);
+                    //}
+                    //else if (row % 2 == 1 && col <= 1)
+                    //{
+                    //    instruction.Append(1);
+                    //}
+                    //else if (row % 2 == 0 && col == cols - 1)
+                    //{
+                    //    instruction.Append(1);
+                    //}
+                    //else if (row % 2 == 1 && col >= cols - 2)
+                    //{
+                    //    instruction.Append(1);
+                    //}
+                    //else
+                    //{
                         float noiseNum = pNoise(17f * col / cols + ranElem, 17f * row / rows + ranElem, 0) + 0.1f;
 
                         //assign type
@@ -175,12 +181,18 @@ public class TileManager : MonoBehaviourPunCallbacks
                         {
                             instruction.Append(1);
                         }
-                    }
+                    //}
                 }
             }
+
+            Camera.main.orthographicSize = 8.5f;
+            Camera.main.transform.position = new Vector3(5, 7f, -10);
         }
         else
         {
+            rows = 19;
+            cols = 6;
+
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
@@ -188,6 +200,9 @@ public class TileManager : MonoBehaviourPunCallbacks
                     instruction.Append(0);
                 }
             }
+
+            Camera.main.orthographicSize = 6.5f;
+            Camera.main.transform.position = new Vector3(4, 5.25f, -10);
         }
 
         PV.RPC(nameof(makeGrid_RPC), RpcTarget.AllViaServer, rows, cols, instruction.ToString());

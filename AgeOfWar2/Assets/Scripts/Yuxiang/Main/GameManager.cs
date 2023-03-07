@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance = this;
         PV = GetComponent<PhotonView>();
 
-        bool offlineMode = false;
+        bool offlineMode = true;
 
         //not able to access after game begins
         if (!offlineMode)
@@ -42,7 +42,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.OfflineMode = true;
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.CustomRoomProperties = new Hashtable { {"Water", false} };
+            //default room options
+            roomOptions.CustomRoomProperties = new Hashtable() {
+                { "Water", true },
+                { "initialTime", 20 },
+                { "timeInc", 10 }
+            };
             PhotonNetwork.CreateRoom("offline", roomOptions);
 
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player/PlayerManager"), Vector3.zero, Quaternion.identity);
