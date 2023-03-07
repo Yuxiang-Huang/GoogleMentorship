@@ -72,6 +72,7 @@ MonoBehaviour:
   - ageUpdateInfo
   - updateAgeText
   - updatePlayerInfo
+  - kill
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

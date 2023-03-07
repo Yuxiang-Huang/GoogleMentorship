@@ -62,9 +62,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //master client in charge making grid
         if (PhotonNetwork.IsMasterClient && PV.IsMine)
         {
+            //large map
             //TileManager.instance.makeGrid(29, 10);
 
+            //small map
             TileManager.instance.makeGrid(19, 6);
+
+            //small test
+            //TileManager.instance.makeGrid(9, 3);
         }
 
         Camera.main.orthographicSize = 6.5f;

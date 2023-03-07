@@ -174,9 +174,21 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
             neighbor.updateCanSpawn();
         }
 
-        Destroy(healthbar);
+        PV.RPC(nameof(kill), RpcTarget.All);
+    }
 
-        Destroy(gameObject);
+    [PunRPC]
+    public void kill()
+    {
+        tile.unit = null;
+
+        foreach (Tile neighbor in tile.neighbors)
+        {
+            neighbor.updateCanSpawn();
+        }
+
+        Destroy(healthbar.gameObject);
+        Destroy(this.gameObject);
     }
 
     #endregion

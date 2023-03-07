@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance = this;
         PV = GetComponent<PhotonView>();
 
-        bool offlineMode = true;
+        bool offlineMode = false;
 
         //not able to access after game begins
         if (!offlineMode)

@@ -352,15 +352,18 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
         PlayerController.instance.allTroops.Remove(this);
 
-        tile.unit = null;
-
-        Destroy(arrow);
-
-        Destroy(healthbar);
-
-        Destroy(gameObject);
+        PV.RPC(nameof(kill), RpcTarget.All);
 
         PlayerController.instance.mode = "select";
+    }
+
+    [PunRPC]
+    public void kill()
+    {
+        tile.unit = null;
+        Destroy(arrow);
+        Destroy(healthbar.gameObject);
+        Destroy(this.gameObject);
     }
 
     #endregion
