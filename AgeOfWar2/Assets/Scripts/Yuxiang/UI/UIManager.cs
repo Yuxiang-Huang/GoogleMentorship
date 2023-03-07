@@ -74,6 +74,10 @@ public class UIManager : MonoBehaviour
 
     public void startGame(int id)
     {
+        //time option setting
+        initialTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["initialTime"];
+        timeInc = (int)PhotonNetwork.CurrentRoom.CustomProperties["timeInc"];
+
         IntroText.SetActive(false);
         Shop.SetActive(true);
         AgeUI.SetActive(true);

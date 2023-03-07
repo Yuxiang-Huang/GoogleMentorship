@@ -12,6 +12,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public static RoomManager Instance;
 
     [SerializeField] TextMeshProUGUI mapSettingText;
+    [SerializeField] TMP_InputField initialTimeInput;
+    [SerializeField] TMP_InputField timeIncInput;
 
     void Awake()
     {
@@ -63,6 +65,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Hashtable hash = new Hashtable();
         hash.Add("Water", hasWater);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
+    }
+
+    public void updateSetting()
+    {
+        Hashtable hash = new Hashtable();
+        hash.Add("initialTime", int.Parse(initialTimeInput.text));
+        hash.Add("timeInc", int.Parse(timeIncInput.text));
         PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
     }
 }

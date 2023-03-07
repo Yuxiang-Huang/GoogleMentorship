@@ -5525,6 +5525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSettingText: {fileID: 1639364111}
+  initialTimeInput: {fileID: 1332558402}
+  timeIncInput: {fileID: 572919680}
 --- !u!114 &1891523871
 MonoBehaviour:
   m_ObjectHideFlags: 0
