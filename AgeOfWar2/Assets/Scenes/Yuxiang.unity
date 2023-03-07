@@ -576,7 +576,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 97, y: 0}
+  m_AnchoredPosition: {x: 200, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &154927612
@@ -904,7 +904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.5, y: 0}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388878471
@@ -1757,7 +1757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -97, y: 0}
+  m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &996705851
@@ -1875,11 +1875,11 @@ MonoBehaviour:
   unit: {fileID: 1162110229138419472, guid: b63047aabf50f448283d8221273a5698, type: 3}
   unitImages:
   - {fileID: 21300000, guid: e8e97d59158d840fa9be98cc6b7006e2, type: 3}
-  - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
-  - {fileID: 21300000, guid: e8e97d59158d840fa9be98cc6b7006e2, type: 3}
-  - {fileID: 21300000, guid: e8e97d59158d840fa9be98cc6b7006e2, type: 3}
-  - {fileID: 21300000, guid: e8e97d59158d840fa9be98cc6b7006e2, type: 3}
-  - {fileID: 21300000, guid: e8e97d59158d840fa9be98cc6b7006e2, type: 3}
+  - {fileID: 21300000, guid: 23926f9eefb294223989c6f57237c7c8, type: 3}
+  - {fileID: 21300000, guid: 0a6c0edf9e05e497bb33a87a013a7fc7, type: 3}
+  - {fileID: 21300000, guid: 9c48507c9ae864bcb9fa02047d2fc195, type: 3}
+  - {fileID: 21300000, guid: 230e37edfb6724573acb6eab0191e657, type: 3}
+  - {fileID: 21300000, guid: 73b6c4f87d2ef42a5a034d39298796b9, type: 3}
 --- !u!1 &1053616278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,6 +3134,8 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   healthbarCanvas: {fileID: 1287991804}
+  initialTime: 0
+  timeInc: 0
   IntroText: {fileID: 1317317237}
   Shop: {fileID: 1053616278}
   AgeUI: {fileID: 270290791}
