@@ -64,6 +64,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         }
         unitImages[age].SetActive(true);
         imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
+        //imageRenderer.color = UIManager.instance.playerColors[playerID];
 
         //modify health and damage according to age
         fullHealth *= (int) Mathf.Pow(ageFactor, age);

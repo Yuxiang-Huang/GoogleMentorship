@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] PlayerUI playerUI;
 
+    public List<Color> playerColors;
+
     public Canvas healthbarCanvas;
 
     [Header("Start Game")]

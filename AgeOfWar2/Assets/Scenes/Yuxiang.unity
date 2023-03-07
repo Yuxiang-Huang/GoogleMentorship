@@ -2985,7 +2985,6 @@ MonoBehaviour:
   playerMoved: 0
   ageIncomeOffset: 5
   ageCostFactor: 2
-  ageUnitFactor: 3
 --- !u!114 &1602756416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3129,6 +3128,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerUI: {fileID: 0}
+  playerColors:
+  - {r: 0, g: 0, b: 1, a: 0.39215687}
+  - {r: 1, g: 0, b: 0, a: 0.39215687}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
   healthbarCanvas: {fileID: 1287991804}
   IntroText: {fileID: 1317317237}
   Shop: {fileID: 1053616278}

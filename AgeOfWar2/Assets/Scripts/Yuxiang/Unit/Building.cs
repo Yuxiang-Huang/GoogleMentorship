@@ -51,6 +51,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
         unitImages[age].SetActive(true);
         imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
+        //imageRenderer.color = UIManager.instance.playerColors[playerID];
 
         //modify health according to age
         fullHealth *= (int)Mathf.Pow(ageFactor, age);
