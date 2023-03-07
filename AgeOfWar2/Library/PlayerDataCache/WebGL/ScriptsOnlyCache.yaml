@@ -21,8 +21,6 @@ ScriptsOnlyBuild:
     - Tile
     - TileManager
     - UIManager
-    ParrelSync.dll:
-    - ParrelSync.ClonesManagerWindow
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
@@ -1484,4 +1482,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version8
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version9

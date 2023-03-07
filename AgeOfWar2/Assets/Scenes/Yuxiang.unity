@@ -1019,14 +1019,14 @@ MonoBehaviour:
   goldNeedToSpawn: 40
   spawnImage: {fileID: 1371028787450875553, guid: 806398d3c81b84a6a932a9df7a6e15f5, type: 3}
   costText: {fileID: 1760341031}
-  unit: {fileID: 6514224017186162067, guid: 8bf82ab7f5c814d8b9bb6f62636310b0, type: 3}
+  unit: {fileID: 5703412472445778228, guid: 8bf82ab7f5c814d8b9bb6f62636310b0, type: 3}
   unitImages:
   - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
+  - {fileID: 21300000, guid: 782fd1e133f764518ad634ee02a5b33e, type: 3}
+  - {fileID: 21300000, guid: 0d0151c7591804614b8cafd2ae7ef58d, type: 3}
   - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
-  - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
-  - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
-  - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
-  - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
+  - {fileID: 21300000, guid: 782fd1e133f764518ad634ee02a5b33e, type: 3}
+  - {fileID: 21300000, guid: 0d0151c7591804614b8cafd2ae7ef58d, type: 3}
 --- !u!1 &633742203
 GameObject:
   m_ObjectHideFlags: 0

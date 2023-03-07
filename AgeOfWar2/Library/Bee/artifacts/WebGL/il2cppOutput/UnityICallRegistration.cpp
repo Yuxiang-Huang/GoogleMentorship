@@ -2682,10 +2682,6 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_SpriteRenderer_set_color_Injected();
 		Register_UnityEngine_SpriteRenderer_set_color_Injected();
 
-		//System.Void UnityEngine.SpriteRenderer::set_sprite(UnityEngine.Sprite)
-		void Register_UnityEngine_SpriteRenderer_set_sprite();
-		Register_UnityEngine_SpriteRenderer_set_sprite();
-
 	//End Registrations for type : UnityEngine.SpriteRenderer
 
 	//Start Registrations for type : UnityEngine.SystemInfo

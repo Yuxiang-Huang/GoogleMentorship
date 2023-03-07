@@ -581,7 +581,6 @@ UnityEngine.Sprite::get_texture
 UnityEngine.Sprite::get_uv
 UnityEngine.Sprite::get_vertices
 UnityEngine.SpriteRenderer::set_color_Injected
-UnityEngine.SpriteRenderer::set_sprite
 UnityEngine.SystemInfo::IsFormatSupported
 UnityEngine.SystemInfo::SupportsTextureFormatNative
 UnityEngine.SystemInfo::GetMaxRenderTextureSize
