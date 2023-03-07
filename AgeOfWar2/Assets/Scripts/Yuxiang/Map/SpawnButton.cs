@@ -50,6 +50,12 @@ public class SpawnButton : MonoBehaviour
         +" gold";
 
         GetComponent<Image>().sprite = unitImages[PlayerController.instance.age];
-        spawnImage.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = unitImages[PlayerController.instance.age];
+
+        //set all ages inactive except the current one
+        foreach (Transform cur in spawnImage.transform)
+        {
+            cur.gameObject.SetActive(false);
+        }
+        spawnImage.transform.GetChild(PlayerController.instance.age).gameObject.SetActive(true);
     }
 }
