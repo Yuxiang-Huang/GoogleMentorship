@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using TMPro;
+using Unity.VisualScripting;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -68,11 +69,51 @@ public class RoomManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
     }
 
-    public void updateSetting()
+    public bool validSetting()
     {
         Hashtable hash = new Hashtable();
-        hash.Add("initialTime", int.Parse(initialTimeInput.text));
-        hash.Add("timeInc", int.Parse(timeIncInput.text));
+
+        bool res = true;
+
+        //make sure integers are inputed
+        if (int.TryParse(initialTimeInput.text, out int num))
+        {
+            hash.Add("initialTime", num);
+        }
+        else
+        {
+            //default value
+            if (initialTimeInput.text == "")
+            {
+                hash.Add("initialTime", 20);
+            }
+            else
+            {
+                initialTimeInput.text = "";
+                res = false;
+            }
+        }
+
+        if (int.TryParse(timeIncInput.text, out int num2))
+        {
+            hash.Add("timeInc", num2);
+        }
+        else
+        {
+            //default value
+            if (timeIncInput.text == "")
+            {
+                hash.Add("timeInc", 10);
+            }
+            else
+            {
+                timeIncInput.text = "";
+                res = false;
+            }
+        }
+
         PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
+
+        return res;
     }
 }

@@ -153,8 +153,9 @@ public class NetworkManager: MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        RoomManager.Instance.updateSetting();
-
-        PhotonNetwork.LoadLevel(1);
+        if (RoomManager.Instance.validSetting())
+        {
+            PhotonNetwork.LoadLevel(1);
+        }
     }
 }
