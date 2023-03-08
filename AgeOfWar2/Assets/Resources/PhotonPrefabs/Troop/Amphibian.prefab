@@ -585,8 +585,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6336520140964090239}
-  - component: {fileID: 4796073002071188435}
   - component: {fileID: 5966900516699917267}
+  - component: {fileID: 4316284018435778642}
   m_Layer: 0
   m_Name: Amphibian
   m_TagString: Troop
@@ -611,37 +611,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4796073002071188435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6480947719028038638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 328155a15684c4208b7bc1080f14cd6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ageFactor: 2
-  sellGold: 0
-  imageRenderer: {fileID: 6773170506691902523}
-  unitImages:
-  - {fileID: 5773739095086486922}
-  - {fileID: 1729081134459795663}
-  - {fileID: 2960109497672491472}
-  - {fileID: 7608667942778190037}
-  - {fileID: 4442981892982454624}
-  - {fileID: 9211451602756521185}
-  healthbar: {fileID: 4538640292735501709}
-  fullHealth: 200
-  damage: 100
-  direction: {x: 0, y: 0}
-  tile: {fileID: 0}
-  path: []
-  arrow: {fileID: 0}
-  arrowPrefab: {fileID: 1329018377162125448, guid: bea59c41d27544098baf780849d996e8, type: 3}
-  moved: 0
 --- !u!114 &5966900516699917267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +633,33 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4316284018435778642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6480947719028038638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d1d66f4d45540b1bd37c8930bd9bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sellGold: 0
+  imageRenderer: {fileID: 0}
+  unitImages:
+  - {fileID: 5773739095086486922}
+  - {fileID: 1729081134459795663}
+  - {fileID: 2960109497672491472}
+  - {fileID: 7608667942778190037}
+  - {fileID: 4442981892982454624}
+  - {fileID: 9211451602756521185}
+  healthbar: {fileID: 4538640292735501709}
+  fullHealth: 200
+  damage: 100
+  direction: {x: 0, y: 0}
+  tile: {fileID: 0}
+  moved: 0
 --- !u!1 &7608667942778190037
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] PlayerUI playerUI;
 
-    public List<Color> playerColors;
-
     public Canvas healthbarCanvas;
+
+    public GameObject arrowPrefab;
 
     [Header("Settting")]
     [SerializeField] int initialTime;

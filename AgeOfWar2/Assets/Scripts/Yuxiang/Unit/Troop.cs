@@ -13,8 +13,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int ownerID { get; set; }
 
-    [SerializeField] int ageFactor = 2;
-
     public int sellGold;
 
     public SpriteRenderer imageRenderer;
@@ -32,9 +30,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     [Header("Movement")]
     public Tile tile;
     Tile lastTarget;
-    public List<Tile> path;
-    [SerializeField] GameObject arrow;
-    [SerializeField] GameObject arrowPrefab;
+    List<Tile> path = new List<Tile>();
+    GameObject arrow;
 
     public bool moved;
 
@@ -67,8 +64,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         //imageRenderer.color = UIManager.instance.playerColors[playerID];
 
         //modify health and damage according to age
-        fullHealth *= (int) Mathf.Pow(ageFactor, age);
-        damage *= (int) Mathf.Pow(ageFactor, age);
+        fullHealth *= (int) Mathf.Pow(GameManager.instance.ageUnitFactor, age);
+        damage *= (int) Mathf.Pow(GameManager.instance.ageUnitFactor, age);
 
         //health
         health = fullHealth;
@@ -174,7 +171,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
                     Destroy(arrow);
                 }
 
-                arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+                arrow = Instantiate(UIManager.instance.arrowPrefab, transform.position, Quaternion.identity);
 
                 Vector2 arrowDirection = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
 
@@ -237,7 +234,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             //display arrow
             if (path.Count != 0)
             {
-                arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+                arrow = Instantiate(UIManager.instance.arrowPrefab, transform.position, Quaternion.identity);
 
                 Vector2 arrowDirection = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
 
@@ -309,12 +306,12 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void ageUpdateInfo(int playerAge)
     {
         //health double when age increase
-        fullHealth *= ageFactor;
-        health *= ageFactor;
+        fullHealth *= GameManager.instance.ageUnitFactor;
+        health *= GameManager.instance.ageUnitFactor;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
 
-        damage *= ageFactor;
+        damage *= GameManager.instance.ageUnitFactor;
 
         //update sell gold
         sellGold *= GameManager.instance.ageCostFactor;
@@ -340,8 +337,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
-        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(ageFactor, age);
-        damageText.text = "Damage: " + damage * (int)Mathf.Pow(ageFactor, age);
+        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(GameManager.instance.ageUnitFactor, age);
+        damageText.text = "Damage: " + damage * (int)Mathf.Pow(GameManager.instance.ageUnitFactor, age);
         sellText.text = "Despawn";
     }
 

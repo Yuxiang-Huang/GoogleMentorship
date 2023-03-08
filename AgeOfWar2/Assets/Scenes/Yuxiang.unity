@@ -2886,12 +2886,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1450966728}
-  path: Building/ExtraMoney
-  type: Building
-  goldNeedToSpawn: 80
-  spawnImage: {fileID: 6580721310958061044, guid: 560cca3f230d94bdeb1a549f3277f240, type: 3}
+  path: Troop/Amphibian
+  type: Troop
+  goldNeedToSpawn: 40
+  spawnImage: {fileID: 939499867913339684, guid: e713d201ae4824a4fb2a6d77cc32decb, type: 3}
   costText: {fileID: 394737632}
-  unit: {fileID: 711456527856458077, guid: 2ea4d13b1b6b64ed29c22170e5787943, type: 3}
+  unit: {fileID: 6480947719028038638, guid: 191e282eebe6d4756abfc6a77883d7fe, type: 3}
   unitImages:
   - {fileID: 21300000, guid: 92f5abbe48a16429dbdd86351787a2ac, type: 3}
   - {fileID: 21300000, guid: 92f5abbe48a16429dbdd86351787a2ac, type: 3}
@@ -3282,6 +3282,7 @@ MonoBehaviour:
   playerMoved: 0
   ageIncomeOffset: 5
   ageCostFactor: 2
+  ageUnitFactor: 2
 --- !u!114 &1602756416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3425,12 +3426,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerUI: {fileID: 0}
-  playerColors:
-  - {r: 0, g: 0, b: 1, a: 0.39215687}
-  - {r: 1, g: 0, b: 0, a: 0.39215687}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
   healthbarCanvas: {fileID: 1287991804}
+  arrowPrefab: {fileID: 1329018377162125448, guid: bea59c41d27544098baf780849d996e8, type: 3}
   initialTime: 0
   timeInc: 0
   IntroText: {fileID: 1317317237}

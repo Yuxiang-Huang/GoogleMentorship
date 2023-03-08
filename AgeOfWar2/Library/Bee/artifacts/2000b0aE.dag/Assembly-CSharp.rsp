@@ -361,6 +361,7 @@
 "Assets/Scripts/Yuxiang/Map/TileManager.cs"
 "Assets/Scripts/Yuxiang/UI/PlayerUI.cs"
 "Assets/Scripts/Yuxiang/UI/UIManager.cs"
+"Assets/Scripts/Yuxiang/Unit/Amphibian.cs"
 "Assets/Scripts/Yuxiang/Unit/Building.cs"
 "Assets/Scripts/Yuxiang/Unit/LongRange.cs"
 "Assets/Scripts/Yuxiang/Unit/MainBase.cs"
