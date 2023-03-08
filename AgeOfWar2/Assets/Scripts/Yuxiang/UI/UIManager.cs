@@ -138,6 +138,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator cancelTimer()
     {
+        //keep track of time left during end turn for canceling
         int time = initialTime + timeInc * PlayerController.instance.age;
 
         for (int i = curTimeUsed; i < time; i++)
@@ -154,6 +155,7 @@ public class UIManager : MonoBehaviour
         {
             StopCoroutine(timeCoroutine);
         }
+        //keep track time after end turn
         timeCoroutine = StartCoroutine(nameof(cancelTimer));
 
         playerUI.timeText.text = "Waiting for opponents...";
@@ -167,6 +169,7 @@ public class UIManager : MonoBehaviour
         turnBtn.SetActive(true);
         cancelTurnBtn.SetActive(false);
 
+        //stop the timer that keep track after end turn and start another timer
         StopCoroutine(nameof(cancelTimer));
         timeCoroutine = StartCoroutine(nameof(timer));
     }
@@ -174,6 +177,7 @@ public class UIManager : MonoBehaviour
     [PunRPC]
     public void turnPhase()
     {
+        StopCoroutine(nameof(cancelTimer));
         cancelTurnBtn.SetActive(false);
     }
 

@@ -1,5 +1,6 @@
 <linker>
 	<assembly fullname="Assembly-CSharp">
+		<type fullname="Amphibian" preserve="nothing"/>
 		<type fullname="Building" preserve="nothing"/>
 		<type fullname="GameManager" preserve="nothing"/>
 		<type fullname="LongRange" preserve="nothing"/>

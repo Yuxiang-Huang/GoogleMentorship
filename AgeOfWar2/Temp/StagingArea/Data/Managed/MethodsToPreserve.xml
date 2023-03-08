@@ -1,6 +1,7 @@
 <linker>
 	<assembly fullname="Assembly-CSharp" ignoreIfMissing="1">
 		<type fullname="GameManager">
+			<method name="cancelEndTurn"/>
 			<method name="endTurn"/>
 		</type>
 		<type fullname="NetworkManager">
@@ -25,6 +26,7 @@
 			<method name="DisplayScreen"/>
 		</type>
 		<type fullname="SpawnButton">
+			<method name="spawn"/>
 			<method name="spawn"/>
 			<method name="spawn"/>
 			<method name="spawn"/>

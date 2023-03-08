@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Amphibian
     - Building
     - GameManager
     - LongRange
@@ -144,8 +145,14 @@ ScriptsOnlyBuild:
     fullTypeName: GameManager
     methodName: endTurn
   - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
     fullTypeName: UIManager
     methodName: ageAdvance
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: cancelEndTurn
   sceneClasses:
     Assets/Scenes/Lobby.unity:
     - Class: 1
@@ -232,6 +239,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7638}
     - Class: 114
       Script: {instanceID: 7826}
+    - Class: 114
+      Script: {instanceID: 97744}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -313,6 +322,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6834}
     - Class: 114
       Script: {instanceID: 7764}
+    - Class: 114
+      Script: {instanceID: 97744}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -406,7 +417,7 @@ ScriptsOnlyBuild:
     className: Building
   - hash:
       serializedVersion: 2
-      Hash: 1b2360b969a19ddfd2d15b9c1547a3a7
+      Hash: 9cc8677484f7ed4d009df8abdd5974dd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LongRange
@@ -610,7 +621,7 @@ ScriptsOnlyBuild:
     className: OnClickInstantiate
   - hash:
       serializedVersion: 2
-      Hash: 1f34925cebffa8a3e648d14258b66e8b
+      Hash: 08eb2a1a1a3a6abef40d20feaf470204
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkManager
@@ -742,7 +753,7 @@ ScriptsOnlyBuild:
     className: SpawnManager
   - hash:
       serializedVersion: 2
-      Hash: 9a09c9912c100ae8a9e0cbd0f7702b53
+      Hash: cf2c2b5473652eeb3fc1ffd3c07dad61
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -892,7 +903,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 1b2360b969a19ddfd2d15b9c1547a3a7
+      Hash: 9cc8677484f7ed4d009df8abdd5974dd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Troop
@@ -1024,7 +1035,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 1b2360b969a19ddfd2d15b9c1547a3a7
+      Hash: 9cc8677484f7ed4d009df8abdd5974dd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Melee
@@ -1048,7 +1059,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: 47a52cc58c9f377b587719b8078fdbbf
+      Hash: c9642abc0a18f4b07c469f27ad0a3184
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -1478,8 +1489,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 9cc8677484f7ed4d009df8abdd5974dd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Amphibian
   platform: 20
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version9
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version10
