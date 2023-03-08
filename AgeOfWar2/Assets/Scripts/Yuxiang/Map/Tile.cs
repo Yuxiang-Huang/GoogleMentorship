@@ -146,7 +146,27 @@ public class Tile : MonoBehaviour
             }
         }
 
-        //can't be spawn any more
+        //can't be spawn anymore
         PlayerController.instance.canSpawn[pos.x, pos.y] = false;
+    }
+
+    public void updateVisibility()
+    {
+        //check myself too
+        if (PlayerController.instance.territory.Contains(this) ||
+            (unit != null && unit.ownerID == PlayerController.instance.id)) return;
+
+        foreach (Tile neighbor in neighbors)
+        {
+            //if any neighbor is my team's territory or there is a my team's water unit on it
+            if (PlayerController.instance.territory.Contains(neighbor) ||
+                (neighbor.unit != null && neighbor.unit.ownerID == PlayerController.instance.id))
+            {
+                return;
+            }
+        }
+
+        //can't be seem anymore
+        dark.SetActive(true);
     }
 }

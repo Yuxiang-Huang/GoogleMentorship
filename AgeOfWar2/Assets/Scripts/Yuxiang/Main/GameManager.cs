@@ -216,10 +216,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("Attacked") && (bool)p.CustomProperties["Attacked"]))
         {
-            //all players check dead troop
+            //all players check dead troop and visibility
             foreach (PlayerController player in allPlayers)
             {
-                player.PV.RPC(nameof(player.checkDeath), player.PV.Owner);
+                player.PV.RPC(nameof(player.endCheck), player.PV.Owner);
             }
 
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);

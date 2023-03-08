@@ -503,7 +503,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
-            checkDeath();
+            endCheck();
         }
         else
         {
@@ -514,7 +514,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void checkDeath()
+    public void endCheck()
     {
         //troops
         foreach (Troop troop in allTroops)
@@ -543,6 +543,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 allBuildings.Remove(allBuildings[i]);
             }
         }
+
+        //visibility
+        foreach (Tile neighbor in toUpdateVisibility)
+        {
+            neighbor.updateVisibility();
+        }
+
+        toUpdateVisibility = new HashSet<Tile>();
 
         if (PhotonNetwork.OfflineMode)
         {
