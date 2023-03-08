@@ -163,4 +163,39 @@ public class Amphibian : Troop
     }
 
     #endregion
+
+    [PunRPC]
+    public override void checkDeath()
+    {
+        if (health <= 0)
+        {
+            //visibility check
+            PlayerController.instance.toUpdateVisibility.Add(tile);
+            foreach (Tile neighbor in tile.neighbors)
+            {
+                PlayerController.instance.toUpdateVisibility.Add(neighbor);
+            }
+
+            tile.unit = null;
+            Destroy(arrow);
+            Destroy(healthbar.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
+
+    [PunRPC]
+    public override void kill()
+    {
+        //visibility check
+        PlayerController.instance.toUpdateVisibility.Add(tile);
+        foreach (Tile neighbor in tile.neighbors)
+        {
+            PlayerController.instance.toUpdateVisibility.Add(neighbor);
+        }
+
+        tile.unit = null;
+        Destroy(arrow);
+        Destroy(healthbar.gameObject);
+        Destroy(this.gameObject);
+    }
 }

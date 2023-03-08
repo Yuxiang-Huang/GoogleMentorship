@@ -287,7 +287,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void checkDeath()
+    public virtual void checkDeath()
     {
         if (health <= 0)
         {
@@ -355,7 +355,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void kill()
+    public virtual void kill()
     {
         tile.unit = null;
         Destroy(arrow);
