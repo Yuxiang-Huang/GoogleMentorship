@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Turn")]
     [SerializeField] GameObject turnBtn;
+    [SerializeField] GameObject cancelTurnBtn;
     [SerializeField] Coroutine timeCoroutine;
 
     [Header("InfoTab")]
@@ -55,6 +56,7 @@ public class UIManager : MonoBehaviour
         turnBtn.SetActive(false);
         infoTab.SetActive(false);
         AgeUI.SetActive(false);
+        cancelTurnBtn.SetActive(false);
         IntroText.SetActive(true);
     }
 
@@ -136,6 +138,14 @@ public class UIManager : MonoBehaviour
         playerUI.timeText.text = "Waiting for opponents...";
 
         turnBtn.SetActive(false);
+        cancelTurnBtn.SetActive(true);
+    }
+
+    [PunRPC]
+    public void turnPhase()
+    {
+        Debug.Log("here");
+        cancelTurnBtn.SetActive(false);
     }
 
     #endregion

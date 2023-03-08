@@ -342,8 +342,6 @@ MonoBehaviour:
   damage: 100
   direction: {x: 0, y: 0}
   tile: {fileID: 0}
-  path: []
-  arrow: {fileID: 0}
   moved: 0
 --- !u!114 &4371264588589508770
 MonoBehaviour:

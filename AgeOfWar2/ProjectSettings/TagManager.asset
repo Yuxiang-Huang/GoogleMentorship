@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Troop
   - Building
-  - WaterTroop
   layers:
   - Default
   - TransparentFX
