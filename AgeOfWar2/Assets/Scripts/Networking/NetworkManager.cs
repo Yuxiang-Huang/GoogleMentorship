@@ -20,7 +20,7 @@ public class NetworkManager: MonoBehaviourPunCallbacks
     [SerializeField] GameObject playerListPrefab;
 
     [SerializeField] GameObject startGameButton;
-    [SerializeField] GameObject mapSettingButton;
+    [SerializeField] GameObject settingButtons;
 
     private static Dictionary<string, RoomInfo> fullRoomList = new Dictionary<string, RoomInfo>();
 
@@ -100,15 +100,18 @@ public class NetworkManager: MonoBehaviourPunCallbacks
             .GetComponent<PlayerListItem>().SetUp(players[i]);
         }
 
-        //Start Game and Map setting Button only visible for the host
+        //Start Game and Settings Button only visible for the host
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
-        mapSettingButton.SetActive(PhotonNetwork.IsMasterClient);
+        settingButtons.SetActive(PhotonNetwork.IsMasterClient);
+        
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
-        //Updates Game Button only visible for the host
+        //Updates Start Game and Settings Button only visible for the host
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        settingButtons.SetActive(PhotonNetwork.IsMasterClient);
+        RoomManager.Instance.updateBtn();
     }
 
     public void LeaveRoom()

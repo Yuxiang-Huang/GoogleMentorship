@@ -116,4 +116,30 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         return res;
     }
+
+    //when room host change
+    public void updateBtn()
+    {
+        //map setting
+        bool hasWater = (bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"];
+
+        if (hasWater)
+        {
+            mapSettingText.text = "Water: On";
+        }
+        else
+        {
+            mapSettingText.text = "Water: Off";
+        }
+
+        ////time setting
+        //if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("initialTime"))
+        //{
+        //    initialTimeInput.text = (string)PhotonNetwork.CurrentRoom.CustomProperties["initialTime"];
+        //}
+        //if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("timeInc"))
+        //{
+        //    timeIncInput.text = (string)PhotonNetwork.CurrentRoom.CustomProperties["timeInc"];
+        //}
+    }
 }
