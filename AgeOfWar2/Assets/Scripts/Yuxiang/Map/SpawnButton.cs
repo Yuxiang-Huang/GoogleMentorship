@@ -24,7 +24,16 @@ public class SpawnButton : MonoBehaviour
 
     void Awake()
     {
-        ageAdvanceUpdate();
+        costText.text = goldNeedToSpawn + " gold";
+
+        GetComponent<Image>().sprite = unitImages[0];
+
+        //set all ages inactive except the current one
+        foreach (Transform cur in spawnImage.transform)
+        {
+            cur.gameObject.SetActive(false);
+        }
+        spawnImage.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void spawn()

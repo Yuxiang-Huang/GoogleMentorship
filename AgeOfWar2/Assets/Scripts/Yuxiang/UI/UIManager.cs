@@ -51,9 +51,11 @@ public class UIManager : MonoBehaviour
         PV = GetComponent<PhotonView>();
 
         //everything set false first
+        Shop.SetActive(false);
         turnBtn.SetActive(false);
         infoTab.SetActive(false);
         AgeUI.SetActive(false);
+        IntroText.SetActive(true);
     }
 
     #region Start Game
