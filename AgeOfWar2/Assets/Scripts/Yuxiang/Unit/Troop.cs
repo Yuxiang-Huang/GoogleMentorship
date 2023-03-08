@@ -29,9 +29,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     [Header("Movement")]
     public Tile tile;
-    Tile lastTarget;
-    List<Tile> path = new List<Tile>();
-    GameObject arrow;
+    protected Tile lastTarget;
+    protected List<Tile> path = new List<Tile>();
+    protected GameObject arrow;
 
     public bool moved;
 
@@ -41,7 +41,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection,
+    public virtual void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection,
         string path, int age, int sellGold)
     {
         //setting tile, ID, direction, sell gold
@@ -81,7 +81,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public virtual void attack() { }
 
-    public void findPath(Tile target)
+    public virtual void findPath(Tile target)
     {
         if (lastTarget == target) return; //same path
 
@@ -366,7 +366,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     #endregion
 
     //find distance between two tiles
-    float dist(Tile t1, Tile t2)
+    public float dist(Tile t1, Tile t2)
     {
         Vector2 p1 = TileManager.instance.getWorldPosition(t1);
         Vector2 p2 = TileManager.instance.getWorldPosition(t2);

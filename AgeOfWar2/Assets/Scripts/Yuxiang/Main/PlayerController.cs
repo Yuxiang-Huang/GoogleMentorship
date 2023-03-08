@@ -265,7 +265,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         unitSelected.setImage(Color.grey);
 
                         //if movable and turn not ended
-                        if (highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop")
+                        if ((highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop") ||
+                            highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("WaterTroop"))
                             && !turnEnded)
                         {
                             mode = "move";
@@ -434,7 +435,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             GameObject newUnit = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", info.unitName),
             info.spawnTile.gameObject.transform.position, Quaternion.identity);
 
-            if (newUnit.CompareTag("Troop"))
+            if (newUnit.CompareTag("Troop") || newUnit.CompareTag("WaterTroop"))
             {
                 newUnit.GetComponent<Troop>().PV.RPC("Init", RpcTarget.All,
                     id, info.spawnTile.pos.x, info.spawnTile.pos.y,
