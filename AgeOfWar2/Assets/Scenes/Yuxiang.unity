@@ -3571,6 +3571,7 @@ MonoBehaviour:
   AgeUI: {fileID: 270290791}
   turnBtn: {fileID: 1201000671}
   cancelTurnBtn: {fileID: 1727781343}
+  curTimeUsed: 0
   infoTab: {fileID: 1356005891}
   unitNameText: {fileID: 1294527431}
   unitHealthText: {fileID: 854828128}
@@ -3710,7 +3711,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1602756415}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: endTurn
+        m_MethodName: cancelEndTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -155,6 +155,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void cancelEndTurn()
+    {
+        PlayerController.instance.turnEnded = false;
+
+        UIManager.instance.cancelEndTurn();
+
+        //revert endturn choice
+        Hashtable playerProperties = new Hashtable();
+        playerProperties.Add("EndTurn", false);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+    }
+
     #endregion
 
     #region TakeTurn

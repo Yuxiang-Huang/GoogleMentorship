@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class UIManager : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject turnBtn;
     [SerializeField] GameObject cancelTurnBtn;
     [SerializeField] Coroutine timeCoroutine;
+    [SerializeField] int curTimeUsed;
+    [SerializeField] Coroutine cancelTimeCoroutine;
 
     [Header("InfoTab")]
     [SerializeField] GameObject infoTab;
@@ -107,6 +110,9 @@ public class UIManager : MonoBehaviour
     public void startTurn()
     {
         turnBtn.SetActive(true);
+
+        //reset timer
+        curTimeUsed = 0;
         timeCoroutine = StartCoroutine(nameof(timer));
 
         //update Player info
@@ -118,14 +124,28 @@ public class UIManager : MonoBehaviour
     {
         int time = initialTime + timeInc * PlayerController.instance.age;
 
-        for (int i = 0; i < time; i++)
+        for (int i = curTimeUsed; i < time; i++)
         {
             playerUI.timeText.text = "Time Left: " + (time - i) + " seconds";
+
+            curTimeUsed = i;
 
             yield return new WaitForSeconds(1f);
         }
 
         GameManager.instance.endTurn();
+    }
+
+    IEnumerator cancelTimer()
+    {
+        int time = initialTime + timeInc * PlayerController.instance.age;
+
+        for (int i = curTimeUsed; i < time; i++)
+        {
+            curTimeUsed = i;
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     public void endTurn()
@@ -134,6 +154,7 @@ public class UIManager : MonoBehaviour
         {
             StopCoroutine(timeCoroutine);
         }
+        timeCoroutine = StartCoroutine(nameof(cancelTimer));
 
         playerUI.timeText.text = "Waiting for opponents...";
 
@@ -141,10 +162,18 @@ public class UIManager : MonoBehaviour
         cancelTurnBtn.SetActive(true);
     }
 
+    public void cancelEndTurn()
+    {
+        turnBtn.SetActive(true);
+        cancelTurnBtn.SetActive(false);
+
+        StopCoroutine(nameof(cancelTimer));
+        timeCoroutine = StartCoroutine(nameof(timer));
+    }
+
     [PunRPC]
     public void turnPhase()
     {
-        Debug.Log("here");
         cancelTurnBtn.SetActive(false);
     }
 
