@@ -52,8 +52,8 @@ public class Tile : MonoBehaviour
     {
         if (ownerID != newOwnerID)
         {
-            //remove from other player's land
-            if (ownerID != -1)
+            //remove from other player's land if land
+            if (ownerID != -1 && terrain == "land")
             {
                 GameManager.instance.allPlayersOriginal[ownerID].territory.Remove(this);
 
@@ -69,11 +69,24 @@ public class Tile : MonoBehaviour
                 }
             }
 
-            //add this land to new owner's territory
+            //add this land to new owner's territory if land
             ownerID = newOwnerID;
 
-            GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
+            if (terrain == "land")
+                GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
         }
+
+        //reveal land only if mine
+        if (ownerID == PlayerController.instance.id)
+        {
+            dark.SetActive(false);
+
+            foreach (Tile tile in neighbors)
+            {
+                tile.setDark(false);
+            }
+        }
+
         this.unit = newUnit;
 
         //territory color if land
@@ -90,17 +103,6 @@ public class Tile : MonoBehaviour
                 lastColor = ownerColor[ownerID];
 
                 lastColor.SetActive(true);
-            }
-        }
-
-        //reveal land only if mine
-        if (ownerID == PlayerController.instance.id)
-        {
-            dark.SetActive(false);
-
-            foreach (Tile tile in neighbors)
-            {
-                tile.setDark(false);
             }
         }
     }

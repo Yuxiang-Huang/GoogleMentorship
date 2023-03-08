@@ -25,7 +25,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public int fullHealth;
     public int damage;
     public Vector2 direction;
-    Vector3 offset = new Vector3(0, 0.5f, 0);
+    protected Vector3 offset = new Vector3(0, 0.5f, 0);
 
     [Header("Movement")]
     public Tile tile;
@@ -182,7 +182,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public void move()
+    public virtual void move()
     {
         //moved in this turn already
         if (moved) return;
@@ -195,7 +195,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
             Destroy(arrow);
         }
 
-        //move and then attack
+        //if has next tile to go
         if (path.Count != 0)
         {
             //update direction
@@ -246,7 +246,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void moveUpdate_RPC(int nextTileX, int nextTileY)
+    public virtual void moveUpdate_RPC(int nextTileX, int nextTileY)
     {
         //update tile
         tile = TileManager.instance.tiles[nextTileX, nextTileY];

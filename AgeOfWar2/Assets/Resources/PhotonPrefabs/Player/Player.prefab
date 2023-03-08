@@ -83,7 +83,7 @@ MonoBehaviour:
   toSpawnImage: {fileID: 0}
   goldNeedToSpawn: 0
   curSpawnImage: {fileID: 0}
-  gold: 5
+  gold: 40
   age: 0
   goldNeedToAdvance: 320
   troopNum: 0

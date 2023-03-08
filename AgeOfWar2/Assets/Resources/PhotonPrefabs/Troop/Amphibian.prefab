@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 4316284018435778642}
   m_Layer: 0
   m_Name: Amphibian
-  m_TagString: WaterTroop
+  m_TagString: Troop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -140,5 +140,27 @@ public class Amphibian : Troop
         }
     }
 
+    [PunRPC]
+    public override void moveUpdate_RPC(int nextTileX, int nextTileY)
+    {
+        //update visibility if owner and tile is water
+        if (ownerID == PlayerController.instance.id && tile.terrain == "water")
+        {
+            foreach (Tile neighbor in tile.neighbors)
+            {
+                PlayerController.instance.toUpdateVisibility.Add(neighbor);
+            }
+        }
+
+        //update tile
+        tile = TileManager.instance.tiles[nextTileX, nextTileY];
+        tile.updateStatus(ownerID, this);
+
+        //update position
+        transform.position = TileManager.instance.getWorldPosition(tile);
+
+        healthbar.gameObject.transform.position = transform.position + offset;
+    }
+
     #endregion
 }
