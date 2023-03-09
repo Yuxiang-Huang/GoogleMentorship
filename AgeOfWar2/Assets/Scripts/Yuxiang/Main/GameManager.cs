@@ -120,8 +120,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             spawnLocations.Add(new Vector2Int(xOffset, tiles.GetLength(1) - 1 - yOffset));
             spawnLocations.Add(new Vector2Int(tiles.GetLength(0) - 1 - xOffset, yOffset + 1));
 
+            //shuffle
             List<Vector2Int> randomSpawnLocations = new List<Vector2Int>();
-
             while (spawnLocations.Count > 0)
             {
                 int index = Random.Range(0, spawnLocations.Count);

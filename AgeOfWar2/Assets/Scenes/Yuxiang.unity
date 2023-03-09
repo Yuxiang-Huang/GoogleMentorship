@@ -316,7 +316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &76749469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1335,14 +1335,14 @@ MonoBehaviour:
   goldNeedToSpawn: 40
   spawnImage: {fileID: 1371028787450875553, guid: 806398d3c81b84a6a932a9df7a6e15f5, type: 3}
   costText: {fileID: 1760341031}
-  unit: {fileID: 5703412472445778228, guid: 8bf82ab7f5c814d8b9bb6f62636310b0, type: 3}
+  unit: {fileID: 4984355407141944089, guid: 8bf82ab7f5c814d8b9bb6f62636310b0, type: 3}
   unitImages:
   - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
   - {fileID: 21300000, guid: 782fd1e133f764518ad634ee02a5b33e, type: 3}
   - {fileID: 21300000, guid: 0d0151c7591804614b8cafd2ae7ef58d, type: 3}
-  - {fileID: 21300000, guid: da0b6c1b5181e4d138cd718df7ab0e13, type: 3}
-  - {fileID: 21300000, guid: 782fd1e133f764518ad634ee02a5b33e, type: 3}
-  - {fileID: 21300000, guid: 0d0151c7591804614b8cafd2ae7ef58d, type: 3}
+  - {fileID: 21300000, guid: 1390ffb9897e34daca45cfb69911758f, type: 3}
+  - {fileID: 21300000, guid: 9669469fb0da34b7f9d50807351ed216, type: 3}
+  - {fileID: 21300000, guid: b6432457f6e9148b09e3349b26ed057b, type: 3}
 --- !u!1 &394737630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,7 +1631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &591690208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2035,7 +2035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &668856998
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2861,7 +2861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &899645683
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4685,7 +4685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1356005892
 MonoBehaviour:
   m_ObjectHideFlags: 0
