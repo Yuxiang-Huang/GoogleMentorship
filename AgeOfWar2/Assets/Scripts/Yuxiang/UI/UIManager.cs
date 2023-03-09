@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject infoTabPlayer;
     [SerializeField] List<TextMeshProUGUI> playerInfoText;
+    [SerializeField] List<GameObject> checkmarkList;
 
     [Header("Age")]
     public List<string> ageNameList;
@@ -89,6 +90,16 @@ public class UIManager : MonoBehaviour
         AgeUI.SetActive(true);
         timeText.gameObject.SetActive(true);
 
+        foreach (TextMeshProUGUI text in playerNameList)
+        {
+            text.gameObject.transform.parent.gameObject.SetActive(false);
+        }
+
+        foreach (GameObject checkmark in checkmarkList)
+        {
+            checkmark.SetActive(false);
+        }
+
         //Player list
         playerList.SetActive(true);
         for (int i = 0; i < GameManager.instance.allPlayersOriginal.Count; i++)
@@ -111,6 +122,12 @@ public class UIManager : MonoBehaviour
         //reset timer
         curTimeUsed = initialTime + timeInc * PlayerController.instance.age;
         timeCoroutine = StartCoroutine(nameof(timer));
+
+        //hide all checkmarks
+        foreach (GameObject checkmark in checkmarkList)
+        {
+            checkmark.SetActive(false);
+        }
     }
 
     IEnumerator timer()
@@ -157,6 +174,9 @@ public class UIManager : MonoBehaviour
 
         turnBtn.SetActive(false);
 
+        //show checkmark
+        PV.RPC(nameof(setCheckmark), RpcTarget.All, PlayerController.instance.id, true);
+
         //only if have time left
         if (curTimeUsed > 0)
             cancelTurnBtn.SetActive(true);
@@ -170,6 +190,9 @@ public class UIManager : MonoBehaviour
         //stop the timer that keep track after end turn and start another timer
         StopCoroutine(nameof(cancelTimer));
         timeCoroutine = StartCoroutine(nameof(timer));
+
+        //hide checkmark
+        PV.RPC(nameof(setCheckmark), RpcTarget.All, PlayerController.instance.id, false);
     }
 
     [PunRPC]
@@ -247,6 +270,12 @@ public class UIManager : MonoBehaviour
     {
         infoTabPlayer.SetActive(true);
         GameManager.instance.allPlayersOriginal[id].fillInfoTab(playerInfoText);
+    }
+
+    [PunRPC]
+    public void setCheckmark(int index, bool status)
+    {
+        checkmarkList[index].SetActive(status);
     }
 
     #endregion
