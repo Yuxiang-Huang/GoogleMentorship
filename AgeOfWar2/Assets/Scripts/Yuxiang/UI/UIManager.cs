@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject arrowPrefab;
 
+    public List<string> colorNameList;
+
     [Header("Settting")]
     [SerializeField] int initialTime;
     [SerializeField] int timeInc;

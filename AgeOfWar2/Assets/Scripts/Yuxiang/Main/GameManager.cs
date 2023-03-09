@@ -100,10 +100,39 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("Ready") && (bool)p.CustomProperties["Ready"]))
         {
+            //creating random spawnLocations
+            int xOffset = 2;
+            int yOffset = 0;
+
+            //change if water map
+            if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
+            {
+                xOffset = 6;
+                yOffset = 1;
+            }
+
+            Tile[,] tiles = TileManager.instance.tiles;
+
+            //all possible spawn points
+            List<Vector2Int> spawnLocations = new List<Vector2Int>();
+            spawnLocations.Add(new Vector2Int(xOffset, yOffset + 1));
+            spawnLocations.Add(new Vector2Int(tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset));
+            spawnLocations.Add(new Vector2Int(xOffset, tiles.GetLength(1) - 1 - yOffset));
+            spawnLocations.Add(new Vector2Int(tiles.GetLength(0) - 1 - xOffset, yOffset + 1));
+
+            List<Vector2Int> randomSpawnLocations = new List<Vector2Int>();
+
+            while (spawnLocations.Count > 0)
+            {
+                int index = Random.Range(0, spawnLocations.Count);
+                randomSpawnLocations.Add(spawnLocations[index]);
+                spawnLocations.RemoveAt(index);
+            }
+
             //ask all player to start game
             for (int i = 0; i < allPlayers.Count; i++)
             {
-                allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i);
+                allPlayers[i].PV.RPC("startGame", allPlayers[i].PV.Owner, i, randomSpawnLocations[i]);
             }
         }
     }

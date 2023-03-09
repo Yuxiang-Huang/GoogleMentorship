@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region ID
 
     [PunRPC]
-    public void startGame(int newID)
+    public void startGame(int newID, Vector2Int spawnLocation)
     {
         //assign id
         id = newID;
@@ -83,37 +83,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
-        int xOffset = 2;
-        int yOffset = 0;
-
-        //change if water map
-        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
-        {
-            xOffset = 6;
-            yOffset = 1;
-        }
-
-        Tile root = null;
-
-        if (id == 0)
-        {
-            root = tiles[xOffset, yOffset + 1];
-        }
-
-        else if (id == 1)
-        {
-            root = tiles[tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset];
-        }
-
-        else if (id == 2)
-        {
-            root = tiles[xOffset, tiles.GetLength(1) - 1 - yOffset];
-        }
-
-        else if (id == 3)
-        {
-            root = tiles[tiles.GetLength(0) - 1 - xOffset, yOffset + 1];
-        }
+        Tile root = tiles[spawnLocation.x, spawnLocation.y];
 
         root.setDark(false);
 
@@ -583,23 +553,23 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //name
         playerInfo[0].text = PV.Owner.NickName;
 
+        //Color
+        playerInfo[1].text = UIManager.instance.colorNameList[id];
+
         //Age
-        playerInfo[1].text = UIManager.instance.ageNameList[age];
+        playerInfo[2].text = UIManager.instance.ageNameList[age];
 
         //Gold
-        playerInfo[2].text = "Gold: " + gold;
+        playerInfo[3].text = "Gold: " + gold;
 
         //Troop
-        playerInfo[3].text = "Troop: " + allTroops.Count;
+        playerInfo[4].text = "Troop: " + allTroops.Count;
 
         //Buliding
-        playerInfo[4].text = "Building: " + allBuildings.Count;
+        playerInfo[5].text = "Building: " + allBuildings.Count;
 
         //Territory
-        playerInfo[5].text = "Territory: " + territory.Count;
-
-        //Ready
-        playerInfo[6].text = "Ready: " + turnEnded;
+        playerInfo[6].text = "Territory: " + territory.Count;
     }
 
     #endregion
