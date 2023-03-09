@@ -112,7 +112,7 @@ public class UIManager : MonoBehaviour
         turnBtn.SetActive(true);
 
         //reset timer
-        curTimeUsed = 0;
+        curTimeUsed = initialTime + timeInc * PlayerController.instance.age;
         timeCoroutine = StartCoroutine(nameof(timer));
 
         //update Player info
@@ -122,16 +122,16 @@ public class UIManager : MonoBehaviour
 
     IEnumerator timer()
     {
-        int time = initialTime + timeInc * PlayerController.instance.age;
-
-        for (int i = curTimeUsed; i < time; i++)
+        for (int i = curTimeUsed; i > 0; i--)
         {
-            playerUI.timeText.text = "Time Left: " + (time - i) + " seconds";
+            playerUI.timeText.text = "Time Left: " + i + " seconds";
 
             curTimeUsed = i;
 
             yield return new WaitForSeconds(1f);
         }
+
+        curTimeUsed = 0;
 
         GameManager.instance.endTurn();
     }
@@ -139,14 +139,16 @@ public class UIManager : MonoBehaviour
     IEnumerator cancelTimer()
     {
         //keep track of time left during end turn for canceling
-        int time = initialTime + timeInc * PlayerController.instance.age;
-
-        for (int i = curTimeUsed; i < time; i++)
+        for (int i = curTimeUsed; i > 0; i--)
         {
             curTimeUsed = i;
 
             yield return new WaitForSeconds(1f);
         }
+
+        curTimeUsed = 0;
+
+        cancelTurnBtn.SetActive(false);
     }
 
     public void endTurn()
@@ -161,7 +163,10 @@ public class UIManager : MonoBehaviour
         playerUI.timeText.text = "Waiting for opponents...";
 
         turnBtn.SetActive(false);
-        cancelTurnBtn.SetActive(true);
+
+        //only if have time left
+        if (curTimeUsed > 0)
+            cancelTurnBtn.SetActive(true);
     }
 
     public void cancelEndTurn()
