@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 19672795}
   m_Layer: 5
-  m_Name: UnitInfoYab
+  m_Name: UnitInfoTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +381,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 76749471}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1655113464}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: updatePlayerInfoTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &76749471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,7 +1696,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 591690210}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1655113464}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: updatePlayerInfoTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &591690210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2076,7 +2100,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 668857000}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1655113464}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: updatePlayerInfoTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &668857000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2890,7 +2926,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 899645685}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1655113464}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: updatePlayerInfoTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &899645685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5493,7 +5541,7 @@ MonoBehaviour:
   turnBtn: {fileID: 1201000671}
   cancelTurnBtn: {fileID: 1727781343}
   curTimeUsed: 0
-  infoTab: {fileID: 1356005891}
+  infoTabUnit: {fileID: 19672794}
   unitNameText: {fileID: 1294527431}
   unitHealthText: {fileID: 854828128}
   unitDamageText: {fileID: 1919864603}
@@ -5507,6 +5555,15 @@ MonoBehaviour:
   - {fileID: 1799681738}
   - {fileID: 828110465}
   - {fileID: 178951678}
+  infoTabPlayer: {fileID: 1938604804}
+  playerInfoText:
+  - {fileID: 908275731}
+  - {fileID: 462469461}
+  - {fileID: 755109705}
+  - {fileID: 1134356483}
+  - {fileID: 1267923089}
+  - {fileID: 1724397689}
+  - {fileID: 1314667738}
   ageNameList:
   - Stone Age
   - Bronze Age

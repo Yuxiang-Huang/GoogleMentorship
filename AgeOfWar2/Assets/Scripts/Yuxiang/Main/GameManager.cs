@@ -11,6 +11,8 @@ using System.IO;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    bool offlineMode = true;
+
     public static GameManager instance;
 
     public PhotonView PV;
@@ -30,8 +32,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         instance = this;
         PV = GetComponent<PhotonView>();
-
-        bool offlineMode = false;
 
         //not able to access after game begins
         if (!offlineMode)

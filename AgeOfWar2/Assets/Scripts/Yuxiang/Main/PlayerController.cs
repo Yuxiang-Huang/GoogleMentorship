@@ -50,9 +50,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public int age;
     public int goldNeedToAdvance;
 
-    [Header("Turn")]
-    [SerializeField] int troopNum;
-
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
@@ -242,6 +239,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 if (unitSelected != null)
                 {
                     unitSelected.setImage(Color.white);
+
                     UIManager.instance.hideInfoTab();
 
                     unitSelected = null;
@@ -254,7 +252,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     if (highlighted.GetComponent<Tile>().unit != null &&
                         highlighted.GetComponent<Tile>().unit.ownerID == id)
                     {
-                        //show health bar
+                        //don't show health bar
                         highlighted.unit.setHealthBar(false);
 
                         //update info tab
@@ -574,6 +572,34 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //{
         //    troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All, age);
         //}
+    }
+
+    #endregion
+
+    #region UI
+
+    public void fillInfoTab(List<TextMeshProUGUI> playerInfo)
+    {
+        //name
+        playerInfo[0].text = PV.Owner.NickName;
+
+        //Age
+        playerInfo[1].text = UIManager.instance.ageNameList[age];
+
+        //Gold
+        playerInfo[2].text = "Gold: " + gold;
+
+        //Troop
+        playerInfo[3].text = "Troop: " + allTroops.Count;
+
+        //Buliding
+        playerInfo[4].text = "Building: " + allBuildings.Count;
+
+        //Territory
+        playerInfo[5].text = "Territory: " + territory.Count;
+
+        //Ready
+        playerInfo[6].text = "Ready: " + turnEnded;
     }
 
     #endregion

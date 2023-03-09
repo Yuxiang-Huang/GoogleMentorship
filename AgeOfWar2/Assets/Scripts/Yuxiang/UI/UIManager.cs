@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Coroutine cancelTimeCoroutine;
 
     [Header("InfoTab - Unit")]
-    [SerializeField] GameObject infoTab;
+    [SerializeField] GameObject infoTabUnit;
     [SerializeField] TextMeshProUGUI unitNameText;
     [SerializeField] TextMeshProUGUI unitHealthText;
     [SerializeField] TextMeshProUGUI unitDamageText;
@@ -47,8 +47,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject playerList;
     [SerializeField] List<TextMeshProUGUI> playerNameList;
 
+    [SerializeField] GameObject infoTabPlayer;
+    [SerializeField] List<TextMeshProUGUI> playerInfoText;
+
     [Header("Age")]
-    [SerializeField] List<string> ageNameList;
+    public List<string> ageNameList;
     [SerializeField] GameObject ageAdvanceBtn;
     [SerializeField] TextMeshProUGUI ageText;
     [SerializeField] TextMeshProUGUI goldNeedToAdvanceText;
@@ -61,7 +64,8 @@ public class UIManager : MonoBehaviour
         //everything set false first
         Shop.SetActive(false);
         turnBtn.SetActive(false);
-        infoTab.SetActive(false);
+        infoTabUnit.SetActive(false);
+        infoTabPlayer.SetActive(false);
         AgeUI.SetActive(false);
         cancelTurnBtn.SetActive(false);
         IntroText.SetActive(true);
@@ -176,19 +180,21 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region Info Tab
+    #region Unit Info Tab
 
     //for existing units
     public void updateInfoTab(IUnit unit)
     {
-        infoTab.SetActive(true);
+        infoTabPlayer.SetActive(false);
+        infoTabUnit.SetActive(true);
         unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText);
     }
 
     //for spawn buttons
     public void updateInfoTabSpawn(IUnit unit)
     {
-        infoTab.SetActive(true);
+        infoTabPlayer.SetActive(false);
+        infoTabUnit.SetActive(true);
         unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText, PlayerController.instance.age);
         sellBtn.SetActive(false);
     }
@@ -196,13 +202,14 @@ public class UIManager : MonoBehaviour
     //for spawn images
     public void updateInfoTab(SpawnInfo spawnInfo)
     {
-        infoTab.SetActive(true);
+        infoTabPlayer.SetActive(false);
+        infoTabUnit.SetActive(true);
         spawnInfo.unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText, spawnInfo.age);
     }
 
     public void hideInfoTab()
     {
-        infoTab.SetActive(false);
+        infoTabUnit.SetActive(false);
     }
 
     public void sell()
@@ -227,14 +234,18 @@ public class UIManager : MonoBehaviour
             updateGoldText();
         }
 
-        infoTab.SetActive(false);
+        infoTabUnit.SetActive(false);
     }
 
     #endregion
 
-    #region Player Info
+    #region Player Info Tab
 
-
+    public void updatePlayerInfoTab(int id)
+    {
+        infoTabPlayer.SetActive(true);
+        GameManager.instance.allPlayersOriginal[id].fillInfoTab(playerInfoText);
+    }
 
     #endregion
 
@@ -245,7 +256,7 @@ public class UIManager : MonoBehaviour
         //if enough gold
         if (PlayerController.instance.gold >= PlayerController.instance.goldNeedToAdvance)
         {
-            infoTab.SetActive(false);
+            infoTabUnit.SetActive(false);
 
             PlayerController.instance.gold -= PlayerController.instance.goldNeedToAdvance;
 
