@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -10,10 +11,6 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     public PhotonView PV;
-
-    [SerializeField] List<PlayerUI> playerUIList;
-
-    [SerializeField] PlayerUI playerUI;
 
     public Canvas healthbarCanvas;
 
@@ -35,13 +32,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] int curTimeUsed;
     [SerializeField] Coroutine cancelTimeCoroutine;
 
-    [Header("InfoTab")]
+    [Header("InfoTab - Unit")]
     [SerializeField] GameObject infoTab;
     [SerializeField] TextMeshProUGUI unitNameText;
     [SerializeField] TextMeshProUGUI unitHealthText;
     [SerializeField] TextMeshProUGUI unitDamageText;
     [SerializeField] TextMeshProUGUI unitSellText;
     public GameObject sellBtn;
+
+    [Header("InfoTab - Player")]
+    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] TextMeshProUGUI goldText;
+
+    [SerializeField] GameObject playerList;
+    [SerializeField] List<TextMeshProUGUI> playerNameList;
 
     [Header("Age")]
     [SerializeField] List<string> ageNameList;
@@ -61,47 +65,34 @@ public class UIManager : MonoBehaviour
         AgeUI.SetActive(false);
         cancelTurnBtn.SetActive(false);
         IntroText.SetActive(true);
+        timeText.gameObject.SetActive(false);
+        playerList.SetActive(false);
     }
 
     #region Start Game
 
-    //public void startGame(int id)
-    //{
-    //    IntroText.SetActive(false);
-    //    Shop.SetActive(true);
-    //    AgeUI.SetActive(true);
-
-    //    playerUI = playerUIList[id];
-    //    playerUI.playerName.text = PhotonNetwork.NickName;
-
-    //    goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
-
-    //    //PV.RPC(nameof(reveal), RpcTarget.All, id);
-    //}
-
-    public void startGame(int id)
+    public void startGame()
     {
         //time option setting
         initialTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["initialTime"];
         timeInc = (int)PhotonNetwork.CurrentRoom.CustomProperties["timeInc"];
 
+        //set UI active
         IntroText.SetActive(false);
         Shop.SetActive(true);
         AgeUI.SetActive(true);
+        timeText.gameObject.SetActive(true);
 
-        playerUI = playerUIList[0];
-        playerUI.nameText.text = PhotonNetwork.NickName;
+        //Player list
+        playerList.SetActive(true);
+        for (int i = 0; i < GameManager.instance.allPlayersOriginal.Count; i++)
+        {
+            playerNameList[i].text = GameManager.instance.allPlayersOriginal[i].PV.Owner.NickName;
+            playerNameList[i].gameObject.transform.parent.gameObject.SetActive(true);
+        }
 
         goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
-
-        playerUIList[0].gameObject.SetActive(true);
     }
-
-    //[PunRPC]
-    //public void reveal(int id)
-    //{
-    //    playerUIList[id].gameObject.SetActive(true);
-    //}
 
     #endregion
 
@@ -114,17 +105,13 @@ public class UIManager : MonoBehaviour
         //reset timer
         curTimeUsed = initialTime + timeInc * PlayerController.instance.age;
         timeCoroutine = StartCoroutine(nameof(timer));
-
-        //update Player info
-        updatePlayerInfo(PlayerController.instance.allTroops.Count,
-            PlayerController.instance.allBuildings.Count);
     }
 
     IEnumerator timer()
     {
         for (int i = curTimeUsed; i > 0; i--)
         {
-            playerUI.timeText.text = "Time Left: " + i + " seconds";
+            timeText.text = "Time Left:\n" + i + " seconds";
 
             curTimeUsed = i;
 
@@ -160,7 +147,7 @@ public class UIManager : MonoBehaviour
         //keep track time after end turn
         timeCoroutine = StartCoroutine(nameof(cancelTimer));
 
-        playerUI.timeText.text = "Waiting for opponents...";
+        timeText.text = "Waiting for opponents...";
 
         turnBtn.SetActive(false);
 
@@ -183,6 +170,7 @@ public class UIManager : MonoBehaviour
     public void turnPhase()
     {
         StopCoroutine(nameof(cancelTimer));
+        turnBtn.SetActive(false);
         cancelTurnBtn.SetActive(false);
     }
 
@@ -246,12 +234,7 @@ public class UIManager : MonoBehaviour
 
     #region Player Info
 
-    [PunRPC]
-    public void updatePlayerInfo(int troopCount, int buildingCount)
-    {
-        playerUI.troopText.text = "Troop: " + troopCount;
-        playerUI.buildingText.text = "Buildings: " + buildingCount;
-    }
+
 
     #endregion
 
@@ -269,12 +252,10 @@ public class UIManager : MonoBehaviour
             //modify age
             PlayerController.instance.age++;
             ageText.text = ageNameList[PlayerController.instance.age];
-            playerUI.ageText.text = ageNameList[PlayerController.instance.age]; //Need to Sync later
 
             //modify gold
             PlayerController.instance.goldNeedToAdvance *= GameManager.instance.ageCostFactor;
             goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
-            playerUI.goldText.text = "Gold: " + PlayerController.instance.gold;
 
             //age limit
             if (PlayerController.instance.age >= 5)
@@ -295,14 +276,15 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    [PunRPC]
     public void updateGoldText()
     {
-        playerUI.goldText.text = "Gold: " + PlayerController.instance.gold;
+        goldText.text = "Gold: " + PlayerController.instance.gold;
     }
 
     [PunRPC]
     public void updateTimeText(string message)
     {
-        playerUI.timeText.text = message;
+        timeText.text = message;
     }
 }

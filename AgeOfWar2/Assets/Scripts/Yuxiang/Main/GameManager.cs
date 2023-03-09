@@ -145,8 +145,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
-            allPlayers[0].spawn();
             UIManager.instance.PV.RPC(nameof(UIManager.instance.turnPhase), RpcTarget.All);
+            allPlayers[0].spawn();
         }
         else
         {
