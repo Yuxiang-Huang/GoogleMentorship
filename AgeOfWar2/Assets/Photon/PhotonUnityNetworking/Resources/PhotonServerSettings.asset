@@ -79,6 +79,8 @@ MonoBehaviour:
   - firstTurnOver
   - setup
   - updateGoldText
+  - setCheckmark
+  - fillInfoTab
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

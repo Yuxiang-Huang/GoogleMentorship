@@ -269,7 +269,34 @@ public class UIManager : MonoBehaviour
     public void updatePlayerInfoTab(int id)
     {
         infoTabPlayer.SetActive(true);
-        GameManager.instance.allPlayersOriginal[id].fillInfoTab(playerInfoText);
+        GameManager.instance.allPlayersOriginal[id].PV.RPC("fillInfoTab",
+            GameManager.instance.allPlayersOriginal[id].PV.Owner, PlayerController.instance.id);
+    }
+
+    [PunRPC]
+    public void fillPlayerInfoTab(string nickName, string color, string age, int gold,
+        int numTroop, int numBuilding, int numTerritory)
+    {
+        //name
+        playerInfoText[0].text = nickName;
+
+        //Color
+        playerInfoText[1].text = color;
+
+        //Age
+        playerInfoText[2].text = age;
+
+        //Gold
+        playerInfoText[3].text = "Gold: " + gold;
+
+        //Troop
+        playerInfoText[4].text = "Troop: " + numTroop;
+
+        //Buliding
+        playerInfoText[5].text = "Building: " + numBuilding;
+
+        //Territory
+        playerInfoText[6].text = "Territory: " + numTerritory;
     }
 
     [PunRPC]

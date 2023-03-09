@@ -11,7 +11,7 @@ using System.IO;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    bool offlineMode = true;
+    bool offlineMode = false;
 
     public static GameManager instance;
 
@@ -114,14 +114,14 @@ public class GameManager : MonoBehaviourPunCallbacks
             Tile[,] tiles = TileManager.instance.tiles;
 
             //all possible spawn points
-            List<Vector2Int> spawnLocations = new List<Vector2Int>();
-            spawnLocations.Add(new Vector2Int(xOffset, yOffset + 1));
-            spawnLocations.Add(new Vector2Int(tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset));
-            spawnLocations.Add(new Vector2Int(xOffset, tiles.GetLength(1) - 1 - yOffset));
-            spawnLocations.Add(new Vector2Int(tiles.GetLength(0) - 1 - xOffset, yOffset + 1));
+            List<Vector2> spawnLocations = new List<Vector2>();
+            spawnLocations.Add(new Vector2(xOffset, yOffset + 1));
+            spawnLocations.Add(new Vector2(tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset));
+            spawnLocations.Add(new Vector2(xOffset, tiles.GetLength(1) - 1 - yOffset));
+            spawnLocations.Add(new Vector2(tiles.GetLength(0) - 1 - xOffset, yOffset + 1));
 
             //shuffle
-            List<Vector2Int> randomSpawnLocations = new List<Vector2Int>();
+            List<Vector2> randomSpawnLocations = new List<Vector2>();
             while (spawnLocations.Count > 0)
             {
                 int index = Random.Range(0, spawnLocations.Count);

@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region ID
 
     [PunRPC]
-    public void startGame(int newID, Vector2Int spawnLocation)
+    public void startGame(int newID, Vector2 spawnLocation)
     {
         //assign id
         id = newID;
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //assign starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
-        Tile root = tiles[spawnLocation.x, spawnLocation.y];
+        Tile root = tiles[(int)spawnLocation.x, (int)spawnLocation.y];
 
         root.setDark(false);
 
@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 else
                 {
                     newHighlighted = null;
-                }                    
+                }
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -548,28 +548,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     #region UI
 
-    public void fillInfoTab(List<TextMeshProUGUI> playerInfo)
+    [PunRPC]
+    public void fillInfoTab(int sender)
     {
-        //name
-        playerInfo[0].text = PV.Owner.NickName;
-
-        //Color
-        playerInfo[1].text = UIManager.instance.colorNameList[id];
-
-        //Age
-        playerInfo[2].text = UIManager.instance.ageNameList[age];
-
-        //Gold
-        playerInfo[3].text = "Gold: " + gold;
-
-        //Troop
-        playerInfo[4].text = "Troop: " + allTroops.Count;
-
-        //Buliding
-        playerInfo[5].text = "Building: " + allBuildings.Count;
-
-        //Territory
-        playerInfo[6].text = "Territory: " + territory.Count;
+        UIManager.instance.PV.RPC("fillPlayerInfoTab", GameManager.instance.allPlayersOriginal[sender].PV.Owner,
+            PV.Owner.NickName, UIManager.instance.colorNameList[id], UIManager.instance.ageNameList[age],
+            gold, allTroops.Count, allBuildings.Count, territory.Count);
     }
 
     #endregion
