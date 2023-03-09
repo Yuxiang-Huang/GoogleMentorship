@@ -12,7 +12,6 @@ ScriptsOnlyBuild:
     - PlayerListItem
     - PlayerManager
     - PlayerNameManager
-    - PlayerUI
     - RoomListItem
     - RoomManager
     - Screen
@@ -22,6 +21,8 @@ ScriptsOnlyBuild:
     - Tile
     - TileManager
     - UIManager
+    ParrelSync.dll:
+    - ParrelSync.ClonesManagerWindow
     PhotonUnityNetworking.Editor.dll:
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
@@ -130,6 +131,9 @@ ScriptsOnlyBuild:
     fullTypeName: ScreenManager
     methodName: DisplayScreen
   - assembly: Assembly-CSharp
+    fullTypeName: UIManager
+    methodName: updatePlayerInfoTab
+  - assembly: Assembly-CSharp
     fullTypeName: SpawnButton
     methodName: spawn
   - assembly: Assembly-CSharp
@@ -137,7 +141,16 @@ ScriptsOnlyBuild:
     methodName: spawn
   - assembly: Assembly-CSharp
     fullTypeName: UIManager
+    methodName: updatePlayerInfoTab
+  - assembly: Assembly-CSharp
+    fullTypeName: UIManager
+    methodName: updatePlayerInfoTab
+  - assembly: Assembly-CSharp
+    fullTypeName: UIManager
     methodName: sell
+  - assembly: Assembly-CSharp
+    fullTypeName: UIManager
+    methodName: updatePlayerInfoTab
   - assembly: Assembly-CSharp
     fullTypeName: SpawnButton
     methodName: spawn
@@ -208,39 +221,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4142}
     - Class: 114
-      Script: {instanceID: 4392}
+      Script: {instanceID: 4322}
     - Class: 114
-      Script: {instanceID: 4788}
+      Script: {instanceID: 4394}
     - Class: 114
-      Script: {instanceID: 4908}
+      Script: {instanceID: 4790}
     - Class: 114
-      Script: {instanceID: 5018}
+      Script: {instanceID: 4910}
     - Class: 114
-      Script: {instanceID: 5090}
+      Script: {instanceID: 5020}
     - Class: 114
-      Script: {instanceID: 5196}
+      Script: {instanceID: 5092}
     - Class: 114
-      Script: {instanceID: 5318}
+      Script: {instanceID: 5198}
     - Class: 114
-      Script: {instanceID: 5648}
+      Script: {instanceID: 5320}
     - Class: 114
-      Script: {instanceID: 5796}
+      Script: {instanceID: 5650}
     - Class: 114
-      Script: {instanceID: 6112}
+      Script: {instanceID: 5798}
     - Class: 114
-      Script: {instanceID: 6528}
+      Script: {instanceID: 6114}
     - Class: 114
-      Script: {instanceID: 6910}
+      Script: {instanceID: 6530}
     - Class: 114
-      Script: {instanceID: 7266}
+      Script: {instanceID: 6912}
     - Class: 114
-      Script: {instanceID: 7532}
+      Script: {instanceID: 7268}
     - Class: 114
-      Script: {instanceID: 7638}
+      Script: {instanceID: 7534}
     - Class: 114
-      Script: {instanceID: 7826}
+      Script: {instanceID: 7640}
     - Class: 114
-      Script: {instanceID: 97744}
+      Script: {instanceID: 7828}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -297,33 +310,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3360}
     - Class: 114
-      Script: {instanceID: 3578}
-    - Class: 114
       Script: {instanceID: 3594}
     - Class: 114
       Script: {instanceID: 3716}
     - Class: 114
-      Script: {instanceID: 5018}
+      Script: {instanceID: 4322}
     - Class: 114
-      Script: {instanceID: 5090}
+      Script: {instanceID: 5020}
     - Class: 114
-      Script: {instanceID: 5318}
+      Script: {instanceID: 5092}
     - Class: 114
-      Script: {instanceID: 5486}
+      Script: {instanceID: 5320}
     - Class: 114
-      Script: {instanceID: 5648}
+      Script: {instanceID: 5488}
     - Class: 114
-      Script: {instanceID: 5796}
+      Script: {instanceID: 5650}
     - Class: 114
-      Script: {instanceID: 5902}
+      Script: {instanceID: 5798}
     - Class: 114
-      Script: {instanceID: 6112}
+      Script: {instanceID: 5904}
     - Class: 114
-      Script: {instanceID: 6834}
+      Script: {instanceID: 6114}
     - Class: 114
-      Script: {instanceID: 7764}
+      Script: {instanceID: 6836}
     - Class: 114
-      Script: {instanceID: 97744}
+      Script: {instanceID: 7766}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -885,6 +896,12 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
+      Hash: 9cc8677484f7ed4d009df8abdd5974dd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Amphibian
+  - hash:
+      serializedVersion: 2
       Hash: 75de60bccbd35c2e82026d4a60733734
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1059,7 +1076,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: c9642abc0a18f4b07c469f27ad0a3184
+      Hash: 2b8531804f3627d81258ab595db1aa36
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -1449,7 +1466,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 4b5ab289180733d0ee6895a51921e8cc
+      Hash: 3497709755eb40d6d9745a52e6eccf59
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1489,14 +1506,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 9cc8677484f7ed4d009df8abdd5974dd
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Amphibian
   platform: 20
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version10
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version11

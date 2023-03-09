@@ -81,6 +81,7 @@ MonoBehaviour:
   - updateGoldText
   - setCheckmark
   - fillInfoTab
+  - fillPlayerInfoTab
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
