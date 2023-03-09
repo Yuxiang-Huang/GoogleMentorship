@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
     public void endTurn()
     {
         //stop action of player
@@ -145,6 +146,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.OfflineMode)
         {
             allPlayers[0].spawn();
+            UIManager.instance.PV.RPC(nameof(UIManager.instance.turnPhase), RpcTarget.All);
         }
         else
         {
