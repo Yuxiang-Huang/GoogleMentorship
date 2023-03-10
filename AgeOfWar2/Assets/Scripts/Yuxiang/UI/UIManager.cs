@@ -324,6 +324,7 @@ public class UIManager : MonoBehaviour
 
             //modify gold
             PlayerController.instance.goldNeedToAdvance *= GameManager.instance.ageCostFactor;
+            updateGoldText();
             goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
 
             //age limit
