@@ -531,6 +531,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             GameManager.instance.startTurn();
         }
+        else
+        {
+            Hashtable playerProperties = new Hashtable();
+            playerProperties.Add("CheckDead", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
+        }
     }
 
     #endregion
@@ -601,11 +607,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         UIManager.instance.lost();
 
         lost = true;
-
-        //just in case
-        Hashtable playerProperties = new Hashtable();
-        playerProperties.Add("EndTurn", true);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     [PunRPC]

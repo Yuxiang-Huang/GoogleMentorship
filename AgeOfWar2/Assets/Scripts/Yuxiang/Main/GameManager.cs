@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         else if (changedProps.ContainsKey("Attacked")) checkAttack();
 
+        else if (changedProps.ContainsKey("CheckDead")) checkAttack();
+
         #endregion
     }
 
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             playerProperties.Add("EndTurn", false);
         playerProperties.Add("Spawned", false);
         playerProperties.Add("Attacked", false);
+        playerProperties.Add("CheckDead", false);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
 
         //skip if lost
@@ -284,6 +287,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                 player.PV.RPC(nameof(player.endCheck), player.PV.Owner);
             }
 
+            turnEnded = false;
+            PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
+        }
+    }
+
+    public void checkDead()
+    {
+        //everyone is ready
+        var players = PhotonNetwork.PlayerList;
+        if (players.All(p => p.CustomProperties.ContainsKey("CheckDead") && (bool)p.CustomProperties["CheckDead"]))
+        {
+            //next turn
             turnEnded = false;
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
         }

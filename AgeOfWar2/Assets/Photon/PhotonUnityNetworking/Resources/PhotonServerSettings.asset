@@ -84,6 +84,7 @@ MonoBehaviour:
   - fillPlayerInfoTab
   - updateTotalPlayer
   - setSkull
+  - resetTerritory
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
