@@ -13,4 +13,23 @@ public class MainBase : Building
             neigbhor.updateStatus(ownerID, null);
         }
     }
+
+    [PunRPC]
+    public override void checkDeath()
+    {
+        if (health <= 0)
+        {
+            tile.unit = null;
+
+            foreach (Tile neighbor in tile.neighbors)
+            {
+                neighbor.updateCanSpawn();
+            }
+
+            Destroy(healthbar.gameObject);
+            Destroy(this.gameObject);
+
+            PlayerController.instance.end();
+        }
+    }
 }

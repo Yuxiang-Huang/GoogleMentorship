@@ -169,4 +169,10 @@ public class Tile : MonoBehaviour
         //can't be seem anymore
         dark.SetActive(true);
     }
+
+    public void reset()
+    {
+        lastColor.SetActive(false);
+        ownerID = -1;
+    }
 }

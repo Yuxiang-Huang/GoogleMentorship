@@ -357,10 +357,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     [PunRPC]
     public virtual void kill()
     {
-        tile.unit = null;
-        Destroy(arrow);
-        Destroy(healthbar.gameObject);
-        Destroy(this.gameObject);
+        health = 0;
+        checkDeath();
     }
 
     #endregion

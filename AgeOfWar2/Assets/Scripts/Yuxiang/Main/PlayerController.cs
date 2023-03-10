@@ -557,4 +557,34 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
     #endregion
+
+    public void end()
+    {
+        //kill all troops
+        foreach(Troop troop in allTroops)
+        {
+            troop.kill();
+        }
+
+        //destroy all buildings
+        foreach (Building building in allBuildings)
+        {
+            building.kill();
+        }
+
+        //no territory
+        foreach(Tile tile in territory)
+        {
+            tile.reset();
+        }
+
+        //display all tiles
+        foreach (Tile tile in TileManager.instance.tiles)
+        {
+            if (tile != null)
+            {
+                tile.setDark(false);
+            }
+        }
+    }
 }

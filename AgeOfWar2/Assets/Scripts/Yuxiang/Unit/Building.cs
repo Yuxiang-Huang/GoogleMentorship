@@ -144,7 +144,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void checkDeath()
+    public virtual void checkDeath()
     {
         if (health <= 0)
         {
@@ -167,28 +167,14 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
         PlayerController.instance.allBuildings.Remove(this);
 
-        tile.unit = null;
-
-        foreach (Tile neighbor in tile.neighbors)
-        {
-            neighbor.updateCanSpawn();
-        }
-
         PV.RPC(nameof(kill), RpcTarget.All);
     }
 
     [PunRPC]
     public void kill()
     {
-        tile.unit = null;
-
-        foreach (Tile neighbor in tile.neighbors)
-        {
-            neighbor.updateCanSpawn();
-        }
-
-        Destroy(healthbar.gameObject);
-        Destroy(this.gameObject);
+        health = 0;
+        checkDeath();
     }
 
     #endregion
