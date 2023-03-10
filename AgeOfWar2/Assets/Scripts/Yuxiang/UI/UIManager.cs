@@ -32,7 +32,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject cancelTurnBtn;
     [SerializeField] Coroutine timeCoroutine;
     [SerializeField] int curTimeUsed;
-    [SerializeField] Coroutine cancelTimeCoroutine;
 
     [Header("InfoTab - Unit")]
     [SerializeField] GameObject infoTabUnit;
@@ -188,7 +187,7 @@ public class UIManager : MonoBehaviour
         cancelTurnBtn.SetActive(false);
 
         //stop the timer that keep track after end turn and start another timer
-        StopCoroutine(nameof(cancelTimer));
+        StopCoroutine(nameof(timeCoroutine));
         timeCoroutine = StartCoroutine(nameof(timer));
 
         //hide checkmark
@@ -198,7 +197,8 @@ public class UIManager : MonoBehaviour
     [PunRPC]
     public void turnPhase()
     {
-        StopCoroutine(nameof(cancelTimer));
+        Debug.Log(timeCoroutine);
+        StopCoroutine(nameof(timeCoroutine));
         turnBtn.SetActive(false);
         cancelTurnBtn.SetActive(false);
     }

@@ -11,7 +11,7 @@ using System.IO;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    bool offlineMode = true;
+    bool offlineMode = false;
 
     public static GameManager instance;
 
@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int ageIncomeOffset;
     public int ageCostFactor;
     public int ageUnitFactor;
+
+    [SerializeField] bool turnEnded;
 
     private void Awake()
     {
@@ -204,10 +206,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void checkEndTurn()
     {
+        //edge case of cancel when just ended
+        if (turnEnded) return;
+
         //everyone is ready
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("EndTurn") && (bool)p.CustomProperties["EndTurn"]))
         {
+            turnEnded = true;
+
             UIManager.instance.PV.RPC(nameof(UIManager.instance.updateTimeText), RpcTarget.All, "Take Turns...");
             UIManager.instance.PV.RPC(nameof(UIManager.instance.turnPhase), RpcTarget.All);
 
@@ -266,6 +273,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 player.PV.RPC(nameof(player.endCheck), player.PV.Owner);
             }
 
+            turnEnded = false;
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
         }
     }
