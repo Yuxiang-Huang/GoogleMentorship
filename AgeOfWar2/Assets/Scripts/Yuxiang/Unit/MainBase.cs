@@ -29,7 +29,9 @@ public class MainBase : Building
             Destroy(healthbar.gameObject);
             Destroy(this.gameObject);
 
-            PlayerController.instance.end();
+            //end game for owner
+            if (PlayerController.instance.id == ownerID)
+                PlayerController.instance.end();
         }
     }
 }

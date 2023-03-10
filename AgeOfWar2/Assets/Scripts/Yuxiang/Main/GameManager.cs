@@ -11,7 +11,7 @@ using System.IO;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    bool offlineMode = true;
+    bool offlineMode = false;
 
     public static GameManager instance;
 
@@ -154,9 +154,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         playerMoved = 0;
 
-        PlayerController.instance.turnEnded = false;
-
         UIManager.instance.startTurn();
+
+        //skip if lost
+        if (PlayerController.instance.lost) return;
+
+        PlayerController.instance.turnEnded = false;
 
         //reset all vars
         Hashtable playerProperties = new Hashtable();
@@ -246,6 +249,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void checkMove()
     {
         playerMoved++;
+
+        Debug.Log(playerMoved);
 
         //all player moved
         if (playerMoved == PhotonNetwork.CurrentRoom.PlayerCount)

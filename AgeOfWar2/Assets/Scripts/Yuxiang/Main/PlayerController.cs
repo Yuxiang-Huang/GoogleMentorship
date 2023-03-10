@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public int id;
 
+    public bool lost;
+
     Tile highlighted;
 
     public IUnit unitSelected;
@@ -394,7 +396,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public void spawn()
     {
         //income from territory and all buildings
-        gold += (territory.Count + allBuildings.Count - 1) * (age + GameManager.instance.ageIncomeOffset);
+        if (!lost)
+            gold += (territory.Count + allBuildings.Count - 1) * (age + GameManager.instance.ageIncomeOffset);
 
         UIManager.instance.updateGoldText();
 
@@ -586,5 +589,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 tile.setDark(false);
             }
         }
+
+        //reset everything
+        gold = 0;
+        territory = new HashSet<Tile>();
+        UIManager.instance.updateGoldText();
+
+        UIManager.instance.PV.RPC("setSkull", RpcTarget.All, id);
+
+        GameManager.instance.endTurn();
+        UIManager.instance.lost();
+
+        lost = true;
     }
 }

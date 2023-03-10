@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject infoTabPlayer;
     [SerializeField] List<TextMeshProUGUI> playerInfoText;
     [SerializeField] List<GameObject> checkmarkList;
+    public List<GameObject> skullList;
 
     [Header("Age")]
     public List<string> ageNameList;
@@ -77,6 +78,21 @@ public class UIManager : MonoBehaviour
         timeText.gameObject.SetActive(false);
         playerList.SetActive(false);
         turnNumText.gameObject.SetActive(false);
+
+        foreach (TextMeshProUGUI text in playerNameList)
+        {
+            text.gameObject.transform.parent.gameObject.SetActive(false);
+        }
+
+        foreach (GameObject checkmark in checkmarkList)
+        {
+            checkmark.SetActive(false);
+        }
+
+        foreach (GameObject skull in skullList)
+        {
+            skull.SetActive(false);
+        }
     }
 
     #region Start Game
@@ -93,16 +109,6 @@ public class UIManager : MonoBehaviour
         AgeUI.SetActive(true);
         timeText.gameObject.SetActive(true);
         turnNumText.gameObject.SetActive(true);
-
-        foreach (TextMeshProUGUI text in playerNameList)
-        {
-            text.gameObject.transform.parent.gameObject.SetActive(false);
-        }
-
-        foreach (GameObject checkmark in checkmarkList)
-        {
-            checkmark.SetActive(false);
-        }
 
         //Player list
         playerList.SetActive(true);
@@ -124,11 +130,15 @@ public class UIManager : MonoBehaviour
         turnNum++;
         turnNumText.text = "Turn: " + turnNum;
 
-        turnBtn.SetActive(true);
+        //don't do if lost
+        if (!PlayerController.instance.lost)
+        {
+            turnBtn.SetActive(true);
 
-        //reset timer
-        curTimeUsed = initialTime + timeInc * PlayerController.instance.age;
-        timeCoroutine = StartCoroutine(nameof(timer));
+            //reset timer
+            curTimeUsed = initialTime + timeInc * PlayerController.instance.age;
+            timeCoroutine = StartCoroutine(nameof(timer));
+        }
 
         //hide all checkmarks
         foreach (GameObject checkmark in checkmarkList)
@@ -313,6 +323,12 @@ public class UIManager : MonoBehaviour
         checkmarkList[index].SetActive(status);
     }
 
+    [PunRPC]
+    public void setSkull(int index)
+    {
+        skullList[index].SetActive(true);
+    }
+
     #endregion
 
     #region Age System
@@ -364,5 +380,12 @@ public class UIManager : MonoBehaviour
     public void updateTimeText(string message)
     {
         timeText.text = message;
+    }
+
+    public void lost()
+    {
+        cancelTurnBtn.SetActive(false);
+        timeText.gameObject.SetActive(false);
+        PV.RPC(nameof(setCheckmark), RpcTarget.All, PlayerController.instance.id, false);
     }
 }
