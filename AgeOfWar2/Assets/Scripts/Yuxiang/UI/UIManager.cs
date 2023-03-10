@@ -197,8 +197,8 @@ public class UIManager : MonoBehaviour
     [PunRPC]
     public void turnPhase()
     {
-        Debug.Log(timeCoroutine);
-        StopCoroutine(nameof(timeCoroutine));
+        StopCoroutine(nameof(timer));
+        StopCoroutine(nameof(cancelTimer));
         turnBtn.SetActive(false);
         cancelTurnBtn.SetActive(false);
     }

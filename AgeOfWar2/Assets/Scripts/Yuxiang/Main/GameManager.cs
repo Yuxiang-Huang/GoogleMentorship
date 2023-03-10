@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int ageCostFactor;
     public int ageUnitFactor;
 
+    [SerializeField] bool gameStarted;
     [SerializeField] bool turnEnded;
 
     private void Awake()
@@ -98,10 +99,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void checkStart()
     {
+        //only once
+        if (gameStarted) return;
+
         //master client start game once when everyone is ready
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("Ready") && (bool)p.CustomProperties["Ready"]))
         {
+            gameStarted = true;
+
             //creating random spawnLocations
             int xOffset = 2;
             int yOffset = 0;
