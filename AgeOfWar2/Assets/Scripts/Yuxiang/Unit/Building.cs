@@ -144,7 +144,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public virtual void checkDeath()
+    public void checkDeath()
     {
         if (health <= 0)
         {
@@ -160,12 +160,17 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public virtual void sell()
+    public void sell()
     {
         PlayerController.instance.gold += sellGold;
         UIManager.instance.updateGoldText();
 
         PlayerController.instance.allBuildings.Remove(this);
+
+        if (this.gameObject.GetComponent<MainBase>() != null)
+        {
+            PlayerController.instance.end();
+        }
 
         PV.RPC(nameof(kill), RpcTarget.All);
     }

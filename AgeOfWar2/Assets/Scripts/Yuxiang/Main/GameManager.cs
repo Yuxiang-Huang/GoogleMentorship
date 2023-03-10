@@ -124,8 +124,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             //all possible spawn points
             List<Vector2> spawnLocations = new List<Vector2>();
             spawnLocations.Add(new Vector2(xOffset, yOffset + 1));
-            spawnLocations.Add(new Vector2(tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset));
-            spawnLocations.Add(new Vector2(xOffset, tiles.GetLength(1) - 1 - yOffset));
+            //spawnLocations.Add(new Vector2(tiles.GetLength(0) - 1 - xOffset, tiles.GetLength(1) - 1 - yOffset));
+            //spawnLocations.Add(new Vector2(xOffset, tiles.GetLength(1) - 1 - yOffset));
             spawnLocations.Add(new Vector2(tiles.GetLength(0) - 1 - xOffset, yOffset + 1));
 
             //shuffle

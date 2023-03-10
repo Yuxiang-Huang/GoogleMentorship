@@ -511,6 +511,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (allBuildings[i].health <= 0)
             {
+                if (allBuildings[i].GetComponent<MainBase>() != null)
+                {
+                    end();
+                }
                 allBuildings.Remove(allBuildings[i]);
             }
         }
@@ -575,11 +579,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             building.kill();
         }
 
-        //no territory
-        foreach(Tile tile in territory)
-        {
-            tile.reset();
-        }
+        PV.RPC(nameof(resetTerritory), RpcTarget.All);
 
         //display all tiles
         foreach (Tile tile in TileManager.instance.tiles)
@@ -601,5 +601,20 @@ public class PlayerController : MonoBehaviourPunCallbacks
         UIManager.instance.lost();
 
         lost = true;
+
+        //just in case
+        Hashtable playerProperties = new Hashtable();
+        playerProperties.Add("EndTurn", true);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+    }
+
+    [PunRPC]
+    public void resetTerritory()
+    {
+        //no territory
+        foreach (Tile tile in territory)
+        {
+            tile.reset();
+        }
     }
 }
