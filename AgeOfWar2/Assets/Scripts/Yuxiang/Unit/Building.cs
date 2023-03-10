@@ -160,7 +160,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
-    public void sell()
+    public virtual void sell()
     {
         PlayerController.instance.gold += sellGold;
         UIManager.instance.updateGoldText();

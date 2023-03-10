@@ -156,17 +156,19 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         UIManager.instance.startTurn();
 
+        //reset all vars
+        Hashtable playerProperties = new Hashtable();
+        //don't reset if lost
+        if (!PlayerController.instance.lost)
+            playerProperties.Add("EndTurn", false);
+        playerProperties.Add("Spawned", false);
+        playerProperties.Add("Attacked", false);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+
         //skip if lost
         if (PlayerController.instance.lost) return;
 
         PlayerController.instance.turnEnded = false;
-
-        //reset all vars
-        Hashtable playerProperties = new Hashtable();
-        playerProperties.Add("EndTurn", false);
-        playerProperties.Add("Spawned", false);
-        playerProperties.Add("Attacked", false);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
 
         //reset movement;
         foreach (Troop troop in PlayerController.instance.allTroops)
@@ -249,8 +251,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void checkMove()
     {
         playerMoved++;
-
-        Debug.Log(playerMoved);
 
         //all player moved
         if (playerMoved == PhotonNetwork.CurrentRoom.PlayerCount)
