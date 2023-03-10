@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
 
     public List<string> colorNameList;
 
+    [SerializeField] int turnNum;
+    [SerializeField] TextMeshProUGUI turnNumText;
+
     [Header("Settting")]
     [SerializeField] int initialTime;
     [SerializeField] int timeInc;
@@ -73,6 +76,7 @@ public class UIManager : MonoBehaviour
         IntroText.SetActive(true);
         timeText.gameObject.SetActive(false);
         playerList.SetActive(false);
+        turnNumText.gameObject.SetActive(false);
     }
 
     #region Start Game
@@ -88,6 +92,7 @@ public class UIManager : MonoBehaviour
         Shop.SetActive(true);
         AgeUI.SetActive(true);
         timeText.gameObject.SetActive(true);
+        turnNumText.gameObject.SetActive(true);
 
         foreach (TextMeshProUGUI text in playerNameList)
         {
@@ -116,6 +121,9 @@ public class UIManager : MonoBehaviour
 
     public void startTurn()
     {
+        turnNum++;
+        turnNumText.text = "Turn: " + turnNum;
+
         turnBtn.SetActive(true);
 
         //reset timer
