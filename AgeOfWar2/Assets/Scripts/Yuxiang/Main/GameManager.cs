@@ -16,11 +16,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public PhotonView PV;
 
     public SortedDictionary<int, PlayerController> playerList = new SortedDictionary<int, PlayerController>();
-
     public List<PlayerController> allPlayersOriginal;
     public List<PlayerController> allPlayers;
 
-    [SerializeField] int playerMoved;
+    [SerializeField] int numPlayerMoved;
 
     [SerializeField] bool gameStarted;
     [SerializeField] bool turnEnded;
@@ -30,29 +29,32 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance = this;
         PV = GetComponent<PhotonView>();
 
-        //not able to access after game begins
         if (!Config.offlineMode)
         {
+            //not able to access after game begins
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
         }
         else
         {
+            //offline mode
             PhotonNetwork.OfflineMode = true;
-            RoomOptions roomOptions = new RoomOptions();
+
             //default room options
+            RoomOptions roomOptions = new RoomOptions();
             roomOptions.CustomRoomProperties = new Hashtable() {
                 { "Water", true },
-                { "initialTime", 20 },
-                { "timeInc", 10 }
+                { "initialTime", Config.defaultStartingTime },
+                { "timeInc", Config.defaultTimeInc }
             };
-            PhotonNetwork.CreateRoom("offline", roomOptions);
 
+            //create a room and a player
+            PhotonNetwork.CreateRoom("offline", roomOptions);
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player/PlayerManager"), Vector3.zero, Quaternion.identity);
         }
     }
 
-    //call when each player is ready
+    //called when any player is ready
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
         if (!PhotonNetwork.IsMasterClient) return;
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         else if (changedProps.ContainsKey("Attacked")) checkAttack();
 
-        else if (changedProps.ContainsKey("CheckDead")) checkDead();
+        else if (changedProps.ContainsKey("Finished")) checkNextTurn();
 
         #endregion
     }
@@ -83,19 +85,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         //everyone joined
         if (playerList.Count == PhotonNetwork.CurrentRoom.PlayerCount)
         {
-            //sorted list depending on actor number
+            //sorted list depending on actor number to assign id
             foreach (KeyValuePair<int, PlayerController> kvp in playerList)
             {
                 allPlayersOriginal.Add(kvp.Value);
             }
 
+            //this one will change
             allPlayers = new List<PlayerController>(allPlayersOriginal);
         }
     }
 
     public void checkStart()
     {
-        //only once
+        //only start game once
         if (gameStarted) return;
 
         //master client start game once when everyone is ready
@@ -148,18 +151,19 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void startTurn()
     {
-        playerMoved = 0;
-
         UIManager.instance.startTurn();
 
         //reset all vars
+        numPlayerMoved = 0;
         Hashtable playerProperties = new Hashtable();
+
         //don't reset if lost
         if (!PlayerController.instance.lost)
             playerProperties.Add("EndTurn", false);
+
         playerProperties.Add("Spawned", false);
         playerProperties.Add("Attacked", false);
-        playerProperties.Add("CheckDead", false);
+        playerProperties.Add("Finished", false);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
 
         //skip if lost
@@ -202,7 +206,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         UIManager.instance.cancelEndTurn();
 
-        //revert endturn choice
+        //revert endturn property
         Hashtable playerProperties = new Hashtable();
         playerProperties.Add("EndTurn", false);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
@@ -241,16 +245,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (players.All(p => p.CustomProperties.ContainsKey("Spawned") && (bool)p.CustomProperties["Spawned"]))
         {
             //all players spawn
-            allPlayers[playerMoved].PV.RPC("troopMove", allPlayers[playerMoved].PV.Owner);
+            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
         }
     }
 
     public void checkMove()
     {
-        playerMoved++;
+        numPlayerMoved++;
 
         //all player moved
-        if (playerMoved == PhotonNetwork.CurrentRoom.PlayerCount)
+        if (numPlayerMoved == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             //different player start every turn
             allPlayers.Add(allPlayers[0]);
@@ -265,7 +269,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             //next player move
-            allPlayers[playerMoved].PV.RPC("troopMove", allPlayers[playerMoved].PV.Owner);
+            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
         }
     }
 
@@ -283,11 +287,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void checkDead()
+    public void checkNextTurn()
     {
         //everyone is ready
         var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("CheckDead") && (bool)p.CustomProperties["CheckDead"]))
+        if (players.All(p => p.CustomProperties.ContainsKey("Finished") && (bool)p.CustomProperties["Finished"]))
         {
             //next turn
             turnEnded = false;

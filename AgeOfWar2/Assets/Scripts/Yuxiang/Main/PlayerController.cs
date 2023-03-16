@@ -19,16 +19,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public int id;
 
     public bool lost;
+    public bool turnEnded;
 
+    [Header("Mouse Interaction")]
     Tile highlighted;
-
+    public string mode;
     public IUnit unitSelected;
     public SpawnInfo spawnInfoSelected;
 
-    public string mode;
-
-    public bool turnEnded;
-
+    [Header("Belongings")]
     public List<Troop> allTroops = new List<Troop>();
     public List<Building> allBuildings = new List<Building>();
     public HashSet<Tile> territory = new HashSet<Tile>();
@@ -39,12 +38,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public bool[,] canSpawn;
     public Vector2[,] spawnDirection;
 
+    public Image spawnButtonSelected;
+
     public string toSpawnType;
     public string toSpawnPath;
     public GameObject toSpawnImage;
     public IUnit toSpawnUnit;
     public int goldNeedToSpawn;
-    public Image curSpawnImage;
+     
     public Dictionary<Vector2, SpawnInfo> spawnList = new Dictionary<Vector2, SpawnInfo>();
 
     [Header("Gold")]
@@ -82,7 +83,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         mode = "start";
 
-        //assign starting territory
+        //reveal starting territory
         Tile[,] tiles = TileManager.instance.tiles;
 
         Tile root = tiles[(int)spawnLocation.x, (int)spawnLocation.y];
@@ -115,9 +116,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         Tile newHighlighted = null;
 
-        //tile at mousePosition
         if (TileManager.instance.tiles != null)
         {
+            //tile at mousePosition
             newHighlighted = TileManager.instance.getTile(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
@@ -378,12 +379,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (mode == "spawn")
         {
-            curSpawnImage.color = Color.white;
+            //set color of the spawn button selected back to white
+            spawnButtonSelected.color = Color.white;
+            //because sellbtn is inactive when displaying spawn info
             UIManager.instance.sellBtn.SetActive(true);
         }
 
         else if (mode == "move")
         {
+            //set color of the selected unit back to white and deselect
             unitSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             unitSelected = null;
         }
@@ -534,7 +538,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         else
         {
             Hashtable playerProperties = new Hashtable();
-            playerProperties.Add("CheckDead", true);
+            playerProperties.Add("Finished", true);
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
         }
     }

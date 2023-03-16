@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
         PlayerController.instance.toSpawnImage = spawnImage;
         PlayerController.instance.goldNeedToSpawn = goldNeedToSpawn;
         PlayerController.instance.toSpawnType = type;
-        PlayerController.instance.curSpawnImage = lastImage;
+        PlayerController.instance.spawnButtonSelected = lastImage;
         PlayerController.instance.toSpawnUnit = unit;
     }
 }

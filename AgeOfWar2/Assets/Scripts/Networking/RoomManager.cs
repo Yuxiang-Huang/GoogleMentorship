@@ -85,7 +85,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
             //default value
             if (initialTimeInput.text == "")
             {
-                hash.Add("initialTime", 20);
+                hash.Add("initialTime", Config.defaultStartingTime);
             }
             else
             {
@@ -103,7 +103,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
             //default value
             if (timeIncInput.text == "")
             {
-                hash.Add("timeInc", 10);
+                hash.Add("timeInc", Config.defaultTimeInc);
             }
             else
             {
@@ -123,6 +123,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         //map setting
         bool hasWater = (bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"];
 
+        //update text
         if (hasWater)
         {
             mapSettingText.text = "Water: On";
@@ -131,15 +132,5 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             mapSettingText.text = "Water: Off";
         }
-
-        ////time setting
-        //if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("initialTime"))
-        //{
-        //    initialTimeInput.text = (string)PhotonNetwork.CurrentRoom.CustomProperties["initialTime"];
-        //}
-        //if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("timeInc"))
-        //{
-        //    timeIncInput.text = (string)PhotonNetwork.CurrentRoom.CustomProperties["timeInc"];
-        //}
     }
 }
