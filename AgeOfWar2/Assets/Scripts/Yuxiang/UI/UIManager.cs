@@ -347,7 +347,7 @@ public class UIManager : MonoBehaviour
             ageText.text = ageNameList[PlayerController.instance.age];
 
             //modify gold
-            PlayerController.instance.goldNeedToAdvance *= GameManager.instance.ageCostFactor;
+            PlayerController.instance.goldNeedToAdvance *= Config.ageCostFactor;
             updateGoldText();
             goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
 

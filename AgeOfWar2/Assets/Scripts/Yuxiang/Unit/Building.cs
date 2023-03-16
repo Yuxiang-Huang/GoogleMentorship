@@ -15,8 +15,6 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
     public Tile tile;
 
-    [SerializeField] int ageFactor = 2;
-
     public int sellGold;
 
     public SpriteRenderer imageRenderer;
@@ -54,7 +52,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         //imageRenderer.color = UIManager.instance.playerColors[playerID];
 
         //modify health according to age
-        fullHealth *= (int)Mathf.Pow(ageFactor, age);
+        fullHealth *= (int)Mathf.Pow(Config.ageUnitFactor, age);
 
         //health
         health = fullHealth;
@@ -104,7 +102,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
-        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(ageFactor, PlayerController.instance.age);
+        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(Config.ageUnitFactor, PlayerController.instance.age);
         damageText.text = "Damage: n/a";
         sellText.text = "Despawn";
     }
@@ -122,13 +120,13 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public void ageUpdateInfo(int playerAge)
     {
         //health double when age increase
-        fullHealth *= ageFactor;
-        health *= ageFactor;
+        fullHealth *= Config.ageUnitFactor;
+        health *= Config.ageUnitFactor;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
 
         //update sell gold
-        sellGold *= GameManager.instance.ageCostFactor;
+        sellGold *= Config.ageCostFactor;
     }
 
     public void setHealthBar(bool status)

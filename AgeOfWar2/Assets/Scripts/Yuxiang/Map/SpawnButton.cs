@@ -42,7 +42,7 @@ public class SpawnButton : MonoBehaviour
         if (!PlayerController.instance.turnEnded)
         {
             SpawnManager.instance.spawn(image, path,
-                goldNeedToSpawn * (int) Mathf.Pow(GameManager.instance.ageCostFactor, PlayerController.instance.age),
+                goldNeedToSpawn * (int) Mathf.Pow(Config.ageCostFactor, PlayerController.instance.age),
                 spawnImage, type, unit.GetComponent<IUnit>());
             UIManager.instance.updateInfoTabSpawn(unit.GetComponent<IUnit>());
         }
@@ -55,7 +55,7 @@ public class SpawnButton : MonoBehaviour
     public void ageAdvanceUpdate()
     {
         costText.text = goldNeedToSpawn
-        * (int) Mathf.Pow(GameManager.instance.ageCostFactor, PlayerController.instance.age)
+        * (int) Mathf.Pow(Config.ageCostFactor, PlayerController.instance.age)
         +" gold";
 
         GetComponent<Image>().sprite = unitImages[PlayerController.instance.age];

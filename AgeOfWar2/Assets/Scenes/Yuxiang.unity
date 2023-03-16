@@ -6069,9 +6069,6 @@ MonoBehaviour:
   allPlayersOriginal: []
   allPlayers: []
   playerMoved: 0
-  ageIncomeOffset: 5
-  ageCostFactor: 2
-  ageUnitFactor: 2
   gameStarted: 0
   turnEnded: 0
 --- !u!114 &1602756416
@@ -6327,7 +6324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1696770924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6346,7 +6343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334.7, y: 0}
+  m_AnchoredPosition: {x: 350, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1696770925
@@ -6362,12 +6359,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1696770927}
-  path: Building/ExtraMoney
+  path: Building/ExtraView
   type: Building
   goldNeedToSpawn: 80
-  spawnImage: {fileID: 6580721310958061044, guid: 560cca3f230d94bdeb1a549f3277f240, type: 3}
+  spawnImage: {fileID: 1118290006790659104, guid: 5bac66c31775a4053b6d94849614fa3e, type: 3}
   costText: {fileID: 234788670}
-  unit: {fileID: 711456527856458077, guid: 2ea4d13b1b6b64ed29c22170e5787943, type: 3}
+  unit: {fileID: 1099058697764673962, guid: 224c1d784d96c4045b946715b273f37f, type: 3}
   unitImages:
   - {fileID: 21300000, guid: a00831803c05d4fcea18647b54b510de, type: 3}
   - {fileID: 21300000, guid: a00831803c05d4fcea18647b54b510de, type: 3}

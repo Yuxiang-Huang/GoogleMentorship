@@ -24,10 +24,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] int playerMoved;
 
-    public int ageIncomeOffset;
-    public int ageCostFactor;
-    public int ageUnitFactor;
-
     [SerializeField] bool gameStarted;
     [SerializeField] bool turnEnded;
 

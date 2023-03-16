@@ -64,8 +64,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         //imageRenderer.color = UIManager.instance.playerColors[playerID];
 
         //modify health and damage according to age
-        fullHealth *= (int) Mathf.Pow(GameManager.instance.ageUnitFactor, age);
-        damage *= (int) Mathf.Pow(GameManager.instance.ageUnitFactor, age);
+        fullHealth *= (int) Mathf.Pow(Config.ageUnitFactor, age);
+        damage *= (int) Mathf.Pow(Config.ageUnitFactor, age);
 
         //health
         health = fullHealth;
@@ -306,15 +306,15 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void ageUpdateInfo(int playerAge)
     {
         //health double when age increase
-        fullHealth *= GameManager.instance.ageUnitFactor;
-        health *= GameManager.instance.ageUnitFactor;
+        fullHealth *= Config.ageUnitFactor;
+        health *= Config.ageUnitFactor;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
 
-        damage *= GameManager.instance.ageUnitFactor;
+        damage *= Config.ageUnitFactor;
 
         //update sell gold
-        sellGold *= GameManager.instance.ageCostFactor;
+        sellGold *= Config.ageCostFactor;
     }
 
     public void setImage(Color color)
@@ -337,8 +337,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
-        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(GameManager.instance.ageUnitFactor, age);
-        damageText.text = "Damage: " + damage * (int)Mathf.Pow(GameManager.instance.ageUnitFactor, age);
+        healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(Config.ageUnitFactor, age);
+        damageText.text = "Damage: " + damage * (int)Mathf.Pow(Config.ageUnitFactor, age);
         sellText.text = "Despawn";
     }
 

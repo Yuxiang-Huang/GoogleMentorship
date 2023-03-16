@@ -397,7 +397,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         //income from territory and all buildings
         if (!lost)
-            gold += (territory.Count + allBuildings.Count - 1) * (age + GameManager.instance.ageIncomeOffset);
+            gold += (territory.Count + allBuildings.Count - 1) * (age + Config.ageIncomeOffset);
 
         UIManager.instance.updateGoldText();
 
