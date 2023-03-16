@@ -585,6 +585,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
             building.kill();
         }
 
+        //clear spawnList
+        foreach(SpawnInfo spawnInfo in spawnList.Values)
+        {
+            Destroy(spawnInfo.spawnImage);
+        }
+        spawnList = new Dictionary<Vector2, SpawnInfo>();
+
         PV.RPC(nameof(resetTerritory), RpcTarget.All);
 
         //display all tiles
