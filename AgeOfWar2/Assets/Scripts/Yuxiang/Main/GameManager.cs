@@ -11,8 +11,6 @@ using System.IO;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    bool offlineMode = true;
-
     public static GameManager instance;
 
     public PhotonView PV;
@@ -33,7 +31,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         PV = GetComponent<PhotonView>();
 
         //not able to access after game begins
-        if (!offlineMode)
+        if (!Config.offlineMode)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
@@ -73,7 +71,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         else if (changedProps.ContainsKey("Attacked")) checkAttack();
 
-        else if (changedProps.ContainsKey("CheckDead")) checkAttack();
+        else if (changedProps.ContainsKey("CheckDead")) checkDead();
 
         #endregion
     }
@@ -282,9 +280,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 player.PV.RPC(nameof(player.endCheck), player.PV.Owner);
             }
-
-            turnEnded = false;
-            PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
         }
     }
 
