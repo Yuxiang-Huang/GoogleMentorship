@@ -21,17 +21,18 @@ public class Tile : MonoBehaviour
     [SerializeField] GameObject highlightTile;
 
     public GameObject dark;
+    public GameObject gray;
 
-    GameObject lastColor;
+    [SerializeField] List<Color> ownerColor;
 
-    [SerializeField] List<GameObject> ownerColor;
+    [SerializeField] List<GameObject> borders;
 
     private void Awake()
     {
         //no one own this land in the beginning
-        foreach (GameObject highlight in ownerColor)
+        foreach (GameObject border in borders)
         {
-            highlight.SetActive(false);
+            border.SetActive(false);
         }
 
         //covered in the beginning
@@ -43,6 +44,11 @@ public class Tile : MonoBehaviour
         highlightTile.SetActive(status);
     }
 
+    public void setGray(bool status)
+    {
+        gray.SetActive(status);
+    }
+
     public override string ToString()
     {
         return pos.ToString();
@@ -52,8 +58,8 @@ public class Tile : MonoBehaviour
     {
         if (ownerID != newOwnerID)
         {
-            //remove from other player's land if land
-            if (ownerID != -1 && terrain == "land")
+            //remove from other player's territory
+            if (ownerID != -1)
             {
                 GameManager.instance.allPlayersOriginal[ownerID].territory.Remove(this);
 
@@ -69,11 +75,12 @@ public class Tile : MonoBehaviour
                 }
             }
 
-            //add this land to new owner's territory if land
+            //add this land to new owner's territory
             ownerID = newOwnerID;
+            GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
 
-            if (terrain == "land")
-                GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
+            //territory color
+            setTerritoryColor();
         }
 
         //reveal land only if mine
@@ -88,29 +95,31 @@ public class Tile : MonoBehaviour
         }
 
         this.unit = newUnit;
-
-        //territory color if land
-        if (terrain == "land")
-        {
-            //replace the color if different
-            if (lastColor != ownerColor[ownerID])
-            {
-                if (lastColor != null)
-                {
-                    lastColor.SetActive(false);
-                }
-
-                lastColor = ownerColor[ownerID];
-
-                lastColor.SetActive(true);
-            }
-        }
     }
 
     public void setDark(bool status)
     {
         dark.SetActive(status);
     }
+
+    public void setTerritoryColor()
+    {
+        PlayerController owner = GameManager.instance.allPlayersOriginal[ownerID];
+
+        for (int i = 0; i < borders.Count; i++)
+        {
+            borders[i].SetActive(false);
+            borders[i].GetComponent<SpriteRenderer>().color = ownerColor[ownerID];
+
+            //border disapper when two territories are adjacent
+            if (! owner.territory.Contains(neighbors[i]))
+            {
+                borders[i].SetActive(true);
+            }
+        }
+    }
+
+    #region Run locally
 
     void updateDark()
     {
@@ -172,7 +181,13 @@ public class Tile : MonoBehaviour
 
     public void reset()
     {
-        lastColor.SetActive(false);
+        foreach(GameObject border in borders)
+        {
+            border.SetActive(false);
+        }
+
         ownerID = -1;
     }
+
+    #endregion
 }
