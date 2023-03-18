@@ -70,7 +70,26 @@ public class Tile : MonoBehaviour
             //remove from other player's territory
             if (ownerID != -1)
             {
-                GameManager.instance.allPlayersOriginal[ownerID].territory.Remove(this);
+                PlayerController prevOwner = GameManager.instance.allPlayersOriginal[ownerID];
+
+                prevOwner.territory.Remove(this);
+
+                if (terrain == "land")
+                    prevOwner.landTerritory--;
+
+                //update territory color
+                foreach (Tile neighbor in neighbors)
+                {
+                    //show neighbor border
+                    if (prevOwner.territory.Contains(neighbor))
+                    {
+                        int index = pos.x % 2 == 0 ?
+                        TileManager.instance.neighborIndexEvenRow[pos - neighbor.pos] :
+                        TileManager.instance.neighborIndexOddRow[pos - neighbor.pos];
+
+                        neighbor.borders[index].SetActive(true);
+                    }
+                }
 
                 //update dark if I was the owner
                 if (ownerID == PlayerController.instance.id)
@@ -87,6 +106,9 @@ public class Tile : MonoBehaviour
             //add this land to new owner's territory
             ownerID = newOwnerID;
             GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
+
+            if (terrain == "land")
+                GameManager.instance.allPlayersOriginal[ownerID].landTerritory++;
 
             //territory color
             setTerritoryColor();

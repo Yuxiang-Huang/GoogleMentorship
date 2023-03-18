@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public List<Troop> allTroops = new List<Troop>();
     public List<Building> allBuildings = new List<Building>();
     public HashSet<Tile> territory = new HashSet<Tile>();
-
-    public HashSet<Tile> toUpdateVisibility = new HashSet<Tile>();
+    public int landTerritory;
 
     [Header("Spawn")]
     public bool[,] canSpawn;
@@ -401,7 +400,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         //income from territory and all buildings
         if (!lost)
-            gold += (territory.Count + allBuildings.Count - 1) * (age + Config.ageIncomeOffset);
+            gold += (landTerritory + allBuildings.Count - 1) * (age + Config.ageIncomeOffset);
 
         UIManager.instance.updateGoldText();
 
@@ -523,13 +522,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
         }
 
-        //visibility
-        foreach (Tile neighbor in toUpdateVisibility)
-        {
-            neighbor.updateVisibility();
-        }
+        ////visibility
+        //foreach (Tile neighbor in toUpdateVisibility)
+        //{
+        //    neighbor.updateVisibility();
+        //}
 
-        toUpdateVisibility = new HashSet<Tile>();
+        //toUpdateVisibility = new HashSet<Tile>();
 
         if (PhotonNetwork.OfflineMode)
         {
