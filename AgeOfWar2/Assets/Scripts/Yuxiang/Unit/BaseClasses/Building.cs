@@ -64,18 +64,15 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         healthbar.gameObject.SetActive(false);
     }
 
-    //can spawn troop on land tiles around building
+    //can spawn troop on tiles around building
     public void updateCanSpawn()
     {
         foreach (Tile neighbor in tile.neighbors)
         {
-            if (neighbor.terrain == "land")
-            {
-                PlayerController.instance.canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
+            PlayerController.instance.canSpawn[neighbor.pos.x, neighbor.pos.y] = true;
 
-                PlayerController.instance.spawnDirection[neighbor.pos.x, neighbor.pos.y] =
-                    TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile);
-            }
+            PlayerController.instance.spawnDirection[neighbor.pos.x, neighbor.pos.y] =
+                TileManager.instance.getWorldPosition(neighbor) - TileManager.instance.getWorldPosition(tile);
         }
     }
 

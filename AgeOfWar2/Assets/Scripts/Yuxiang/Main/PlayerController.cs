@@ -311,8 +311,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     //for troops
                     if (toSpawnType == "Troop")
                     {
-                        //can only spawn on spawnable tiles 
-                        if (canSpawn[highlighted.pos.x, highlighted.pos.y])
+                        //can only spawn on spawnable tiles and it had to be land or troop can be on water
+                        if (canSpawn[highlighted.pos.x, highlighted.pos.y] &&
+                            (highlighted.terrain == "land" ||
+                            toSpawnUnit.gameObject.GetComponent<Amphibian>() != null))
                         {
                             highlighted.highlight(true);
                         }
