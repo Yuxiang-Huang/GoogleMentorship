@@ -79,6 +79,7 @@ MonoBehaviour:
   mode: 
   allTroops: []
   allBuildings: []
+  landTerritory: 0
   spawnButtonSelected: {fileID: 0}
   toSpawnType: 
   toSpawnPath: 
