@@ -39,6 +39,13 @@ public class Tile : MonoBehaviour
         dark.SetActive(true);
     }
 
+    public override string ToString()
+    {
+        return pos.ToString();
+    }
+
+    #region Three Overlays
+
     public void highlight(bool status)
     {
         highlightTile.SetActive(status);
@@ -49,10 +56,12 @@ public class Tile : MonoBehaviour
         gray.SetActive(status);
     }
 
-    public override string ToString()
+    public void setDark(bool status)
     {
-        return pos.ToString();
+        dark.SetActive(status);
     }
+
+    #endregion
 
     public void updateStatus(int newOwnerID, IUnit newUnit)
     {
@@ -80,7 +89,8 @@ public class Tile : MonoBehaviour
             GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
 
             //territory color
-            setTerritoryColor();
+            if (terrain == "land")
+                setTerritoryColor();
         }
 
         //reveal land only if mine
@@ -97,24 +107,35 @@ public class Tile : MonoBehaviour
         this.unit = newUnit;
     }
 
-    public void setDark(bool status)
-    {
-        dark.SetActive(status);
-    }
-
     public void setTerritoryColor()
     {
         PlayerController owner = GameManager.instance.allPlayersOriginal[ownerID];
 
-        for (int i = 0; i < borders.Count; i++)
+        foreach (GameObject border in borders)
         {
-            borders[i].SetActive(false);
-            borders[i].GetComponent<SpriteRenderer>().color = ownerColor[ownerID];
+            border.SetActive(false);
+            border.GetComponent<SpriteRenderer>().color = ownerColor[ownerID];
+        }
 
+        foreach (Tile neighbor in neighbors)
+        {
             //border disapper when two territories are adjacent
-            if (! owner.territory.Contains(neighbors[i]))
+            if (! owner.territory.Contains(neighbor))
             {
-                borders[i].SetActive(true);
+                //find correct border
+                int index = pos.x % 2 == 0 ?
+                    TileManager.instance.neighborIndexEvenRow[neighbor.pos - pos] :
+                    TileManager.instance.neighborIndexOddRow[neighbor.pos - pos];
+
+                borders[index].SetActive(true);
+            }
+            else if (neighbor.terrain == "land")
+            {
+                int index = neighbor.pos.x % 2 == 0 ?
+                    TileManager.instance.neighborIndexEvenRow[pos - neighbor.pos] :
+                    TileManager.instance.neighborIndexOddRow[pos - neighbor.pos];
+
+                neighbor.borders[index].SetActive(false);
             }
         }
     }

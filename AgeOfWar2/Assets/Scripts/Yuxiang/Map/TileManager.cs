@@ -20,6 +20,9 @@ public class TileManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject landTilePrefab;
     [SerializeField] GameObject waterTilePrefab;
 
+    public Dictionary<Vector2Int, int> neighborIndexOddRow;
+    public Dictionary<Vector2Int, int> neighborIndexEvenRow;
+
     #region Perlin Noise
 
     // Perlin Noise Bits
@@ -119,6 +122,23 @@ public class TileManager : MonoBehaviourPunCallbacks
         instance = this;
 
         PV = GetComponent<PhotonView>();
+
+        //check borders in prefab
+        neighborIndexOddRow = new Dictionary<Vector2Int, int>();
+        neighborIndexOddRow.Add(new Vector2Int(-2, 0), 3);
+        neighborIndexOddRow.Add(new Vector2Int(2, 0), 5);
+        neighborIndexOddRow.Add(new Vector2Int(-1, 0), 0);
+        neighborIndexOddRow.Add(new Vector2Int(1, 0), 1);
+        neighborIndexOddRow.Add(new Vector2Int(-1, 1), 2);
+        neighborIndexOddRow.Add(new Vector2Int(1, 1), 4);
+
+        neighborIndexEvenRow = new Dictionary<Vector2Int, int>();
+        neighborIndexEvenRow.Add(new Vector2Int(-2, 0), 3);
+        neighborIndexEvenRow.Add(new Vector2Int(2, 0), 5);
+        neighborIndexEvenRow.Add(new Vector2Int(-1, 0), 1);
+        neighborIndexEvenRow.Add(new Vector2Int(1, 0), 0);
+        neighborIndexEvenRow.Add(new Vector2Int(-1, -1), 2);
+        neighborIndexEvenRow.Add(new Vector2Int(1, -1), 4);
     }
 
     public void makeGrid()
