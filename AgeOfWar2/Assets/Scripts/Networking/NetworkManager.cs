@@ -60,7 +60,7 @@ public class NetworkManager: MonoBehaviourPunCallbacks
 
         //default setting
         roomOptions.CustomRoomProperties = new Hashtable() {
-            { "Water", false }
+            { "Mode", "Water" }
         };
 
         PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);

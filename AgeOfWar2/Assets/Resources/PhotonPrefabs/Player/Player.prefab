@@ -75,15 +75,15 @@ MonoBehaviour:
   PV: {fileID: 4434306806922390120}
   id: -1
   lost: 0
-  mode: 
   turnEnded: 0
+  mode: 
   allTroops: []
   allBuildings: []
+  spawnButtonSelected: {fileID: 0}
   toSpawnType: 
   toSpawnPath: 
   toSpawnImage: {fileID: 0}
   goldNeedToSpawn: 0
-  curSpawnImage: {fileID: 0}
   gold: 40
   age: 0
   goldNeedToAdvance: 320

@@ -134,15 +134,12 @@ public class TileManager : MonoBehaviourPunCallbacks
         }
         float ranElem = Random.Range(0, 200);
 
-        int rows = -1;
-        int cols = -1;
+        int rows = Config.mapSize.x;
+        int cols = Config.mapSize.y;
 
         //decide map
-        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
+        if ((string)PhotonNetwork.CurrentRoom.CustomProperties["Mode"] == "Water")
         {
-            rows = 25;
-            cols = 8;
-
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
@@ -187,9 +184,6 @@ public class TileManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            rows = 19;
-            cols = 6;
-
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
@@ -206,16 +200,9 @@ public class TileManager : MonoBehaviourPunCallbacks
     public void makeGrid_RPC(int rows, int cols, string instruction)
     {
         //setting camera
-        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
-        {
-            Camera.main.orthographicSize = 8.5f;
-            Camera.main.transform.position = new Vector3(5, 7f, -10);
-        }
-        else
-        {
-            Camera.main.orthographicSize = 6.5f;
-            Camera.main.transform.position = new Vector3(4, 5.25f, -10);
-        }
+        Camera.main.orthographicSize = 8.5f;
+        Camera.main.transform.position = new Vector3(5, 7f, -10);
+        
 
         //make map
         tiles = new Tile[rows, cols];

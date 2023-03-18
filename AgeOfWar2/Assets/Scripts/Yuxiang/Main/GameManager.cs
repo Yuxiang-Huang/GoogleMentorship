@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             //default room options
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.CustomRoomProperties = new Hashtable() {
-                { "Water", true },
+                { "Mode", "Water" },
                 { "initialTime", Config.defaultStartingTime },
                 { "timeInc", Config.defaultTimeInc }
             };
@@ -108,15 +108,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             gameStarted = true;
 
             //creating random spawnLocations
-            int xOffset = 2;
-            int yOffset = 0;
-
-            //change if water map
-            if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"])
-            {
-                xOffset = 6;
-                yOffset = 1;
-            }
+            int xOffset = 6;
+            int yOffset = 1;
 
             Tile[,] tiles = TileManager.instance.tiles;
 

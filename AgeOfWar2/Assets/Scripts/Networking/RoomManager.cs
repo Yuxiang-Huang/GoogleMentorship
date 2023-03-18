@@ -53,19 +53,21 @@ public class RoomManager : MonoBehaviourPunCallbacks
     //change map setting
     public void changeMapSetting()
     {
-        bool hasWater = !(bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"];
+        string mode = (string)PhotonNetwork.CurrentRoom.CustomProperties["Mode"];
 
-        if (hasWater)
+        Hashtable hash = new Hashtable();
+
+        if (mode == "Water")
         {
-            mapSettingText.text = "Water: On";
+            mapSettingText.text = "Water: Off";
+            hash.Add("Mode", "Land");
         }
         else
         {
-            mapSettingText.text = "Water: Off";
+            mapSettingText.text = "Water: On";
+            hash.Add("Mode", "Water");
         }
 
-        Hashtable hash = new Hashtable();
-        hash.Add("Water", hasWater);
         PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
     }
 

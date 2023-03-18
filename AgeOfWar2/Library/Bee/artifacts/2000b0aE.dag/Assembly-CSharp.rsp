@@ -352,7 +352,7 @@
 "Assets/Scripts/Networking/ScreenManager.cs"
 "Assets/Scripts/Sadi/RandomHexMap.cs"
 "Assets/Scripts/Tedd/UI.cs"
-"Assets/Scripts/Yuxiang/Main/Config.cs"
+"Assets/Scripts/Yuxiang/Config.cs"
 "Assets/Scripts/Yuxiang/Main/GameManager.cs"
 "Assets/Scripts/Yuxiang/Main/PlayerController.cs"
 "Assets/Scripts/Yuxiang/Map/SpawnButton.cs"
