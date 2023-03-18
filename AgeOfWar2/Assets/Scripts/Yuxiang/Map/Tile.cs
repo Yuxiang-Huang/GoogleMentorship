@@ -89,8 +89,7 @@ public class Tile : MonoBehaviour
             GameManager.instance.allPlayersOriginal[ownerID].territory.Add(this);
 
             //territory color
-            if (terrain == "land")
-                setTerritoryColor();
+            setTerritoryColor();
         }
 
         //reveal land only if mine
@@ -129,7 +128,7 @@ public class Tile : MonoBehaviour
 
                 borders[index].SetActive(true);
             }
-            else if (neighbor.terrain == "land")
+            else
             {
                 int index = neighbor.pos.x % 2 == 0 ?
                     TileManager.instance.neighborIndexEvenRow[pos - neighbor.pos] :
