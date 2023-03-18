@@ -85,6 +85,6 @@ MonoBehaviour:
   toSpawnPath: 
   toSpawnImage: {fileID: 0}
   goldNeedToSpawn: 0
-  gold: 40
+  gold: 10000000
   age: 0
   goldNeedToAdvance: 320

@@ -15,7 +15,11 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
 
     public Tile tile;
 
-    public int sellGold;
+    public int age { get; set; }
+
+    [Header("UI")]
+    [SerializeField] int upgradeGold;
+    [SerializeField] int sellGold;
 
     public SpriteRenderer imageRenderer;
 
@@ -40,7 +44,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
         tile.updateStatus(ownerID, this);
 
+        this.age = age;
         this.sellGold = sellGold;
+        this.upgradeGold = sellGold * 2;
 
         //modify images
         foreach (GameObject cur in unitImages)
@@ -49,7 +55,6 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
         unitImages[age].SetActive(true);
         imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
-        //imageRenderer.color = UIManager.instance.playerColors[playerID];
 
         //modify health according to age
         fullHealth *= (int)Mathf.Pow(Config.ageUnitFactor, age);
@@ -79,13 +84,14 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     #region UI
 
     public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-        TextMeshProUGUI damageText, TextMeshProUGUI sellText)
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText, TextMeshProUGUI upgradeText)
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Health: " + health + " / " + fullHealth;
         damageText.text = "Damage: n/a";
         sellText.text = "Sell: " + sellGold + " Gold";
+        upgradeText.text = "Upgrade: " + upgradeGold + " Gold";
 
         //main base
         if (sellGold < 0)
@@ -112,19 +118,6 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     #endregion
 
     #region Damage
-
-    [PunRPC]
-    public void ageUpdateInfo(int playerAge)
-    {
-        //health double when age increase
-        fullHealth *= Config.ageUnitFactor;
-        health *= Config.ageUnitFactor;
-        healthbar.maxValue = fullHealth;
-        healthbar.value = health;
-
-        //update sell gold
-        sellGold *= Config.ageCostFactor;
-    }
 
     public void setHealthBar(bool status)
     {
@@ -168,6 +161,26 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
 
         PV.RPC(nameof(kill), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void upgrade()
+    {
+        //health double when age increase
+        fullHealth *= Config.ageUnitFactor;
+        health *= Config.ageUnitFactor;
+        healthbar.maxValue = fullHealth;
+        healthbar.value = health;
+
+        //update sell gold
+        sellGold *= Config.ageCostFactor;
+        upgradeGold *= Config.ageCostFactor;
+
+        //image
+        unitImages[age].SetActive(false);
+        age++;
+        unitImages[age].SetActive(true);
+        imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
     }
 
     [PunRPC]

@@ -13,10 +13,13 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     public int ownerID { get; set; }
 
-    public int sellGold;
+    public int age { get; set; }
+
+    [Header("UI")]
+    [SerializeField] int upgradeGold;
+    [SerializeField] int sellGold;
 
     public SpriteRenderer imageRenderer;
-
     [SerializeField] List<GameObject> unitImages;
 
     [Header("Health")]
@@ -44,7 +47,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public virtual void Init(int playerID, int startingtTileX, int startingtTileY, Vector2 startDirection,
         string path, int age, int sellGold)
     {
-        //setting tile, ID, direction, sell gold
+        //setting tile, ID, direction, age, gold
         ownerID = playerID;
 
         tile = TileManager.instance.tiles[startingtTileX, startingtTileY];
@@ -52,7 +55,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
         direction = startDirection;
 
+        this.age = age;
         this.sellGold = sellGold;
+        this.upgradeGold = sellGold * 2;
 
         //modify images
         foreach (GameObject cur in unitImages)
@@ -61,7 +66,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         }
         unitImages[age].SetActive(true);
         imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
-        //imageRenderer.color = UIManager.instance.playerColors[playerID];
 
         //modify health and damage according to age
         fullHealth *= (int) Mathf.Pow(Config.ageUnitFactor, age);
@@ -302,34 +306,20 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
 
     #region UI
 
-    [PunRPC]
-    public void ageUpdateInfo(int playerAge)
-    {
-        //health double when age increase
-        fullHealth *= Config.ageUnitFactor;
-        health *= Config.ageUnitFactor;
-        healthbar.maxValue = fullHealth;
-        healthbar.value = health;
-
-        damage *= Config.ageUnitFactor;
-
-        //update sell gold
-        sellGold *= Config.ageCostFactor;
-    }
-
     public void setImage(Color color)
     {
         imageRenderer.color = color;
     }
 
     public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-    TextMeshProUGUI damageText, TextMeshProUGUI sellText)
+    TextMeshProUGUI damageText, TextMeshProUGUI sellText, TextMeshProUGUI upgradeText)
     {
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Health: " + health + " / " + fullHealth;
         damageText.text = "Damage: " + damage;
         sellText.text = "Sell: " + sellGold + " Gold";
+        upgradeText.text = "Upgrade: " + upgradeGold + " Gold";
     }
 
     public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
@@ -352,6 +342,28 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         PV.RPC(nameof(kill), RpcTarget.All);
 
         PlayerController.instance.mode = "select";
+    }
+
+    [PunRPC]
+    public void upgrade()
+    {
+        //health double when age increase
+        fullHealth *= Config.ageUnitFactor;
+        health *= Config.ageUnitFactor;
+        healthbar.maxValue = fullHealth;
+        healthbar.value = health;
+
+        damage *= Config.ageUnitFactor;
+
+        //update sell gold
+        sellGold *= Config.ageCostFactor;
+        upgradeGold *= Config.ageCostFactor;
+
+        //image
+        unitImages[age].SetActive(false);
+        age++;
+        unitImages[age].SetActive(true);
+        imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
     }
 
     [PunRPC]

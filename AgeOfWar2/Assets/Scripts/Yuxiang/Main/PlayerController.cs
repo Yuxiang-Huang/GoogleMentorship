@@ -368,7 +368,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                     //info tab
                     UIManager.instance.hideInfoTab();
-                    UIManager.instance.sellBtn.SetActive(true);
                 }
             }
         }
@@ -382,8 +381,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             //set color of the spawn button selected back to white
             spawnButtonSelected.color = Color.white;
-            //because sellbtn is inactive when displaying spawn info
-            UIManager.instance.sellBtn.SetActive(true);
         }
 
         else if (mode == "move")
@@ -542,24 +539,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             playerProperties.Add("Finished", true);
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
         }
-    }
-
-    #endregion
-
-    #region Age
-
-    //called when age increase
-    public void updateExistingUnits()
-    {
-        foreach (Building building in allBuildings)
-        {
-            building.PV.RPC(nameof(building.ageUpdateInfo), RpcTarget.All, age);
-        }
-
-        //foreach (Troop troop in allTroops)
-        //{
-        //    troop.PV.RPC(nameof(troop.ageUpdateInfo), RpcTarget.All, age);
-        //}
     }
 
     #endregion

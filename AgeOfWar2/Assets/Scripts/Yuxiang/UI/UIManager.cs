@@ -42,7 +42,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI unitHealthText;
     [SerializeField] TextMeshProUGUI unitDamageText;
     [SerializeField] TextMeshProUGUI unitSellText;
-    public GameObject sellBtn;
+    [SerializeField] TextMeshProUGUI unitUpgradeText;
+    [SerializeField] GameObject sellBtn;
+    [SerializeField] GameObject upgradeBtn;
 
     [Header("InfoTab - Player")]
     [SerializeField] TextMeshProUGUI timeText;
@@ -230,7 +232,12 @@ public class UIManager : MonoBehaviour
     {
         infoTabPlayer.SetActive(false);
         infoTabUnit.SetActive(true);
-        unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText);
+        unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText, unitUpgradeText);
+        sellBtn.SetActive(true);
+
+        //able to upgrade if lower age
+        if (unit.age < PlayerController.instance.age)
+            upgradeBtn.SetActive(true);
     }
 
     //for spawn buttons
@@ -239,7 +246,6 @@ public class UIManager : MonoBehaviour
         infoTabPlayer.SetActive(false);
         infoTabUnit.SetActive(true);
         unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText, PlayerController.instance.age);
-        sellBtn.SetActive(false);
     }
 
     //for spawn images
@@ -248,11 +254,14 @@ public class UIManager : MonoBehaviour
         infoTabPlayer.SetActive(false);
         infoTabUnit.SetActive(true);
         spawnInfo.unit.fillInfoTabSpawn(unitNameText, unitHealthText, unitDamageText, unitSellText, spawnInfo.age);
+        sellBtn.SetActive(true);
     }
 
     public void hideInfoTab()
     {
         infoTabUnit.SetActive(false);
+        sellBtn.SetActive(false);
+        upgradeBtn.SetActive(false);
     }
 
     public void sell()
@@ -278,6 +287,11 @@ public class UIManager : MonoBehaviour
         }
 
         infoTabUnit.SetActive(false);
+    }
+
+    public void upgrade()
+    {
+        PlayerController.instance.unitSelected.PV.RPC("upgrade", RpcTarget.All);
     }
 
     #endregion
@@ -356,9 +370,6 @@ public class UIManager : MonoBehaviour
             {
                 ageAdvanceBtn.SetActive(false);
             }
-
-            //update building health
-            PlayerController.instance.updateExistingUnits();
 
             //update spawn buttons
             foreach (SpawnButton spawnBtn in SpawnManager.instance.spawnBtnList)

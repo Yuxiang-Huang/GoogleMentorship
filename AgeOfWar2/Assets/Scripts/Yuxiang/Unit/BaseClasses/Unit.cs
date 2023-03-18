@@ -15,12 +15,14 @@ public interface IUnit
 
     int health { get; }
 
+    int age { get; }
+
     public void takeDamage(int incomingDamage);
 
     public void setHealthBar(bool status);
 
     public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
-        TextMeshProUGUI damageText, TextMeshProUGUI sellText);
+        TextMeshProUGUI damageText, TextMeshProUGUI sellText, TextMeshProUGUI upgradeText);
 
     public void fillInfoTabSpawn(TextMeshProUGUI nameText, TextMeshProUGUI healthText,
        TextMeshProUGUI damageText, TextMeshProUGUI sellText, int age);
@@ -28,4 +30,5 @@ public interface IUnit
     public void setImage(Color color);
 
     public void sell();
+    public void upgrade();
 }

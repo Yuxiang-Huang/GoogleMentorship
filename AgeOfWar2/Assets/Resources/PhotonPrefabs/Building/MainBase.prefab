@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
+  upgradeGold: 0
   sellGold: 0
   imageRenderer: {fileID: 0}
   unitImages:
