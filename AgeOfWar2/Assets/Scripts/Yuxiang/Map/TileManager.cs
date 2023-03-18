@@ -127,18 +127,18 @@ public class TileManager : MonoBehaviourPunCallbacks
         neighborIndexOddRow = new Dictionary<Vector2Int, int>();
         neighborIndexOddRow.Add(new Vector2Int(-2, 0), 3);
         neighborIndexOddRow.Add(new Vector2Int(2, 0), 5);
-        neighborIndexOddRow.Add(new Vector2Int(-1, 0), 0);
-        neighborIndexOddRow.Add(new Vector2Int(1, 0), 1);
+        neighborIndexOddRow.Add(new Vector2Int(-1, 0), 1);
+        neighborIndexOddRow.Add(new Vector2Int(1, 0), 0);
         neighborIndexOddRow.Add(new Vector2Int(-1, 1), 2);
         neighborIndexOddRow.Add(new Vector2Int(1, 1), 4);
 
         neighborIndexEvenRow = new Dictionary<Vector2Int, int>();
         neighborIndexEvenRow.Add(new Vector2Int(-2, 0), 3);
         neighborIndexEvenRow.Add(new Vector2Int(2, 0), 5);
-        neighborIndexEvenRow.Add(new Vector2Int(-1, 0), 1);
-        neighborIndexEvenRow.Add(new Vector2Int(1, 0), 0);
-        neighborIndexEvenRow.Add(new Vector2Int(-1, -1), 2);
-        neighborIndexEvenRow.Add(new Vector2Int(1, -1), 4);
+        neighborIndexEvenRow.Add(new Vector2Int(-1, 0), 2);
+        neighborIndexEvenRow.Add(new Vector2Int(1, 0), 4);
+        neighborIndexEvenRow.Add(new Vector2Int(-1, -1), 1);
+        neighborIndexEvenRow.Add(new Vector2Int(1, -1), 0);
     }
 
     public void makeGrid()
