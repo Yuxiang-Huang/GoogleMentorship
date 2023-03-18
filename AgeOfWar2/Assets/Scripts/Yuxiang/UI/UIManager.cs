@@ -80,6 +80,8 @@ public class UIManager : MonoBehaviour
         timeText.gameObject.SetActive(false);
         playerList.SetActive(false);
         turnNumText.gameObject.SetActive(false);
+        sellBtn.SetActive(false);
+        upgradeBtn.SetActive(false);
 
         foreach (TextMeshProUGUI text in playerNameList)
         {
@@ -364,6 +366,9 @@ public class UIManager : MonoBehaviour
             PlayerController.instance.goldNeedToAdvance *= Config.ageCostFactor;
             updateGoldText();
             goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
+
+            //upgrade main base
+            PlayerController.instance.mainBase.upgrade();
 
             //age limit
             if (PlayerController.instance.age >= 5)

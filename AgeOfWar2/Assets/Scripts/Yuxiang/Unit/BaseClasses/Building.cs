@@ -94,7 +94,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         upgradeText.text = "Upgrade: " + upgradeGold + " Gold";
 
         //main base
-        if (sellGold < 0)
+        if (sellGold == 0)
         {
             sellText.text = "Quit";
         }
@@ -166,6 +166,12 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     [PunRPC]
     public void upgrade()
     {
+        if (PlayerController.instance.id == ownerID)
+        {
+            PlayerController.instance.gold -= upgradeGold;
+            UIManager.instance.updateGoldText();
+        }
+
         //health double when age increase
         fullHealth *= Config.ageUnitFactor;
         health *= Config.ageUnitFactor;

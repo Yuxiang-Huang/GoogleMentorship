@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public bool lost;
     public bool turnEnded;
 
+    public MainBase mainBase;
+
     [Header("Mouse Interaction")]
     Tile highlighted;
     public string mode;
@@ -152,20 +154,20 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //spawn castle
                 Vector2Int startingTile = highlighted.pos;
 
-                MainBase myBase = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/MainBase"),
+                mainBase = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Building/MainBase"),
                     TileManager.instance.getWorldPosition(highlighted), Quaternion.identity).
                     GetComponent<MainBase>();
 
-                myBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y,
-                     "Building/MainBase", age, -1);
+                mainBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y,
+                     "Building/MainBase", age, 0);
 
                 //update canSpawn
                 canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
                 spawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-                myBase.GetComponent<Building>().updateCanSpawn();
-                allBuildings.Add(myBase);
+                mainBase.GetComponent<Building>().updateCanSpawn();
+                allBuildings.Add(mainBase);
 
-                myBase.PV.RPC(nameof(myBase.updateTerritory), RpcTarget.All);
+                mainBase.PV.RPC(nameof(mainBase.updateTerritory), RpcTarget.All);
 
                 UIManager.instance.startGame();
 
