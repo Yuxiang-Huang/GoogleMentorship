@@ -124,22 +124,21 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
 
     public void sell()
     {
+        //add gold
         PlayerController.instance.gold += sellGold;
         UIManager.instance.updateGoldText();
 
+        //remove from spell list
         PlayerController.instance.allSpells.Remove(this);
 
-        if (this.gameObject.GetComponent<MainBase>() != null)
-        {
-            PlayerController.instance.end();
-        }
-
+        //destroy
         PV.RPC(nameof(kill), RpcTarget.All);
     }
 
     [PunRPC]
     public void upgrade()
     {
+        //deduct gold if owner
         if (PlayerController.instance.id == ownerID)
         {
             PlayerController.instance.gold -= upgradeGold;

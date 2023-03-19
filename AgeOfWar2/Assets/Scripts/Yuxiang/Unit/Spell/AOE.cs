@@ -32,6 +32,6 @@ public class AOE : Spell
             }
         }
 
-        kill();
+        PV.RPC(nameof(kill), RpcTarget.All);
     }
 }
