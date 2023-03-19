@@ -462,33 +462,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
-            troopMove();
+            troopAttack();
         }
         else
         {
             Hashtable playerProperties = new Hashtable();
             playerProperties.Add("Spawned", true);
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
-        }
-    }
-
-    [PunRPC]
-    public void troopMove()
-    {
-        foreach (Troop troop in allTroops)
-        {
-            troop.move();
-        }
-
-        if (PhotonNetwork.OfflineMode)
-        {
-            troopAttack();
-        }
-        else
-        {
-            Hashtable playerProperties = new Hashtable();
-            playerProperties.Add("Moved", true);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
         }
     }
 
@@ -502,7 +482,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
-            endCheck();
+            checkDeath();
         }
         else
         {
@@ -513,7 +493,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void endCheck()
+    public void checkDeath()
     {
         //troops
         foreach (Troop troop in allTroops)
@@ -557,13 +537,33 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
+            troopMove();
+        }
+        else
+        {
+            Hashtable playerProperties = new Hashtable();
+            playerProperties.Add("CheckedDeath", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        }
+    }
+
+    [PunRPC]
+    public void troopMove()
+    {
+        foreach (Troop troop in allTroops)
+        {
+            troop.move();
+        }
+
+        if (PhotonNetwork.OfflineMode)
+        {
             GameManager.instance.startTurn();
         }
         else
         {
             Hashtable playerProperties = new Hashtable();
-            playerProperties.Add("Finished", true);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
+            playerProperties.Add("Moved", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
         }
     }
 

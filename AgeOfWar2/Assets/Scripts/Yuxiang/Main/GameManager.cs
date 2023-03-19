@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         else if (changedProps.ContainsKey("Attacked")) checkAttack();
 
-        else if (changedProps.ContainsKey("Finished")) checkNextTurn();
+        else if (changedProps.ContainsKey("CheckedDeath")) checkDeath();
 
         #endregion
     }
@@ -237,32 +237,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("Spawned") && (bool)p.CustomProperties["Spawned"]))
         {
-            //all players spawn
-            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
-        }
-    }
-
-    public void checkMove()
-    {
-        numPlayerMoved++;
-
-        //all player moved
-        if (numPlayerMoved == PhotonNetwork.CurrentRoom.PlayerCount)
-        {
-            //different player start every turn
-            allPlayers.Add(allPlayers[0]);
-            allPlayers.RemoveAt(0);
-
             //all players attack
             foreach (PlayerController player in allPlayers)
             {
                 player.PV.RPC(nameof(player.troopAttack), player.PV.Owner);
             }
-        }
-        else
-        {
-            //next player move
-            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
         }
     }
 
@@ -272,23 +251,44 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.PlayerList;
         if (players.All(p => p.CustomProperties.ContainsKey("Attacked") && (bool)p.CustomProperties["Attacked"]))
         {
-            //all players check dead troop and visibility
+            //all players check death
             foreach (PlayerController player in allPlayers)
             {
-                player.PV.RPC(nameof(player.endCheck), player.PV.Owner);
+                player.PV.RPC(nameof(player.checkDeath), player.PV.Owner);
             }
         }
     }
 
-    public void checkNextTurn()
+    public void checkDeath()
     {
         //everyone is ready
         var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("Finished") && (bool)p.CustomProperties["Finished"]))
+        if (players.All(p => p.CustomProperties.ContainsKey("CheckedDeath") && (bool)p.CustomProperties["CheckedDeath"]))
         {
+            //players move one by one
+            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
+        }
+    }
+
+    public void checkMove()
+    {
+        numPlayerMoved++;
+
+        //all players check next turn
+        if (numPlayerMoved == PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            //different player start every turn
+            allPlayers.Add(allPlayers[0]);
+            allPlayers.RemoveAt(0);
+
             //next turn
             turnEnded = false;
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
+        }
+        else if (numPlayerMoved < PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            //next player move
+            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
         }
     }
 
