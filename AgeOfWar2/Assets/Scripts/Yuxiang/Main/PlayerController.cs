@@ -66,14 +66,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
         GameManager.instance.playerList.Add(PV.OwnerActorNr, this);
         GameManager.instance.createPlayerList();
 
+        if (!PV.IsMine) return;
+        instance = this;
+
         //master client in charge making grid
-        if (PhotonNetwork.IsMasterClient && PV.IsMine)
+        if (PhotonNetwork.IsMasterClient)
         {
             TileManager.instance.makeGrid();
         }
-
-        if (!PV.IsMine) return;
-        instance = this;
     }
 
     #region ID
@@ -494,12 +494,32 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
-            attack();
+            troopMove();
         }
         else
         {
             Hashtable playerProperties = new Hashtable();
             playerProperties.Add("Spawned", true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        }
+    }
+
+    [PunRPC]
+    public void troopMove()
+    {
+        foreach (Troop troop in allTroops)
+        {
+            troop.move();
+        }
+
+        if (PhotonNetwork.OfflineMode)
+        {
+            attack();
+        }
+        else
+        {
+            Hashtable playerProperties = new Hashtable();
+            playerProperties.Add("Moved", true);
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
         }
     }
@@ -571,32 +591,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.OfflineMode)
         {
-            troopMove();
-        }
-        else
-        {
-            Hashtable playerProperties = new Hashtable();
-            playerProperties.Add("CheckedDeath", true);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
-        }
-    }
-
-    [PunRPC]
-    public void troopMove()
-    {
-        foreach (Troop troop in allTroops)
-        {
-            troop.move();
-        }
-
-        if (PhotonNetwork.OfflineMode)
-        {
             GameManager.instance.startTurn();
         }
         else
         {
             Hashtable playerProperties = new Hashtable();
-            playerProperties.Add("Moved", true);
+            playerProperties.Add("CheckedDeath", true);
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
         }
     }

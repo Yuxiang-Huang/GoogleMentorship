@@ -239,11 +239,28 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.CurrentRoom.Players;
         if (players.All(p => p.Value.CustomProperties.ContainsKey("Spawned") && (bool)p.Value.CustomProperties["Spawned"]))
         {
+            //players move one by one
+            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
+        }
+    }
+
+    public void checkMove()
+    {
+        numPlayerMoved++;
+
+        //all players moved
+        if (numPlayerMoved == allPlayers.Count)
+        {
             //all players attack
             foreach (PlayerController player in allPlayersOriginal)
             {
                 player.PV.RPC(nameof(player.attack), player.PV.Owner);
             }
+        }
+        else
+        {
+            //next player move
+            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
         }
     }
 
@@ -267,18 +284,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         var players = PhotonNetwork.CurrentRoom.Players;
         if (players.All(p => p.Value.CustomProperties.ContainsKey("CheckedDeath") && (bool)p.Value.CustomProperties["CheckedDeath"]))
         {
-            //players move one by one
-            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
-        }
-    }
-
-    public void checkMove()
-    {
-        numPlayerMoved++;
-
-        //all players check next turn
-        if (numPlayerMoved == allPlayers.Count)
-        {
             //different player start every turn
             allPlayers.Add(allPlayers[0]);
             allPlayers.RemoveAt(0);
@@ -286,11 +291,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             //next turn
             turnEnded = false;
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
-        }
-        else if (numPlayerMoved < PhotonNetwork.CurrentRoom.PlayerCount)
-        {
-            //next player move
-            allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
         }
     }
 
