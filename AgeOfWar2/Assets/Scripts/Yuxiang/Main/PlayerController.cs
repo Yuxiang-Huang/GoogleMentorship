@@ -228,27 +228,30 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //if a tile is highlighted
                 if (highlighted != null)
                 {
-                    //if a unit is on the tile and it's my unit
-                    if (highlighted.GetComponent<Tile>().unit != null &&
-                        highlighted.GetComponent<Tile>().unit.ownerID == id)
+                    //if a unit is on the tile
+                    if (highlighted.GetComponent<Tile>().unit != null)
                     {
                         //don't show health bar
                         highlighted.unit.setHealthBar(false);
 
                         //update info tab
-                        UIManager.instance.updateInfoTab(highlighted.unit);
+                        UIManager.instance.updateInfoTab(highlighted.unit, highlighted.unit.ownerID == id);
 
-                        //select unit
-                        unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
-
-                        //change color to show selection
-                        unitSelected.setImage(Color.grey);
-
-                        //if movable and turn not ended
-                        if ((highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
-                            && !turnEnded)
+                        //if it is my unit
+                        if (highlighted.GetComponent<Tile>().unit.ownerID == id)
                         {
-                            mode = "move";
+                            //select unit
+                            unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
+
+                            //change color to show selection
+                            unitSelected.setImage(Color.grey);
+
+                            //if movable and turn not ended
+                            if ((highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
+                                && !turnEnded)
+                            {
+                                mode = "move";
+                            }
                         }
                     }
                     //if I am going to spawn a unit here

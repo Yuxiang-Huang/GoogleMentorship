@@ -235,16 +235,21 @@ public class UIManager : MonoBehaviour
     #region Unit Info Tab
 
     //for existing units
-    public void updateInfoTab(IUnit unit)
+    public void updateInfoTab(IUnit unit, bool myUnit)
     {
         infoTabPlayer.SetActive(false);
         infoTabUnit.SetActive(true);
         unit.fillInfoTab(unitNameText, unitHealthText, unitDamageText, unitSellText, unitUpgradeText);
-        sellBtn.SetActive(true);
 
-        //able to upgrade if lower age
-        if (unit.age < PlayerController.instance.age)
-            upgradeBtn.SetActive(true);
+        //only display buttons if my units
+        if (myUnit)
+        {
+            sellBtn.SetActive(true);
+
+            //able to upgrade if lower age
+            if (unit.age < PlayerController.instance.age)
+                upgradeBtn.SetActive(true);
+        }
     }
 
     //for spawn buttons
