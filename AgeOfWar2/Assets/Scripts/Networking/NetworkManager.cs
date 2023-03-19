@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using System.IO;
 
 public class NetworkManager: MonoBehaviourPunCallbacks
 {
@@ -101,15 +102,14 @@ public class NetworkManager: MonoBehaviourPunCallbacks
         }
 
         //Start Game and Settings Button only visible for the host
-        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
         settingButtons.SetActive(PhotonNetwork.IsMasterClient);
-        
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         //Updates Start Game and Settings Button only visible for the host
-        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
         settingButtons.SetActive(PhotonNetwork.IsMasterClient);
         RoomManager.Instance.updateBtn();
     }
@@ -157,6 +157,15 @@ public class NetworkManager: MonoBehaviourPunCallbacks
     {
         Instantiate(playerListPrefab, playerListContent)
             .GetComponent<PlayerListItem>().SetUp(newPlayer);
+
+        //upate start game button depend on number of player
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        //upate start game button depend on number of player
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
     }
 
     public void StartGame()
@@ -165,5 +174,25 @@ public class NetworkManager: MonoBehaviourPunCallbacks
         {
             PhotonNetwork.LoadLevel(1);
         }
+    }
+
+    public void StartTutorial()
+    {
+        //offline mode
+        PhotonNetwork.OfflineMode = true;
+
+        //default room options
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.CustomRoomProperties = new Hashtable() {
+                { "Mode", Config.defaultMode },
+                { "initialTime", Config.defaultStartingTime },
+                { "timeInc", Config.defaultTimeInc },
+                { "Tutorial", true}
+            };
+
+        //create a room and a player
+        PhotonNetwork.CreateRoom("offline", roomOptions);
+
+        PhotonNetwork.LoadLevel(1);
     }
 }

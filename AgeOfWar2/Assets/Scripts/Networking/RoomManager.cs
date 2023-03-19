@@ -123,7 +123,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void updateBtn()
     {
         //map setting
-        bool hasWater = (bool)PhotonNetwork.CurrentRoom.CustomProperties["Water"];
+        bool hasWater = (string)PhotonNetwork.CurrentRoom.CustomProperties["Mode"] == "Water";
 
         //update text
         if (hasWater)

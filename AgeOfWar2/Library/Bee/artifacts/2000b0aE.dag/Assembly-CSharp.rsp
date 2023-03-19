@@ -355,6 +355,7 @@
 "Assets/Scripts/Yuxiang/Config.cs"
 "Assets/Scripts/Yuxiang/Main/GameManager.cs"
 "Assets/Scripts/Yuxiang/Main/PlayerController.cs"
+"Assets/Scripts/Yuxiang/Main/TutorialManager.cs"
 "Assets/Scripts/Yuxiang/Map/SpawnButton.cs"
 "Assets/Scripts/Yuxiang/Map/SpawnInfo.cs"
 "Assets/Scripts/Yuxiang/Map/SpawnManager.cs"
