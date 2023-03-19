@@ -373,6 +373,7 @@
 "Assets/Scripts/Yuxiang/Unit/Troop/Amphibian.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop/LongRange.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop/Melee.cs"
+"Assets/Scripts/Yuxiang/Unit/Troop/Speed.cs"
 -langversion:9.0
 
 /deterministic

@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
 
         //everything set false first
         Shop.SetActive(false);
+        goldText.gameObject.SetActive(false);
         turnBtn.SetActive(false);
         infoTabUnit.SetActive(false);
         infoTabPlayer.SetActive(false);
@@ -113,6 +114,7 @@ public class UIManager : MonoBehaviour
         //set UI active
         IntroText.SetActive(false);
         Shop.SetActive(true);
+        goldText.gameObject.SetActive(true);
         AgeUI.SetActive(true);
         timeText.gameObject.SetActive(true);
         turnNumText.gameObject.SetActive(true);
