@@ -407,20 +407,4 @@ public class UIManager : MonoBehaviour
         timeText.gameObject.SetActive(false);
         PV.RPC(nameof(setCheckmark), RpcTarget.All, PlayerController.instance.id, false);
     }
-
-    public void leave()
-    {
-        StartCoroutine(nameof(leaveEnu));
-    }
-
-    public IEnumerator leaveEnu()
-    {
-        //disconnect before leaving
-        PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LeaveLobby();
-        PhotonNetwork.Disconnect();
-        yield return new WaitUntil(() => !PhotonNetwork.IsConnected);
-        Destroy(RoomManager.Instance.gameObject);
-        PhotonNetwork.LoadLevel(0);
-    }
 }

@@ -472,7 +472,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Hashtable playerProperties = new Hashtable();
             playerProperties.Add("Spawned", true);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
         }
     }
 
@@ -492,7 +492,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Hashtable playerProperties = new Hashtable();
             playerProperties.Add("Attacked", true);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties); ;
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
         }
     }
 
@@ -530,14 +530,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 allBuildings.Remove(allBuildings[i]);
             }
         }
-
-        ////visibility
-        //foreach (Tile neighbor in toUpdateVisibility)
-        //{
-        //    neighbor.updateVisibility();
-        //}
-
-        //toUpdateVisibility = new HashSet<Tile>();
 
         if (PhotonNetwork.OfflineMode)
         {
@@ -618,7 +610,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //remove from gameManager playerlist
-        PV.RPC(nameof(removeFromPlayerList), RpcTarget.MasterClient);
+        PV.RPC(nameof(removeFromPlayerList), RpcTarget.All);
 
         //display leave button
         UIManager.instance.leaveBtn.SetActive(true);
