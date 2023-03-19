@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [Header("Belongings")]
     public List<Troop> allTroops = new List<Troop>();
     public List<Building> allBuildings = new List<Building>();
+    public List<AOE> allSpells = new List<AOE>();
+
     public HashSet<Tile> territory = new HashSet<Tile>();
     public int landTerritory;
     public HashSet<Tile> visibleTiles = new HashSet<Tile>();
