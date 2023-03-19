@@ -58,6 +58,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<GameObject> checkmarkList;
     public List<GameObject> skullList;
 
+    public GameObject leaveBtn;
+
     [Header("Age")]
     public List<string> ageNameList;
     [SerializeField] GameObject ageAdvanceBtn;
@@ -82,6 +84,7 @@ public class UIManager : MonoBehaviour
         turnNumText.gameObject.SetActive(false);
         sellBtn.SetActive(false);
         upgradeBtn.SetActive(false);
+        leaveBtn.SetActive(false);
 
         foreach (TextMeshProUGUI text in playerNameList)
         {
@@ -403,5 +406,20 @@ public class UIManager : MonoBehaviour
         cancelTurnBtn.SetActive(false);
         timeText.gameObject.SetActive(false);
         PV.RPC(nameof(setCheckmark), RpcTarget.All, PlayerController.instance.id, false);
+    }
+
+    public void leave()
+    {
+        StartCoroutine(nameof(leaveEnu));
+    }
+
+    public IEnumerator leaveEnu()
+    { 
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LeaveLobby();
+        PhotonNetwork.Disconnect();
+        yield return new WaitUntil(() => !PhotonNetwork.IsConnected);
+        Destroy(RoomManager.Instance.gameObject);
+        PhotonNetwork.LoadLevel(0);
     }
 }

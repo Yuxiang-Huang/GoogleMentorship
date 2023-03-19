@@ -617,6 +617,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
         }
 
+        //remove from gameManager playerlist
+        GameManager.instance.allPlayers.Remove(this);
+
+        //display leave button
+        UIManager.instance.leaveBtn.SetActive(true);
+
         //reset everything
         gold = 0;
         territory = new HashSet<Tile>();

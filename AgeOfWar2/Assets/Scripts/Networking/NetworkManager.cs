@@ -34,7 +34,7 @@ public class NetworkManager: MonoBehaviourPunCallbacks
     }
 
     public void Start()
-    {
+    { 
         Debug.Log("Connecting to Master");
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -86,6 +86,8 @@ public class NetworkManager: MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        if (PhotonNetwork.OfflineMode) return;
+
         ScreenManager.Instance.DisplayScreen("Room");
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
 
@@ -161,7 +163,7 @@ public class NetworkManager: MonoBehaviourPunCallbacks
         Instantiate(playerListPrefab, playerListContent)
             .GetComponent<PlayerListItem>().SetUp(newPlayer);
 
-        //upate start game button depend on number of player
+        //update start game button depend on number of player
         startGameButton.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
     }
 
@@ -200,7 +202,7 @@ public class NetworkManager: MonoBehaviourPunCallbacks
                 { "Tutorial", true}
             };
 
-        //create a room and a player
+        //create a room
         PhotonNetwork.CreateRoom("offline", roomOptions);
 
         PhotonNetwork.LoadLevel(1);

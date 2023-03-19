@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -215,8 +216,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (turnEnded) return;
 
         //everyone is ready
-        var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("EndTurn") && (bool)p.CustomProperties["EndTurn"]))
+        var players = PhotonNetwork.CurrentRoom.Players;
+        if (players.All(p => p.Value.CustomProperties.ContainsKey("EndTurn") && (bool)p.Value.CustomProperties["EndTurn"]))
         {
             turnEnded = true;
 
@@ -234,8 +235,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void checkSpawn()
     {
         //everyone is ready
-        var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("Spawned") && (bool)p.CustomProperties["Spawned"]))
+        var players = PhotonNetwork.CurrentRoom.Players;
+        if (players.All(p => p.Value.CustomProperties.ContainsKey("Spawned") && (bool)p.Value.CustomProperties["Spawned"]))
         {
             //all players attack
             foreach (PlayerController player in allPlayers)
@@ -248,8 +249,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void checkAttack()
     {
         //everyone is ready
-        var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("Attacked") && (bool)p.CustomProperties["Attacked"]))
+        var players = PhotonNetwork.CurrentRoom.Players;
+        if (players.All(p => p.Value.CustomProperties.ContainsKey("Attacked") && (bool)p.Value.CustomProperties["Attacked"]))
         {
             //all players check death
             foreach (PlayerController player in allPlayers)
@@ -262,8 +263,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void checkDeath()
     {
         //everyone is ready
-        var players = PhotonNetwork.PlayerList;
-        if (players.All(p => p.CustomProperties.ContainsKey("CheckedDeath") && (bool)p.CustomProperties["CheckedDeath"]))
+        var players = PhotonNetwork.CurrentRoom.Players;
+        if (players.All(p => p.Value.CustomProperties.ContainsKey("CheckedDeath") && (bool)p.Value.CustomProperties["CheckedDeath"]))
         {
             //players move one by one
             allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
