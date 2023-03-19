@@ -167,24 +167,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         {
             //remove first tile
             path.RemoveAt(0);
-
-            if (path.Count != 0)
-            {
-                //display arrow
-                if (arrow != null)
-                {
-                    Destroy(arrow);
-                }
-
-                arrow = Instantiate(UIManager.instance.arrowPrefab, transform.position, Quaternion.identity);
-
-                Vector2 arrowDirection = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
-
-                float angle = Mathf.Atan2(arrowDirection.y, arrowDirection.x);
-
-                arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
-            }
         }
+
+        displayArrow();
     }
 
     public virtual void move()
@@ -193,12 +178,6 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
         if (numOfTilesMoved == speed) return;
 
         numOfTilesMoved ++;
-
-        //destroy arrow
-        if (arrow != null)
-        {
-            Destroy(arrow);
-        }
 
         //if has next tile to go
         if (path.Count != 0)
@@ -236,17 +215,28 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
                 }
             }
 
-            //display arrow
-            if (path.Count != 0)
-            {
-                arrow = Instantiate(UIManager.instance.arrowPrefab, transform.position, Quaternion.identity);
+            displayArrow();
+        }
+    }
 
-                Vector2 arrowDirection = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
+    public virtual void displayArrow()
+    {
+        //destroy arrow
+        if (arrow != null)
+        {
+            Destroy(arrow);
+        }
 
-                float angle = Mathf.Atan2(arrowDirection.y, arrowDirection.x);
+        //show arrow if there is a tile to go
+        if (path.Count != 0)
+        {
+            arrow = Instantiate(UIManager.instance.arrowPrefab, transform.position, Quaternion.identity);
 
-                arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
-            }
+            Vector2 arrowDirection = TileManager.instance.getWorldPosition(path[0]) - TileManager.instance.getWorldPosition(tile);
+
+            float angle = Mathf.Atan2(arrowDirection.y, arrowDirection.x);
+
+            arrow.transform.Rotate(Vector3.forward, angle * 180 / Mathf.PI);
         }
     }
 
