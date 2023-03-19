@@ -766,9 +766,11 @@ MonoBehaviour:
   spawnBtnList:
   - {fileID: 996705854}
   - {fileID: 388878474}
-  - {fileID: 154927612}
+  - {fileID: 760303209}
   - {fileID: 1450966726}
+  - {fileID: 154927612}
   - {fileID: 1696770925}
+  - {fileID: 655141161}
 --- !u!1 &154927610
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,13 +826,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 154927614}
   path: Building/ExtraMoney
-  type: Building
   goldNeedToSpawn: 80
   spawnImage: {fileID: 6580721310958061044, guid: 560cca3f230d94bdeb1a549f3277f240, type: 3}
   costText: {fileID: 633742205}
   unit: {fileID: 4108916116941670807, guid: 2ea4d13b1b6b64ed29c22170e5787943, type: 3}
   unitImages:
-  - {fileID: 21300000, guid: eb3e04601bf0845a19d6cb40975b9b8c, type: 3}
+  - {fileID: 21300000, guid: b99b8d97f531a48569f36e526f055705, type: 3}
   - {fileID: 21300000, guid: f1421e16c64af4b9bb61166d7e7354a8, type: 3}
   - {fileID: 21300000, guid: 3729fd51e7f2e4e4d8adb9968c24feac, type: 3}
   - {fileID: 21300000, guid: 1bebdbc2456934b1ba4c8bfb5da4df02, type: 3}
@@ -912,7 +913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eb3e04601bf0845a19d6cb40975b9b8c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b99b8d97f531a48569f36e526f055705, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1630,7 +1631,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 388878472}
   path: Troop/LongRange
-  type: Troop
   goldNeedToSpawn: 40
   spawnImage: {fileID: 1371028787450875553, guid: 806398d3c81b84a6a932a9df7a6e15f5, type: 3}
   costText: {fileID: 1760341031}
@@ -2928,7 +2928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 655141163}
   path: Spell/AOE
-  type: Spell
   goldNeedToSpawn: 120
   spawnImage: {fileID: 2642429555207648274, guid: be4605ce2d10e4e0d9f220c4141cb31f, type: 3}
   costText: {fileID: 1703392758}
@@ -3856,7 +3855,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 760303211}
   path: Troop/Speed
-  type: Troop
   goldNeedToSpawn: 60
   spawnImage: {fileID: 9003052658327922773, guid: 5fbb2e743970e4d71b822786102154e8, type: 3}
   costText: {fileID: 502313748}
@@ -5224,7 +5222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 996705852}
   path: Troop/Melee
-  type: Troop
   goldNeedToSpawn: 20
   spawnImage: {fileID: 3350579417564403051, guid: 85330372dcccb4576ac7d6f8ed02e152, type: 3}
   costText: {fileID: 851291530}
@@ -7380,7 +7377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1450966728}
   path: Troop/Amphibian
-  type: Troop
   goldNeedToSpawn: 40
   spawnImage: {fileID: 939499867913339684, guid: e713d201ae4824a4fb2a6d77cc32decb, type: 3}
   costText: {fileID: 394737632}
@@ -8380,7 +8376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1696770927}
   path: Building/ExtraView
-  type: Building
   goldNeedToSpawn: 80
   spawnImage: {fileID: 1118290006790659104, guid: 5bac66c31775a4053b6d94849614fa3e, type: 3}
   costText: {fileID: 234788670}
