@@ -237,15 +237,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         //update info tab
                         UIManager.instance.updateInfoTab(highlighted.unit, highlighted.unit.ownerID == id);
 
+                        //select unit
+                        unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
+
+                        //change color to show selection
+                        unitSelected.setImage(Color.grey);
+
                         //if it is my unit
                         if (highlighted.GetComponent<Tile>().unit.ownerID == id)
                         {
-                            //select unit
-                            unitSelected = highlighted.GetComponent<Tile>().unit.gameObject.GetComponent<IUnit>();
-
-                            //change color to show selection
-                            unitSelected.setImage(Color.grey);
-
                             //if movable and turn not ended
                             if ((highlighted.GetComponent<Tile>().unit.gameObject.CompareTag("Troop"))
                                 && !turnEnded)
