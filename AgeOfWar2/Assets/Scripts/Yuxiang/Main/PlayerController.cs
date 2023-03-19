@@ -46,10 +46,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public Image spawnButtonSelected;
 
-    public string toSpawnType;
     public string toSpawnPath;
     public GameObject toSpawnImage;
-    public IUnit toSpawnUnit;
+    public GameObject toSpawnUnit;
     public int goldNeedToSpawn;
      
     public Dictionary<Vector2, SpawnInfo> spawnList = new Dictionary<Vector2, SpawnInfo>();
@@ -314,7 +313,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 highlighted = newHighlighted;
 
-                if (toSpawnType == "Spell")
+                if (toSpawnUnit.CompareTag("Spell"))
                 {
                     //only need to be visible for spells
                     if (highlighted != null && !highlighted.dark.activeSelf)
@@ -332,12 +331,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     && territory.Contains(highlighted) && !spawnList.ContainsKey(highlighted.pos))
                 {
                     //for troops
-                    if (toSpawnType == "Troop")
+                    if (toSpawnUnit.CompareTag("Troop"))
                     {
                         //can only spawn on spawnable tiles and it had to be land or troop can be on water
                         if (canSpawn[highlighted.pos.x, highlighted.pos.y] &&
                             (highlighted.terrain == "land" ||
-                            toSpawnUnit.gameObject.GetComponent<Amphibian>() != null))
+                            toSpawnUnit.GetComponent<Amphibian>() != null))
                         {
                             highlighted.highlight(true);
                         }
@@ -347,7 +346,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         }
                     }
                     //for buildings
-                    else if (toSpawnType == "Building" && highlighted.terrain == "land")
+                    else if (toSpawnUnit.CompareTag("Building") && highlighted.terrain == "land")
                     {
                         highlighted.highlight(true);
                     }
@@ -377,7 +376,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     highlighted.gameObject.transform.position, Quaternion.identity);
 
                     //add to spawn list
-                    spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawnPath, toSpawnUnit,
+                    spawnList.Add(highlighted.pos, new SpawnInfo(highlighted, toSpawnPath, toSpawnUnit.GetComponent<IUnit>(),
                         spawnImage, age, goldNeedToSpawn, goldNeedToSpawn / 2));
 
                     //reset to prevent double spawn

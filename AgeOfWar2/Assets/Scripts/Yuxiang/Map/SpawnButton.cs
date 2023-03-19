@@ -11,8 +11,6 @@ public class SpawnButton : MonoBehaviour
 
     public string path;
 
-    [SerializeField] string type;
-
     [SerializeField] int goldNeedToSpawn;
 
     [SerializeField] GameObject spawnImage;
@@ -44,11 +42,11 @@ public class SpawnButton : MonoBehaviour
         {
             SpawnManager.instance.spawn(image, path,
                 goldNeedToSpawn * (int) Mathf.Pow(Config.ageCostFactor, PlayerController.instance.age),
-                spawnImage, type, unit.GetComponent<IUnit>());
+                spawnImage, unit);
             UIManager.instance.updateInfoTabSpawn(unit.GetComponent<IUnit>());
 
             //gray tiles, condition same as in playerController spawn
-            if (type == "Building")
+            if (unit.CompareTag("Building"))
             {
                 foreach (Tile tile in PlayerController.instance.visibleTiles)
                 {
@@ -59,7 +57,7 @@ public class SpawnButton : MonoBehaviour
                     }
                 }
             }
-            else if (type == "Troop")
+            else if (unit.CompareTag("Troop"))
             {
                 foreach (Tile tile in PlayerController.instance.visibleTiles)
                 {

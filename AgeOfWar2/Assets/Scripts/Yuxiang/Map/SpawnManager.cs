@@ -20,8 +20,7 @@ public class SpawnManager : MonoBehaviour
         instance = this;
     }
 
-    public void spawn(Image image, string path, int goldNeedToSpawn, GameObject spawnImage,
-        string type, IUnit unit)
+    public void spawn(Image image, string path, int goldNeedToSpawn, GameObject spawnImage, GameObject unit)
     {
         //image color transition
         if (lastImage != null)
@@ -38,7 +37,6 @@ public class SpawnManager : MonoBehaviour
         PlayerController.instance.toSpawnPath = path;
         PlayerController.instance.toSpawnImage = spawnImage;
         PlayerController.instance.goldNeedToSpawn = goldNeedToSpawn;
-        PlayerController.instance.toSpawnType = type;
         PlayerController.instance.spawnButtonSelected = lastImage;
         PlayerController.instance.toSpawnUnit = unit;
     }
