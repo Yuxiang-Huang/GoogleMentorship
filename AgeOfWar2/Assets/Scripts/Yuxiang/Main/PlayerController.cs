@@ -462,6 +462,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 allBuildings.Add(newUnit.GetComponent<Building>());
             }
+            else if (newUnit.CompareTag("Spell"))
+            {
+                newUnit.GetComponent<Spell>().PV.RPC("Init", RpcTarget.All,
+                    id, info.spawnTile.pos.x, info.spawnTile.pos.y,
+                    info.unitName, age, info.sellGold);
+
+                allSpells.Add(newUnit.GetComponent<Spell>());
+            }
 
             Destroy(info.spawnImage);
         }
@@ -469,22 +477,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //clear list
         spawnList = new Dictionary<Vector2, SpawnInfo>();
 
-        //income from territory and all buildings
+        //income from territory
         if (!lost)
         {
             gold += landTerritory * (age + Config.ageIncomeOffset);
-
-            foreach (Building building in allBuildings)
-            {
-                building.effect();
-            }
         }
 
         UIManager.instance.updateGoldText();
 
         if (PhotonNetwork.OfflineMode)
         {
-            troopAttack();
+            attack();
         }
         else
         {
@@ -495,11 +498,21 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void troopAttack()
+    public void attack()
     {
         foreach (Troop troop in allTroops)
         {
             troop.attack();
+        }
+
+        foreach (Building building in allBuildings)
+        {
+            building.effect();
+        }
+
+        foreach (Spell spell in allSpells)
+        {
+            spell.countDown();
         }
 
         if (PhotonNetwork.OfflineMode)

@@ -17,6 +17,10 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
 
     public int age { get; set; }
 
+    [Header("Effect")]
+    [SerializeField] int turnSinceSpawned;
+    [SerializeField] int turnNeeded;
+
     [Header("UI")]
     [SerializeField] int upgradeGold;
     [SerializeField] int sellGold;
@@ -57,6 +61,22 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
 
         //reveal this tile
         tile.setDark(false);
+    }
+
+    public void countDown()
+    {
+        //take effect after turn needed
+        turnSinceSpawned++;
+
+        if (turnSinceSpawned == turnNeeded)
+        {
+            effect();
+        }
+    }
+
+    public virtual void effect()
+    {
+
     }
 
     #region UI

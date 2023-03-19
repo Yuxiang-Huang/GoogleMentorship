@@ -87,6 +87,7 @@ MonoBehaviour:
   - resetTerritory
   - upgrade
   - removeFromPlayerList
+  - attack
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

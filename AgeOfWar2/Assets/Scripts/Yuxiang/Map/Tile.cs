@@ -179,9 +179,10 @@ public class Tile : MonoBehaviour
 
     public void updateVisibility()
     {
-        //check if already territory if in extra view 
+        //check if already territory or if in extra view or if there is a spell on it
         if (PlayerController.instance.territory.Contains(this) ||
-            PlayerController.instance.extraViewTiles[pos.x, pos.y] > 0) return;
+            PlayerController.instance.extraViewTiles[pos.x, pos.y] > 0 ||
+            (unit != null && unit.gameObject.CompareTag("Spell"))) return;
 
         //check if bound by territory 
         foreach (Tile neighbor in neighbors)
