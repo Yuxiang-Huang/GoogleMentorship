@@ -36,7 +36,8 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     protected List<Tile> path = new List<Tile>();
     protected GameObject arrow;
 
-    public bool moved;
+    [SerializeField] int numOfTilesMoved;
+    [SerializeField] int speed;
 
     private void Awake()
     {
@@ -189,9 +190,9 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public virtual void move()
     {
         //moved in this turn already
-        if (moved) return;
+        if (numOfTilesMoved == speed) return;
 
-        moved = true;
+        numOfTilesMoved ++;
 
         //destroy arrow
         if (arrow != null)
@@ -272,6 +273,11 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     public void removeTileUnit()
     {
         tile.unit = null;
+    }
+
+    public virtual void resetMovement()
+    {
+        numOfTilesMoved = 0;
     }
 
     #endregion

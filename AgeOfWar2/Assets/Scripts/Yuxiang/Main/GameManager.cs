@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         //reset movement;
         foreach (Troop troop in PlayerController.instance.allTroops)
         {
-            troop.moved = false;
+            troop.resetMovement();
         }
     }
 

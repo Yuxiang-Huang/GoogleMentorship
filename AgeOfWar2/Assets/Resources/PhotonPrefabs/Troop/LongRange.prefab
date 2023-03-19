@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21f307f2929245e29273cc1d656f130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeGold: 0
   sellGold: 0
   imageRenderer: {fileID: 4922159749772890136}
   unitImages:
@@ -249,7 +250,8 @@ MonoBehaviour:
   damage: 100
   direction: {x: 0, y: 0}
   tile: {fileID: 0}
-  moved: 0
+  numOfTilesMoved: 0
+  speed: 1
 --- !u!1 &5215749956686092328
 GameObject:
   m_ObjectHideFlags: 0

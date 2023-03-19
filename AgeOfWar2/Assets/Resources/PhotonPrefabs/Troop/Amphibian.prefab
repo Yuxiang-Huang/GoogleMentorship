@@ -660,7 +660,8 @@ MonoBehaviour:
   damage: 100
   direction: {x: 0, y: 0}
   tile: {fileID: 0}
-  moved: 0
+  numOfTilesMoved: 0
+  speed: 1
 --- !u!1 &7608667942778190037
 GameObject:
   m_ObjectHideFlags: 0
