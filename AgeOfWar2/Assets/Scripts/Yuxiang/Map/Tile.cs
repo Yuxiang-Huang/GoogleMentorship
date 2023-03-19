@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour
                     //show neighbor border
                     if (prevOwner.territory.Contains(neighbor))
                     {
-                        int index = pos.x % 2 == 0 ?
+                        int index = neighbor.pos.x % 2 == 0 ?
                         TileManager.instance.neighborIndexEvenRow[pos - neighbor.pos] :
                         TileManager.instance.neighborIndexOddRow[pos - neighbor.pos];
 
