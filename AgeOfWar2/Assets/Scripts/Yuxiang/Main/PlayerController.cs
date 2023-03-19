@@ -416,12 +416,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
-        //income from territory and all buildings
-        if (!lost)
-            gold += (landTerritory + allBuildings.Count - 1) * (age + Config.ageIncomeOffset);
-
-        UIManager.instance.updateGoldText();
-
         foreach (SpawnInfo info in spawnList.Values)
         {
             //spawn unit and initiate
@@ -452,6 +446,19 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         //clear list
         spawnList = new Dictionary<Vector2, SpawnInfo>();
+
+        //income from territory and all buildings
+        if (!lost)
+        {
+            gold += landTerritory * (age + Config.ageIncomeOffset);
+
+            foreach (Building building in allBuildings)
+            {
+                building.effect();
+            }
+        }
+
+        UIManager.instance.updateGoldText();
 
         if (PhotonNetwork.OfflineMode)
         {

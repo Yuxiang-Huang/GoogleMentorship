@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1493553460541262811}
   - component: {fileID: 1061412589344761502}
-  - component: {fileID: 2260808149599893181}
+  - component: {fileID: -3725387192500250385}
   m_Layer: 0
   m_Name: ExtraView
   m_TagString: Building
@@ -57,7 +57,7 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &2260808149599893181
+--- !u!114 &-3725387192500250385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,21 +66,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1099058697764673962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bff79d2513e04b44ade3b51c88b3723, type: 3}
+  m_Script: {fileID: 11500000, guid: 47e973772b4f343fe872314ddd9d5f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
+  upgradeGold: 0
   sellGold: 0
   imageRenderer: {fileID: 0}
-  unitImages:
-  - {fileID: 6379810984686142487}
-  - {fileID: 7243589572306443015}
-  - {fileID: 8656841419816717592}
-  - {fileID: 4284883903038320817}
-  - {fileID: 6182740558736313707}
-  - {fileID: 5133073183850387454}
-  healthbar: {fileID: 1493553460646909849}
-  fullHealth: 200
+  unitImages: []
+  healthbar: {fileID: 0}
+  fullHealth: 0
 --- !u!1 &1493553460407938421
 GameObject:
   m_ObjectHideFlags: 0

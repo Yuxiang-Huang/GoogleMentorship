@@ -365,6 +365,7 @@
 "Assets/Scripts/Yuxiang/Unit/BaseClasses/Building.cs"
 "Assets/Scripts/Yuxiang/Unit/BaseClasses/Troop.cs"
 "Assets/Scripts/Yuxiang/Unit/BaseClasses/Unit.cs"
+"Assets/Scripts/Yuxiang/Unit/Building/ExtraMoney.cs"
 "Assets/Scripts/Yuxiang/Unit/Building/ExtraView.cs"
 "Assets/Scripts/Yuxiang/Unit/Building/MainBase.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop/Amphibian.cs"

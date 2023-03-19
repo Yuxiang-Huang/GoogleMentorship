@@ -81,6 +81,11 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         }
     }
 
+    public virtual void effect()
+    {
+
+    }
+
     #region UI
 
     public void fillInfoTab(TextMeshProUGUI nameText, TextMeshProUGUI healthText,

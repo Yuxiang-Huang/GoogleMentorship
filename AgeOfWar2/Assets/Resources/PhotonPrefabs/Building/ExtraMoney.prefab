@@ -557,7 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2215768299023207919}
   - component: {fileID: 2891496958323977867}
-  - component: {fileID: 1096456125704976373}
+  - component: {fileID: 1356050116087782874}
   m_Layer: 0
   m_Name: ExtraMoney
   m_TagString: Building
@@ -604,7 +604,7 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1096456125704976373
+--- !u!114 &1356050116087782874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4108916116941670807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bff79d2513e04b44ade3b51c88b3723, type: 3}
+  m_Script: {fileID: 11500000, guid: 0454c8fdc5682424ba05d161e2ccd90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
