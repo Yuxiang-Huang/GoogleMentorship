@@ -21,4 +21,17 @@ public class TutorialManager : MonoBehaviour
             tutorialCanvas.gameObject.SetActive(false);
         }
     }
+
+    public void changeInstruction(int dir)
+    {
+        instructions[index].gameObject.SetActive(false);
+        index += dir;
+        instructions[index].gameObject.SetActive(true);
+    }
+
+    public void endTutorial()
+    {
+        Destroy(RoomManager.Instance.gameObject);
+        PhotonNetwork.LoadLevel(0);
+    }
 }
