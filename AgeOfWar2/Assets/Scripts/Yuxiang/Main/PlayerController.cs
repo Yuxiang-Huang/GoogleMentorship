@@ -588,7 +588,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public void end()
     {
         //kill all troops
-        foreach(Troop troop in allTroops)
+        foreach (Troop troop in allTroops)
         {
             troop.kill();
         }
@@ -600,7 +600,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //clear spawnList
-        foreach(SpawnInfo spawnInfo in spawnList.Values)
+        foreach (SpawnInfo spawnInfo in spawnList.Values)
         {
             Destroy(spawnInfo.spawnImage);
         }
@@ -618,7 +618,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //remove from gameManager playerlist
-        GameManager.instance.allPlayers.Remove(this);
+        PV.RPC(nameof(removeFromPlayerList), RpcTarget.MasterClient);
 
         //display leave button
         UIManager.instance.leaveBtn.SetActive(true);
@@ -634,6 +634,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
         UIManager.instance.lost();
 
         lost = true;
+    }
+
+    [PunRPC]
+    public void removeFromPlayerList()
+    {
+        GameManager.instance.allPlayers.Remove(this);
     }
 
     [PunRPC]

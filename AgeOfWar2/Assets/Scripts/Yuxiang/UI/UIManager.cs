@@ -414,7 +414,8 @@ public class UIManager : MonoBehaviour
     }
 
     public IEnumerator leaveEnu()
-    { 
+    {
+        //disconnect before leaving
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LeaveLobby();
         PhotonNetwork.Disconnect();
