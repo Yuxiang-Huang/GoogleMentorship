@@ -6,8 +6,29 @@ using UnityEngine;
 
 public class ExtraView : Building
 {
-    [SerializeField] int damage;
+    public override void updateCanSpawn()
+    {
+        base.updateCanSpawn();
 
+
+        List<Tile> neighbors3 = TileManager.instance.findNeighbors3(tile);
+
+        foreach (Tile neighbor in neighbors3)
+        {
+            PlayerController.instance.extraViewTiles[neighbor.pos.x, neighbor.pos.y]++;
+            PlayerController.instance.visibleTiles.Add(neighbor);
+            neighbor.setDark(false);
+        }
+
+        foreach (Tile neighbor in tile.neighbors2)
+        {
+            PlayerController.instance.extraViewTiles[neighbor.pos.x, neighbor.pos.y]++;
+            PlayerController.instance.visibleTiles.Add(neighbor);
+            neighbor.setDark(false);
+        }
+    }
+
+    //attack one enemy closest to main base
     public override void effect()
     {
         SortedDictionary<float, Tile> targets = new SortedDictionary<float, Tile>();
@@ -43,5 +64,29 @@ public class ExtraView : Building
         {
             targets.Values.Last().unit.PV.RPC(nameof(takeDamage), RpcTarget.AllViaServer, damage);
         }
+    }
+
+    [PunRPC]
+    public override void checkDeath()
+    {
+        if (health <= 0)
+        {
+            //check visibility
+            List<Tile> neighbors3 = TileManager.instance.findNeighbors3(tile);
+
+            foreach (Tile neighbor in neighbors3)
+            {
+                PlayerController.instance.extraViewTiles[neighbor.pos.x, neighbor.pos.y]--;
+                neighbor.updateVisibility();
+            }
+
+            foreach (Tile neighbor in tile.neighbors2)
+            {
+                PlayerController.instance.extraViewTiles[neighbor.pos.x, neighbor.pos.y]--;
+                neighbor.updateVisibility();
+            }
+        }
+
+        base.checkDeath();
     }
 }

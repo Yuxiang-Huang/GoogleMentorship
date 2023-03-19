@@ -72,15 +72,15 @@ public class Tile : MonoBehaviour
                     }
                 }
 
-                //update dark if I was the owner
+                //update visibility if I was the previous owner
                 if (ownerID == PlayerController.instance.id)
                 {
-                    foreach (Tile tile in neighbors)
+                    foreach (Tile neighbor in neighbors)
                     {
-                        tile.updateDark();
+                        neighbor.updateVisibility();
                     }
 
-                    updateDark();
+                    updateVisibility();
                 }
             }
 
@@ -160,31 +160,7 @@ public class Tile : MonoBehaviour
 
     #endregion
 
-    #region Three Updates
-
-    void updateDark()
-    {
-        //include in territory already
-        if (PlayerController.instance.territory.Contains(this))
-        {
-            dark.SetActive(false);
-            return;
-        }
-
-        //check if bound by other territory
-        bool hidden = true;
-
-        foreach (Tile tile in neighbors)
-        {
-            if (PlayerController.instance.territory.Contains(tile))
-            {
-                hidden = false;
-            }
-        }
-
-        PlayerController.instance.visibleTiles.Remove(this);
-        dark.SetActive(hidden);
-    }
+    #region Two Updates
 
     public void updateCanSpawn()
     {
@@ -203,15 +179,14 @@ public class Tile : MonoBehaviour
 
     public void updateVisibility()
     {
-        //check myself too
+        //check if already territory if in extra view 
         if (PlayerController.instance.territory.Contains(this) ||
-            (unit != null && unit.ownerID == PlayerController.instance.id)) return;
+            PlayerController.instance.extraViewTiles[pos.x, pos.y] > 0) return;
 
+        //check if bound by territory 
         foreach (Tile neighbor in neighbors)
         {
-            //if any neighbor is my team's territory or there is a my team's water unit on it
-            if (PlayerController.instance.territory.Contains(neighbor) ||
-                (neighbor.unit != null && neighbor.unit.ownerID == PlayerController.instance.id))
+            if (PlayerController.instance.territory.Contains(neighbor))
             {
                 return;
             }

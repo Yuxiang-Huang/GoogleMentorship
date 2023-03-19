@@ -31,6 +31,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     public int fullHealth;
     Vector3 offset = new Vector3(0, 0.5f, 0);
 
+    [SerializeField] protected int damage;
+
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
@@ -70,7 +72,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     //can spawn troop on tiles around building
-    public void updateCanSpawn()
+    public virtual void updateCanSpawn()
     {
         foreach (Tile neighbor in tile.neighbors)
         {
@@ -94,7 +96,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Health: " + health + " / " + fullHealth;
-        damageText.text = "Damage: n/a";
+        damageText.text = "Damage: " + damage;
         sellText.text = "Sell: " + sellGold + " Gold";
         upgradeText.text = "Upgrade: " + upgradeGold + " Gold";
 
@@ -111,7 +113,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(Config.ageUnitFactor, PlayerController.instance.age);
-        damageText.text = "Damage: n/a";
+        damageText.text = "Damage: " + damage;
         sellText.text = "Despawn";
     }
 
@@ -137,7 +139,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public void checkDeath()
+    public virtual void checkDeath()
     {
         if (health <= 0)
         {
@@ -182,6 +184,8 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         health *= Config.ageUnitFactor;
         healthbar.maxValue = fullHealth;
         healthbar.value = health;
+
+        damage *= Config.ageUnitFactor;
 
         //update sell gold
         sellGold *= Config.ageCostFactor;

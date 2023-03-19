@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public int landTerritory;
     public HashSet<Tile> visibleTiles = new HashSet<Tile>();
 
+    public int[,] extraViewTiles;
+
     [Header("Spawn")]
     public bool[,] canSpawn;
     public Vector2[,] spawnDirection;
@@ -154,6 +156,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 Tile[,] tiles = TileManager.instance.tiles;
 
+                //initialize double arrays
+                extraViewTiles = new int[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+                canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+                spawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
+
                 //spawn castle
                 Vector2Int startingTile = highlighted.pos;
 
@@ -164,9 +171,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 mainBase.gameObject.GetPhotonView().RPC("Init", RpcTarget.All, id, startingTile.x, startingTile.y,
                      "Building/MainBase", age, 0);
 
-                //update canSpawn
-                canSpawn = new bool[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
-                spawnDirection = new Vector2[TileManager.instance.tiles.GetLength(0), TileManager.instance.tiles.GetLength(1)];
                 mainBase.GetComponent<Building>().updateCanSpawn();
                 allBuildings.Add(mainBase);
 

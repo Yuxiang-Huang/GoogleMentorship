@@ -373,7 +373,7 @@ public class Troop : MonoBehaviourPunCallbacks, IUnit
     }
 
     [PunRPC]
-    public virtual void kill()
+    public void kill()
     {
         health = 0;
         checkDeath();

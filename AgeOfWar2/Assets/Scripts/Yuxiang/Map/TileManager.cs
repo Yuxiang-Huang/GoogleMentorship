@@ -396,6 +396,28 @@ public class TileManager : MonoBehaviourPunCallbacks
         return ans;
     }
 
+    //all tiles three tiles away
+    public List<Tile> findNeighbors3(Tile tile)
+    {
+        List<Tile> neighbors3 = new List<Tile>();
+
+        //also update extra view tiles
+        foreach (Tile neighbor2 in tile.neighbors2)
+        {
+            foreach (Tile neighbor in neighbor2.neighbors)
+            {
+                neighbors3.Add(neighbor);
+            }
+        }
+
+        foreach (Tile neighbor in tile.neighbors)
+        {
+            neighbors3.Remove(neighbor);
+        }
+
+        return neighbors3;
+    }
+
     //get the tile depending on world position
     public Tile getTile(Vector2 pos)
     {
