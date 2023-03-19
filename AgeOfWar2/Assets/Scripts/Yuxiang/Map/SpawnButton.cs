@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 public class SpawnButton : MonoBehaviour
 {
@@ -45,6 +46,19 @@ public class SpawnButton : MonoBehaviour
                 goldNeedToSpawn * (int) Mathf.Pow(Config.ageCostFactor, PlayerController.instance.age),
                 spawnImage, type, unit.GetComponent<IUnit>());
             UIManager.instance.updateInfoTabSpawn(unit.GetComponent<IUnit>());
+
+            //gray tiles
+            if (type == "Building")
+            {
+                foreach (Tile tile in PlayerController.instance.visibleTiles)
+                {
+                    if (!(tile != null && tile.unit == null && PlayerController.instance.territory.Contains(tile)
+                        && !PlayerController.instance.spawnList.ContainsKey(tile.pos)))
+                    {
+                        tile.setGray(true);
+                    }
+                }
+            }
         }
         else
         {

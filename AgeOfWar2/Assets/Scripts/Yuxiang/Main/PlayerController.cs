@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public List<Building> allBuildings = new List<Building>();
     public HashSet<Tile> territory = new HashSet<Tile>();
     public int landTerritory;
+    public HashSet<Tile> visibleTiles = new HashSet<Tile>();
 
     [Header("Spawn")]
     public bool[,] canSpawn;
@@ -94,11 +95,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
         foreach (Tile neighbor in root.neighbors)
         {
             neighbor.setDark(false);
+            visibleTiles.Add(neighbor);
         }
 
         foreach (Tile neighbor in root.neighbors2)
         {
             neighbor.setDark(false);
+            visibleTiles.Add(neighbor);
         }
     }
 
@@ -368,6 +371,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     SpawnManager.instance.lastImage.GetComponent<Image>().color = Color.white;
                     SpawnManager.instance.lastImage = null;
 
+                    //clear gray
+                    foreach(Tile tile in visibleTiles)
+                    {
+                        if (tile != null)
+                            tile.setGray(false);
+                    }
+
                     //info tab
                     UIManager.instance.hideInfoTab();
                 }
@@ -383,6 +393,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             //set color of the spawn button selected back to white
             spawnButtonSelected.color = Color.white;
+
+            //clear gray
+            foreach (Tile tile in visibleTiles)
+            {
+                if (tile != null)
+                    tile.setGray(false);
+            }
         }
 
         else if (mode == "move")

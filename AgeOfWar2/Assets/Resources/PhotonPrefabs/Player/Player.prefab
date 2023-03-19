@@ -76,6 +76,7 @@ MonoBehaviour:
   id: -1
   lost: 0
   turnEnded: 0
+  mainBase: {fileID: 0}
   mode: 
   allTroops: []
   allBuildings: []

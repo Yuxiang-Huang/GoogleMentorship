@@ -44,25 +44,6 @@ public class Tile : MonoBehaviour
         return pos.ToString();
     }
 
-    #region Three Overlays
-
-    public void highlight(bool status)
-    {
-        highlightTile.SetActive(status);
-    }
-
-    public void setGray(bool status)
-    {
-        gray.SetActive(status);
-    }
-
-    public void setDark(bool status)
-    {
-        dark.SetActive(status);
-    }
-
-    #endregion
-
     public void updateStatus(int newOwnerID, IUnit newUnit)
     {
         if (ownerID != newOwnerID)
@@ -118,10 +99,12 @@ public class Tile : MonoBehaviour
         if (ownerID == PlayerController.instance.id)
         {
             dark.SetActive(false);
+            PlayerController.instance.visibleTiles.Add(this);
 
             foreach (Tile tile in neighbors)
             {
                 tile.setDark(false);
+                PlayerController.instance.visibleTiles.Add(tile);
             }
         }
 
@@ -161,7 +144,26 @@ public class Tile : MonoBehaviour
         }
     }
 
-    #region Run locally
+    #region Three Overlays
+
+    public void highlight(bool status)
+    {
+        highlightTile.SetActive(status);
+    }
+
+    public void setGray(bool status)
+    {
+        gray.SetActive(status);
+    }
+
+    public void setDark(bool status)
+    {
+        dark.SetActive(status);
+    }
+
+    #endregion
+
+    #region Three Updates
 
     void updateDark()
     {
@@ -183,6 +185,7 @@ public class Tile : MonoBehaviour
             }
         }
 
+        PlayerController.instance.visibleTiles.Remove(this);
         dark.SetActive(hidden);
     }
 
