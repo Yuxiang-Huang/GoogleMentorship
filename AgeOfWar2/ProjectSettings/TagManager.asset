@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Troop
   - Building
+  - Spell
   layers:
   - Default
   - TransparentFX
