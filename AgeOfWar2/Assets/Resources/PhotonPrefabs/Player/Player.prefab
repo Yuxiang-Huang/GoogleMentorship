@@ -83,10 +83,10 @@ MonoBehaviour:
   allSpells: []
   landTerritory: 0
   spawnButtonSelected: {fileID: 0}
-  toSpawnType: 
   toSpawnPath: 
   toSpawnImage: {fileID: 0}
+  toSpawnUnit: {fileID: 0}
   goldNeedToSpawn: 0
-  gold: 10000000
+  gold: 40
   age: 0
   goldNeedToAdvance: 320
