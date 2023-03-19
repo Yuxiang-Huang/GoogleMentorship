@@ -7,6 +7,8 @@ public class AOE : Spell
 {
     public override void effect()
     {
+        base.effect();
+
         if (tile.unit != null)
         {
             tile.unit.PV.RPC(nameof(takeDamage), RpcTarget.AllViaServer, damage * 3);

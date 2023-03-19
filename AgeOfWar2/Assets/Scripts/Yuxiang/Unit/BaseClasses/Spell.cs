@@ -61,6 +61,7 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
 
         //reveal this tile
         tile.setDark(false);
+        GameManager.instance.spellTiles.Add(tile);
     }
 
     public void countDown()
@@ -76,7 +77,13 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
 
     public virtual void effect()
     {
+        PV.RPC(nameof(removeSpellTileReveal), RpcTarget.All);
+    }
 
+    [PunRPC]
+    public void removeSpellTileReveal()
+    {
+        GameManager.instance.spellTiles.Remove(tile);
     }
 
     #region UI

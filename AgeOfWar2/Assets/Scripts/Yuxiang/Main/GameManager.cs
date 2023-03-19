@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] bool gameStarted;
     [SerializeField] bool turnEnded;
 
+    public HashSet<Tile> spellTiles = new HashSet<Tile>();
+
     private void Awake()
     {
         instance = this;

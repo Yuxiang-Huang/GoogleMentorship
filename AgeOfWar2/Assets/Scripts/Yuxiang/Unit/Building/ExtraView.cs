@@ -16,14 +16,12 @@ public class ExtraView : Building
         foreach (Tile neighbor in neighbors3)
         {
             PlayerController.instance.extraViewTiles[neighbor.pos.x, neighbor.pos.y]++;
-            PlayerController.instance.visibleTiles.Add(neighbor);
             neighbor.setDark(false);
         }
 
         foreach (Tile neighbor in tile.neighbors2)
         {
             PlayerController.instance.extraViewTiles[neighbor.pos.x, neighbor.pos.y]++;
-            PlayerController.instance.visibleTiles.Add(neighbor);
             neighbor.setDark(false);
         }
     }

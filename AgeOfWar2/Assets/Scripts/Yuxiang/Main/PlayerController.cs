@@ -98,13 +98,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         foreach (Tile neighbor in root.neighbors)
         {
             neighbor.setDark(false);
-            visibleTiles.Add(neighbor);
         }
 
         foreach (Tile neighbor in root.neighbors2)
         {
             neighbor.setDark(false);
-            visibleTiles.Add(neighbor);
         }
     }
 
@@ -437,6 +435,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
+        //update visibility
+        List<Tile> tileList = visibleTiles.ToList();
+        for (int i = tileList.Count - 1; i >= 0; i--)
+        {
+            tileList[i].updateVisibility();
+        }
+
         foreach (SpawnInfo info in spawnList.Values)
         {
             //spawn unit and initiate

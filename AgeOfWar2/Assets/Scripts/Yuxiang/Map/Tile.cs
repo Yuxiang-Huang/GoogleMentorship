@@ -98,13 +98,11 @@ public class Tile : MonoBehaviour
         //reveal land only if mine
         if (ownerID == PlayerController.instance.id)
         {
-            dark.SetActive(false);
-            PlayerController.instance.visibleTiles.Add(this);
+            setDark(false);
 
             foreach (Tile tile in neighbors)
             {
                 tile.setDark(false);
-                PlayerController.instance.visibleTiles.Add(tile);
             }
         }
 
@@ -156,6 +154,15 @@ public class Tile : MonoBehaviour
     public void setDark(bool status)
     {
         dark.SetActive(status);
+
+        if (status)
+        {
+            PlayerController.instance.visibleTiles.Remove(this);
+        }
+        else
+        {
+            PlayerController.instance.visibleTiles.Add(this);
+        }
     }
 
     #endregion
@@ -182,7 +189,7 @@ public class Tile : MonoBehaviour
         //check if already territory or if in extra view or if there is a spell on it
         if (PlayerController.instance.territory.Contains(this) ||
             PlayerController.instance.extraViewTiles[pos.x, pos.y] > 0 ||
-            (unit != null && unit.gameObject.CompareTag("Spell"))) return;
+            GameManager.instance.spellTiles.Contains(this)) return;
 
         //check if bound by territory 
         foreach (Tile neighbor in neighbors)
@@ -194,7 +201,7 @@ public class Tile : MonoBehaviour
         }
 
         //can't be seem anymore
-        dark.SetActive(true);
+        setDark(true);
     }
 
     public void reset()
