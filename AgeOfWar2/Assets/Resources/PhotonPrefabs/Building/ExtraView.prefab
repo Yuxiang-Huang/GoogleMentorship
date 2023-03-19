@@ -73,9 +73,16 @@ MonoBehaviour:
   upgradeGold: 0
   sellGold: 0
   imageRenderer: {fileID: 0}
-  unitImages: []
-  healthbar: {fileID: 0}
-  fullHealth: 0
+  unitImages:
+  - {fileID: 6379810984686142487}
+  - {fileID: 7243589572306443015}
+  - {fileID: 8656841419816717592}
+  - {fileID: 4284883903038320817}
+  - {fileID: 6182740558736313707}
+  - {fileID: 5133073183850387454}
+  healthbar: {fileID: 1493553460646909849}
+  fullHealth: 200
+  damage: 100
 --- !u!1 &1493553460407938421
 GameObject:
   m_ObjectHideFlags: 0
