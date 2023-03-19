@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1032354956992124025}
   - component: {fileID: 5727946917206588972}
-  - component: {fileID: 1301273421961578060}
+  - component: {fileID: 3080484087841628355}
   m_Layer: 0
   m_Name: AOE
   m_TagString: Spell
@@ -61,7 +61,7 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1301273421961578060
+--- !u!114 &3080484087841628355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,9 +70,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1032354956992124027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96667ed7d0344487ae8ec3cb6e5e8b6, type: 3}
+  m_Script: {fileID: 11500000, guid: f3dd6e802d773421c87d16160e612192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tile: {fileID: 0}
+  upgradeGold: 0
+  sellGold: 0
+  imageRenderer: {fileID: 0}
+  unitImages:
+  - {fileID: 3948774224610545761}
+  - {fileID: 6447693914308372640}
+  - {fileID: 4567979711701995942}
+  - {fileID: 4585772099223818381}
+  - {fileID: 8743168860572373417}
+  - {fileID: 3398290172768199772}
+  damage: 100
 --- !u!1 &3398290172768199772
 GameObject:
   m_ObjectHideFlags: 0

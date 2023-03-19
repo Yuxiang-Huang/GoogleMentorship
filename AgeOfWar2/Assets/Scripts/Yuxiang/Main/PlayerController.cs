@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [Header("Belongings")]
     public List<Troop> allTroops = new List<Troop>();
     public List<Building> allBuildings = new List<Building>();
-    public List<AOE> allSpells = new List<AOE>();
+    public List<Spell> allSpells = new List<Spell>();
 
     public HashSet<Tile> territory = new HashSet<Tile>();
     public int landTerritory;
@@ -314,9 +314,21 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 highlighted = newHighlighted;
 
+                if (toSpawnType == "Spell")
+                {
+                    //only need to be visible for spells
+                    if (highlighted != null && !highlighted.dark.activeSelf)
+                    {
+                        highlighted.highlight(true);
+                    }
+                    else
+                    {
+                        highlighted = null;
+                    }
+                }
                 //if tile is not null and no unit is here and the tile is still my territory
                 //and no units is going to be spawn here
-                if (highlighted != null && highlighted.unit == null
+                else if (highlighted != null && highlighted.unit == null
                     && territory.Contains(highlighted) && !spawnList.ContainsKey(highlighted.pos))
                 {
                     //for troops
@@ -338,6 +350,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     else if (toSpawnType == "Building" && highlighted.terrain == "land")
                     {
                         highlighted.highlight(true);
+                    }
+                    else
+                    {
+                        highlighted = null;
                     }
                 }
                 else
