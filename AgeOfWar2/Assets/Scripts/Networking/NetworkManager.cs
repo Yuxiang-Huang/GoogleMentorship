@@ -6,6 +6,7 @@ using TMPro;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using System.IO;
+using Unity.VisualScripting;
 
 public class NetworkManager: MonoBehaviourPunCallbacks
 {
@@ -40,6 +41,8 @@ public class NetworkManager: MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        if (PhotonNetwork.OfflineMode) return;
+
         Debug.Log("Joined Master");
         PhotonNetwork.JoinLobby();
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -178,7 +181,14 @@ public class NetworkManager: MonoBehaviourPunCallbacks
 
     public void StartTutorial()
     {
+        StartCoroutine(nameof(StartTutorialEnu));
+    }
+
+    public IEnumerator StartTutorialEnu()
+    {
         //offline mode
+        PhotonNetwork.Disconnect();
+        yield return new WaitUntil(() => !PhotonNetwork.IsConnected);
         PhotonNetwork.OfflineMode = true;
 
         //default room options
