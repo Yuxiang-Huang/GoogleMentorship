@@ -329,7 +329,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         }
                     }
                     //for buildings
-                    else if (toSpawnType == "Building")
+                    else if (toSpawnType == "Building" && highlighted.terrain == "land")
                     {
                         highlighted.highlight(true);
                     }

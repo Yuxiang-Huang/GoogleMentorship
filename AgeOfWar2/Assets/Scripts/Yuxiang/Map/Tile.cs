@@ -117,25 +117,22 @@ public class Tile : MonoBehaviour
 
         foreach (GameObject border in borders)
         {
-            border.SetActive(false);
+            border.SetActive(true);
             border.GetComponent<SpriteRenderer>().color = ownerColor[ownerID];
         }
 
         foreach (Tile neighbor in neighbors)
         {
             //border disapper when two territories are adjacent
-            if (! owner.territory.Contains(neighbor))
+            if (owner.territory.Contains(neighbor))
             {
-                //find correct border
                 int index = pos.x % 2 == 0 ?
                     TileManager.instance.neighborIndexEvenRow[neighbor.pos - pos] :
                     TileManager.instance.neighborIndexOddRow[neighbor.pos - pos];
 
-                borders[index].SetActive(true);
-            }
-            else
-            {
-                int index = neighbor.pos.x % 2 == 0 ?
+                borders[index].SetActive(false);
+
+                index = neighbor.pos.x % 2 == 0 ?
                     TileManager.instance.neighborIndexEvenRow[pos - neighbor.pos] :
                     TileManager.instance.neighborIndexOddRow[pos - neighbor.pos];
 
