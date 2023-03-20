@@ -228,8 +228,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 //if a tile is highlighted
                 if (highlighted != null)
                 {
-                    //if a unit is on the tile
-                    if (highlighted.GetComponent<Tile>().unit != null)
+                    //if I am going to spawn a unit here
+                    if (spawnList.ContainsKey(highlighted.pos))
+                    {
+                        spawnInfoSelected = spawnList[highlighted.pos];
+                        UIManager.instance.updateInfoTab(spawnInfoSelected);
+                    }
+                    //else if a unit is on the tile
+                    else if (highlighted.GetComponent<Tile>().unit != null)
                     {
                         //don't show health bar
                         highlighted.unit.setHealthBar(false);
@@ -253,12 +259,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
                                 mode = "move";
                             }
                         }
-                    }
-                    //if I am going to spawn a unit here
-                    else if (spawnList.ContainsKey(highlighted.pos))
-                    {
-                        spawnInfoSelected = spawnList[highlighted.pos];
-                        UIManager.instance.updateInfoTab(spawnInfoSelected);
                     }
                 }
             }
@@ -316,8 +316,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
                 if (toSpawnUnit.CompareTag("Spell"))
                 {
-                    //only need to be visible for spells
-                    if (highlighted != null && !highlighted.dark.activeSelf)
+                    //only need to be visible and no unit spawn here for spells
+                    if (highlighted != null && !highlighted.dark.activeSelf
+                        && !spawnList.ContainsKey(highlighted.pos))
                     {
                         highlighted.highlight(true);
                     }
