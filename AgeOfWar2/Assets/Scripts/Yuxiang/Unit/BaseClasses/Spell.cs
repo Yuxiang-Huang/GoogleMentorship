@@ -59,6 +59,8 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
 
         health = 0;
 
+        damage *= (int)Mathf.Pow(Config.ageUnitFactor, age);
+
         //reveal this tile
         tile.setDark(false);
         GameManager.instance.spellTiles.Add(tile);
@@ -105,7 +107,7 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Full Health: n/a";
-        damageText.text = "Damage: " + damage;
+        damageText.text = "Damage: " + damage * (int)Mathf.Pow(Config.ageUnitFactor, age);
         sellText.text = "Despawn";
     }
 

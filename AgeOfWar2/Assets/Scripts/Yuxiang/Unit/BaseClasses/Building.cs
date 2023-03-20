@@ -58,8 +58,9 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         unitImages[age].SetActive(true);
         imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
 
-        //modify health according to age
+        //modify health and damage according to age
         fullHealth *= (int)Mathf.Pow(Config.ageUnitFactor, age);
+        damage *= (int)Mathf.Pow(Config.ageUnitFactor, age);
 
         //health
         health = fullHealth;
@@ -113,7 +114,7 @@ public class Building : MonoBehaviourPunCallbacks, IUnit
         string unitName = ToString();
         nameText.text = unitName.Substring(0, unitName.IndexOf("("));
         healthText.text = "Full Health: " + fullHealth * (int)Mathf.Pow(Config.ageUnitFactor, PlayerController.instance.age);
-        damageText.text = "Damage: " + damage;
+        damageText.text = "Damage: " + damage * (int)Mathf.Pow(Config.ageUnitFactor, age);
         sellText.text = "Despawn";
     }
 
