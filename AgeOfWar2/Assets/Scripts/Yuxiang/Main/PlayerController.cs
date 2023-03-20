@@ -438,11 +438,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void spawn()
     {
-        //update visibility
-        List<Tile> tileList = visibleTiles.ToList();
-        for (int i = tileList.Count - 1; i >= 0; i--)
+        //update visibility if didn't lost
+        if (!lost)
         {
-            tileList[i].updateVisibility();
+            List<Tile> tileList = visibleTiles.ToList();
+            for (int i = tileList.Count - 1; i >= 0; i--)
+            {
+                tileList[i].updateVisibility();
+            }
         }
 
         foreach (SpawnInfo info in spawnList.Values)
