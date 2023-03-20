@@ -280,16 +280,20 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void checkDeath()
     {
+        //end turn once
+        if (!turnEnded) return;
+
         //everyone is ready
         var players = PhotonNetwork.CurrentRoom.Players;
         if (players.All(p => p.Value.CustomProperties.ContainsKey("CheckedDeath") && (bool)p.Value.CustomProperties["CheckedDeath"]))
         {
+            turnEnded = false;
+
             //different player start every turn
             allPlayers.Add(allPlayers[0]);
             allPlayers.RemoveAt(0);
 
             //next turn
-            turnEnded = false;
             PV.RPC(nameof(startTurn), RpcTarget.AllViaServer);
         }
     }
