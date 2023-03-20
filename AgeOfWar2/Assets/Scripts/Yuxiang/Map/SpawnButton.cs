@@ -23,6 +23,8 @@ public class SpawnButton : MonoBehaviour
     [SerializeField] bool unlocked;
     [SerializeField] GameObject lockObject;
 
+    [SerializeField] GameObject description;
+
     public List<Sprite> unitImages;
 
     void Awake()
@@ -47,6 +49,8 @@ public class SpawnButton : MonoBehaviour
         {
             lockObject.SetActive(true);
         }
+
+        description.SetActive(false);
     }
 
     public void spawn()
@@ -123,10 +127,14 @@ public class SpawnButton : MonoBehaviour
     {
         if (SpawnManager.instance.keys > 0)
             lockObject.GetComponent<Image>().color = new Color(0, 0, 0, 0.2f);
+
+        description.SetActive(true);
     }
 
     public void OnPointerExit()
     {
         lockObject.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
+
+        description.SetActive(false);
     }
 }

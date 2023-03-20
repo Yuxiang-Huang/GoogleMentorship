@@ -1063,6 +1063,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1154097729526567119, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1981828075137195030, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: Generate same amount of gold as a territory tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
 --- !u!224 &182037197 stripped
@@ -1398,6 +1418,19 @@ PrefabInstance:
     - target: {fileID: 195891942802153982, guid: 92c312100072046779c20a63ffefc397, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: "After one turn, reveal all tiles within three tiles radius. 3\xD7 damage
+        on tile. 2\xD7 damage one tile away. 1\xD7 damage two tiles away."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
@@ -1745,6 +1778,23 @@ PrefabInstance:
     - target: {fileID: 195891942802153982, guid: 92c312100072046779c20a63ffefc397, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154097729526567119, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: Reveal all tile within three tiles radius. Attack one enemy unit closest
+        to base each turn within two tiles radius.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
@@ -4306,6 +4356,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1154097729526567119, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: He knows how to swim (Can tread on water tiles)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
 --- !u!224 &919320101 stripped
@@ -5363,6 +5429,26 @@ PrefabInstance:
     - target: {fileID: 195891942802153982, guid: 92c312100072046779c20a63ffefc397, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154097729526567119, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1981828075137195030, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: Can attack within two tiles radius.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
@@ -7084,6 +7170,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1154097729526567119, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: Attack all enemy units within one tile radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
 --- !u!224 &1481958379 stripped
@@ -8579,6 +8681,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1154097729526567119, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: Can move two tiles each turn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
 --- !u!224 &1854757769 stripped
@@ -9645,6 +9763,26 @@ PrefabInstance:
     - target: {fileID: 195891942802153982, guid: 92c312100072046779c20a63ffefc397, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154097729526567119, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_text
+      value: Most basic unit that attack one enemy unit within one tile radius.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078796322576820809, guid: 92c312100072046779c20a63ffefc397, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c312100072046779c20a63ffefc397, type: 3}
