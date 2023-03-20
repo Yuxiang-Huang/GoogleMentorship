@@ -251,16 +251,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         //all players moved
         if (numPlayerMoved == allPlayers.Count)
         {
-            //all players attack
-            foreach (PlayerController player in allPlayersOriginal)
-            {
-                player.PV.RPC(nameof(player.attack), player.PV.Owner);
-            }
+            StartCoroutine(nameof(delayAttack));
         }
         else
         {
             //next player move
             allPlayers[numPlayerMoved].PV.RPC("troopMove", allPlayers[numPlayerMoved].PV.Owner);
+        }
+    }
+
+    public IEnumerator delayAttack()
+    {
+        yield return new WaitForSeconds(1f);
+
+        //all players attack
+        foreach (PlayerController player in allPlayersOriginal)
+        {
+            player.PV.RPC(nameof(player.attack), player.PV.Owner);
         }
     }
 
