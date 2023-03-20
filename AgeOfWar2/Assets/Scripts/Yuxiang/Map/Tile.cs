@@ -24,8 +24,6 @@ public class Tile : MonoBehaviour
     public GameObject dark;
     public GameObject gray;
 
-    [SerializeField] List<Color> ownerColor;
-
     [SerializeField] List<GameObject> borders;
 
     private void Awake()
@@ -117,13 +115,14 @@ public class Tile : MonoBehaviour
         PlayerController owner = GameManager.instance.allPlayersOriginal[ownerID];
 
         territoryColor.SetActive(true);
-        territoryColor.GetComponent<SpriteRenderer>().color = new Color(ownerColor[ownerID].r, ownerColor[ownerID].g,
-            ownerColor[ownerID].b, 0.2f);
+        territoryColor.GetComponent<SpriteRenderer>().color = new Color(
+            TileManager.instance.ownerColors[ownerID].r, TileManager.instance.ownerColors[ownerID].g,
+            TileManager.instance.ownerColors[ownerID].b, Config.territoryColorOpacity);
 
         foreach (GameObject border in borders)
         {
             border.SetActive(true);
-            border.GetComponent<SpriteRenderer>().color = ownerColor[ownerID];
+            border.GetComponent<SpriteRenderer>().color = TileManager.instance.ownerColors[ownerID];
         }
 
         foreach (Tile neighbor in neighbors)

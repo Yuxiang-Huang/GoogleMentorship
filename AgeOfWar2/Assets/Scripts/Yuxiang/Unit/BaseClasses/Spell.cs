@@ -58,7 +58,6 @@ public class Spell : MonoBehaviourPunCallbacks, IUnit
         imageRenderer = unitImages[age].GetComponent<SpriteRenderer>();
 
         health = 0;
-
         damage *= (int)Mathf.Pow(Config.ageUnitFactor, age);
 
         //reveal this tile

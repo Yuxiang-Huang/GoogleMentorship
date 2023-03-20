@@ -14,6 +14,10 @@ public class TileManager : MonoBehaviourPunCallbacks
 
     public Tile[,] tiles;
 
+    //for tile territory colors
+    [SerializeField] List<Color> ownerColorsOrig;
+    public List<Color> ownerColors;
+
     //building blocks
     public const float tileSize = 1;
 
@@ -122,6 +126,15 @@ public class TileManager : MonoBehaviourPunCallbacks
         instance = this;
 
         PV = GetComponent<PhotonView>();
+
+        //shuffle colors
+        ownerColors = new List<Color>();
+        while (ownerColorsOrig.Count > 0)
+        {
+            int index = Random.Range(0, ownerColorsOrig.Count);
+            ownerColors.Add(ownerColorsOrig[index]);
+            ownerColorsOrig.RemoveAt(index);
+        }
 
         //check borders in prefab
         neighborIndexOddRow = new Dictionary<Vector2Int, int>();

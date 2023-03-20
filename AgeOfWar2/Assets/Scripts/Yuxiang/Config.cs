@@ -13,4 +13,6 @@ public class Config
     public static int defaultTimeInc = 10;
 
     public static Vector2Int mapSize = new Vector2Int(25, 8);
+
+    public static float territoryColorOpacity = 0.3f;
 }
