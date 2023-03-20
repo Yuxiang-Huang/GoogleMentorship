@@ -1635,4 +1635,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version16
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version17

@@ -15886,62 +15886,62 @@ struct UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3  : public MonoBehavio
 	Canvas_t2DB4CEFDFF732884866C83F11ABF75F5AE8FFB26* ___healthbarCanvas_6;
 	// UnityEngine.GameObject UIManager::arrowPrefab
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___arrowPrefab_7;
-	// System.Collections.Generic.Dictionary`2<UnityEngine.Color,System.String> UIManager::colorToString
-	Dictionary_2_tD1ABB0E63F077DE007695B628F1A4CC43E593377* ___colorToString_8;
 	// System.Int32 UIManager::turnNum
-	int32_t ___turnNum_9;
+	int32_t ___turnNum_8;
 	// TMPro.TextMeshProUGUI UIManager::turnNumText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___turnNumText_10;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___turnNumText_9;
 	// System.Int32 UIManager::initialTime
-	int32_t ___initialTime_11;
+	int32_t ___initialTime_10;
 	// System.Int32 UIManager::timeInc
-	int32_t ___timeInc_12;
+	int32_t ___timeInc_11;
 	// UnityEngine.GameObject UIManager::IntroText
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___IntroText_13;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___IntroText_12;
 	// UnityEngine.GameObject UIManager::Shop
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Shop_14;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Shop_13;
 	// UnityEngine.GameObject UIManager::AgeUI
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___AgeUI_15;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___AgeUI_14;
 	// UnityEngine.GameObject UIManager::turnBtn
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___turnBtn_16;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___turnBtn_15;
 	// UnityEngine.GameObject UIManager::cancelTurnBtn
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___cancelTurnBtn_17;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___cancelTurnBtn_16;
 	// UnityEngine.Coroutine UIManager::timeCoroutine
-	Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* ___timeCoroutine_18;
+	Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* ___timeCoroutine_17;
 	// System.Int32 UIManager::curTimeUsed
-	int32_t ___curTimeUsed_19;
+	int32_t ___curTimeUsed_18;
 	// UnityEngine.GameObject UIManager::infoTabUnit
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___infoTabUnit_20;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___infoTabUnit_19;
 	// TMPro.TextMeshProUGUI UIManager::unitNameText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitNameText_21;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitNameText_20;
 	// TMPro.TextMeshProUGUI UIManager::unitHealthText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitHealthText_22;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitHealthText_21;
 	// TMPro.TextMeshProUGUI UIManager::unitDamageText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitDamageText_23;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitDamageText_22;
 	// TMPro.TextMeshProUGUI UIManager::unitSellText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitSellText_24;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitSellText_23;
 	// TMPro.TextMeshProUGUI UIManager::unitUpgradeText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitUpgradeText_25;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___unitUpgradeText_24;
 	// UnityEngine.GameObject UIManager::sellBtn
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___sellBtn_26;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___sellBtn_25;
 	// UnityEngine.GameObject UIManager::upgradeBtn
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___upgradeBtn_27;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___upgradeBtn_26;
 	// TMPro.TextMeshProUGUI UIManager::timeText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___timeText_28;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___timeText_27;
 	// TMPro.TextMeshProUGUI UIManager::goldText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___goldText_29;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___goldText_28;
 	// UnityEngine.GameObject UIManager::playerList
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___playerList_30;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___playerList_29;
 	// System.Collections.Generic.List`1<TMPro.TextMeshProUGUI> UIManager::playerNameList
-	List_1_tA45AF46ADAFAFE4A5AB3C1F2504647F7CF98AD08* ___playerNameList_31;
+	List_1_tA45AF46ADAFAFE4A5AB3C1F2504647F7CF98AD08* ___playerNameList_30;
 	// UnityEngine.GameObject UIManager::infoTabPlayer
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___infoTabPlayer_32;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___infoTabPlayer_31;
 	// System.Collections.Generic.List`1<TMPro.TextMeshProUGUI> UIManager::playerInfoText
-	List_1_tA45AF46ADAFAFE4A5AB3C1F2504647F7CF98AD08* ___playerInfoText_33;
+	List_1_tA45AF46ADAFAFE4A5AB3C1F2504647F7CF98AD08* ___playerInfoText_32;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> UIManager::checkmarkList
-	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___checkmarkList_34;
+	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___checkmarkList_33;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> UIManager::skullList
-	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___skullList_35;
+	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___skullList_34;
+	// System.Collections.Generic.Dictionary`2<UnityEngine.Color,System.String> UIManager::colorToString
+	Dictionary_2_tD1ABB0E63F077DE007695B628F1A4CC43E593377* ___colorToString_35;
 	// UnityEngine.GameObject UIManager::leaveBtn
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___leaveBtn_36;
 	// System.Collections.Generic.List`1<System.String> UIManager::ageNameList
@@ -27157,7 +27157,7 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4490[4] =
 	static_cast<int32_t>(offsetof(U3CcancelTimerU3Ed__41_t5F835E94F8B876C837A78287D970658CC083EB89, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CcancelTimerU3Ed__41_t5F835E94F8B876C837A78287D970658CC083EB89, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CcancelTimerU3Ed__41_t5F835E94F8B876C837A78287D970658CC083EB89, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CcancelTimerU3Ed__41_t5F835E94F8B876C837A78287D970658CC083EB89, ___U3CiU3E5__2_3)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4491[37] = 
 {
-	static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3_StaticFields, ___instance_4)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___PV_5)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___healthbarCanvas_6)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___arrowPrefab_7)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___colorToString_8)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___turnNum_9)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___turnNumText_10)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___initialTime_11)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___timeInc_12)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___IntroText_13)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___Shop_14)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___AgeUI_15)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___turnBtn_16)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___cancelTurnBtn_17)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___timeCoroutine_18)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___curTimeUsed_19)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___infoTabUnit_20)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitNameText_21)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitHealthText_22)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitDamageText_23)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitSellText_24)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitUpgradeText_25)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___sellBtn_26)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___upgradeBtn_27)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___timeText_28)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___goldText_29)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___playerList_30)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___playerNameList_31)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___infoTabPlayer_32)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___playerInfoText_33)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___checkmarkList_34)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___skullList_35)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___leaveBtn_36)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___ageNameList_37)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___ageAdvanceBtn_38)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___ageText_39)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___goldNeedToAdvanceText_40)),};
+	static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3_StaticFields, ___instance_4)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___PV_5)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___healthbarCanvas_6)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___arrowPrefab_7)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___turnNum_8)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___turnNumText_9)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___initialTime_10)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___timeInc_11)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___IntroText_12)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___Shop_13)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___AgeUI_14)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___turnBtn_15)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___cancelTurnBtn_16)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___timeCoroutine_17)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___curTimeUsed_18)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___infoTabUnit_19)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitNameText_20)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitHealthText_21)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitDamageText_22)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitSellText_23)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___unitUpgradeText_24)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___sellBtn_25)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___upgradeBtn_26)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___timeText_27)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___goldText_28)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___playerList_29)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___playerNameList_30)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___infoTabPlayer_31)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___playerInfoText_32)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___checkmarkList_33)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___skullList_34)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___colorToString_35)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___leaveBtn_36)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___ageNameList_37)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___ageAdvanceBtn_38)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___ageText_39)),static_cast<int32_t>(offsetof(UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3, ___goldNeedToAdvanceText_40)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4492[13] = 
 {
 	static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CPVU3Ek__BackingField_5)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CownerIDU3Ek__BackingField_6)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___tile_7)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3CageU3Ek__BackingField_8)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___upgradeGold_9)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___sellGold_10)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___imageRenderer_11)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___unitImages_12)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___healthbar_13)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___U3ChealthU3Ek__BackingField_14)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___fullHealth_15)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___offset_16)),static_cast<int32_t>(offsetof(Building_t950D5394E080624D7E96B158EF852EA16ADB3650, ___damage_17)),};

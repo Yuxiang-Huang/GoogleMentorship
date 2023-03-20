@@ -89,6 +89,7 @@ MonoBehaviour:
   - removeFromPlayerList
   - attack
   - removeSpellTileReveal
+  - createColorList
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
