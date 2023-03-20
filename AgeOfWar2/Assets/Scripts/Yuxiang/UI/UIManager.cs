@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject arrowPrefab;
 
-    public List<string> colorNameList;
+    [SerializeField] Dictionary<Color, string> colorToString;
 
     [SerializeField] int turnNum;
     [SerializeField] TextMeshProUGUI turnNumText;
@@ -101,6 +101,13 @@ public class UIManager : MonoBehaviour
         {
             skull.SetActive(false);
         }
+
+        //initialize color to string
+        colorToString = new Dictionary<Color, string>();
+        colorToString.Add(new Color(0, 1, 1), "Cyan");
+        colorToString.Add(new Color(1, 0, 0), "Red");
+        colorToString.Add(new Color(1, 1, 0), "Yellow");
+        colorToString.Add(new Color(1, 0, 1), "Purple");
     }
 
     #region Start Game
@@ -318,14 +325,14 @@ public class UIManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void fillPlayerInfoTab(string nickName, string color, string age, int gold,
+    public void fillPlayerInfoTab(string nickName, Color color, string age, int gold,
         int numTroop, int numBuilding, int numTerritory)
     {
         //name
         playerInfoText[0].text = nickName;
 
         //Color
-        playerInfoText[1].text = color;
+        playerInfoText[1].text = colorToString[color];
 
         //Age
         playerInfoText[2].text = age;
