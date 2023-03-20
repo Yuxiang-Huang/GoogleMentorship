@@ -137,14 +137,71 @@ ScriptsOnlyBuild:
     fullTypeName: ScreenManager
     methodName: DisplayScreen
   - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
+  - assembly: Assembly-CSharp
     fullTypeName: UIManager
     methodName: updatePlayerInfoTab
-  - assembly: Assembly-CSharp
-    fullTypeName: SpawnButton
-    methodName: spawn
-  - assembly: Assembly-CSharp
-    fullTypeName: SpawnButton
-    methodName: spawn
   - assembly: Assembly-CSharp
     fullTypeName: UIManager
     methodName: upgrade
@@ -152,14 +209,8 @@ ScriptsOnlyBuild:
     fullTypeName: UIManager
     methodName: updatePlayerInfoTab
   - assembly: Assembly-CSharp
-    fullTypeName: SpawnButton
-    methodName: spawn
-  - assembly: Assembly-CSharp
     fullTypeName: UIManager
     methodName: updatePlayerInfoTab
-  - assembly: Assembly-CSharp
-    fullTypeName: SpawnButton
-    methodName: spawn
   - assembly: Assembly-CSharp
     fullTypeName: UIManager
     methodName: sell
@@ -167,26 +218,17 @@ ScriptsOnlyBuild:
     fullTypeName: UIManager
     methodName: updatePlayerInfoTab
   - assembly: Assembly-CSharp
-    fullTypeName: SpawnButton
-    methodName: spawn
-  - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: endTurn
   - assembly: Assembly-CSharp
     fullTypeName: TutorialManager
     methodName: endTutorial
   - assembly: Assembly-CSharp
-    fullTypeName: SpawnButton
-    methodName: spawn
-  - assembly: Assembly-CSharp
     fullTypeName: UIManager
     methodName: ageAdvance
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: leave
-  - assembly: Assembly-CSharp
-    fullTypeName: SpawnButton
-    methodName: spawn
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: cancelEndTurn
@@ -810,7 +852,7 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: fa857de5492f642bbe8cacbcfc8d6d95
+      Hash: c40d8f553bf22348e0603b09a1e2966f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnManager
@@ -1530,7 +1572,7 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
-      Hash: cc094702a837d723cc31518ac360e9ed
+      Hash: 96d114002c88b1026d33f9e1034109de
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnButton
@@ -1592,4 +1634,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version14
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version15

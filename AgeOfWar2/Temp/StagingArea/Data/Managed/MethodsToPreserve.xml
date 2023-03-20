@@ -28,6 +28,20 @@
 			<method name="DisplayScreen"/>
 		</type>
 		<type fullname="SpawnButton">
+			<method name="OnPointerEnter"/>
+			<method name="OnPointerEnter"/>
+			<method name="OnPointerEnter"/>
+			<method name="OnPointerEnter"/>
+			<method name="OnPointerEnter"/>
+			<method name="OnPointerEnter"/>
+			<method name="OnPointerEnter"/>
+			<method name="OnPointerExit"/>
+			<method name="OnPointerExit"/>
+			<method name="OnPointerExit"/>
+			<method name="OnPointerExit"/>
+			<method name="OnPointerExit"/>
+			<method name="OnPointerExit"/>
+			<method name="OnPointerExit"/>
 			<method name="spawn"/>
 			<method name="spawn"/>
 			<method name="spawn"/>
