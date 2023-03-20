@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AOE
     - Amphibian
+    - ExtraHealth
     - ExtraMoney
     - ExtraView
     - GameManager
@@ -26,7 +27,6 @@ ScriptsOnlyBuild:
     - TutorialManager
     - UIManager
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonView
@@ -137,6 +137,15 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ScreenManager
     methodName: DisplayScreen
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SpawnButton
+    methodName: spawn
   - assembly: Assembly-CSharp
     fullTypeName: SpawnButton
     methodName: OnPointerEnter
@@ -333,6 +342,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7654}
     - Class: 114
       Script: {instanceID: 7844}
+    - Class: 114
+      Script: {instanceID: 159392}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -424,6 +435,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7780}
     - Class: 114
       Script: {instanceID: 7788}
+    - Class: 114
+      Script: {instanceID: 159392}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1573,7 +1586,7 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
-      Hash: 96d114002c88b1026d33f9e1034109de
+      Hash: 9904956b4a9adeec8ea12269f83d325c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnButton
@@ -1631,6 +1644,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 195995f1542ae0bd88e8a98066d7139b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ExtraHealth
   platform: 20
   scenePathNames:
   - Assets/Scenes/Lobby.unity

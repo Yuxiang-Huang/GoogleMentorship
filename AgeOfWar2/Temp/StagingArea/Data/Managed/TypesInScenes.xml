@@ -2,6 +2,7 @@
 	<assembly fullname="Assembly-CSharp">
 		<type fullname="Amphibian" preserve="nothing"/>
 		<type fullname="AOE" preserve="nothing"/>
+		<type fullname="ExtraHealth" preserve="nothing"/>
 		<type fullname="ExtraMoney" preserve="nothing"/>
 		<type fullname="ExtraView" preserve="nothing"/>
 		<type fullname="GameManager" preserve="nothing"/>

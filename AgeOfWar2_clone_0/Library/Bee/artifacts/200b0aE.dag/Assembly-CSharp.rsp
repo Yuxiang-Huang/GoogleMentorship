@@ -392,6 +392,7 @@
 "Assets/Scripts/Yuxiang/Unit/Building/MainBase.cs"
 "Assets/Scripts/Yuxiang/Unit/Spell/AOE.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop/Amphibian.cs"
+"Assets/Scripts/Yuxiang/Unit/Troop/ExtraHealth.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop/LongRange.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop/Melee.cs"
 "Assets/Scripts/Yuxiang/Unit/Troop/Speed.cs"

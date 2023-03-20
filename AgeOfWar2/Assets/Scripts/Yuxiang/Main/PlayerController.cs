@@ -588,6 +588,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 if (allBuildings[i].GetComponent<MainBase>() != null)
                 {
                     end();
+                    allBuildings.Remove(allBuildings[i]);
+                    break;
                 }
                 allBuildings.Remove(allBuildings[i]);
             }
@@ -624,13 +626,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //kill all troops
         foreach (Troop troop in allTroops)
         {
-            troop.kill();
+            troop.PV.RPC(nameof(troop.kill), RpcTarget.All);
         }
 
         //destroy all buildings
         foreach (Building building in allBuildings)
         {
-            building.kill();
+            building.PV.RPC(nameof(building.kill), RpcTarget.All);
         }
 
         //clear spawnList
