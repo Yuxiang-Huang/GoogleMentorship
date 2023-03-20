@@ -5698,3 +5698,15 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 258.029834 seconds.
+  path: Assets/Pictures/UI/Lock.png
+  artifactKey: Guid(062a8d05cf60d4bf5845445a4ecfdab0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pictures/UI/Lock.png using Guid(062a8d05cf60d4bf5845445a4ecfdab0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18a51c41fb211911267f4c7761ae3ab0') in 0.108915 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.410431 seconds.
+  path: Assets/Pictures/UI/Lock.png
+  artifactKey: Guid(062a8d05cf60d4bf5845445a4ecfdab0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pictures/UI/Lock.png using Guid(062a8d05cf60d4bf5845445a4ecfdab0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18dd38e041fd4cce85be2914255560f2') in 0.030388 seconds 
