@@ -19,6 +19,7 @@ public class Tile : MonoBehaviour
 
     [Header("Highlight")]
     [SerializeField] GameObject highlightTile;
+    [SerializeField] GameObject territoryColor;
 
     public GameObject dark;
     public GameObject gray;
@@ -35,7 +36,8 @@ public class Tile : MonoBehaviour
             border.SetActive(false);
         }
 
-        //covered in the beginning
+        //no color and covered in the beginning
+        territoryColor.SetActive(false);
         dark.SetActive(true);
     }
 
@@ -46,6 +48,7 @@ public class Tile : MonoBehaviour
 
     public void updateStatus(int newOwnerID, IUnit newUnit)
     {
+        //if owner changes
         if (ownerID != newOwnerID)
         {
             //remove from other player's territory
@@ -112,6 +115,10 @@ public class Tile : MonoBehaviour
     public void setTerritoryColor()
     {
         PlayerController owner = GameManager.instance.allPlayersOriginal[ownerID];
+
+        territoryColor.SetActive(true);
+        territoryColor.GetComponent<SpriteRenderer>().color = new Color(ownerColor[ownerID].r, ownerColor[ownerID].g,
+            ownerColor[ownerID].b, 0.2f);
 
         foreach (GameObject border in borders)
         {
@@ -210,6 +217,8 @@ public class Tile : MonoBehaviour
         {
             border.SetActive(false);
         }
+
+        territoryColor.SetActive(false);
 
         ownerID = -1;
     }
