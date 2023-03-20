@@ -16,8 +16,6 @@ public class UIManager : MonoBehaviour
 
     public GameObject arrowPrefab;
 
-    [SerializeField] Dictionary<Color, string> colorToString;
-
     [SerializeField] int turnNum;
     [SerializeField] TextMeshProUGUI turnNumText;
 
@@ -57,6 +55,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> playerInfoText;
     [SerializeField] List<GameObject> checkmarkList;
     public List<GameObject> skullList;
+
+    public Dictionary<Color, string> colorToString;
 
     public GameObject leaveBtn;
 
@@ -325,14 +325,14 @@ public class UIManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void fillPlayerInfoTab(string nickName, Color color, string age, int gold,
+    public void fillPlayerInfoTab(string nickName, string color, string age, int gold,
         int numTroop, int numBuilding, int numTerritory)
     {
         //name
         playerInfoText[0].text = nickName;
 
         //Color
-        playerInfoText[1].text = colorToString[color];
+        playerInfoText[1].text = color;
 
         //Age
         playerInfoText[2].text = age;

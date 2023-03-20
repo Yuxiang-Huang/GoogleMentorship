@@ -69,6 +69,8 @@ struct InterfaceFuncInvoker0
 struct Action_2_tBCC61F27E6A6723F5DEAC0BC701267FC80237CFE;
 // System.Action`2<ExitGames.Client.Photon.DebugLevel,System.String>
 struct Action_2_tAE738514B9AB12BDB3C824C3567402B022DE8F6B;
+// System.Collections.Generic.Dictionary`2<UnityEngine.Color,System.String>
+struct Dictionary_2_tD1ABB0E63F077DE007695B628F1A4CC43E593377;
 // System.Collections.Generic.Dictionary`2<System.Int32,System.Text.Encoding>
 struct Dictionary_2_t87EDE08B2E48F793A22DE50D6B3CC2E7EBB2DB54;
 // System.Collections.Generic.Dictionary`2<UnityEngine.Vector2Int,System.Int32>
@@ -1130,10 +1132,8 @@ struct Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64  : public MonoBehaviour_t5
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___dark_12;
 	// UnityEngine.GameObject Tile::gray
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___gray_13;
-	// System.Collections.Generic.List`1<UnityEngine.Color> Tile::ownerColor
-	List_1_t242CDEAEC9C92000DA96982CDB9D592DDE2AADAF* ___ownerColor_14;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> Tile::borders
-	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___borders_15;
+	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___borders_14;
 };
 
 // UIManager
@@ -1145,8 +1145,8 @@ struct UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3  : public MonoBehavio
 	Canvas_t2DB4CEFDFF732884866C83F11ABF75F5AE8FFB26* ___healthbarCanvas_6;
 	// UnityEngine.GameObject UIManager::arrowPrefab
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___arrowPrefab_7;
-	// System.Collections.Generic.List`1<System.String> UIManager::colorNameList
-	List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD* ___colorNameList_8;
+	// System.Collections.Generic.Dictionary`2<UnityEngine.Color,System.String> UIManager::colorToString
+	Dictionary_2_tD1ABB0E63F077DE007695B628F1A4CC43E593377* ___colorToString_8;
 	// System.Int32 UIManager::turnNum
 	int32_t ___turnNum_9;
 	// TMPro.TextMeshProUGUI UIManager::turnNumText
@@ -1230,18 +1230,22 @@ struct TileManager_tFBBDFAC6A5BF52669B3CC976CF38997498154EC5  : public MonoBehav
 	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ___PV_6;
 	// Tile[,] TileManager::tiles
 	TileU5BU2CU5D_tE157540D68C23C8C6BFC6BB1A63BE27D9247FBAF* ___tiles_7;
+	// System.Collections.Generic.List`1<UnityEngine.Color> TileManager::ownerColorsOrig
+	List_1_t242CDEAEC9C92000DA96982CDB9D592DDE2AADAF* ___ownerColorsOrig_8;
+	// System.Collections.Generic.List`1<UnityEngine.Color> TileManager::ownerColors
+	List_1_t242CDEAEC9C92000DA96982CDB9D592DDE2AADAF* ___ownerColors_9;
 	// UnityEngine.GameObject TileManager::landTilePrefab
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___landTilePrefab_9;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___landTilePrefab_11;
 	// UnityEngine.GameObject TileManager::waterTilePrefab
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___waterTilePrefab_10;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___waterTilePrefab_12;
 	// System.Collections.Generic.Dictionary`2<UnityEngine.Vector2Int,System.Int32> TileManager::neighborIndexOddRow
-	Dictionary_2_tC6ED96B018034F4204FBB6A0A4D1EB5BB84B921C* ___neighborIndexOddRow_11;
+	Dictionary_2_tC6ED96B018034F4204FBB6A0A4D1EB5BB84B921C* ___neighborIndexOddRow_13;
 	// System.Collections.Generic.Dictionary`2<UnityEngine.Vector2Int,System.Int32> TileManager::neighborIndexEvenRow
-	Dictionary_2_tC6ED96B018034F4204FBB6A0A4D1EB5BB84B921C* ___neighborIndexEvenRow_12;
+	Dictionary_2_tC6ED96B018034F4204FBB6A0A4D1EB5BB84B921C* ___neighborIndexEvenRow_14;
 	// System.Int32[] TileManager::randomVals
-	Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* ___randomVals_13;
+	Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* ___randomVals_15;
 	// System.Int32[] TileManager::usedVals
-	Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* ___usedVals_14;
+	Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* ___usedVals_16;
 };
 
 // Troop

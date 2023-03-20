@@ -127,13 +127,22 @@ public class TileManager : MonoBehaviourPunCallbacks
 
         PV = GetComponent<PhotonView>();
 
-        //shuffle colors
-        ownerColors = new List<Color>();
-        while (ownerColorsOrig.Count > 0)
+        //create random colors if master client
+        if (PhotonNetwork.IsMasterClient)
         {
-            int index = Random.Range(0, ownerColorsOrig.Count);
-            ownerColors.Add(ownerColorsOrig[index]);
-            ownerColorsOrig.RemoveAt(index);
+            int[] randomIndices = new int[ownerColorsOrig.Count];
+
+            //shuffle
+            for (int i = 0; i < randomIndices.Length; i ++)
+            {
+                int index = Random.Range(0, ownerColorsOrig.Count);
+                ownerColors.Add(ownerColorsOrig[index]);
+                ownerColorsOrig.RemoveAt(index);
+                randomIndices[i] = index;
+            }
+
+            //sync
+            PV.RPC(nameof(createColorList), RpcTarget.Others, randomIndices);
         }
 
         //check borders in prefab
@@ -152,6 +161,19 @@ public class TileManager : MonoBehaviourPunCallbacks
         neighborIndexEvenRow.Add(new Vector2Int(1, 0), 4);
         neighborIndexEvenRow.Add(new Vector2Int(-1, -1), 1);
         neighborIndexEvenRow.Add(new Vector2Int(1, -1), 0);
+    }
+
+    [PunRPC]
+    public void createColorList(int[] randomIndices)
+    {
+        //shuffle colors
+        ownerColors = new List<Color>();
+
+        foreach (int index in randomIndices)
+        { 
+            ownerColors.Add(ownerColorsOrig[index]);
+            ownerColorsOrig.RemoveAt(index);
+        }
     }
 
     public void makeGrid()
