@@ -172,12 +172,12 @@ extern void GameManager_cancelEndTurn_m18DA56D9AC2E9B67778EC5A2F0AA182B7B966C2B 
 extern void GameManager_checkEndTurn_mED1D97F7D08A2E0E86AFFC2252BBA97216F0954A (void);
 // 0x00000050 System.Void GameManager::checkSpawn()
 extern void GameManager_checkSpawn_mDC51A35DF9790A4E4D9D13FC8F439F72C6871D6E (void);
-// 0x00000051 System.Void GameManager::checkAttack()
-extern void GameManager_checkAttack_m29B5F24FB33306DE99F089DD4A896500223CC72A (void);
-// 0x00000052 System.Void GameManager::checkDeath()
-extern void GameManager_checkDeath_mEC19A30FDE3C0C4E108056BB2845EE5867EAF88A (void);
-// 0x00000053 System.Void GameManager::checkMove()
+// 0x00000051 System.Void GameManager::checkMove()
 extern void GameManager_checkMove_m5E6A8E95A91EC7C651CF6841BE1D76880CE8C2CC (void);
+// 0x00000052 System.Void GameManager::checkAttack()
+extern void GameManager_checkAttack_m29B5F24FB33306DE99F089DD4A896500223CC72A (void);
+// 0x00000053 System.Void GameManager::checkDeath()
+extern void GameManager_checkDeath_mEC19A30FDE3C0C4E108056BB2845EE5867EAF88A (void);
 // 0x00000054 System.Void GameManager::leave()
 extern void GameManager_leave_m004D537EC8C7D8B0E42F9C9D0C88FDF067A68923 (void);
 // 0x00000055 System.Collections.IEnumerator GameManager::leaveEnu()
@@ -194,10 +194,10 @@ extern void U3CU3Ec_U3CcheckStartU3Eb__12_0_m6140C935737382C5498DAB72C9693C8BE60
 extern void U3CU3Ec_U3CcheckEndTurnU3Eb__16_0_m5FEC5882AD8B862D4A0D3E74486DDE778BC9E4EE (void);
 // 0x0000005B System.Boolean GameManager/<>c::<checkSpawn>b__17_0(System.Collections.Generic.KeyValuePair`2<System.Int32,Photon.Realtime.Player>)
 extern void U3CU3Ec_U3CcheckSpawnU3Eb__17_0_mF91C9DF85D86C04FBC7F6D4C3CDFABD0404E077E (void);
-// 0x0000005C System.Boolean GameManager/<>c::<checkAttack>b__18_0(System.Collections.Generic.KeyValuePair`2<System.Int32,Photon.Realtime.Player>)
-extern void U3CU3Ec_U3CcheckAttackU3Eb__18_0_m49389F6B4864795435DD2C1CE81063AA2E4DCAB6 (void);
-// 0x0000005D System.Boolean GameManager/<>c::<checkDeath>b__19_0(System.Collections.Generic.KeyValuePair`2<System.Int32,Photon.Realtime.Player>)
-extern void U3CU3Ec_U3CcheckDeathU3Eb__19_0_mAF71594FE3CEBF3ADE852BBD4B3F98A83BD05427 (void);
+// 0x0000005C System.Boolean GameManager/<>c::<checkAttack>b__19_0(System.Collections.Generic.KeyValuePair`2<System.Int32,Photon.Realtime.Player>)
+extern void U3CU3Ec_U3CcheckAttackU3Eb__19_0_m89E5D35510AD4B3CFBE2A6CFEACB04A666A0B037 (void);
+// 0x0000005D System.Boolean GameManager/<>c::<checkDeath>b__20_0(System.Collections.Generic.KeyValuePair`2<System.Int32,Photon.Realtime.Player>)
+extern void U3CU3Ec_U3CcheckDeathU3Eb__20_0_mDBBF49B4DFE9AC31F8D329A4398193114CD77E64 (void);
 // 0x0000005E System.Boolean GameManager/<>c::<leaveEnu>b__22_0()
 extern void U3CU3Ec_U3CleaveEnuU3Eb__22_0_m71353A799C5E3965A9124CBE85F30DBF2E9BA18D (void);
 // 0x0000005F System.Void GameManager/<leaveEnu>d__22::.ctor(System.Int32)
@@ -224,12 +224,12 @@ extern void PlayerController_Update_m1F4051EB5BCBCCE5EEE2E3E49B7E278C3B14EC33 (v
 extern void PlayerController_stop_m6BE2E1E3FEE05E30FB1B5530625F78F7655EA909 (void);
 // 0x0000006A System.Void PlayerController::spawn()
 extern void PlayerController_spawn_mE1D272B5A49BF3D51F1EAD73CEDF11EF02FB8E7E (void);
-// 0x0000006B System.Void PlayerController::attack()
-extern void PlayerController_attack_mF55B75FC797DC5F73924A62FC2CEE12F3AF1E61C (void);
-// 0x0000006C System.Void PlayerController::checkDeath()
-extern void PlayerController_checkDeath_m57F0B54899B473A71A909C2D77229217CDACBADB (void);
-// 0x0000006D System.Void PlayerController::troopMove()
+// 0x0000006B System.Void PlayerController::troopMove()
 extern void PlayerController_troopMove_m4EA234D72897C8EB9F26B6752A8AC9731F5BC276 (void);
+// 0x0000006C System.Void PlayerController::attack()
+extern void PlayerController_attack_mF55B75FC797DC5F73924A62FC2CEE12F3AF1E61C (void);
+// 0x0000006D System.Void PlayerController::checkDeath()
+extern void PlayerController_checkDeath_m57F0B54899B473A71A909C2D77229217CDACBADB (void);
 // 0x0000006E System.Void PlayerController::fillInfoTab(System.Int32)
 extern void PlayerController_fillInfoTab_mB0D25A1E3DFF908A82A27D8336AC864062E0D732 (void);
 // 0x0000006F System.Void PlayerController::end()
@@ -752,9 +752,9 @@ static Il2CppMethodPointer s_methodPointers[335] =
 	GameManager_cancelEndTurn_m18DA56D9AC2E9B67778EC5A2F0AA182B7B966C2B,
 	GameManager_checkEndTurn_mED1D97F7D08A2E0E86AFFC2252BBA97216F0954A,
 	GameManager_checkSpawn_mDC51A35DF9790A4E4D9D13FC8F439F72C6871D6E,
+	GameManager_checkMove_m5E6A8E95A91EC7C651CF6841BE1D76880CE8C2CC,
 	GameManager_checkAttack_m29B5F24FB33306DE99F089DD4A896500223CC72A,
 	GameManager_checkDeath_mEC19A30FDE3C0C4E108056BB2845EE5867EAF88A,
-	GameManager_checkMove_m5E6A8E95A91EC7C651CF6841BE1D76880CE8C2CC,
 	GameManager_leave_m004D537EC8C7D8B0E42F9C9D0C88FDF067A68923,
 	GameManager_leaveEnu_m219BD4114B7B69EAE3B5CE3C0FA7D220576CE300,
 	GameManager__ctor_mF453CED520617BFB65C52405A964E06CF17DB368,
@@ -763,8 +763,8 @@ static Il2CppMethodPointer s_methodPointers[335] =
 	U3CU3Ec_U3CcheckStartU3Eb__12_0_m6140C935737382C5498DAB72C9693C8BE60D1EFB,
 	U3CU3Ec_U3CcheckEndTurnU3Eb__16_0_m5FEC5882AD8B862D4A0D3E74486DDE778BC9E4EE,
 	U3CU3Ec_U3CcheckSpawnU3Eb__17_0_mF91C9DF85D86C04FBC7F6D4C3CDFABD0404E077E,
-	U3CU3Ec_U3CcheckAttackU3Eb__18_0_m49389F6B4864795435DD2C1CE81063AA2E4DCAB6,
-	U3CU3Ec_U3CcheckDeathU3Eb__19_0_mAF71594FE3CEBF3ADE852BBD4B3F98A83BD05427,
+	U3CU3Ec_U3CcheckAttackU3Eb__19_0_m89E5D35510AD4B3CFBE2A6CFEACB04A666A0B037,
+	U3CU3Ec_U3CcheckDeathU3Eb__20_0_mDBBF49B4DFE9AC31F8D329A4398193114CD77E64,
 	U3CU3Ec_U3CleaveEnuU3Eb__22_0_m71353A799C5E3965A9124CBE85F30DBF2E9BA18D,
 	U3CleaveEnuU3Ed__22__ctor_m4E0C799028B6728D23AD840747A0E64D4376BEAD,
 	U3CleaveEnuU3Ed__22_System_IDisposable_Dispose_m8C1987204F826FFA92BF79E95E96011A6A22AF15,
@@ -778,9 +778,9 @@ static Il2CppMethodPointer s_methodPointers[335] =
 	PlayerController_Update_m1F4051EB5BCBCCE5EEE2E3E49B7E278C3B14EC33,
 	PlayerController_stop_m6BE2E1E3FEE05E30FB1B5530625F78F7655EA909,
 	PlayerController_spawn_mE1D272B5A49BF3D51F1EAD73CEDF11EF02FB8E7E,
+	PlayerController_troopMove_m4EA234D72897C8EB9F26B6752A8AC9731F5BC276,
 	PlayerController_attack_mF55B75FC797DC5F73924A62FC2CEE12F3AF1E61C,
 	PlayerController_checkDeath_m57F0B54899B473A71A909C2D77229217CDACBADB,
-	PlayerController_troopMove_m4EA234D72897C8EB9F26B6752A8AC9731F5BC276,
 	PlayerController_fillInfoTab_mB0D25A1E3DFF908A82A27D8336AC864062E0D732,
 	PlayerController_end_m6E2C99E8520AD38FC514BA50E089390E9E775751,
 	PlayerController_removeFromPlayerList_m52716F906117CF2C63F34A729C51421027C1C3C9,

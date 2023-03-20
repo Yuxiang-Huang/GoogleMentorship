@@ -1124,14 +1124,16 @@ struct Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64  : public MonoBehaviour_t5
 	int32_t ___ownerID_9;
 	// UnityEngine.GameObject Tile::highlightTile
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___highlightTile_10;
+	// UnityEngine.GameObject Tile::territoryColor
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___territoryColor_11;
 	// UnityEngine.GameObject Tile::dark
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___dark_11;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___dark_12;
 	// UnityEngine.GameObject Tile::gray
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___gray_12;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___gray_13;
 	// System.Collections.Generic.List`1<UnityEngine.Color> Tile::ownerColor
-	List_1_t242CDEAEC9C92000DA96982CDB9D592DDE2AADAF* ___ownerColor_13;
+	List_1_t242CDEAEC9C92000DA96982CDB9D592DDE2AADAF* ___ownerColor_14;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> Tile::borders
-	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___borders_14;
+	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ___borders_15;
 };
 
 // UIManager
@@ -2151,7 +2153,7 @@ IL_0019_1:
 				V_2 = L_4;
 				// if (!curTile.dark.activeSelf && curTile.unit != null && curTile.unit.ownerID != ownerID)
 				Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* L_5 = V_2;
-				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = L_5->___dark_11;
+				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = L_5->___dark_12;
 				bool L_7;
 				L_7 = GameObject_get_activeSelf_m4F3E5240E138B66AAA080EA30759A3D0517DA368(L_6, NULL);
 				if (L_7)
@@ -2331,7 +2333,7 @@ IL_011f_1:
 				V_3 = L_55;
 				// if (!curTile.dark.activeSelf && curTile.unit != null && curTile.unit.ownerID != ownerID)
 				Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* L_56 = V_3;
-				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_57 = L_56->___dark_11;
+				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_57 = L_56->___dark_12;
 				bool L_58;
 				L_58 = GameObject_get_activeSelf_m4F3E5240E138B66AAA080EA30759A3D0517DA368(L_57, NULL);
 				if (L_58)
@@ -2560,7 +2562,7 @@ IL_0019_1:
 				V_2 = L_4;
 				// if (!curTile.dark.activeSelf && curTile.unit != null && curTile.unit.ownerID != ownerID)
 				Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* L_5 = V_2;
-				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = L_5->___dark_11;
+				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = L_5->___dark_12;
 				bool L_7;
 				L_7 = GameObject_get_activeSelf_m4F3E5240E138B66AAA080EA30759A3D0517DA368(L_6, NULL);
 				if (L_7)
@@ -2779,7 +2781,7 @@ IL_0019_1:
 				V_1 = L_4;
 				// if (!curTile.dark.activeSelf && curTile.unit != null && curTile.unit.ownerID != ownerID)
 				Tile_t192D2F5511792792FB74C37341AFAA9F6B77AE64* L_5 = V_1;
-				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = L_5->___dark_11;
+				GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = L_5->___dark_12;
 				bool L_7;
 				L_7 = GameObject_get_activeSelf_m4F3E5240E138B66AAA080EA30759A3D0517DA368(L_6, NULL);
 				if (L_7)

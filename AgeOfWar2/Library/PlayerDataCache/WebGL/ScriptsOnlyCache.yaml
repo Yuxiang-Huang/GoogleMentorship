@@ -25,10 +25,7 @@ ScriptsOnlyBuild:
     - TileManager
     - TutorialManager
     - UIManager
-    ParrelSync.dll:
-    - ParrelSync.ClonesManagerWindow
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonView
@@ -1185,7 +1182,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: ea7618fc7a0bb5c77bd12cd022a0d84e
+      Hash: 71706afbd96d8db2347e7417bbace91a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tile
