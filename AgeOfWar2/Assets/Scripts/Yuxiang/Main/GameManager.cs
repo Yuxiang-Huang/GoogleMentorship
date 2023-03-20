@@ -11,7 +11,7 @@ using System.IO;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    bool offlineMode = false;
+    [SerializeField] bool offlineMode = true;
 
     public static GameManager instance;
 
