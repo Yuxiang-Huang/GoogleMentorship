@@ -391,6 +391,9 @@ public class UIManager : MonoBehaviour
             {
                 spawnBtn.ageAdvanceUpdate();
             }
+
+            //able to unlock another unit
+            SpawnManager.instance.keys++;
         }
     }
 

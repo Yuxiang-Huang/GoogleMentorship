@@ -15,6 +15,9 @@ public class SpawnManager : MonoBehaviour
 
     public List<SpawnButton> spawnBtnList;
 
+    //for unlocking units
+    public int keys = 1;
+
     public void Awake()
     {
         instance = this;

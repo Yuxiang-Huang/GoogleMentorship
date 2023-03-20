@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
 public class SpawnButton : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class SpawnButton : MonoBehaviour
 
     [SerializeField] GameObject unit;
 
+    [SerializeField] bool unlocked;
+    [SerializeField] GameObject lockObject;
+
     public List<Sprite> unitImages;
 
     void Awake()
@@ -33,48 +37,69 @@ public class SpawnButton : MonoBehaviour
             cur.gameObject.SetActive(false);
         }
         spawnImage.transform.GetChild(0).gameObject.SetActive(true);
+
+        //lock
+        if (unlocked)
+        {
+            lockObject.SetActive(false);
+        }
+        else
+        {
+            lockObject.SetActive(true);
+        }
     }
 
     public void spawn()
     {
-        //not during taking turn phase
-        if (!PlayerController.instance.turnEnded)
+        //able to spawn if unlocked
+        if (unlocked)
         {
-            SpawnManager.instance.spawn(image, path,
-                goldNeedToSpawn * (int) Mathf.Pow(Config.ageCostFactor, PlayerController.instance.age),
-                spawnImage, unit);
-            UIManager.instance.updateInfoTabSpawn(unit.GetComponent<IUnit>());
-
-            //gray tiles, condition same as in playerController spawn
-            if (unit.CompareTag("Building"))
+            //not during taking turn phase
+            if (!PlayerController.instance.turnEnded)
             {
-                foreach (Tile tile in PlayerController.instance.visibleTiles)
+                SpawnManager.instance.spawn(image, path,
+                    goldNeedToSpawn * (int)Mathf.Pow(Config.ageCostFactor, PlayerController.instance.age),
+                    spawnImage, unit);
+                UIManager.instance.updateInfoTabSpawn(unit.GetComponent<IUnit>());
+
+                //gray tiles, condition same as in playerController spawn
+                if (unit.CompareTag("Building"))
                 {
-                    if (!(tile != null && tile.unit == null && PlayerController.instance.territory.Contains(tile)
-                        && !PlayerController.instance.spawnList.ContainsKey(tile.pos) && tile.terrain == "land"))
+                    foreach (Tile tile in PlayerController.instance.visibleTiles)
                     {
-                        tile.setGray(true);
+                        if (!(tile != null && tile.unit == null && PlayerController.instance.territory.Contains(tile)
+                            && !PlayerController.instance.spawnList.ContainsKey(tile.pos) && tile.terrain == "land"))
+                        {
+                            tile.setGray(true);
+                        }
+                    }
+                }
+                else if (unit.CompareTag("Troop"))
+                {
+                    foreach (Tile tile in PlayerController.instance.visibleTiles)
+                    {
+                        if (!(tile != null && tile.unit == null && PlayerController.instance.territory.Contains(tile)
+                            && !PlayerController.instance.spawnList.ContainsKey(tile.pos)
+                            && PlayerController.instance.canSpawn[tile.pos.x, tile.pos.y] &&
+                                (tile.terrain == "land" ||
+                                unit.GetComponent<Amphibian>() != null)))
+                        {
+                            tile.setGray(true);
+                        }
                     }
                 }
             }
-            else if (unit.CompareTag("Troop"))
+            else
             {
-                foreach (Tile tile in PlayerController.instance.visibleTiles)
-                {
-                    if (!(tile != null && tile.unit == null && PlayerController.instance.territory.Contains(tile)
-                        && !PlayerController.instance.spawnList.ContainsKey(tile.pos)
-                        && PlayerController.instance.canSpawn[tile.pos.x, tile.pos.y] &&
-                            (tile.terrain == "land" ||
-                            unit.GetComponent<Amphibian>() != null)))
-                    {
-                        tile.setGray(true);
-                    }
-                }
+                UIManager.instance.hideInfoTab();
             }
         }
-        else
+        //unlock if has key
+        else if (SpawnManager.instance.keys > 0)
         {
-            UIManager.instance.hideInfoTab();
+            SpawnManager.instance.keys--;
+            unlocked = true;
+            lockObject.SetActive(false);
         }
     }
 
@@ -92,5 +117,16 @@ public class SpawnButton : MonoBehaviour
             cur.gameObject.SetActive(false);
         }
         spawnImage.transform.GetChild(PlayerController.instance.age).gameObject.SetActive(true);
+    }
+
+    public void OnPointerEnter()
+    {
+        if (SpawnManager.instance.keys > 0)
+            lockObject.GetComponent<Image>().color = new Color(0, 0, 0, 0.2f);
+    }
+
+    public void OnPointerExit()
+    {
+        lockObject.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
     }
 }
