@@ -27,6 +27,7 @@ ScriptsOnlyBuild:
     - TutorialManager
     - UIManager
     PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonView
@@ -275,75 +276,75 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1552}
     - Class: 114
-      Script: {instanceID: 1724}
+      Script: {instanceID: 1726}
     - Class: 114
-      Script: {instanceID: 2054}
+      Script: {instanceID: 2056}
     - Class: 114
-      Script: {instanceID: 2120}
+      Script: {instanceID: 2122}
     - Class: 114
-      Script: {instanceID: 2188}
+      Script: {instanceID: 2190}
     - Class: 114
-      Script: {instanceID: 2564}
+      Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2622}
+      Script: {instanceID: 2624}
     - Class: 114
-      Script: {instanceID: 2816}
+      Script: {instanceID: 2818}
     - Class: 114
-      Script: {instanceID: 2840}
+      Script: {instanceID: 2842}
     - Class: 114
-      Script: {instanceID: 3012}
+      Script: {instanceID: 3014}
     - Class: 114
-      Script: {instanceID: 3040}
+      Script: {instanceID: 3042}
     - Class: 114
-      Script: {instanceID: 3124}
+      Script: {instanceID: 3126}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3166}
     - Class: 114
-      Script: {instanceID: 3780}
+      Script: {instanceID: 3378}
     - Class: 114
-      Script: {instanceID: 4134}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 4148}
+      Script: {instanceID: 4138}
     - Class: 114
-      Script: {instanceID: 4328}
+      Script: {instanceID: 4152}
     - Class: 114
-      Script: {instanceID: 4400}
+      Script: {instanceID: 4332}
     - Class: 114
-      Script: {instanceID: 4796}
+      Script: {instanceID: 4404}
     - Class: 114
-      Script: {instanceID: 4916}
+      Script: {instanceID: 4800}
     - Class: 114
-      Script: {instanceID: 5026}
+      Script: {instanceID: 4920}
     - Class: 114
-      Script: {instanceID: 5098}
+      Script: {instanceID: 5030}
     - Class: 114
-      Script: {instanceID: 5204}
+      Script: {instanceID: 5102}
     - Class: 114
-      Script: {instanceID: 5326}
+      Script: {instanceID: 5208}
     - Class: 114
-      Script: {instanceID: 5656}
+      Script: {instanceID: 5330}
     - Class: 114
-      Script: {instanceID: 5804}
+      Script: {instanceID: 5660}
     - Class: 114
-      Script: {instanceID: 6092}
+      Script: {instanceID: 5808}
     - Class: 114
-      Script: {instanceID: 6122}
+      Script: {instanceID: 6096}
     - Class: 114
-      Script: {instanceID: 6538}
+      Script: {instanceID: 6126}
     - Class: 114
-      Script: {instanceID: 6920}
+      Script: {instanceID: 6542}
     - Class: 114
-      Script: {instanceID: 7276}
+      Script: {instanceID: 6924}
     - Class: 114
-      Script: {instanceID: 7338}
+      Script: {instanceID: 7280}
     - Class: 114
-      Script: {instanceID: 7546}
+      Script: {instanceID: 7342}
     - Class: 114
-      Script: {instanceID: 7654}
+      Script: {instanceID: 7550}
     - Class: 114
-      Script: {instanceID: 7844}
+      Script: {instanceID: 7658}
     - Class: 114
-      Script: {instanceID: 159392}
+      Script: {instanceID: 7848}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -386,57 +387,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1552}
     - Class: 114
-      Script: {instanceID: 2054}
+      Script: {instanceID: 2056}
     - Class: 114
-      Script: {instanceID: 2622}
+      Script: {instanceID: 2624}
     - Class: 114
-      Script: {instanceID: 2840}
+      Script: {instanceID: 2842}
     - Class: 114
-      Script: {instanceID: 3040}
+      Script: {instanceID: 3042}
     - Class: 114
-      Script: {instanceID: 3124}
+      Script: {instanceID: 3126}
     - Class: 114
-      Script: {instanceID: 3362}
+      Script: {instanceID: 3166}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3366}
     - Class: 114
-      Script: {instanceID: 3598}
+      Script: {instanceID: 3378}
     - Class: 114
-      Script: {instanceID: 3720}
+      Script: {instanceID: 3602}
     - Class: 114
-      Script: {instanceID: 3780}
+      Script: {instanceID: 3724}
     - Class: 114
-      Script: {instanceID: 4328}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 5026}
+      Script: {instanceID: 4332}
     - Class: 114
-      Script: {instanceID: 5034}
+      Script: {instanceID: 5030}
     - Class: 114
-      Script: {instanceID: 5098}
+      Script: {instanceID: 5038}
     - Class: 114
-      Script: {instanceID: 5326}
+      Script: {instanceID: 5102}
     - Class: 114
-      Script: {instanceID: 5494}
+      Script: {instanceID: 5330}
     - Class: 114
-      Script: {instanceID: 5656}
+      Script: {instanceID: 5498}
     - Class: 114
-      Script: {instanceID: 5804}
+      Script: {instanceID: 5660}
     - Class: 114
-      Script: {instanceID: 5910}
+      Script: {instanceID: 5808}
     - Class: 114
-      Script: {instanceID: 6092}
+      Script: {instanceID: 5914}
     - Class: 114
-      Script: {instanceID: 6122}
+      Script: {instanceID: 6096}
     - Class: 114
-      Script: {instanceID: 6844}
+      Script: {instanceID: 6126}
     - Class: 114
-      Script: {instanceID: 7338}
+      Script: {instanceID: 6848}
     - Class: 114
-      Script: {instanceID: 7780}
+      Script: {instanceID: 7342}
     - Class: 114
-      Script: {instanceID: 7788}
+      Script: {instanceID: 7784}
     - Class: 114
-      Script: {instanceID: 159392}
+      Script: {instanceID: 7792}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -756,6 +757,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Button
+  - hash:
+      serializedVersion: 2
+      Hash: 195995f1542ae0bd88e8a98066d7139b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ExtraHealth
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1644,14 +1651,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 195995f1542ae0bd88e8a98066d7139b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ExtraHealth
   platform: 20
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version17
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version18
