@@ -181,6 +181,8 @@ public class UIManager : MonoBehaviour
 
         curTimeUsed = 0;
 
+        cancelTurnBtn.SetActive(false);
+
         //only if local turn didn't end
         if (!localTurnEnded)
             GameManager.instance.endTurn();
@@ -223,7 +225,6 @@ public class UIManager : MonoBehaviour
             StopCoroutine(timeCoroutine);
         localTurnEnded = true;
         turnBtn.SetActive(false);
-        cancelTurnBtn.SetActive(false);
     }
 
     #endregion
