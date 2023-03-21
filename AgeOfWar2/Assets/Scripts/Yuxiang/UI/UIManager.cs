@@ -225,6 +225,7 @@ public class UIManager : MonoBehaviour
             StopCoroutine(timeCoroutine);
         localTurnEnded = true;
         turnBtn.SetActive(false);
+        cancelTurnBtn.SetActive(false);
     }
 
     #endregion

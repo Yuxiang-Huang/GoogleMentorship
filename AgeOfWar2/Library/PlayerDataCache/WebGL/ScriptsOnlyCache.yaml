@@ -27,7 +27,6 @@ ScriptsOnlyBuild:
     - TutorialManager
     - UIManager
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonView
@@ -1197,7 +1196,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: 90810ad6767b2a32cce27fb658e857c9
+      Hash: a616e5ea3721d6c9e6ed979043921bb1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -1655,4 +1654,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Yuxiang.unity
-  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version18
+  playerPath: /Users/yuxianghuang/AgeOfWar2Builds/Version19

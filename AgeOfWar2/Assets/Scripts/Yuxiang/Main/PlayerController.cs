@@ -423,13 +423,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 if (tile != null)
                     tile.setGray(false);
             }
+            UIManager.instance.hideInfoTab();
         }
 
         else if (mode == "move")
         {
             //set color of the selected unit back to white and deselect
-            unitSelected.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            unitSelected.setImage(Color.white);
             unitSelected = null;
+            UIManager.instance.hideInfoTab();
         }
 
         mode = "select";
