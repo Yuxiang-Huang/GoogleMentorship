@@ -666,7 +666,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         UIManager.instance.PV.RPC("setSkull", RpcTarget.All, id);
 
-        GameManager.instance.endTurn();
+        //only end turn if quit
+        if (GameManager.instance.turnEnded)
+            GameManager.instance.endTurn();
         UIManager.instance.lost();
 
         lost = true;
