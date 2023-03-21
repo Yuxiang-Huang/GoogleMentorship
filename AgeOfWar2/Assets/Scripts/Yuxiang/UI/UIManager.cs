@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject cancelTurnBtn;
     [SerializeField] Coroutine timeCoroutine;
     [SerializeField] int curTimeUsed;
+    [SerializeField] bool localTurnEnded;
 
     [Header("InfoTab - Unit")]
     [SerializeField] GameObject infoTabUnit;
@@ -151,6 +152,8 @@ public class UIManager : MonoBehaviour
         {
             turnBtn.SetActive(true);
 
+            localTurnEnded = false;
+
             //reset timer
             curTimeUsed = initialTime + timeInc * PlayerController.instance.age;
             timeCoroutine = StartCoroutine(nameof(timer));
@@ -167,7 +170,9 @@ public class UIManager : MonoBehaviour
     {
         for (int i = curTimeUsed; i > 0; i--)
         {
-            timeText.text = "Time Left:\n" + i + " seconds";
+            //only if local turn didn't end
+            if (!localTurnEnded)
+                timeText.text = "Time Left:\n" + i + " seconds";
 
             curTimeUsed = i;
 
@@ -176,32 +181,14 @@ public class UIManager : MonoBehaviour
 
         curTimeUsed = 0;
 
-        GameManager.instance.endTurn();
-    }
-
-    IEnumerator cancelTimer()
-    {
-        //keep track of time left during end turn for canceling
-        for (int i = curTimeUsed; i > 0; i--)
-        {
-            curTimeUsed = i;
-
-            yield return new WaitForSeconds(1f);
-        }
-
-        curTimeUsed = 0;
-
-        cancelTurnBtn.SetActive(false);
+        //only if local turn didn't end
+        if (!localTurnEnded)
+            GameManager.instance.endTurn();
     }
 
     public void endTurn()
     {
-        if (timeCoroutine != null)
-        {
-            StopCoroutine(timeCoroutine);
-        }
-        //keep track time after end turn
-        timeCoroutine = StartCoroutine(nameof(cancelTimer));
+        localTurnEnded = true;
 
         timeText.text = "Waiting for opponents...";
 
@@ -217,12 +204,13 @@ public class UIManager : MonoBehaviour
 
     public void cancelEndTurn()
     {
+        localTurnEnded = false;
+
+        timeText.text = "Time Left:\n" + curTimeUsed + " seconds";
+
+        //UI
         turnBtn.SetActive(true);
         cancelTurnBtn.SetActive(false);
-
-        //stop the timer that keep track after end turn and start another timer
-        StopCoroutine(nameof(timeCoroutine));
-        timeCoroutine = StartCoroutine(nameof(timer));
 
         //hide checkmark
         PV.RPC(nameof(setCheckmark), RpcTarget.All, PlayerController.instance.id, false);
@@ -233,6 +221,7 @@ public class UIManager : MonoBehaviour
     {
         if (timeCoroutine != null)
             StopCoroutine(timeCoroutine);
+        localTurnEnded = true;
         turnBtn.SetActive(false);
         cancelTurnBtn.SetActive(false);
     }
