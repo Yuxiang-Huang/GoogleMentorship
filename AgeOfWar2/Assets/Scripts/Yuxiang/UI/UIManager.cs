@@ -385,7 +385,7 @@ public class UIManager : MonoBehaviour
             goldNeedToAdvanceText.text = "Advance: " + PlayerController.instance.goldNeedToAdvance + " gold";
 
             //upgrade main base
-            PlayerController.instance.mainBase.upgrade();
+            PlayerController.instance.mainBase.PV.RPC(nameof(upgrade), RpcTarget.All);
 
             //age limit
             if (PlayerController.instance.age >= 5)
