@@ -54,41 +54,14 @@ public class TileManager : MonoBehaviourPunCallbacks
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    ////border by water
-                    //if (row <= 4 || row >= rows - 5)
-                    //{
-                    //    instruction.Append(1);
-                    //}
-                    //else if (row % 2 == 0 && col == 1)
-                    //{
-                    //    instruction.Append(1);
-                    //}
-                    //else if (row % 2 == 1 && col <= 1)
-                    //{
-                    //    instruction.Append(1);
-                    //}
-                    //else if (row % 2 == 0 && col == cols - 1)
-                    //{
-                    //    instruction.Append(1);
-                    //}
-                    //else if (row % 2 == 1 && col >= cols - 2)
-                    //{
-                    //    instruction.Append(1);
-                    //}
-                    //else
-                    //{
-                        float noiseNum = Math.PerlinNoise(frequency *  col / cols + seed, frequency * row / rows + seed);
-
+                    float noiseNum = Math.PerlinNoise(frequency *  col / cols + seed, frequency * row / rows + seed);
                         //assign type
-                        if (noiseNum >= 0)
-                        {
-                            instruction.Append(0);
-                        }
-                        else
-                        {
-                            instruction.Append(1);
-                        }
-                    //}
+                    if (noiseNum >= 0){
+                        instruction.Append(0);
+                    }
+                    else{
+                        instruction.Append(1);
+                    }
                 }
             }
         }
