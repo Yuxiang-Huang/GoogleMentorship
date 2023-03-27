@@ -203,6 +203,10 @@ public class Something : MonoBehaviour
         int size = radius * 2;
         tiles = new Tile[size, size];
 
+        System.Random trueSeed = new System.Random();
+        int seed = trueSeed.Next(0, 1000000);
+        float frequency = 3.0F;
+
         LinkedList<int[]> points = new LinkedList<int[]>();
         int mid = size / 2;
         points.AddLast(new int[] {mid,mid});
@@ -211,18 +215,43 @@ public class Something : MonoBehaviour
             int nextCount = 0;
             for(int i = 0; i < count; i++){
                 int[] point = points.First.Value;
+
                 Vector2 subpos = worldFromIndices(point[0], point[1]);
                 Vector3 pos = new Vector3(subpos.x, subpos.y, 0);
-                tiles[point[0], point[1]] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
-                tiles[point[0], point[1]].terrain = "land";
+
+                float someY = frequency *  point[0] / size + seed;
+                float someX = frequency * point[1] / size +  seed;
+
+                float noiseNum = Mathf.PerlinNoise( someX, someY);
+                Debug.Log(noiseNum);
+
+                if (noiseNum > 0.33){
+                    tiles[point[0], point[1]] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                    tiles[point[0], point[1]].terrain = "land";
+                }
+                else{
+                    tiles[point[0], point[1]] = Instantiate(waterTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                    tiles[point[0], point[1]].terrain = "water";
+                }
+/*
+                if (gen > (2.0F/3.0F) * radius){
+                    tiles[point[0], point[1]] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                    tiles[point[0], point[1]].terrain = "land";
+                }
+                else{
+                    tiles[point[0], point[1]] = Instantiate(waterTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                    tiles[point[0], point[1]].terrain = "water";
+                }
+*/
                 List<int[]> mayNeigh = getNeighborsIndex(point[0], point[1]);
                 foreach (int[] neigh in mayNeigh){
                     if (tiles[neigh[0], neigh[1]] == null){
-                        Debug.Log(neigh[0] + ", " + neigh[1]);
+                       //  Debug.Log(neigh[0] + ", " + neigh[1]);
                         points.AddLast(new int[]{neigh[0], neigh[1]});
                         nextCount += 1;
                     }
                 }
+                tiles[point[0], point[1]].neighbors = getNeighbors(point[0], point[1]);
                 points.RemoveFirst();
             }
             count = nextCount;
@@ -243,6 +272,6 @@ public class Something : MonoBehaviour
         }
       */
         // makeGrid_RPC(25, 20);
-        hexMap(6);
+        hexMap(10);
     }
 }
