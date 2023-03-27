@@ -39,12 +39,9 @@ public class Something : MonoBehaviour
         {
             for (int j = 0; j < tiles.GetLength(1); j++)
             {
-                Vector3 basePlace = this.transform.position;
-                    
-                float xShift = tileSize * colHexDiff * (j + (i%2) * 0.5F);
-                float yShift = rowHexDiff * i * tileSize;
+                Vector2 subpos = worldFromIndices(i, j);
 
-                Vector3 pos = basePlace + new Vector3(xShift, yShift, 0);
+                Vector3 pos = new Vector3(subpos.x, subpos.y, 0);
                     
                 float someY = frequency *  i / rows + seed;
                 float someX = frequency * j / cols + seed;
@@ -78,90 +75,6 @@ public class Something : MonoBehaviour
             }
         }
 
-/*
-        //set neighbors
-        for (int row = 0; row < tiles.GetLength(0); row++)
-        {
-            for (int col = 0; col < tiles.GetLength(1); col++)
-            {
-                //skip bottom row
-                if (!(row % 2 == 0 && col == 0))
-                {
-                    List<Tile> neighbors = tiles[row, col].GetComponent<Tile>().neighbors;
-
-                    //left and right
-                    if (row >= 2)
-                    {
-                        neighbors.Add(tiles[row - 2, col]);
-                    }
-                    if (row < tiles.GetLength(0) - 2)
-                    {
-                        neighbors.Add(tiles[row + 2, col]);
-                    }
-
-                    if (row % 2 == 0)
-                    {
-                        //there is a row before it
-                        if (row > 0)
-                        {
-                            neighbors.Add(tiles[row - 1, col]);
-
-                            //even row decrease col
-                            if (col >= 1)
-                            {
-                                neighbors.Add(tiles[row - 1, col - 1]);
-                            }
-                        }
-                        //there is a row after it
-                        if (row < tiles.GetLength(0) - 1)
-                        {
-                            neighbors.Add(tiles[row + 1, col]);
-
-                            //even row decrease col
-                            if (col >= 1)
-                            {
-                                neighbors.Add(tiles[row + 1, col - 1]);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //there is a row before it
-                        if (row > 0)
-                        {
-                            neighbors.Add(tiles[row - 1, col]);
-
-                            //odd row increase col
-                            if (col < tiles.GetLength(1) - 1)
-                            {
-                                neighbors.Add(tiles[row - 1, col + 1]);
-                            }
-                        }
-                        //there is a row after it
-                        if (row < tiles.GetLength(0) - 1)
-                        {
-                            neighbors.Add(tiles[row + 1, col]);
-
-                            //odd row increase col
-                            if (col < tiles.GetLength(1) - 1)
-                            {
-                                neighbors.Add(tiles[row + 1, col + 1]);
-                            }
-                        }
-                    }
-
-                    //remove null due to skip bottom row
-                    for (int i = neighbors.Count - 1; i >= 0; i--)
-                    {
-                        if (neighbors[i] == null)
-                        {
-                            neighbors.RemoveAt(i);
-                        }
-                    }
-                }
-            }
-        }
-
         //set neighbors2
         for (int row = 0; row < tiles.GetLength(0); row++)
         {
@@ -170,11 +83,10 @@ public class Something : MonoBehaviour
                 //skip bottom row
                 if (!(row % 2 == 0 && col == 0))
                 {
-                    tiles[row, col].neighbors2 = findNeighbors2(tiles[row, col]);
+                    tiles[row, col].neighbors2 = findNeighbors2(row, col);
                 }
             }
         }
-*/
     }
 
     //get the tile depending on world position TBContinued
@@ -236,7 +148,7 @@ public class Something : MonoBehaviour
 
     public List<int[]> getNeighborsIndex (int row, int col){ // Edited for new paradigm
         List<int[]> neighbors = new List<int[]>();
-        Vector2 source = getWorldPosition(tiles[row, col]);
+        Vector2 source = worldFromIndices(row, col);
         for (int i = row - 1; i <= row + 1 && i < tiles.GetLength(0); i++){
             for (int j = col - 1; j <= col + 1 && j < tiles.GetLength(1); j++){
                 // Debug.Log("Looking at: " + i + ", " + j);
@@ -263,53 +175,63 @@ public class Something : MonoBehaviour
         return neighbors;
     }
 
+    public List<Tile> findNeighbors2 (int row, int col){ // issue at 0,0 but works otherwise
+        List<int[]> potential = new List<int[]>();
+        Vector2 source = getWorldPosition(tiles[row, col]);
+        for (int i = row - 2; i <= row + 2 && i < tiles.GetLength(0); i++){
+            for (int j = col - 2; j <= col + 2 && j < tiles.GetLength(1); j++){
+                // Debug.Log("Looking at: " + i + ", " + j);
+                if (i >= 0 && j >= 0){
+                    Vector2 testing = worldFromIndices(i, j);
+                    // Debug.Log("Distance = " + dist(source, testing));
+                    if (dist(source, testing) < 0.87 * tileSize * 2 && dist(source, testing) > 0){
+                        potential.Add(new int[] {i, j});
+                    }
+                }
+            }
+        }
+        List<Tile> neighbors = new List<Tile>();
+        foreach (int[] test in potential){
+            if(tiles[test[0], test[1]] != null){
+                neighbors.Add(tiles[test[0], test[1]]);
+            }
+        }
+        return neighbors;
+    }
+
     public void hexMap(int radius){
-        tiles = new Tile[radius + 2, radius + 2];
-        Debug.Log(tiles.GetLength(0) + ", " + tiles.GetLength(1));
-        LinkedList<int[]> bfs = new LinkedList<int[]>();
-        bfs.AddLast(new int[] { (radius+2)/2, (radius+2)/2 });
+        int size = radius * 2;
+        tiles = new Tile[size, size];
+
+        LinkedList<int[]> points = new LinkedList<int[]>();
+        int mid = size / 2;
+        points.AddLast(new int[] {mid,mid});
         int count = 1;
         for (int gen = 0; gen < radius; gen++){
             int nextCount = 0;
-            for (int i = 0; i < count; i++){
-              // Values in the Linked List's array
-                int rVal = bfs.First.Value[0];
-                int cVal = bfs.First.Value[1];
-                Debug.Log(rVal + ", " + cVal);
-              // Position Values in the World
-                float xPos = cVal * 0.5f * tileSize;
-                float yPos = rVal * Mathf.Sqrt(3f) * tileSize + (cVal % 2 * Mathf.Sqrt(3f) / 2 * tileSize);
-                Vector3 pos = new Vector3(xPos, yPos, 0);
-
-              // Instantiate the tile
-                tiles[rVal, cVal] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
-                tiles[rVal, cVal].terrain = "land";
-
-              // We need the neighbors now
-                List<int[]> neighs = getNeighborsIndex(rVal, cVal);
-                
-              // Add the Values to the next generation
-                foreach (int[] neigh in neighs){
-                        // Debug.Log(neigh[0] + ", " + neigh[1]);
-                        bfs.AddLast(neigh);
+            for(int i = 0; i < count; i++){
+                int[] point = points.First.Value;
+                Vector2 subpos = worldFromIndices(point[0], point[1]);
+                Vector3 pos = new Vector3(subpos.x, subpos.y, 0);
+                tiles[point[0], point[1]] = Instantiate(landTilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                tiles[point[0], point[1]].terrain = "land";
+                List<int[]> mayNeigh = getNeighborsIndex(point[0], point[1]);
+                foreach (int[] neigh in mayNeigh){
+                    if (tiles[neigh[0], neigh[1]] == null){
+                        Debug.Log(neigh[0] + ", " + neigh[1]);
+                        points.AddLast(new int[]{neigh[0], neigh[1]});
+                        nextCount += 1;
+                    }
                 }
-              // Increase the Count for the next gen
-                nextCount += neighs.Count;
-
-              // REMOVING THE FRONT OF THE BFS SO IT CAN ACTUALLY PROGRESS
-                bfs.RemoveFirst();
+                points.RemoveFirst();
             }
             count = nextCount;
         }
     }
 
     void Start(){
+      /*
         makeGrid_RPC(3, 3);
-        /*
-        foreach(Tile spot in tiles){
-            Debug.Log(spot.pos.x + ", " + spot.pos.y + ": " + spot.neighbors.Count);
-        }
-        */
         foreach (Tile spot in tiles){
             Vector2 testy = getWorldPosition(tiles[spot.pos.y, spot.pos.x]);
             Vector2 testb = worldFromIndices(spot.pos.y, spot.pos.x);
@@ -317,7 +239,10 @@ public class Something : MonoBehaviour
             // List<int[]> someNeighs = getNeighborsIndex(spot.pos.y, spot.pos.x);
             // Debug.Log("Count of potential: " + someNeighs.Count);
             Debug.Log("Neighbor Count: " + spot.neighbors.Count);
+            Debug.Log("Neighbor 2 Count: " + spot.neighbors2.Count);
         }
+      */
+        // makeGrid_RPC(25, 20);
+        hexMap(6);
     }
 }
-
